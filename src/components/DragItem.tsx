@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Draggable, {DraggableCore} from 'react-draggable'; // Both at the same time
+import './globalAreaStyles.css';
 
-class DragItem extends React.Component {
+export default class DragItem extends React.Component {
   eventLoReact = (e: MouseEvent, data: Object) => {
     console.log('Event: ', e);
     console.log('Data: ', data);
@@ -9,47 +10,23 @@ class DragItem extends React.Component {
 
   handler = () => {
       console.log('handler', 'empty');
-  }
+  };
     
   render() {
     return (
-      <Draggable
-        axis="x"
-        handle=".handle"
+      <Draggable 
+        cancel="strong"
         defaultPosition={{x: 0, y: 0}}
-        grid={[25, 25]}
+        grid={[20, 20]}
         onStart={this.handler}
         onDrag={this.handler}
         onStop={this.handler}>
-        <div>
-          <div className="handle">Drag from here</div>
-          <div>This readme is really dragging on...</div>
+        <div className="box">
+           Drag from here
+           This readme is really dragging on...
         </div>
       </Draggable>
     );
   }
 
 }
-
-export default DragItem;
-
-  render() {
-    return (
-      <Draggable
-        axis="x"
-        handle=".handle"
-        defaultPosition={{x: 0, y: 0}}
-        position={null}
-        grid={[25, 25]}
-        scale={1}
-        onStart={this.handleStart}
-        onDrag={this.handleDrag}
-        onStop={this.handleStop}>
-        <div>
-          <div className="handle">Drag from here</div>
-          <div>This readme is really dragging on...</div>
-        </div>
-      </Draggable>
-    );
-  }
-

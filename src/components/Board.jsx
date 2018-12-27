@@ -72,6 +72,11 @@ class Board extends React.Component {
         <Group
           x={10}
           y={10}
+          clipFunc={
+            (ctx) => {
+            ctx.rect(10, 10, 200, 200);
+            // ctx.arc(150, 120, 60, 0, Math.PI * 2, false);
+          }}
           dragBoundFunc={
             (pos) => {
               var newY = pos.y < 50 ? 50 : pos.y;

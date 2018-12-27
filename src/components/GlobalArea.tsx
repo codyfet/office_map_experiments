@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DragItem from './DragItem';
-import Board from './Board';
+import AdvancedBoard from './AdvancedBoard';
 import Panel from './Panel';
 
 class GlobalArea extends React.Component {
@@ -10,7 +10,7 @@ class GlobalArea extends React.Component {
         width: '100%', 
         height: '100hv',
         display: 'flex'}}>
-          <Board />
+          <AdvancedBoard />
           <Panel />
       </div>          
     );

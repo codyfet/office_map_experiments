@@ -29,8 +29,12 @@ export default class TableObject extends React.Component {
     return {checkedX, checkedY};
   }
 
+  onDragMove = () => {
+    this.props.sh
+  }
+
   render() {
-    const {x, y, blockSnapSize} = this.props;
+    const {x, y, blockSnapSize, showShadow, stopShadow} = this.props;
     
     return (
       <Rect
@@ -51,18 +55,16 @@ export default class TableObject extends React.Component {
           e.target.moveToTop();
         }}
         onDragEnd={(e) => {
-          // 
-        }}
-        onDragMove={(e) => {
-
           let { checkedX, checkedY } = this.checkBoundaries(e.target.x(), e.target.y());
-          // console.log(checkedX, checkedY);
           e.target.position({
             x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
             y: Math.round(checkedY / blockSnapSize) * blockSnapSize
-          });
-          // this.rect.getLayer().batchDraw();
+          }); 
+          stopShadow();
         }}
+        onDragMove={
+          (e) => showShadow(e.target.x(), e.target.y(), [this.state.width, this.state.height])
+        }
         onClick={this.rotateObject}
         
       />

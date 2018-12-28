@@ -8,7 +8,8 @@ class AdvancedBoard extends React.Component {
   state = {
     stageScale: 1,
     stageX: 0,
-    stageY: 0
+    stageY: 0,
+    shadowRect: [0, 0]
   };
 
   handleWheel = e => {
@@ -65,15 +66,15 @@ class AdvancedBoard extends React.Component {
         ); 
     });
 
-    const spawnField = [...Array(20)].map((elem, i_y) => {
-        return [...Array(20)].map((elem, i_x) => {
-            let uniqPos = [10 + i_x * 30, 10 + i_y * 30];
+    const spawnField = [...Array(10)].map((elem, i_y) => {
+        return [...Array(10)].map((elem, i_x) => {
+            let uniqPos = [10 + i_x * 30, 10 + i_y * 40];
             return <TableObject
                         key={Number(uniqPos[0] + '' + uniqPos[1])}
                         x={uniqPos[0]} 
                         y={uniqPos[1]} 
                         width={20}
-                        height={20}
+                        height={30}
                         globalWidth={width-20}
                         globalHeight={height-20}
                         blockSnapSize={blockSnapSize} 

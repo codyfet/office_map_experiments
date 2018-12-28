@@ -3,31 +3,41 @@ import { Stage, Layer, Rect, Text } from 'react-konva';
 import Konva from 'konva';
 
 export default class TableObject extends React.Component {
-  state = {
-    isDragging: false
+  constructor(props){
+    super(props);
+
+    this.state = {
+      isDragging: false,
+      width: this.props.width,
+      height: this.props.height
+    };
+  }
+
+  rotateObject = (e) => {
+    let newWidth = this.state.height;
+    let newHeight = this.state.width;
+    this.setState({
+      width: newWidth,
+      height: newHeight
+    });
   };
 
-  handleClick = (e) => {
-    console.log(e.target.x(), e.target.y());
-  };
-
-  checkBoundaries = (x, y) => {
-    const {width, height, globalWidth, globalHeight} = this.props;
-    console.log(globalWidth, globalHeight);
-    let checkedX = x < 10 ? 10 : (x > (globalWidth-(width-10)) ? (globalWidth-(width-10)) : x);
-    let checkedY = y < 10 ? 10 : (y > (globalHeight-(height-10)) ? (globalHeight-(height-10)) : y);
+  checkBoundaries(x, y){
+    const {globalWidth, globalHeight} = this.props;
+    let checkedX = x < 10 ? 10 : (x > (globalWidth-(this.state.width-10)) ? (globalWidth-(this.state.width-10)) : x);
+    let checkedY = y < 10 ? 10 : (y > (globalHeight-(this.state.height-10)) ? (globalHeight-(this.state.height-10)) : y);
     return {checkedX, checkedY};
   }
 
   render() {
-    const {x, y, width, height, blockSnapSize} = this.props;
+    const {x, y, blockSnapSize} = this.props;
     
     return (
       <Rect
         x={x}
         y={y}
-        width={width}
-        height={height}
+        width={this.state.width}
+        height={this.state.height}
         fill={'#fff'}
         stroke={'#ddd'}
         strokeWidth={1}
@@ -53,6 +63,7 @@ export default class TableObject extends React.Component {
           });
           // this.rect.getLayer().batchDraw();
         }}
+        onClick={this.rotateObject}
         
       />
     );

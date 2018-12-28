@@ -6,7 +6,7 @@ import GlobalArea from './components/GlobalArea';
 
 const App = () => (
   <React.Fragment>
-    <h1>HELOOOOOOOOOOOOOOOO</h1>
+    <h1 style={{fontFamily: 'Helvetica'}}>  Office map</h1>
     <GlobalArea />
   </React.Fragment>
 );

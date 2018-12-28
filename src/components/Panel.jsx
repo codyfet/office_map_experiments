@@ -13,7 +13,7 @@ class Panel extends React.Component {
     return (
       <div style={{
         width: '200px', 
-        height: '500px',
+        height: '800px',
         border: '1px solid blue'
         }}
       >

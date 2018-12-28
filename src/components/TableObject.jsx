@@ -11,6 +11,14 @@ export default class TableObject extends React.Component {
     console.log(e.target.x(), e.target.y());
   };
 
+  checkBoundaries = (x, y) => {
+    const {width, height, globalWidth, globalHeight} = this.props;
+    console.log(globalWidth, globalHeight);
+    let checkedX = x < 10 ? 10 : (x > (globalWidth-(width-10)) ? (globalWidth-(width-10)) : x);
+    let checkedY = y < 10 ? 10 : (y > (globalHeight-(height-10)) ? (globalHeight-(height-10)) : y);
+    return {checkedX, checkedY};
+  }
+
   render() {
     const {x, y, width, height, blockSnapSize} = this.props;
     
@@ -28,22 +36,24 @@ export default class TableObject extends React.Component {
         shadowOffset={{x : 1, y : 1}}
         shadowOpacity={0.4}    
         draggable={true}
-    
+
         onDragStart={(e) => {
           e.target.moveToTop();
         }}
         onDragEnd={(e) => {
-          e.currentTarget.position({
-            x: Math.round(e.target.x() / blockSnapSize) * blockSnapSize,
-            y: Math.round(e.target.y() / blockSnapSize) * blockSnapSize
-          });
-          this.rect.getLayer().batchDraw();
+          // 
         }}
-        onDragMove={() => {
-          this.setState({
-            isDragging: false
+        onDragMove={(e) => {
+
+          let { checkedX, checkedY } = this.checkBoundaries(e.target.x(), e.target.y());
+          // console.log(checkedX, checkedY);
+          e.target.position({
+            x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
+            y: Math.round(checkedY / blockSnapSize) * blockSnapSize
           });
+          // this.rect.getLayer().batchDraw();
         }}
+        
       />
     );
   }

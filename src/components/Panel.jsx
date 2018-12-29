@@ -13,8 +13,8 @@ class Panel extends React.Component {
     return (
       <div style={{
         width: '200px', 
-        height: '800px',
-        border: '1px solid blue'
+        height: '810px',
+        border: '1px solid black'
         }}
       >
         <button style={{width: '100%'}}>Create</button>

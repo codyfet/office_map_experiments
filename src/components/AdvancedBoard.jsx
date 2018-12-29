@@ -11,7 +11,7 @@ class AdvancedBoard extends React.Component {
     stageY: 0,
     shadowRectPos: [10, 10],
     shadowRectSizes: [10, 10],
-    shadowOpacity: 1,
+    shadowOpacity: 0,
     blockSnapSize: 10
   };
 
@@ -106,9 +106,9 @@ class AdvancedBoard extends React.Component {
 
     return (
         <div style={{
-            width: '800px', 
-            height: '800px',
-            border: '1px solid blue'
+            width: '810px', 
+            height: '810px',
+            border: '1px solid black'
         }}
         >
             <Stage 
@@ -127,9 +127,9 @@ class AdvancedBoard extends React.Component {
                       y={this.state.shadowRectPos[1]}
                       width={this.state.shadowRectSizes[0]}
                       height={this.state.shadowRectSizes[1]}
-                      fill={'blue'}
+                      fill={'orange'}
                       opacity={this.state.shadowOpacity}
-                      stroke={'#020952'}
+                      stroke={'#AE4C01'}
                       strokeWidth={2}
                     />
                     {spawnField}

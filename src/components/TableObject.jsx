@@ -65,7 +65,7 @@ export default class TableObject extends React.Component {
         onDragMove={
           (e) => showShadow(e.target.x(), e.target.y(), [this.state.width, this.state.height])
         }
-        onClick={this.rotateObject}
+        // onClick={this.rotateObject}
         
       />
     );

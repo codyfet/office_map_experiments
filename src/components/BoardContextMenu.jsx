@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { Menu, Item, Separator, Submenu, MenuProvider } from 'react-contexify';
+import { Menu, Item, Separator, Submenu, MenuProvider, animation } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
 
 
 const onClick = ({ event, props }) => console.log(event,props);
 
-export default class BoardContextMenu {
+export default class BoardContextMenu extends React.Component {
     
-
     render() {
         return (
-            <Menu id='menu_id'>
+            <Menu id='menu_id' animation={animation.zoom}>
                 <Item onClick={onClick}>Rotate</Item>
                 <Item onClick={onClick}>Move</Item>
                 <Separator />

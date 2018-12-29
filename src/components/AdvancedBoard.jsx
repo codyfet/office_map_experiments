@@ -91,6 +91,7 @@ class AdvancedBoard extends React.Component {
             let uniqPos = [10 + i_x * 30, 10 + i_y * 40];
             return <TableObject
                         key={Number(uniqPos[0] + '' + uniqPos[1])}
+                        id={Number(uniqPos[0] + '' + uniqPos[1])}
                         x={uniqPos[0]} 
                         y={uniqPos[1]} 
                         width={20}
@@ -140,17 +141,5 @@ class AdvancedBoard extends React.Component {
     );
   }
 }
-
-/*
-x={x}
-y={y}
-width={width}
-height={height}
-fill={'#FF7B17'}
-opacity={0.6}
-stroke={'#CF6412'}
-strokeWidth={3}
-dash={[20, 2]}
-*/
 
 export default AdvancedBoard;

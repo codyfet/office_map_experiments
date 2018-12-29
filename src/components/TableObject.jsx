@@ -9,7 +9,7 @@ export default class TableObject extends React.Component {
     this.state = {
       isDragging: false,
       width: this.props.width,
-      height: this.props.height
+      height: this.props.height,
     };
   }
 
@@ -31,6 +31,10 @@ export default class TableObject extends React.Component {
 
   onDragMove = () => {
     this.props.sh
+  }
+
+  onHover = () => {
+    // to-do
   }
 
   render() {
@@ -65,9 +69,8 @@ export default class TableObject extends React.Component {
         onDragMove={
           (e) => showShadow(e.target.x(), e.target.y(), [this.state.width, this.state.height])
         }
-        // onClick={this.rotateObject}
-        
       />
+      
     );
   }
 }

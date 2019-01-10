@@ -13,7 +13,7 @@ class Panel extends React.Component {
 
     const newFurniture = {
       type: 'table',
-      coordinates: { x: Math.floor(Math.random()*100), y: Math.floor(Math.random()*100)},
+      coordinates: { x: 750, y: 20 },
       position: 'horizontal'
     };
 

@@ -3,6 +3,10 @@ import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
 import ColoredRect from './KonvaElement';
 import TableObject from './TableObject';
 
+// redux:
+import { connect } from 'react-redux';
+
+
 class AdvancedBoard extends React.Component {
 
   state = {
@@ -86,23 +90,24 @@ class AdvancedBoard extends React.Component {
         ); 
     });
 
-    const spawnField = [...Array(10)].map((elem, i_y) => {
-        return [...Array(10)].map((elem, i_x) => {
-            let uniqPos = [10 + i_x * 30, 10 + i_y * 40];
-            return <TableObject
-                        key={Number(uniqPos[0] + '' + uniqPos[1])}
-                        id={Number(uniqPos[0] + '' + uniqPos[1])}
-                        x={uniqPos[0]} 
-                        y={uniqPos[1]} 
-                        width={20}
-                        height={30}
-                        globalWidth={width-20}
-                        globalHeight={height-20}
-                        blockSnapSize={blockSnapSize}
-                        showShadow={this.activateShadow}
-                        stopShadow={this.stopShadow}
-                    />
-        });
+    const furniture = this.props.furnitures;
+
+    const loadFurniture = furniture.map((elem, i) => {
+        return (
+          <TableObject
+            key={i}
+            id={i}
+            x={elem.coordinates.x}
+            y={elem.coordinates.y}  
+            width={20}
+            height={30}
+            globalWidth={width-20}
+            globalHeight={height-20}
+            blockSnapSize={blockSnapSize}
+            showShadow={this.activateShadow}
+            stopShadow={this.stopShadow}
+          />
+        );
     });
 
     return (
@@ -133,7 +138,7 @@ class AdvancedBoard extends React.Component {
                       stroke={'#AE4C01'}
                       strokeWidth={2}
                     />
-                    {spawnField}
+                    {loadFurniture}
                 </Layer>
             </Stage>
         </div>
@@ -142,4 +147,17 @@ class AdvancedBoard extends React.Component {
   }
 }
 
-export default AdvancedBoard;
+// for redux:
+const mapStateToProps = (state) => ({
+  furnitures: state.furnitures
+});
+  
+const mapDispatchToProps = (dispatch) => ({
+
+});
+  
+  
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdvancedBoard);

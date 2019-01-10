@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
 import TableObject from './TableObject';
+import KonvaGridLayer from './KonvaGridLayer';
 
 // redux:
 import { connect } from 'react-redux';
@@ -64,31 +65,6 @@ class AdvancedBoard extends React.Component {
     let width = 800;
     let height = 800;
 
-    let padding = blockSnapSize;
-    let blocksCount = width / blockSnapSize ^ 0;
-
-    const makeVerticalGrid = [...Array(blocksCount+1)].map((elem, i) => {
-        return (
-            <Line
-                points={[Math.round(i * padding) + 0.5, 0, Math.round(i * padding) + 0.5, height]} 
-                stroke={'#ddd'}
-                strokeWidth={1}
-            >    
-            </Line>
-        ); 
-    });
-
-    const makeHorizontalGrid = [...Array(blocksCount+1)].map((elem, j) => {
-        return (
-            <Line
-                points={[0, Math.round(j * padding), width, Math.round(j * padding)]} 
-                stroke={'#ddd'}
-                strokeWidth={0.5}
-            >    
-            </Line>
-        ); 
-    });
-
     const furniture = this.props.furnitures;
 
     const loadFurniture = furniture.map((elem, i) => {
@@ -112,8 +88,7 @@ class AdvancedBoard extends React.Component {
     return (
         <div style={{
             width: '810px', 
-            height: '810px',
-            border: '1px solid black'
+            height: '810px'
         }}
         >
             <Stage 
@@ -124,9 +99,12 @@ class AdvancedBoard extends React.Component {
                 scaleX={this.state.stageScale}
                 scaleY={this.state.stageScale}
                 >
-                <Layer>
-                    {makeVerticalGrid}
-                    {makeHorizontalGrid}
+
+                <KonvaGridLayer
+                   width={width} 
+                   height={height} 
+                   blockSnapSize={blockSnapSize}  
+                >
                     <Rect 
                       x={this.state.shadowRectPos[0]}
                       y={this.state.shadowRectPos[1]}
@@ -138,7 +116,7 @@ class AdvancedBoard extends React.Component {
                       strokeWidth={2}
                     />
                     {loadFurniture}
-                </Layer>
+                </KonvaGridLayer>
             </Stage>
         </div>
         

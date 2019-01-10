@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
-import TableObject from './TableObject';
-import KonvaGridLayer from './KonvaGridLayer';
+import TableObject from '../../TableObject';
+import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
 
 // redux:
 import { connect } from 'react-redux';
@@ -18,6 +18,13 @@ class AdvancedBoard extends React.Component {
     shadowOpacity: 0,
     blockSnapSize: 10
   };
+
+  // update the block size every time the component gets the props:
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      blockSnapSize: newProps.blockSnapSize
+    });
+  }
 
   handleWheel = e => {
     e.evt.preventDefault();
@@ -61,13 +68,9 @@ class AdvancedBoard extends React.Component {
   }
 
   render() {
-    const blockSnapSize = this.state.blockSnapSize; 
-    let width = 800;
-    let height = 800;
+    const { width, height, blockSnapSize, furnitures } = this.props; 
 
-    const furniture = this.props.furnitures;
-
-    const loadFurniture = furniture.map((elem, i) => {
+    const loadFurniture = furnitures.map((elem, i) => {
         return (
           <TableObject
             key={i}

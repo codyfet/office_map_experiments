@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
-import TableObject from './TableObject';
+import { Layer, Line } from 'react-konva';
 
 
 export default class KonvaGridLayer extends React.Component {

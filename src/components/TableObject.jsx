@@ -10,6 +10,7 @@ export default class TableObject extends React.Component {
       isDragging: false,
       width: this.props.width,
       height: this.props.height,
+      color: '#fff'
     };
   }
 
@@ -46,7 +47,7 @@ export default class TableObject extends React.Component {
         y={y}
         width={this.state.width}
         height={this.state.height}
-        fill={'#fff'}
+        fill={this.state.color}
         stroke={'#ddd'}
         strokeWidth={1}
         shadowColor={'black'}
@@ -69,6 +70,7 @@ export default class TableObject extends React.Component {
         onDragMove={
           (e) => showShadow(e.target.x(), e.target.y(), [this.state.width, this.state.height])
         }
+
       />
       
     );

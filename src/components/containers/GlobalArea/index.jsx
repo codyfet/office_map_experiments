@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AdvancedBoard from '../../AdvancedBoard';
+import AdvancedBoard from '../AdvancedBoard/index';
 import SidePanel from '../SidePanel/index';
 import { MenuProvider } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
@@ -11,7 +11,11 @@ class GlobalArea extends React.Component {
     return (
        <div className="globalArea">
           <MenuProvider id="menu_id" className="menuProviderStyle">
-            <AdvancedBoard />
+            <AdvancedBoard
+              width={800}
+              height={800}
+              blockSnapSize={10} 
+            />
           </MenuProvider>
           <SidePanel />
           <ContextMenuView />

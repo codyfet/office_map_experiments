@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
-import ColoredRect from './KonvaElement';
 import TableObject from './TableObject';
 
 // redux:

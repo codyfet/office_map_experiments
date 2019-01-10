@@ -5,7 +5,7 @@ import 'react-contexify/dist/ReactContexify.min.css';
 
 const onClick = ({ event, props }) => console.log(event,props);
 
-export default class BoardContextMenu extends React.Component {
+export default class ContextMenuView extends React.Component {
     
     render() {
         return (

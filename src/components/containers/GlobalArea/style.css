@@ -1,0 +1,9 @@
+.globalArea {
+  width: 100%;  
+  height: 100hv;
+  display: flex;
+}
+
+.menuProviderStyle {
+  border: 1px solid purple;
+}

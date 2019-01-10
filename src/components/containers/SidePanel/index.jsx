@@ -4,9 +4,9 @@ import { Stage, Layer, Rect, Text } from 'react-konva';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createFurniture } from '../actions/index';
+import { createFurniture } from '../../../actions/index';
 
-class Panel extends React.Component {
+class SidePanel extends React.Component {
 
   handleClick = () => {
     const { actions } = this.props;
@@ -55,4 +55,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Panel);
+)(SidePanel);

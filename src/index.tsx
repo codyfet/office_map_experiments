@@ -1,14 +1,18 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
-import Main from "../src/components/containers/Main/index";
-import GlobalArea from './components/GlobalArea';
+import Main from './components/containers/Main/index';
 
+// redux:
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
 
-const App = () => (
-  <React.Fragment>
-    <h1 style={{fontFamily: 'Helvetica'}}>  Office map</h1>
-    <GlobalArea />
-  </React.Fragment>
+const store = createStore(reducer, composeWithDevTools());
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Main />
+  </Provider>, 
+  document.getElementById("root")
 );
-
-ReactDOM.render(<App />, document.getElementById("root"));

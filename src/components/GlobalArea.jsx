@@ -2,7 +2,7 @@ import * as React from 'react';
 import DragItem from './DragItem';
 import AdvancedBoard from './AdvancedBoard';
 import Panel from './Panel';
-import { Menu, Item, Separator, Submenu, MenuProvider } from 'react-contexify';
+import { MenuProvider } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
 import BoardContextMenu from './BoardContextMenu';
 

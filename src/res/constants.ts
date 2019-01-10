@@ -1,0 +1,4 @@
+const CREATE_FURNITURE = 'CREATE_FURNITURE';
+
+
+export { CREATE_FURNITURE,  };

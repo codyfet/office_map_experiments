@@ -1,14 +1,27 @@
 import * as React from 'react';
 import { Stage, Layer, Rect, Text } from 'react-konva';
 
+// redux:
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { createFurniture } from '../actions/index';
+
 class Panel extends React.Component {
-//   componentDidMount() {
-//     this.updateCanvas();
-//   }
-//   updateCanvas() {
-//     const ctx = this.refs.canvas.getContext('2d');
-//     ctx.fillRect(0,0, 100, 100);
-//   }
+
+  handleClick = () => {
+    const { actions } = this.props;
+
+    const newFurniture = {
+      type: 'table',
+      coordinates: { x: Math.floor(Math.random()*100), y: Math.floor(Math.random()*100)},
+      position: 'horizontal'
+    };
+
+    actions.createFurniture(newFurniture);
+    console.log('created', newFurniture);
+    
+  }
+
   render() {
     return (
       <div style={{
@@ -17,12 +30,29 @@ class Panel extends React.Component {
         border: '1px solid black'
         }}
       >
-        <button style={{width: '100%'}}>Create</button>
+        <button 
+          style={{width: '100%'}}
+          onClick={this.handleClick}
+        >
+          Create
+        </button>
       </div>
       
     );
   }
 }
 
+// for redux:
+const mapStateToProps = (state) => ({
+  furnitures: state.furnitures
+});
 
-export default Panel;
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ createFurniture }, dispatch)
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Panel);

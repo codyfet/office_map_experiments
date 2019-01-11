@@ -21,17 +21,9 @@ class AdvancedBoard extends React.Component {
     shadowRectPos: [10, 10],
     shadowRectSizes: [10, 10],
     shadowOpacity: 0,
-    blockSnapSize: 10,
-    context: [10, 10],
+    contextPos: [10, 10],
     contextShow: false
   };
-
-  // update the block size every time the component gets the props:
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      blockSnapSize: newProps.blockSnapSize
-    });
-  }
 
   handleWheel = e => {
     e.evt.preventDefault();
@@ -60,7 +52,7 @@ class AdvancedBoard extends React.Component {
   };
 
   handleStageChanges(){
-    const { width, height, actions } = this.props; 
+    const { actions } = this.props; 
     const newState = {
       shift: this.state.stageShift,
       scale: this.state.stageScale
@@ -72,10 +64,10 @@ class AdvancedBoard extends React.Component {
   };
 
   activateShadow = (posX, posY, size) => {
-    let blockSize = this.state.blockSnapSize;
+    const { blockSnapSize } = this.props;
     this.setState({
-        shadowRectPos: [Math.round(posX / blockSize) * blockSize,
-                        Math.round(posY / blockSize) * blockSize],
+        shadowRectPos: [Math.round(posX / blockSnapSize) * blockSnapSize,
+                        Math.round(posY / blockSnapSize) * blockSnapSize],
         shadowRectSizes: size,
         shadowOpacity: 1 
     });
@@ -90,13 +82,13 @@ class AdvancedBoard extends React.Component {
 
   showContextMenu = (x, y) => {
     // if click on the same object and context menu has already showing:
-    if ( this.state.context[0] == x && this.state.context[1] == y ) {
+    if ( this.state.contextPos[0] == x && this.state.contextPos[1] == y ) {
       this.setState({
         contextShow: !this.state.contextShow
       });  
     } else {
       this.setState({
-        context: [x, y],
+        contextPos: [x, y],
         contextShow: true
       });
     }
@@ -181,8 +173,8 @@ class AdvancedBoard extends React.Component {
                         <Popover 
                           id="popover-basic"
                           placement="right"
-                          positionLeft={Math.floor(this.state.context[0] * this.state.stageScale + this.state.stageShift[0])}
-                          positionTop={Math.floor(this.state.context[1] * this.state.stageScale + this.state.stageShift[1]) - 30}
+                          positionLeft={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
+                          positionTop={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) - 30}
                           title="Popover"
                         >
                           And here's some <strong>amazing</strong> content. It's very engaging. right?

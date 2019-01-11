@@ -27,10 +27,14 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: ["babel-loader"]
       },
-      { test: /\.tsx&$/, use: "ts-loader", exclude: /node_modules/ }
+      { test: /\.tsx&$/, use: "ts-loader", exclude: /node_modules/ },
+      {
+        test: /\.svg$/,
+        use: ["babel-loader", "svg-react-loader"]
+      }
     ]
   },
-  resolve: { extensions: [".tsx", ".ts", ".js", ".jsx"] },
+  resolve: { extensions: [".tsx", ".ts", ".js", ".jsx", ".svg"] },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",

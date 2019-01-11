@@ -18,9 +18,11 @@ class AdvancedBoard extends React.Component {
     stageX: 0,
     stageY: 0,
     stageShift: [0, 0],
+
     shadowRectPos: [10, 10],
     shadowRectSizes: [10, 10],
     shadowOpacity: 0,
+
     contextPos: [10, 10],
     contextShow: false
   };

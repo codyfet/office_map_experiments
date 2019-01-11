@@ -2,9 +2,12 @@ import * as React from 'react';
 import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
 import TableObject from '../../TableObject';
 import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
+import { Popover } from 'react-bootstrap';
+import Portal from '../../Portal';
 
 // redux:
 import { connect } from 'react-redux';
+import ContextMenuView from '../../presentational/ContextMenuView/index';
 
 
 class AdvancedBoard extends React.Component {
@@ -16,7 +19,9 @@ class AdvancedBoard extends React.Component {
     shadowRectPos: [10, 10],
     shadowRectSizes: [10, 10],
     shadowOpacity: 0,
-    blockSnapSize: 10
+    blockSnapSize: 10,
+    context: [10, 10],
+    contextShow: false
   };
 
   // update the block size every time the component gets the props:
@@ -67,6 +72,19 @@ class AdvancedBoard extends React.Component {
     }); 
   }
 
+  showContextMenu = (x, y) => {
+    this.setState({
+      context: [x, y],
+      contextShow: true
+    });
+  }
+
+  hideContextMenu = () => {
+    this.setState({
+      contextShow: false
+    });
+  }
+
   render() {
     const { width, height, blockSnapSize, furnitures } = this.props; 
 
@@ -84,6 +102,8 @@ class AdvancedBoard extends React.Component {
             blockSnapSize={blockSnapSize}
             showShadow={this.activateShadow}
             stopShadow={this.stopShadow}
+            showContextMenu={this.showContextMenu}
+            hideContextMenu={this.hideContextMenu}
           />
         );
     });
@@ -119,8 +139,21 @@ class AdvancedBoard extends React.Component {
                       strokeWidth={2}
                     />
                     {loadFurniture}
+                    {/*Context menu here:*/}
                 </KonvaGridLayer>
             </Stage>
+            {this.state.contextShow && 
+              <Popover 
+                id="popover-basic"
+                placement="right"
+                positionLeft={this.state.context[0]}
+                positionTop={this.state.context[1] - 30}
+                title="Popover right"
+                animation={true}
+              >
+                And here's some <strong>amazing</strong> content. It's very engaging. right?
+              </Popover>
+            }
         </div>
         
     );

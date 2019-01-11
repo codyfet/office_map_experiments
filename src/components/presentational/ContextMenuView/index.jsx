@@ -11,7 +11,6 @@ export default class ContextMenuView extends React.Component {
         return (
             <Menu id='menu_id' animation={animation.zoom}>
                 <Item onClick={onClick}>Rotate</Item>
-                <Item onClick={onClick}>Move</Item>
                 <Separator />
                 <Item disabled>Remove</Item>
                 <Separator />

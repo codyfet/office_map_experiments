@@ -1,6 +1,5 @@
 import React from 'react';
-import { Stage, Layer, Rect, Text } from 'react-konva';
-import Konva from 'konva';
+import { Rect } from 'react-konva';
 
 export default class TableObject extends React.Component {
   constructor(props){
@@ -10,7 +9,8 @@ export default class TableObject extends React.Component {
       isDragging: false,
       width: this.props.width,
       height: this.props.height,
-      color: '#fff'
+      color: '#fff',
+      isContextOn: false
     };
   }
 
@@ -39,8 +39,15 @@ export default class TableObject extends React.Component {
   }
 
   render() {
-    const {x, y, blockSnapSize, showShadow, stopShadow} = this.props;
+    const {x, 
+           y, 
+           blockSnapSize, 
+           showShadow, 
+           stopShadow, 
+           showContextMenu,
+           hideContextMenu } = this.props;
     
+
     return (
       <Rect
         x={x}
@@ -58,6 +65,7 @@ export default class TableObject extends React.Component {
 
         onDragStart={(e) => {
           e.target.moveToTop();
+          hideContextMenu();
         }}
         onDragEnd={(e) => {
           let { checkedX, checkedY } = this.checkBoundaries(e.target.x(), e.target.y());
@@ -71,8 +79,22 @@ export default class TableObject extends React.Component {
           (e) => showShadow(e.target.x(), e.target.y(), [this.state.width, this.state.height])
         }
 
-      />
-      
+        onClick={(e) => {
+          if ( !this.state.isContextOn ) {
+            this.setState({
+              isContextOn: true
+            }); 
+            showContextMenu(e.target.x(), e.target.y()); 
+            
+          } else {
+            this.setState({
+              isContextOn: false
+            });
+            hideContextMenu();
+          }
+        }}
+          
+      /> 
     );
   }
 }

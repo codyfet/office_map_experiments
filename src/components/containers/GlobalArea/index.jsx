@@ -10,15 +10,15 @@ class GlobalArea extends React.Component {
   render() {
     return (
        <div className="globalArea">
-          <MenuProvider id="menu_id" className="menuProviderStyle">
-            <AdvancedBoard
+          {/* <MenuProvider id="menu_id" className="menuProviderStyle"> */}
+            <AdvancedBoard 
               width={800}
               height={800}
               blockSnapSize={10} 
             />
-          </MenuProvider>
+          {/* </MenuProvider> */}
           <SidePanel />
-          <ContextMenuView />
+          {/* <ContextMenuView /> */}
       </div>          
     );
   }

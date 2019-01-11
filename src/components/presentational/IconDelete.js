@@ -3,19 +3,18 @@ import React from "react";
 const SVG = ({
   style = {},
   fill = "#FFDA44",
-  width="512px",
-  height="512px",
-  className = "",
+  width="100%",
+  className = "x",
   viewBox = "0 0 174.239 174.239"
 }) => (
   <svg
     width={width}
-    height={height}
+    height={width}
     viewBox={viewBox}
     xmlns="http://www.w3.org/2000/svg"
     className={`svg-icon ${className || ""}`}
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    style="enable-background:new 0 0 174.239 174.239;"
+    // style="enable-background:new 0 0 174.239 174.239;"
   >
     <path
       fill={fill}

@@ -7,7 +7,8 @@ import Portal from '../../Portal';
 
 // redux:
 import { connect } from 'react-redux';
-import ContextMenuView from '../../presentational/ContextMenuView/index';
+import { bindActionCreators } from 'redux';
+import { changeBoardState } from '../../../actions/index';
 
 
 class AdvancedBoard extends React.Component {
@@ -16,6 +17,7 @@ class AdvancedBoard extends React.Component {
     stageScale: 1,
     stageX: 0,
     stageY: 0,
+    stageShift: [0, 0],
     shadowRectPos: [10, 10],
     shadowRectSizes: [10, 10],
     shadowOpacity: 0,
@@ -53,6 +55,20 @@ class AdvancedBoard extends React.Component {
         stageY:
         -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
     });
+
+    this.handleStageChanges();
+  };
+
+  handleStageChanges(){
+    const { width, height, actions } = this.props; 
+    const newState = {
+      shift: this.state.stageShift,
+      scale: this.state.stageScale
+    };
+
+    actions.changeBoardState(newState);
+    console.log('created', newState);
+    
   };
 
   activateShadow = (posX, posY, size) => {
@@ -73,10 +89,17 @@ class AdvancedBoard extends React.Component {
   }
 
   showContextMenu = (x, y) => {
-    this.setState({
-      context: [x, y],
-      contextShow: true
-    });
+    // if click on the same object and context menu has already showing:
+    if ( this.state.context[0] == x && this.state.context[1] == y ) {
+      this.setState({
+        contextShow: !this.state.contextShow
+      });  
+    } else {
+      this.setState({
+        context: [x, y],
+        contextShow: true
+      });
+    }
   }
 
   hideContextMenu = () => {
@@ -108,6 +131,8 @@ class AdvancedBoard extends React.Component {
         );
     });
 
+    console.log('shift', this.state.stageShift[0], this.state.stageShift[1]);
+
     return (
         <div style={{
             width: '810px', 
@@ -121,12 +146,23 @@ class AdvancedBoard extends React.Component {
                 onWheel={this.handleWheel}
                 scaleX={this.state.stageScale}
                 scaleY={this.state.stageScale}
+                onDragStart={this.hideContextMenu}
+                onDragEnd={
+                  (e) => {
+                    console.log('stage coords from onDragEnd:', e.currentTarget.x(), e.currentTarget.y());
+                    this.setState({
+                      stageShift: [e.currentTarget.x(), e.currentTarget.y()]
+                    });
+                    this.handleStageChanges();
+                  }
+                }
                 >
 
                 <KonvaGridLayer
                    width={width} 
                    height={height} 
-                   blockSnapSize={blockSnapSize}  
+                   blockSnapSize={blockSnapSize}
+                   
                 >
                     <Rect 
                       x={this.state.shadowRectPos[0]}
@@ -140,20 +176,22 @@ class AdvancedBoard extends React.Component {
                     />
                     {loadFurniture}
                     {/*Context menu here:*/}
+                    <Portal>
+                      {this.state.contextShow && 
+                        <Popover 
+                          id="popover-basic"
+                          placement="right"
+                          positionLeft={Math.floor(this.state.context[0] * this.state.stageScale + this.state.stageShift[0])}
+                          positionTop={Math.floor(this.state.context[1] * this.state.stageScale + this.state.stageShift[1]) - 30}
+                          title="Popover"
+                        >
+                          And here's some <strong>amazing</strong> content. It's very engaging. right?
+                        </Popover>
+                      }
+                    </Portal>
                 </KonvaGridLayer>
             </Stage>
-            {this.state.contextShow && 
-              <Popover 
-                id="popover-basic"
-                placement="right"
-                positionLeft={this.state.context[0]}
-                positionTop={this.state.context[1] - 30}
-                title="Popover right"
-                animation={true}
-              >
-                And here's some <strong>amazing</strong> content. It's very engaging. right?
-              </Popover>
-            }
+            
         </div>
         
     );
@@ -162,11 +200,12 @@ class AdvancedBoard extends React.Component {
 
 // for redux:
 const mapStateToProps = (state) => ({
-  furnitures: state.furnitures
+  furnitures: state.furnitures,
+  boardState: state.boardState
 });
   
 const mapDispatchToProps = (dispatch) => ({
-
+  actions: bindActionCreators({ changeBoardState }, dispatch)
 });
   
   

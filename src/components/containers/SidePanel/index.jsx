@@ -8,12 +8,22 @@ import { createFurniture } from '../../../actions/index';
 
 class SidePanel extends React.Component {
 
+  getConvertedCoordsFrom(x, y) {
+    const { shift, scale, size } = this.props.boardState;
+    console.log('SidePanel', scale, shift);
+    
+    return { 
+      x: x/scale - shift[0],
+      y: y/scale - shift[1]
+    };
+  }
+
   handleClick = () => {
     const { actions } = this.props;
-
+    
     const newFurniture = {
       type: 'table',
-      coordinates: { x: 750, y: 20 },
+      coordinates: this.getConvertedCoordsFrom(750, 20),
       position: 'horizontal'
     };
 
@@ -22,7 +32,8 @@ class SidePanel extends React.Component {
     
   }
 
-  render() {
+  render() { 
+
     return (
       <div style={{
         width: '200px', 
@@ -44,7 +55,8 @@ class SidePanel extends React.Component {
 
 // for redux:
 const mapStateToProps = (state) => ({
-  furnitures: state.furnitures
+  furnitures: state.furnitures,
+  boardState: state.boardState
 });
 
 const mapDispatchToProps = (dispatch) => ({

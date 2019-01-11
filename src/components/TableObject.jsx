@@ -9,8 +9,7 @@ export default class TableObject extends React.Component {
       isDragging: false,
       width: this.props.width,
       height: this.props.height,
-      color: '#fff',
-      isContextOn: false
+      color: '#fff'
     };
   }
 
@@ -80,18 +79,8 @@ export default class TableObject extends React.Component {
         }
 
         onClick={(e) => {
-          if ( !this.state.isContextOn ) {
-            this.setState({
-              isContextOn: true
-            }); 
-            showContextMenu(e.target.x(), e.target.y()); 
-            
-          } else {
-            this.setState({
-              isContextOn: false
-            });
-            hideContextMenu();
-          }
+          showContextMenu(e.target.x(), e.target.y()); 
+
         }}
           
       /> 

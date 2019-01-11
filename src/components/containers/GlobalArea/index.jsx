@@ -5,7 +5,6 @@ import { MenuProvider } from 'react-contexify';
 import 'react-contexify/dist/ReactContexify.min.css';
 import ContextMenuView from '../../presentational/ContextMenuView/index';
 import './style.css';
-import IconDelete from '../../../res/icons/delete.svg';
 
 class GlobalArea extends React.Component {
   render() {
@@ -19,7 +18,6 @@ class GlobalArea extends React.Component {
             />
           {/* </MenuProvider> */}
           <SidePanel />
-          <IconDelete />
       </div>          
     );
   }

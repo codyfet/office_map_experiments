@@ -27,11 +27,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         use: ["babel-loader"]
       },
-      { test: /\.tsx&$/, use: "ts-loader", exclude: /node_modules/ },
-      {
-        test: /\.svg$/,
-        use: ["babel-loader", "svg-react-loader"]
-      }
+      { test: /\.tsx&$/, use: "ts-loader", exclude: /node_modules/ }
     ]
   },
   resolve: { extensions: [".tsx", ".ts", ".js", ".jsx", ".svg"] },

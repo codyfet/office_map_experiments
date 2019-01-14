@@ -158,6 +158,7 @@ class AdvancedBoard extends React.Component {
                    blockSnapSize={blockSnapSize}
                    
                 >
+                    {/*Shadow is here:*/}
                     <Rect 
                       x={this.state.shadowRectPos[0]}
                       y={this.state.shadowRectPos[1]}
@@ -169,7 +170,7 @@ class AdvancedBoard extends React.Component {
                       strokeWidth={2}
                     />
                     {loadFurniture}
-                    {/*Context menu here:*/}
+                    {/*Context menu is here:*/}
                     <Portal>
                       {this.state.contextShow && 
                         <Popover 

@@ -1,0 +1,8 @@
+.svg_image {
+  -webkit-transition: width 0.5s;
+  transition: 0.5s;
+}
+
+.svg_image:hover {
+    opacity: 0.5;
+}

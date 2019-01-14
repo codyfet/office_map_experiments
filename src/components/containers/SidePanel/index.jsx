@@ -8,6 +8,7 @@ import { createFurniture } from '../../../actions/index';
 
 class SidePanel extends React.Component {
 
+  
   getConvertedCoordsFrom(x, y) {
     const { shift, scale, size } = this.props.boardState;
     console.log('SidePanel', scale, shift);
@@ -23,8 +24,10 @@ class SidePanel extends React.Component {
     
     const newFurniture = {
       type: 'table',
+      id: +(new Date()),
       coordinates: this.getConvertedCoordsFrom(750, 20),
-      position: 'horizontal'
+      width: 20,
+      height: 30
     };
 
     actions.createFurniture(newFurniture);

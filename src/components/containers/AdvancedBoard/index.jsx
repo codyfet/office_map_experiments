@@ -12,8 +12,7 @@ import { changeBoardState } from '../../../actions/index';
 
 //popup:
 import PopoverView from '../../presentational/PopoverView/index';
-import IconSVG from '../../presentational/IconSVG/index';
-import iconPaths from '../../../res/iconPaths';
+import PopoverContainer from '../PopoverContainer/index';
 
 
 class AdvancedBoard extends React.Component {
@@ -34,6 +33,7 @@ class AdvancedBoard extends React.Component {
     contextShow: false
   };
 
+  // управление сценой konva: сдвиг и масштаб --------------------------------------
   handleWheel = e => {
     e.evt.preventDefault();
 
@@ -60,6 +60,7 @@ class AdvancedBoard extends React.Component {
     this.handleStageChanges();
   };
 
+  // отвечает за передачу состояния сцены в SidePanel:
   handleStageChanges(){
     const { actions } = this.props; 
     const newState = {
@@ -72,6 +73,7 @@ class AdvancedBoard extends React.Component {
     
   };
 
+  // тень текущего объекта: ------------------------------------------------
   activateShadow = (posX, posY, size) => {
     const { blockSnapSize } = this.props;
     this.setState({
@@ -88,7 +90,8 @@ class AdvancedBoard extends React.Component {
         shadowOpacity: 0 
     }); 
   }
-
+  
+  // контекстное меню текущего объекта: -----------------------------------------------
   showContextMenu = (x, y) => {
     // if click on the same object and context menu has already showing:
     if ( this.state.contextPos[0] == x && this.state.contextPos[1] == y ) {
@@ -116,11 +119,11 @@ class AdvancedBoard extends React.Component {
         return (
           <TableObject
             key={i}
-            id={i}
+            id={elem.id}
             x={elem.coordinates.x}
             y={elem.coordinates.y}  
-            width={20}
-            height={30}
+            width={elem.width}
+            height={elem.height}
             globalWidth={width-20}
             globalHeight={height-20}
             blockSnapSize={blockSnapSize}
@@ -128,6 +131,7 @@ class AdvancedBoard extends React.Component {
             stopShadow={this.stopShadow}
             showContextMenu={this.showContextMenu}
             hideContextMenu={this.hideContextMenu}
+
           />
         );
     });
@@ -179,7 +183,7 @@ class AdvancedBoard extends React.Component {
                     {/*Context menu is here:*/}
                     <Portal>
                       {this.state.contextShow && 
-                        <PopoverView 
+                        <PopoverContainer 
                           x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
                           y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
                           readyHandler={this.hideContextMenu}

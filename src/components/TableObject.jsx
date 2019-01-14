@@ -29,13 +29,6 @@ export default class TableObject extends React.Component {
     return {checkedX, checkedY};
   }
 
-  onDragMove = () => {
-    this.props.sh
-  }
-
-  onHover = () => {
-    // to-do
-  }
 
   render() {
     const {x, 

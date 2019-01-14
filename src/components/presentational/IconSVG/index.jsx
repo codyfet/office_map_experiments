@@ -30,12 +30,12 @@ class IconSVG extends React.Component {
 
 };
 
-// IconSVG.propTypes = {
-//     width: PropTypes.string,
-//     fill: PropTypes.string, 
-//     style: React.CSSProperties,
-//     content: any
-// };
+IconSVG.propTypes = {
+    width: PropTypes.string,
+    fill: PropTypes.string, 
+    // style: React.CSSProperties,
+    content: PropTypes.array
+};
 
 IconSVG.defaultProps = {
     width: "100%",

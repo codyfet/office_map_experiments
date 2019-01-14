@@ -10,6 +10,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeBoardState } from '../../../actions/index';
 
+//popup:
+import IconDelete from '../../presentational/IconDelete';
+import IconEdit from '../../presentational/IconEdit';
+import IconReady from '../../presentational/IconReady';
+import IconTurn from '../../presentational/IconTurn';
+import IconSVG from '../../presentational/IconSVG/index';
+import iconPaths from '../../../res/iconPaths';
+
 
 class AdvancedBoard extends React.Component {
 
@@ -177,10 +185,16 @@ class AdvancedBoard extends React.Component {
                           id="popover-basic"
                           placement="right"
                           positionLeft={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
-                          positionTop={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) - 30}
-                          title="Popover"
+                          positionTop={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
                         >
-                          And here's some <strong>amazing</strong> content. It's very engaging. right?
+                          <div style={{display: 'flex'}}>
+                            <IconSVG width="20px" content={iconPaths.ready} onClick={() => alert('Ready')} />
+                            <IconSVG width="20px" content={iconPaths.turn} onClick={() => alert('Turn')} />
+                            <IconSVG width="20px" content={iconPaths.edit} onClick={() => alert('Edit')} />
+                            <IconSVG width="20px" content={iconPaths.delete} onClick={() => alert('Delete')} />
+                          </div> 
+                          
+
                         </Popover>
                       }
                     </Portal>

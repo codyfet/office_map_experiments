@@ -39,9 +39,8 @@ IconSVG.propTypes = {
 
 IconSVG.defaultProps = {
     width: "100%",
-    fill: "#FFA500", 
-    style: {},
-    content: <g></g>
+    fill: "#FFA500",
+    content: []
 };
 
 export default IconSVG;

@@ -11,10 +11,7 @@ import { bindActionCreators } from 'redux';
 import { changeBoardState } from '../../../actions/index';
 
 //popup:
-import IconDelete from '../../presentational/IconDelete';
-import IconEdit from '../../presentational/IconEdit';
-import IconReady from '../../presentational/IconReady';
-import IconTurn from '../../presentational/IconTurn';
+import PopoverView from '../../presentational/PopoverView/index';
 import IconSVG from '../../presentational/IconSVG/index';
 import iconPaths from '../../../res/iconPaths';
 
@@ -30,6 +27,8 @@ class AdvancedBoard extends React.Component {
     shadowRectPos: [10, 10],
     shadowRectSizes: [10, 10],
     shadowOpacity: 0,
+
+    selectedObjectId: -1,
 
     contextPos: [10, 10],
     contextShow: false
@@ -137,8 +136,7 @@ class AdvancedBoard extends React.Component {
 
     return (
         <div style={{
-            width: '810px', 
-            height: '810px'
+            border: '1px solid black'
         }}
         >
             <Stage 
@@ -181,21 +179,15 @@ class AdvancedBoard extends React.Component {
                     {/*Context menu is here:*/}
                     <Portal>
                       {this.state.contextShow && 
-                        <Popover 
-                          id="popover-basic"
-                          placement="right"
-                          positionLeft={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
-                          positionTop={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
-                        >
-                          <div style={{display: 'flex'}}>
-                            <IconSVG width="20px" content={iconPaths.ready} onClick={() => alert('Ready')} />
-                            <IconSVG width="20px" content={iconPaths.turn} onClick={() => alert('Turn')} />
-                            <IconSVG width="20px" content={iconPaths.edit} onClick={() => alert('Edit')} />
-                            <IconSVG width="20px" content={iconPaths.delete} onClick={() => alert('Delete')} />
-                          </div> 
-                          
-
-                        </Popover>
+                        <PopoverView 
+                          x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
+                          y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
+                          readyHandler={this.hideContextMenu}
+                          // turnHandler={}
+                          // editHandler={}
+                          // deleteHandler={}
+                        />
+      
                       }
                     </Portal>
                 </KonvaGridLayer>

@@ -4,16 +4,6 @@ import GlobalArea from '../GlobalArea/index';
 
 export default class Main extends React.Component {
 
-  state = {
-    fill: "#FFA500"
-  }
-
-  handleMouseOver(){
-    this.setState({
-      fill: "black"
-    });
-  }
-
   render() {
     return (
       <React.Fragment>

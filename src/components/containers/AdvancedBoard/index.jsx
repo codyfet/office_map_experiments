@@ -113,6 +113,9 @@ class AdvancedBoard extends React.Component {
   render() {
     const { width, height, blockSnapSize, furnitures } = this.props; 
 
+    let stageWidth = 800;
+    let stageHeight = 800;
+
     const loadFurniture = furnitures.map((elem, i) => {
         return (
           <TableObject
@@ -161,8 +164,8 @@ class AdvancedBoard extends React.Component {
                 >
 
                 <KonvaGridLayer
-                   width={width} 
-                   height={height} 
+                   width={stageWidth} 
+                   height={stageHeight} 
                    blockSnapSize={blockSnapSize}
                    
                 >

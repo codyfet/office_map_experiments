@@ -215,9 +215,6 @@ class AdvancedBoard extends React.Component {
                 y={Math.floor(this.state.selectedObjectPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
                 objectId={this.state.selectedObjectId}
                 readyHandler={this.hideContextMenu}
-                // turnHandler={}
-                // editHandler={}
-                // deleteHandler={}
               />
             }
             

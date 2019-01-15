@@ -24,13 +24,14 @@ class SidePanel extends React.Component {
   }
 
   getConvertedCoordsFrom(x, y) {
-    const { shift, scale, size } = this.props.boardState;
+    const { shift, scale } = this.props.boardState;
     console.log('SidePanel', scale, shift);
     
     return { 
-      x: x/scale - shift[0],
-      y: y/scale - shift[1]
+      x: (x - shift[0])/scale, 
+      y: (y - shift[1])/scale
     };
+    
   }
 
   handleClick = () => {

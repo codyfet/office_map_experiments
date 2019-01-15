@@ -7,8 +7,22 @@ import { bindActionCreators } from 'redux';
 import { createFurniture } from '../../../actions/index';
 
 class SidePanel extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      idCounter: 0
+    };
+  }
   
+  getNewId() {
+    const curr_id = this.state.idCounter;
+    this.setState({
+      idCounter: this.state.idCounter + 1
+    });
+    return curr_id; 
+  }
+
   getConvertedCoordsFrom(x, y) {
     const { shift, scale, size } = this.props.boardState;
     console.log('SidePanel', scale, shift);
@@ -24,7 +38,7 @@ class SidePanel extends React.Component {
     
     const newFurniture = {
       type: 'table',
-      id: +(new Date()),
+      id: this.getNewId(),
       coordinates: this.getConvertedCoordsFrom(750, 20),
       width: 20,
       height: 30
@@ -39,7 +53,7 @@ class SidePanel extends React.Component {
 
     return (
       <div style={{
-        width: '200px', 
+        width: '300px', 
         height: '810px',
         border: '1px solid black'
         }}

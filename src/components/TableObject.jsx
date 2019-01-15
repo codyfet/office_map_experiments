@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rect } from 'react-konva';
+import { Rect, Text, Group } from 'react-konva';
 
 export default class TableObject extends React.Component {
   constructor(props){
@@ -32,7 +32,9 @@ export default class TableObject extends React.Component {
 
   render() {
     const {x, 
-           y, 
+           y,
+           id,
+           shareId, 
            blockSnapSize, 
            showShadow, 
            stopShadow, 
@@ -41,42 +43,53 @@ export default class TableObject extends React.Component {
     
 
     return (
-      <Rect
+      <Group
         x={x}
         y={y}
-        width={this.state.width}
-        height={this.state.height}
-        fill={this.state.color}
-        stroke={'#ddd'}
-        strokeWidth={1}
-        shadowColor={'black'}
-        shadowBlur={2}
-        shadowOffset={{x : 1, y : 1}}
-        shadowOpacity={0.4}    
         draggable={true}
-
+        
         onDragStart={(e) => {
-          e.target.moveToTop();
+          e.currentTarget.moveToTop();
           hideContextMenu();
         }}
+        
         onDragEnd={(e) => {
-          let { checkedX, checkedY } = this.checkBoundaries(e.target.x(), e.target.y());
-          e.target.position({
+          let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
+          e.currentTarget.position({
             x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
             y: Math.round(checkedY / blockSnapSize) * blockSnapSize
-          }); 
+          });
+          shareId(id);  
           stopShadow();
         }}
+            
         onDragMove={
-          (e) => showShadow(e.target.x(), e.target.y(), [this.state.width, this.state.height])
+          (e) => showShadow(e.currentTarget.x(), e.currentTarget.y(), [this.state.width, this.state.height])
         }
 
         onClick={(e) => {
-          showContextMenu(e.target.x(), e.target.y()); 
-
+          showContextMenu(e.currentTarget.x(), e.currentTarget.y());
+          shareId(id); 
         }}
-          
-      /> 
+        
+      >
+        <Rect
+          width={this.state.width}
+          height={this.state.height}
+          fill={this.state.color}
+          stroke={'#ddd'}
+          strokeWidth={1}
+          shadowColor={'black'}
+          shadowBlur={2}
+          shadowOffset={{x : 1, y : 1}}
+          shadowOpacity={0.4}    
+            
+        />
+        <Text
+          text={`ID:${id}`}
+          fontSize={10}
+        />
+      </Group> 
     );
   }
 }

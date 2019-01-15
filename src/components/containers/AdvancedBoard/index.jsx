@@ -7,7 +7,7 @@ import Portal from '../../Portal';
 // redux:
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeBoardState } from '../../../actions/index';
+import { changeBoardState, moveFurniture } from '../../../actions/index';
 
 //popup:
 import PopoverContainer from '../PopoverContainer/index';
@@ -84,11 +84,30 @@ class AdvancedBoard extends React.Component {
   };
 
   stopShadow = () => {
+    // adding с
+    const { actions } = this.props;
+    let newObjectData = {
+      id: this.state.selectedObjectId,
+      pos: { 
+             x: this.state.shadowRectPos[0],
+             y: this.state.shadowRectPos[1]
+      }
+    };
+    console.log('stopShadow', newObjectData);
+    actions.moveFurniture(newObjectData);
+
     this.setState({
         shadowOpacity: 0 
     }); 
   }
   
+  // выбор объекта: 
+  setCurrentObjectId = (id) => {
+    this.setState({
+      selectedObjectId: id
+    });
+  }
+
   // контекстное меню текущего объекта: -----------------------------------------------
   showContextMenu = (x, y) => {
     // if click on the same object and context menu has already showing:
@@ -113,6 +132,7 @@ class AdvancedBoard extends React.Component {
   render() {
     const { width, height, blockSnapSize, furnitures } = this.props; 
 
+    // setting KonvaGrid resolution:
     let stageWidth = 800;
     let stageHeight = 800;
 
@@ -128,10 +148,14 @@ class AdvancedBoard extends React.Component {
             globalWidth={width-20}
             globalHeight={height-20}
             blockSnapSize={blockSnapSize}
+            
             showShadow={this.activateShadow}
             stopShadow={this.stopShadow}
+            
             showContextMenu={this.showContextMenu}
             hideContextMenu={this.hideContextMenu}
+            
+            shareId={this.setCurrentObjectId}
 
           />
         );
@@ -154,7 +178,8 @@ class AdvancedBoard extends React.Component {
                 onDragStart={this.hideContextMenu}
                 onDragEnd={
                   (e) => {
-                    console.log('stage coords from onDragEnd:', e.currentTarget.x(), e.currentTarget.y());
+                    console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
+                    console.log('coords for the moved object:', e.target.x(), e.target.y());
                     this.setState({
                       stageShift: [e.currentTarget.x(), e.currentTarget.y()]
                     });
@@ -188,6 +213,7 @@ class AdvancedBoard extends React.Component {
               <PopoverContainer 
                 x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
                 y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
+                objectId={this.state.selectedObjectId}
                 readyHandler={this.hideContextMenu}
                 // turnHandler={}
                 // editHandler={}
@@ -208,7 +234,7 @@ const mapStateToProps = (state) => ({
 });
   
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ changeBoardState }, dispatch)
+  actions: bindActionCreators({ changeBoardState, moveFurniture }, dispatch)
 });
   
   

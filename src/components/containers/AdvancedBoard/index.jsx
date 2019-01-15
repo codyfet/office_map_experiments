@@ -2,16 +2,14 @@ import * as React from 'react';
 import { Stage, Layer, Group, Rect, Text, Line } from 'react-konva';
 import TableObject from '../../TableObject';
 import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
-import { Popover } from 'react-bootstrap';
 import Portal from '../../Portal';
 
 // redux:
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeBoardState } from '../../../actions/index';
 
 //popup:
-import PopoverView from '../../presentational/PopoverView/index';
 import PopoverContainer from '../PopoverContainer/index';
 
 
@@ -182,16 +180,18 @@ class AdvancedBoard extends React.Component {
                     {loadFurniture}
                     {/*Context menu is here:*/}
                     <Portal>
-                      {this.state.contextShow && 
-                        <PopoverContainer 
-                          x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
-                          y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
-                          readyHandler={this.hideContextMenu}
-                          // turnHandler={}
-                          // editHandler={}
-                          // deleteHandler={}
-                        />
-      
+                      {this.state.contextShow &&
+                        <Provider store={this.props.context}>
+                          <PopoverContainer 
+                            x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
+                            y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
+                            readyHandler={this.hideContextMenu}
+                            // turnHandler={}
+                            // editHandler={}
+                            // deleteHandler={}
+                          />
+                        </Provider> 
+                          
                       }
                     </Portal>
                 </KonvaGridLayer>

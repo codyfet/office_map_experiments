@@ -1,7 +1,16 @@
 import React from 'react';
 import PopoverView from '../../presentational/PopoverView/index';
 
-class PopoverContainer extends React.Component {
+// redux:
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { deleteFurniture } from '../../../actions/index';
+
+export class PopoverContainer extends React.Component {
+    
+    deleteHandler() {
+
+    }
 
     render() {
         const { x, y, readyHandler, turnHandler, editHandler, deleteHandler} = this.props;
@@ -24,4 +33,18 @@ class PopoverContainer extends React.Component {
 
 };
 
-export default PopoverView;
+// for redux:
+const mapStateToProps = (state) => ({
+    furnitures: state.furnitures,
+    boardState: state.boardState
+});
+    
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators({ changeBoardState }, dispatch)
+});
+    
+    
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(PopoverContainer);

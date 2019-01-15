@@ -13,7 +13,9 @@ const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <Main 
+      context={store}
+    />
   </Provider>, 
   document.getElementById("root")
 );

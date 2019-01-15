@@ -9,7 +9,6 @@ export default class Main extends React.Component {
         <h1 style={{fontFamily: 'Helvetica'}}>  Office map</h1>
         <GlobalArea 
           className="container" 
-          context={this.props.context}
         />
       </React.Fragment>
     );

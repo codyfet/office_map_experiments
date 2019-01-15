@@ -178,24 +178,19 @@ class AdvancedBoard extends React.Component {
                       strokeWidth={2}
                     />
                     {loadFurniture}
-                    {/*Context menu is here:*/}
-                    <Portal>
-                      {this.state.contextShow &&
-                        <Provider store={this.props.context}>
-                          <PopoverContainer 
-                            x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
-                            y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
-                            readyHandler={this.hideContextMenu}
-                            // turnHandler={}
-                            // editHandler={}
-                            // deleteHandler={}
-                          />
-                        </Provider> 
-                          
-                      }
-                    </Portal>
                 </KonvaGridLayer>
             </Stage>
+            {/*Context menu for the current object is here:*/}
+            {this.state.contextShow &&
+              <PopoverContainer 
+                x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
+                y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
+                readyHandler={this.hideContextMenu}
+                // turnHandler={}
+                // editHandler={}
+                // deleteHandler={}
+              />
+            }
             
         </div>
         

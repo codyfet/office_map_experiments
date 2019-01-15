@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 });
     
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ changeBoardState }, dispatch)
+    actions: bindActionCreators({ deleteFurniture }, dispatch)
 });
     
     

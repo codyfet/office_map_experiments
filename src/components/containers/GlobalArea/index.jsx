@@ -12,7 +12,6 @@ export default class GlobalArea extends React.Component {
             width={800}
             height={800}
             blockSnapSize={10}
-            context={this.props.context} 
           />
           <SidePanel />
       </div>          

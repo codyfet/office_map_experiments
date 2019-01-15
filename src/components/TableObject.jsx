@@ -41,6 +41,7 @@ export default class TableObject extends React.Component {
            showContextMenu,
            hideContextMenu } = this.props;
     
+    
 
     return (
       <Group
@@ -55,10 +56,12 @@ export default class TableObject extends React.Component {
         
         onDragEnd={(e) => {
           let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
+          console.log('onDragEnd', checkedX, checkedY);
           e.currentTarget.position({
             x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
             y: Math.round(checkedY / blockSnapSize) * blockSnapSize
           });
+          showShadow(e.currentTarget.x(), e.currentTarget.y(), [this.state.width, this.state.height]);
           shareId(id);  
           stopShadow();
         }}

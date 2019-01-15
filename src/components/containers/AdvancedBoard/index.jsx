@@ -20,18 +20,18 @@ class AdvancedBoard extends React.Component {
     stageX: 0,
     stageY: 0,
     stageShift: [0, 0],
-
-    shadowRectPos: [10, 10],
-    shadowRectSizes: [10, 10],
-    shadowOpacity: 0,
-
+    
     selectedObjectId: -1,
-
-    contextPos: [10, 10],
-    contextShow: false
+    selectedObjectPos: [10, 10],
+    selectedObjectSizes: [10, 10],
+    
+    shadowOpacity: 0,
+    
+    contextMenuShow: false
   };
 
-  // управление сценой konva: сдвиг и масштаб --------------------------------------
+  // управление сценой konva: --------------------------------------
+  // сдвиг и масштаб
   handleWheel = e => {
     e.evt.preventDefault();
 
@@ -58,6 +58,16 @@ class AdvancedBoard extends React.Component {
     this.handleStageChanges();
   };
 
+  // следим за сценой:
+  followMovingStage = (e) => {
+    console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
+    console.log('coords for the moved object:', e.target.x(), e.target.y());
+    this.setState({
+      stageShift: [e.currentTarget.x(), e.currentTarget.y()]
+    });
+    this.handleStageChanges();
+  }
+
   // отвечает за передачу состояния сцены в SidePanel:
   handleStageChanges(){
     const { actions } = this.props; 
@@ -75,22 +85,22 @@ class AdvancedBoard extends React.Component {
   activateShadow = (posX, posY, size) => {
     const { blockSnapSize } = this.props;
     this.setState({
-        shadowRectPos: [Math.round(posX / blockSnapSize) * blockSnapSize,
-                        Math.round(posY / blockSnapSize) * blockSnapSize],
-        shadowRectSizes: size,
+        selectedObjectPos: [Math.round(posX / blockSnapSize) * blockSnapSize,
+                            Math.round(posY / blockSnapSize) * blockSnapSize],
+        selectedObjectSizes: size,
         shadowOpacity: 1 
     });
     
   };
 
-  stopShadow = () => {
-    // adding с
+  stopShadow = (objectPos) => {
+    // changing position of our furniture:
     const { actions } = this.props;
     let newObjectData = {
       id: this.state.selectedObjectId,
       pos: { 
-             x: this.state.shadowRectPos[0],
-             y: this.state.shadowRectPos[1]
+             x: this.state.selectedObjectPos[0],
+             y: this.state.selectedObjectPos[1]
       }
     };
     console.log('stopShadow', newObjectData);
@@ -111,21 +121,21 @@ class AdvancedBoard extends React.Component {
   // контекстное меню текущего объекта: -----------------------------------------------
   showContextMenu = (x, y) => {
     // if click on the same object and context menu has already showing:
-    if ( this.state.contextPos[0] == x && this.state.contextPos[1] == y ) {
+    if ( this.state.selectedObjectPos[0] == x && this.state.selectedObjectPos[1] == y ) {
       this.setState({
-        contextShow: !this.state.contextShow
+        contextMenuShow: !this.state.contextMenuShow
       });  
     } else {
       this.setState({
-        contextPos: [x, y],
-        contextShow: true
+        selectedObjectPos: [x, y],
+        contextMenuShow: true
       });
     }
   }
 
   hideContextMenu = () => {
     this.setState({
-      contextShow: false
+      contextMenuShow: false
     });
   }
 
@@ -161,8 +171,6 @@ class AdvancedBoard extends React.Component {
         );
     });
 
-    console.log('shift', this.state.stageShift[0], this.state.stageShift[1]);
-
     return (
         <div style={{
             border: '1px solid black'
@@ -176,17 +184,9 @@ class AdvancedBoard extends React.Component {
                 scaleX={this.state.stageScale}
                 scaleY={this.state.stageScale}
                 onDragStart={this.hideContextMenu}
-                onDragEnd={
-                  (e) => {
-                    console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
-                    console.log('coords for the moved object:', e.target.x(), e.target.y());
-                    this.setState({
-                      stageShift: [e.currentTarget.x(), e.currentTarget.y()]
-                    });
-                    this.handleStageChanges();
-                  }
-                }
-                >
+                onDragEnd={this.followMovingStage}
+                
+            >
 
                 <KonvaGridLayer
                    width={stageWidth} 
@@ -196,10 +196,10 @@ class AdvancedBoard extends React.Component {
                 >
                     {/*Shadow is here:*/}
                     <Rect 
-                      x={this.state.shadowRectPos[0]}
-                      y={this.state.shadowRectPos[1]}
-                      width={this.state.shadowRectSizes[0]}
-                      height={this.state.shadowRectSizes[1]}
+                      x={this.state.selectedObjectPos[0]}
+                      y={this.state.selectedObjectPos[1]}
+                      width={this.state.selectedObjectSizes[0]}
+                      height={this.state.selectedObjectSizes[1]}
                       fill={'orange'}
                       opacity={this.state.shadowOpacity}
                       stroke={'#AE4C01'}
@@ -209,10 +209,10 @@ class AdvancedBoard extends React.Component {
                 </KonvaGridLayer>
             </Stage>
             {/*Context menu for the current object is here:*/}
-            {this.state.contextShow &&
+            {this.state.contextMenuShow &&
               <PopoverContainer 
-                x={Math.floor(this.state.contextPos[0] * this.state.stageScale + this.state.stageShift[0])}
-                y={Math.floor(this.state.contextPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
+                x={Math.floor(this.state.selectedObjectPos[0] * this.state.stageScale + this.state.stageShift[0])}
+                y={Math.floor(this.state.selectedObjectPos[1] * this.state.stageScale + this.state.stageShift[1]) + 5}
                 objectId={this.state.selectedObjectId}
                 readyHandler={this.hideContextMenu}
                 // turnHandler={}

@@ -1,0 +1,14 @@
+.fadein {
+    opacity: 0;
+    -moz-transition: opacity 2s;
+    -webkit-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}
+
+.loaded {
+    display: flex;
+    animation: bounceIn 2s;
+    -webkit-animation: bounceIn 2s;
+}
+

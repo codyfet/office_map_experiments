@@ -13,6 +13,7 @@ const PopoverView = (props) => {
             placement="right"
             positionLeft={x}
             positionTop={y}
+            animation="false"
         >
             <div style={{display: 'flex'}}>
                 <IconSVG width="20px" content={iconPaths.ready} onClick={readyHandler}/>

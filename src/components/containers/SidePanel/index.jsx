@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Accordion, AccordionItem } from 'react-sanfona';
 import './styles.css';
 
 // redux:
@@ -65,6 +66,24 @@ class SidePanel extends React.Component {
         >
           Create
         </button>
+        {/* accordeon: */}
+        <Accordion isHovered>
+          <AccordionItem title="Current object">
+            <div>
+              ...
+            </div>
+          </AccordionItem>
+          <AccordionItem title="Create">
+            <div>
+              ...
+            </div>
+          </AccordionItem>
+          <AccordionItem title="Save map">
+            <div>
+              ...
+            </div>
+          </AccordionItem>
+        </Accordion>
       </div>
       
     );

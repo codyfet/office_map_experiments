@@ -69,13 +69,25 @@ class SidePanel extends React.Component {
         {/* accordeon: */}
         <Accordion isHovered>
           <AccordionItem title="Current object">
-            <div>
+            <div style={{width: '100%', display: 'flex'}}>
               ...
             </div>
           </AccordionItem>
           <AccordionItem title="Create">
-            <div>
-              ...
+            <div style={{width: '100%', height: '150px', display: 'flex', textAlign: 'center'}}>
+                <div style={{width: '50%'}}>
+                  TypoidObject
+                </div>
+                <div style={{width: '50%'}}>
+                  TypoidUser
+                </div>
+            </div>
+            <div style={{width: '100%'}}>
+              <button
+                style={{width: '100%'}}
+              >
+                SUBMIT
+              </button>
             </div>
           </AccordionItem>
           <AccordionItem title="Save map">

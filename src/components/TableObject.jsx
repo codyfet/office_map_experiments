@@ -12,9 +12,9 @@ export default class TableObject extends React.Component {
   }
 
   checkBoundaries(x, y){
-    const {globalWidth, globalHeight} = this.props;
-    let checkedX = x < 10 ? 10 : (x > (globalWidth-(this.state.width-10)) ? (globalWidth-(this.state.width-10)) : x);
-    let checkedY = y < 10 ? 10 : (y > (globalHeight-(this.state.height-10)) ? (globalHeight-(this.state.height-10)) : y);
+    const { globalWidth, globalHeight, width, height } = this.props;
+    let checkedX = x < 10 ? 10 : (x > (globalWidth-(width-10)) ? (globalWidth-(width-10)) : x);
+    let checkedY = y < 10 ? 10 : (y > (globalHeight-(height-10)) ? (globalHeight-(height-10)) : y);
     return {checkedX, checkedY};
   }
 

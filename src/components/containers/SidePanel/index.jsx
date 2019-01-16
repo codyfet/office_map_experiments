@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stage, Layer, Rect, Text } from 'react-konva';
+import './styles.css';
 
 // redux:
 import { connect } from 'react-redux';
@@ -58,12 +58,7 @@ class SidePanel extends React.Component {
   render() {
 
     return (
-      <div style={{
-        width: '300px', 
-        height: '810px',
-        border: '1px solid black'
-        }}
-      >
+      <div className="sidePanelContainer">
         <button 
           style={{width: '100%'}}
           onClick={this.handleClick}

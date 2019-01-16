@@ -4,10 +4,10 @@ import {
   TURN_OBJECT, 
   DELETE_OBJECT 
 } from '../res/constants';
-import data from '../res/mapData.json';
+import mapData from '../res/mapData.json';
 
 
-const initialState = data.levels[1].movable;
+const initialState = mapData.levels[1].movable;
 
 export default function objects(state = initialState, action) {
   if ( action.type === CREATE_OBJECT ) {

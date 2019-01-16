@@ -8,10 +8,9 @@ export default class GlobalArea extends React.Component {
   render() {
     return (
        <div className="globalArea"> 
-          <AdvancedBoard 
+          <AdvancedBoard
             width={800}
             height={800}
-            blockSnapSize={10}
           />
           <SidePanel />
       </div>          

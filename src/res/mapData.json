@@ -1,0 +1,58 @@
+{
+  "levels": [
+    {
+      "id": "ground_floor",
+      "sortId": 1,
+      "title": "Первый этаж",
+
+      "levelMapWidth": 800,
+      "levelMapHeight": 800,
+      "levelCellSize": 10,
+      "boundaries": [],
+
+      "static": [],
+
+      "movableIdNext": 0,
+      "movable": [],
+      "users": []
+    },
+
+    {
+      "id": "second_floor",
+      "sortId": 2,
+      "title": "Второй этаж",
+
+      "levelMapWidth": 800,
+      "levelMapHeight": 800,
+      "levelCellSize": 10,
+      "boundaries": [],
+
+      "static": [],
+
+      "movableIdNext": 1,
+      "movable": [
+        {
+          "type": "table",
+          "id": 0,
+          "coordinates": { "x": 20, "y": 20 },
+          "width": 20,
+          "height": 30,
+          "userId": "t0018"
+        }
+      ],
+      "users": [
+        {
+          "id": "t0018",
+          "userId": "evgeny.frolov",
+          "title": "Фролов Евгений",
+          "about": "JS, CSS, HTML, TypeScript, React, Redux, Backbone, MCP, \n Webpack",
+          "capability": "Front-End",
+          "phone": "",
+          "level": 11,
+          "category": "people",
+          "startdate": "2015-06-19"
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,13 @@
-import { CREATE_OBJECT, MOVE_OBJECT, TURN_OBJECT, DELETE_OBJECT } from '../res/constants';
+import { 
+  CREATE_OBJECT, 
+  MOVE_OBJECT, 
+  TURN_OBJECT, 
+  DELETE_OBJECT 
+} from '../res/constants';
+import data from '../res/mapData.json';
 
-const initialState = [];
+
+const initialState = data.levels[1].movable;
 
 export default function objects(state = initialState, action) {
   if ( action.type === CREATE_OBJECT ) {
@@ -22,6 +29,8 @@ export default function objects(state = initialState, action) {
     if ( movedObject !== undefined ) {
       movedObject.coordinates = newPosition;
     } 
+
+    console.log(movedObject);
 
     return state;
 

@@ -6,12 +6,17 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createObject } from '../../../actions/index';
 
+// статические данные карты:
+import mapData from '../../../res/mapData.json';
+
 class SidePanel extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.levelNum = 1;
 
     this.state = {
-      idCounter: 0
+      idCounter: mapData.levels[this.levelNum].movableIdNext
     };
   }
   
@@ -50,7 +55,7 @@ class SidePanel extends React.Component {
     
   }
 
-  render() { 
+  render() {
 
     return (
       <div style={{

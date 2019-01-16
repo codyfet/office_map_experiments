@@ -12,23 +12,36 @@ import { changeBoardState, moveObject } from '../../../actions/index';
 //popup:
 import PopoverContainer from '../PopoverContainer/index';
 
+// статические данные карты:
+import mapData from '../../../res/mapData.json';
 
 class AdvancedBoard extends React.Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    stageScale: 1,
-    stageX: 0,
-    stageY: 0,
-    stageShift: [0, 0],
-    
-    selectedObjectId: -1,
-    selectedObjectPos: [10, 10],
-    selectedObjectSizes: [10, 10],
-    
-    shadowOpacity: 0,
-    
-    contextMenuShow: false
-  };
+    const startLvl = 1;
+
+    this.state = {
+      mapLevel: startLvl,
+      blockSnapSize: mapData.levels[startLvl].levelCellSize,
+      mapWidth: mapData.levels[startLvl].levelMapWidth,
+      mapHeight: mapData.levels[startLvl].levelMapHeight,
+
+      stageScale: 1,
+      stageX: 0,
+      stageY: 0,
+      stageShift: [0, 0],
+      
+      selectedObjectId: -1,
+      selectedObjectPos: [10, 10],
+      selectedObjectSizes: [10, 10],
+      
+      shadowOpacity: 0,
+      
+      contextMenuShow: false
+    };
+  }
+  
 
   // управление сценой konva: --------------------------------------
   // сдвиг и масштаб
@@ -104,7 +117,7 @@ class AdvancedBoard extends React.Component {
 
   // тень текущего объекта: ------------------------------------------------
   activateShadow = (posX, posY, size) => {
-    const { blockSnapSize } = this.props;
+    const blockSnapSize = this.state.blockSnapSize;
     this.setState({
         selectedObjectPos: [Math.round(posX / blockSnapSize) * blockSnapSize,
                             Math.round(posY / blockSnapSize) * blockSnapSize],
@@ -151,11 +164,9 @@ class AdvancedBoard extends React.Component {
   }
 
   render() {
-    const { width, height, blockSnapSize, objects } = this.props; 
-
-    // setting KonvaGrid resolution:
-    let stageWidth = 800;
-    let stageHeight = 800;
+    const { width, height, objects } = this.props; 
+    // settings for map (KonvaGrid):
+    const { mapWidth, mapHeight, blockSnapSize } = this.state;
 
     const loadObject = objects.map((elem, i) => {
         return (
@@ -200,8 +211,8 @@ class AdvancedBoard extends React.Component {
             >
 
                 <KonvaGridLayer
-                   width={stageWidth} 
-                   height={stageHeight} 
+                   width={mapWidth} 
+                   height={mapHeight} 
                    blockSnapSize={blockSnapSize}
                    
                 >

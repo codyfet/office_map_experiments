@@ -7,20 +7,9 @@ export default class TableObject extends React.Component {
 
     this.state = {
       isDragging: false,
-      width: this.props.width,
-      height: this.props.height,
       color: '#fff'
     };
   }
-
-  rotateObject = (e) => {
-    let newWidth = this.state.height;
-    let newHeight = this.state.width;
-    this.setState({
-      width: newWidth,
-      height: newHeight
-    });
-  };
 
   checkBoundaries(x, y){
     const {globalWidth, globalHeight} = this.props;
@@ -33,6 +22,8 @@ export default class TableObject extends React.Component {
   render() {
     const {x, 
            y,
+           width,
+           height,
            id,
            shareId, 
            blockSnapSize, 
@@ -61,13 +52,13 @@ export default class TableObject extends React.Component {
             x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
             y: Math.round(checkedY / blockSnapSize) * blockSnapSize
           });
-          showShadow(e.currentTarget.x(), e.currentTarget.y(), [this.state.width, this.state.height]);
+          showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]);
           shareId(id);  
           stopShadow();
         }}
             
         onDragMove={
-          (e) => showShadow(e.currentTarget.x(), e.currentTarget.y(), [this.state.width, this.state.height])
+          (e) => showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height])
         }
 
         onClick={(e) => {
@@ -77,8 +68,8 @@ export default class TableObject extends React.Component {
         
       >
         <Rect
-          width={this.state.width}
-          height={this.state.height}
+          width={width}
+          height={height}
           fill={this.state.color}
           stroke={'#ddd'}
           strokeWidth={1}

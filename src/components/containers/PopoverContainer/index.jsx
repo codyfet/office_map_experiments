@@ -4,7 +4,7 @@ import PopoverView from '../../presentational/PopoverView/index';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteObject } from '../../../actions/index';
+import { deleteObject, turnObject } from '../../../actions/index';
 
 class PopoverContainer extends React.Component {
 
@@ -15,7 +15,10 @@ class PopoverContainer extends React.Component {
       console.log( 'You deleted an object with ID#', objectId );
     }
 
-    turnObject = () => {
+    rotateObject = () => {
+      const { actions, objectId, readyHandler } = this.props;
+      actions.turnObject(objectId);
+      readyHandler(); // close popover
       console.log( 'You turned an object with ID#', this.props.objectId );    
     }
 
@@ -31,7 +34,7 @@ class PopoverContainer extends React.Component {
                 x={x}
                 y={y}
                 readyHandler={readyHandler}
-                turnHandler={this.turnObject}
+                turnHandler={this.rotateObject}
                 editHandler={this.editObject}
                 deleteHandler={this.deleteObject}
                 
@@ -51,7 +54,7 @@ const mapStateToProps = (state) => ({
 });
     
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ deleteObject }, dispatch)
+    actions: bindActionCreators({ deleteObject, turnObject }, dispatch)
 });
     
     

@@ -2,7 +2,8 @@ import {
   CREATE_OBJECT,
   CHANGE_BOARD_STATE,
   DELETE_OBJECT,
-  MOVE_OBJECT
+  MOVE_OBJECT,
+  TURN_OBJECT
 
 } from '../res/constants';
 
@@ -15,6 +16,11 @@ export const moveObject = (objData) => ({
   type: MOVE_OBJECT,
   payload: objData
 }); 
+
+export const turnObject = (objectId) => ({
+  type: TURN_OBJECT,
+  payload: objectId
+});
 
 export const deleteObject = (objectId) => ({
   type: DELETE_OBJECT,

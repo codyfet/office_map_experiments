@@ -62,6 +62,7 @@ class AdvancedBoard extends React.Component {
   followMovingStage = (e) => {
     console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
     console.log('coords for the moved object:', e.target.x(), e.target.y());
+
     const newShift = [e.currentTarget.x(), e.currentTarget.y()];
     if ( this.state.stageShift[0] !== newShift[0] || 
               this.state.stageShift[1] !== newShift[1]) {

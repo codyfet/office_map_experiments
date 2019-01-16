@@ -4,13 +4,13 @@ import PopoverView from '../../presentational/PopoverView/index';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteFurniture } from '../../../actions/index';
+import { deleteObject } from '../../../actions/index';
 
 class PopoverContainer extends React.Component {
 
     deleteObject = () => {
       const { actions, objectId, readyHandler } = this.props;
-      actions.deleteFurniture(objectId);
+      actions.deleteObject(objectId);
       readyHandler(); // close popover
       console.log( 'You deleted an object with ID#', objectId );
     }
@@ -46,12 +46,12 @@ class PopoverContainer extends React.Component {
 
 // for redux:
 const mapStateToProps = (state) => ({
-    furnitures: state.furnitures,
+    objects: state.objects,
     boardState: state.boardState
 });
     
 const mapDispatchToProps = (dispatch) => ({
-    actions: bindActionCreators({ deleteFurniture }, dispatch)
+    actions: bindActionCreators({ deleteObject }, dispatch)
 });
     
     

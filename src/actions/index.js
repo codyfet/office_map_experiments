@@ -1,24 +1,24 @@
 import {
-  CREATE_FURNITURE,
+  CREATE_OBJECT,
   CHANGE_BOARD_STATE,
-  DELETE_FURNITURE,
-  MOVE_FURNITURE
+  DELETE_OBJECT,
+  MOVE_OBJECT
 
 } from '../res/constants';
 
-export const createFurniture = (newFurn) => ({
-  type: CREATE_FURNITURE,
-  payload: newFurn
+export const createObject = (newObj) => ({
+  type: CREATE_OBJECT,
+  payload: newObj
 });
 
-export const moveFurniture = (furnData) => ({
-  type: MOVE_FURNITURE,
-  payload: furnData
+export const moveObject = (objData) => ({
+  type: MOVE_OBJECT,
+  payload: objData
 }); 
 
-export const deleteFurniture = (furnitureId) => ({
-  type: DELETE_FURNITURE,
-  payload: furnitureId
+export const deleteObject = (objectId) => ({
+  type: DELETE_OBJECT,
+  payload: objectId
 });
 
 export const changeBoardState = (newState) => ({

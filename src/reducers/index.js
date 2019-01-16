@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import furnitures from './furnitures';
+import objects from './objects';
 import boardState from './boardState';
 
 export default combineReducers({
   boardState,
-  furnitures
+  objects
 });

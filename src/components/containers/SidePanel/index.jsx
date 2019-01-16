@@ -4,7 +4,7 @@ import { Stage, Layer, Rect, Text } from 'react-konva';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createFurniture } from '../../../actions/index';
+import { createObject } from '../../../actions/index';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class SidePanel extends React.Component {
   handleClick = () => {
     const { actions } = this.props;
     
-    const newFurniture = {
+    const newObject = {
       type: 'table',
       id: this.getNewId(),
       coordinates: this.getConvertedCoordsFrom(750, 20),
@@ -45,8 +45,8 @@ class SidePanel extends React.Component {
       height: 30
     };
 
-    actions.createFurniture(newFurniture);
-    console.log('created', newFurniture);
+    actions.createObject(newObject);
+    console.log('created', newObject);
     
   }
 
@@ -73,12 +73,12 @@ class SidePanel extends React.Component {
 
 // for redux:
 const mapStateToProps = (state) => ({
-  furnitures: state.furnitures,
+  objects: state.objects,
   boardState: state.boardState
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ createFurniture }, dispatch)
+  actions: bindActionCreators({ createObject }, dispatch)
 });
 
 

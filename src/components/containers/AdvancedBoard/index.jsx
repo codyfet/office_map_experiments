@@ -7,7 +7,7 @@ import Portal from '../../Portal';
 // redux:
 import { connect, Provider } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeBoardState, moveFurniture } from '../../../actions/index';
+import { changeBoardState, moveObject } from '../../../actions/index';
 
 //popup:
 import PopoverContainer from '../PopoverContainer/index';
@@ -55,7 +55,7 @@ class AdvancedBoard extends React.Component {
         -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
     });
 
-    this.handleStageChanges();
+    this.stageStateToRedux();
   };
 
   // следим за сценой:
@@ -68,13 +68,14 @@ class AdvancedBoard extends React.Component {
       this.setState({
         stageShift: [e.currentTarget.x(), e.currentTarget.y()]          
       });
-      this.handleStageChanges();  
+      this.stageStateToRedux();  
     }
-     
+
   }
 
-  // отвечает за передачу состояния сцены в SidePanel:
-  handleStageChanges(){
+  // связь с redux store: -------------------------------------------------
+  // для передачи состояния сцены в SidePanel:
+  stageStateToRedux = () => {
     const { actions } = this.props; 
     const newState = {
       shift: this.state.stageShift,
@@ -85,6 +86,20 @@ class AdvancedBoard extends React.Component {
     console.log('created', newState);
     
   };
+
+  // changing position and id of our Object:
+  objectDataToRedux = () => {
+    const { actions } = this.props;
+    let newObjectData = {
+      id: this.state.selectedObjectId,
+      pos: { 
+             x: this.state.selectedObjectPos[0],
+             y: this.state.selectedObjectPos[1]
+      }
+    };
+    console.log('stopShadow', newObjectData);
+    actions.moveObject(newObjectData);
+  }
 
   // тень текущего объекта: ------------------------------------------------
   activateShadow = (posX, posY, size) => {
@@ -99,17 +114,7 @@ class AdvancedBoard extends React.Component {
   };
 
   stopShadow = (objectPos) => {
-    // changing position of our furniture:
-    const { actions } = this.props;
-    let newObjectData = {
-      id: this.state.selectedObjectId,
-      pos: { 
-             x: this.state.selectedObjectPos[0],
-             y: this.state.selectedObjectPos[1]
-      }
-    };
-    console.log('stopShadow', newObjectData);
-    actions.moveFurniture(newObjectData);
+    this.objectDataToRedux();
 
     this.setState({
         shadowOpacity: 0 
@@ -145,13 +150,13 @@ class AdvancedBoard extends React.Component {
   }
 
   render() {
-    const { width, height, blockSnapSize, furnitures } = this.props; 
+    const { width, height, blockSnapSize, objects } = this.props; 
 
     // setting KonvaGrid resolution:
     let stageWidth = 800;
     let stageHeight = 800;
 
-    const loadFurniture = furnitures.map((elem, i) => {
+    const loadObject = objects.map((elem, i) => {
         return (
           <TableObject
             key={i}
@@ -210,7 +215,7 @@ class AdvancedBoard extends React.Component {
                       stroke={'#AE4C01'}
                       strokeWidth={2}
                     />
-                    {loadFurniture}
+                    {loadObject}
                 </KonvaGridLayer>
             </Stage>
             {/*Context menu for the current object is here:*/}
@@ -231,12 +236,12 @@ class AdvancedBoard extends React.Component {
 
 // for redux:
 const mapStateToProps = (state) => ({
-  furnitures: state.furnitures,
+  objects: state.objects,
   boardState: state.boardState
 });
   
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ changeBoardState, moveFurniture }, dispatch)
+  actions: bindActionCreators({ changeBoardState, moveObject }, dispatch)
 });
   
   

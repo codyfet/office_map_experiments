@@ -89,8 +89,9 @@ export default class TableObject extends React.Component {
             
         />
         <Text
-          text={`ID:${id}`}
+          text={`ID:\n${id}`}
           fontSize={10}
+          align="center"
         />
       </Group> 
     );

@@ -1,0 +1,9 @@
+.userItem {
+    width: 100%;
+    display: flex;
+}
+  
+.userInfo {
+    display: block;
+    width: 100%;
+}

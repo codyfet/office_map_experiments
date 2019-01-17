@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
-import MultiColorSVG from '../../presentational/MultiColorSVG/index';
-import iconPaths from '../../../res/iconPaths';
+import UsersList from '../UsersList/index';
 import './styles.css';
 
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createObject, addUser, editUser, deleteUser } from '../../../actions/index';
+import { createObject } from '../../../actions/index';
 
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
@@ -59,25 +58,6 @@ class SidePanel extends React.Component {
   }
 
   render() {
-    
-    const loadUsers = this.props.users.map((val, i) => {
-      return (
-        <li key={i}>
-          <div className="userItem">
-            <MultiColorSVG
-              width="30px"
-              fill={['#E7ECED', /*'#556080'*/'#F9BF05']}
-              content={iconPaths.user}
-            />
-            <div className="userInfo">
-              <div>{val.title}</div>
-              <div>{val.capability}</div>
-            </div>
-          </div> 
-          
-        </li>
-      );
-    });
 
     return (
       <div className="sidePanelContainer">
@@ -89,7 +69,7 @@ class SidePanel extends React.Component {
         </button>
         {/* accordeon: */}
         <Accordion>
-          <AccordionItem title="Current object">
+          <AccordionItem title="Current object" expanded={true} >
             <div style={{width: '100%', display: 'flex'}}>
               ...
             </div>
@@ -110,14 +90,7 @@ class SidePanel extends React.Component {
             </button>
           </AccordionItem>
           <AccordionItem title="Users">
-            <ul>
-                {loadUsers}
-            </ul>
-            <button
-              style={{width: '100%'}}
-            >
-                  Add user
-            </button>
+            <UsersList />
           </AccordionItem>
           <AccordionItem title="Save map">
             <button
@@ -141,7 +114,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ createObject, addUser }, dispatch)
+  actions: bindActionCreators({ createObject }, dispatch)
 });
 
 

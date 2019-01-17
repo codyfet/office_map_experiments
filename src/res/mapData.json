@@ -43,14 +43,36 @@
       "users": [
         {
           "id": "t0018",
-          "userId": "evgeny.frolov",
-          "title": "Фролов Евгений",
+          "userId": "vitalij.kubarev",
+          "title": "Виталий Кубарев",
           "about": "JS, CSS, HTML, TypeScript, React, Redux, Backbone, MCP, \n Webpack",
           "capability": "Front-End",
           "phone": "",
-          "level": 5,
+          "level": 8,
           "category": "people",
           "startdate": "2012-04-18"
+        },
+        {
+          "id": "t0019",
+          "userId": "pavel.trushkin",
+          "title": "Павел Трушкин",
+          "about": "JS, CSS, HTML",
+          "capability": "Front-End",
+          "phone": "",
+          "level": 12,
+          "category": "people",
+          "startdate": "2017-04-18"
+        },
+        {
+          "id": "t0020",
+          "userId": "igor.lyulkin",
+          "title": "Игорь Люлькин",
+          "about": "Java",
+          "capability": "Back-End",
+          "phone": "",
+          "level": 11,
+          "category": "people",
+          "startdate": "2016-04-18"
         }
       ]
     }

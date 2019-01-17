@@ -3,10 +3,14 @@ import {
   CHANGE_BOARD_STATE,
   DELETE_OBJECT,
   MOVE_OBJECT,
-  TURN_OBJECT
+  TURN_OBJECT,
 
+  ADD_USER, 
+  EDIT_USER, 
+  DELETE_USER
 } from '../res/constants';
 
+// actions wuth objects:
 export const createObject = (newObj) => ({
   type: CREATE_OBJECT,
   payload: newObj
@@ -30,4 +34,20 @@ export const deleteObject = (objectId) => ({
 export const changeBoardState = (newState) => ({
   type: CHANGE_BOARD_STATE,
   payload: newState
+});
+
+// actions with users:
+export const addUser = (newUser) => ({
+  type: ADD_USER,
+  payload: newUSER
+});
+
+export const editUser = (userData) => ({
+  type: EDIT_USER,
+  payload: userData
+}); 
+
+export const deleteUser = (userId) => ({
+  type: DELETE_USER,
+  payload: userId
 });

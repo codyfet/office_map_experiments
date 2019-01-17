@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
+import MultiColorSVG from '../../presentational/MultiColorSVG/index';
+import iconPaths from '../../../res/iconPaths';
 import './styles.css';
 
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createObject } from '../../../actions/index';
+import { createObject, addUser, editUser, deleteUser } from '../../../actions/index';
 
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
@@ -57,6 +59,25 @@ class SidePanel extends React.Component {
   }
 
   render() {
+    
+    const loadUsers = this.props.users.map((val, i) => {
+      return (
+        <li key={i}>
+          <div className="userItem">
+            <MultiColorSVG
+              width="30px"
+              fill={['#E7ECED', /*'#556080'*/'#F9BF05']}
+              content={iconPaths.user}
+            />
+            <div className="userInfo">
+              <div>{val.title}</div>
+              <div>{val.capability}</div>
+            </div>
+          </div> 
+          
+        </li>
+      );
+    });
 
     return (
       <div className="sidePanelContainer">
@@ -67,7 +88,7 @@ class SidePanel extends React.Component {
           Create
         </button>
         {/* accordeon: */}
-        <Accordion isHovered>
+        <Accordion>
           <AccordionItem title="Current object">
             <div style={{width: '100%', display: 'flex'}}>
               ...
@@ -82,18 +103,28 @@ class SidePanel extends React.Component {
                   TypoidUser
                 </div>
             </div>
-            <div style={{width: '100%'}}>
-              <button
-                style={{width: '100%'}}
-              >
-                SUBMIT
-              </button>
-            </div>
+            <button
+              style={{width: '100%'}}
+            >
+              Submit
+            </button>
+          </AccordionItem>
+          <AccordionItem title="Users">
+            <ul>
+                {loadUsers}
+            </ul>
+            <button
+              style={{width: '100%'}}
+            >
+                  Add user
+            </button>
           </AccordionItem>
           <AccordionItem title="Save map">
-            <div>
-              ...
-            </div>
+            <button
+              style={{width: '100%'}}
+            >
+              Download the current map
+            </button>
           </AccordionItem>
         </Accordion>
       </div>
@@ -105,11 +136,12 @@ class SidePanel extends React.Component {
 // for redux:
 const mapStateToProps = (state) => ({
   objects: state.objects,
-  boardState: state.boardState
+  boardState: state.boardState,
+  users: state.users
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ createObject }, dispatch)
+  actions: bindActionCreators({ createObject, addUser }, dispatch)
 });
 
 

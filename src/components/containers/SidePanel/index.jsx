@@ -46,7 +46,7 @@ class SidePanel extends React.Component {
     const { actions } = this.props;
     
     const newObject = {
-      type: 'table',
+      category: 'table',
       id: this.getNewId(),
       coordinates: this.getConvertedCoordsFrom(750, 20),
       width: 20,
@@ -76,7 +76,7 @@ class SidePanel extends React.Component {
             </div>
           </AccordionItem>
           <AccordionItem title="Create">
-            <div style={{width: '100%', height: '150px', display: 'flex', textAlign: 'center'}}>
+            <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                 <div style={{width: '50%'}}>
                   <Typehead searchList={this.props.users}/>
                 </div>

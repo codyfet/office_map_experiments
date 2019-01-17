@@ -1,18 +1,12 @@
-.userItem {
+.objectItem {
     width: 100%;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     -webkit-transition: background-color 2s;
     transition: background-color 2s;
 }
-  
-.userInfo {
-    display: block;
-    width: 100%;
-}
 
-.userItem:hover {
+.objectItem:hover {
     cursor: pointer;
     color: white;
     background-color: rgba(0, 0, 0, 0.418);

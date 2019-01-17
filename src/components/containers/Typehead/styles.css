@@ -1,6 +1,21 @@
 .inputText {
   width: 100%;
-  height: auto;
-  font-size: 12;
-  
+  height: 20px;
+
+}
+
+.typeSearchList {
+    width: 85%;
+    height: 100px;
+    list-style-type: none;
+    padding: 5px; /*для удаления отступа*/
+    overflow: hidden;
+    overflow-y: scroll; /* для прокрутки */
+    margin: 5px;
+    
+}
+
+.typeSearchList::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }

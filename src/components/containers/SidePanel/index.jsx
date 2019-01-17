@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import UsersList from '../UsersList/index';
+import Typehead from '../Typehead/index';
 import './styles.css';
 
 // redux:
@@ -77,7 +78,7 @@ class SidePanel extends React.Component {
           <AccordionItem title="Create">
             <div style={{width: '100%', height: '150px', display: 'flex', textAlign: 'center'}}>
                 <div style={{width: '50%'}}>
-                  TypoidObject
+                  <Typehead searchList={this.props.users}/>
                 </div>
                 <div style={{width: '50%'}}>
                   TypoidUser

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import UsersList from '../UsersList/index';
+import UsersSpecialList from '../UsersSpecialList/index';
 import ObjectsList from '../ObjectsList/index';
 import './styles.css';
 
@@ -78,13 +79,9 @@ class SidePanel extends React.Component {
             </div>
           </AccordionItem>
           <AccordionItem title="Create">
-            <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
-                <div style={{width: '50%'}}>
-                  <ObjectsList searchList={this.props.users}/>
-                </div>
-                <div style={{width: '50%'}}>
-                  TypoidUser
-                </div>
+            <div style={{width: '100%', height: '180px', display: 'flex', alignItems: 'center'}}>
+              <ObjectsList searchList={this.props.users}/>
+              <UsersSpecialList />
             </div>
             <button
               style={{width: '100%'}}

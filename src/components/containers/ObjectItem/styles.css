@@ -2,12 +2,23 @@
     width: 100%;
     display: flex;
     align-items: center;
+    border-radius: 10px;
     -webkit-transition: background-color 2s;
     transition: background-color 2s;
+}
+
+.objectItemSelected {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(240, 175, 54, 0.74);
 }
 
 .objectItem:hover {
     cursor: pointer;
     color: white;
-    background-color: rgba(0, 0, 0, 0.418);
+    background-color: rgba(240, 175, 54, 0.74);
 }

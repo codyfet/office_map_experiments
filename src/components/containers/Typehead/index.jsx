@@ -2,29 +2,57 @@ import React from "react";
 import ObjectItem from '../ObjectItem/index';
 import "./styles.css";
 
+// статические данные карты:
+import mapData from '../../../res/mapData.json';
+
 export default class Typehead extends React.Component {
   
+  state = {
+    selectedObjectId: '' 
+  };
+
+  selectObject = (id) => {
+    this.setState({
+      selectedObjectId: id
+    });
+  }
+
   render() {
-    // const { searchList } = this.props;
-    const searchList = [
-        { category: "table" },
-        { category: "cupboard" }
-    ];
-    const loadElements = searchList.map((elem, i) => {
+    const searchList = mapData.categories.slice(1);
+
+    let loadObjects = searchList.map((elem, i) => {
       return (
         <li key={i}>
-            <ObjectItem object={elem}/>
+            <ObjectItem 
+              object={elem}
+              isSelected={false}
+              onClick={this.selectObject} 
+            />
         </li>
       );
     }); 
 
+    // если выбрали элемент:
+    let isSelected = false;
+    const foundObject = searchList.find((elem) => (elem.id === this.state.selectedObjectId));
+    if ( foundObject !== undefined ) {
+      isSelected = true;
+      loadObjects = (
+        <li key={0}>
+            <ObjectItem 
+              object={foundObject}
+              isSelected={true}
+              onClick={this.selectObject}  
+            />
+        </li>
+      );
+    } 
+    
     return (
       <React.Fragment>
-        <input className="textInput" type="text" />
         <ul className="typeSearchList">
-          {loadElements}
+          {loadObjects}
         </ul>
-
 
       </React.Fragment>
     );

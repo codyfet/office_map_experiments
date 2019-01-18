@@ -12,9 +12,15 @@ export default class ObjectsList extends React.Component {
   };
 
   selectObject = (id) => {
+    const { onObjectClick } = this.props;
+
     this.setState({
       selectedObjectId: id
     });
+
+    // pass information to SidePanel
+    onObjectClick(id);
+
   }
 
   render() {
@@ -49,12 +55,12 @@ export default class ObjectsList extends React.Component {
     } 
     
     return (
-      <React.Fragment>
-        <ul className="typeSearchList">
+      <div className="objectsListWrapper">
+        <ul className="objectsList">
           {loadObjects}
         </ul>
 
-      </React.Fragment>
+      </div>
     );
   }
 }

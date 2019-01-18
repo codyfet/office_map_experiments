@@ -61,6 +61,12 @@ class SidePanel extends React.Component {
     
   }
 
+  selectObjectId = (id) => {
+    this.setState({
+      selectedObjectId: id
+    });
+  }
+
   render() {
 
     return (
@@ -79,9 +85,19 @@ class SidePanel extends React.Component {
             </div>
           </AccordionItem>
           <AccordionItem title="Create">
-            <div style={{width: '100%', height: '180px', display: 'flex', alignItems: 'center'}}>
-              <ObjectsList searchList={this.props.users}/>
-              <UsersSpecialList />
+            <div style={{width: '100%', 
+                         height: '250px', 
+                         display: 'flex', 
+                         flexDirection: 'column', 
+                         justifyContent: 'center',
+                         alignItems: 'center'}}>
+              <ObjectsList 
+                searchList={this.props.users} 
+                onObjectClick={this.selectObjectId}
+              />
+              { this.state.selectedObjectId !== '' &&
+                <UsersSpecialList />
+              }
             </div>
             <button
               style={{width: '100%'}}

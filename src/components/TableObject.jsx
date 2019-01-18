@@ -84,6 +84,9 @@ export default class TableObject extends React.Component {
           fontSize={10}
           align="center"
         />
+        {/* <button>
+          <Text text={'Hi'}/>
+        </button> */}
       </Group> 
     );
   }

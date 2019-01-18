@@ -9,6 +9,10 @@ import { addUser, editUser, deleteUser } from "../../../actions/index";
 
 class UsersSpecialList extends React.Component {
   
+  handleInputChange() {
+
+  }
+
   render() {
     
     const loadUsers = this.props.users.map((user, i) => {
@@ -20,9 +24,11 @@ class UsersSpecialList extends React.Component {
     });
 
     return (
-      <div className="userSpecialList">
-        <ul className="userList">{loadUsers}</ul>
+      <div className="userSpecialListWrapper">
+        <input className="inputUsersSpecial" type="text" />
         <button className="stretchedButton">Add user</button>
+        <ul className="userSpecialList">{loadUsers}</ul>
+        
       </div>
     );
   }

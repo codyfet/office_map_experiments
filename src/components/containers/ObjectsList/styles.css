@@ -1,15 +1,25 @@
+.objectsListWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    padding: 5px;
+}
 
-.typeSearchList {
+.objectsList {
     width: 100%;
     height: 100%;
     list-style-type: none;
-    padding: 5px; /*для удаления отступа*/
+    padding-left: 0;
     overflow: hidden;
     overflow-y: scroll; /* для прокрутки */
     
 }
 
-.typeSearchList::-webkit-scrollbar {
+ul {
+    margin-bottom: 0;
+}
+
+.objectsList::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
 }

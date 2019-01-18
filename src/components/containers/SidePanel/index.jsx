@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import UsersList from '../UsersList/index';
-import Typehead from '../Typehead/index';
+import ObjectsList from '../ObjectsList/index';
 import './styles.css';
 
 // redux:
@@ -19,7 +19,9 @@ class SidePanel extends React.Component {
     this.levelNum = 1;
 
     this.state = {
-      idCounter: mapData.levels[this.levelNum].movableIdNext
+      idCounter: mapData.levels[this.levelNum].movableIdNext,
+      selectedObjectId: '',
+      selectedUserId: ''
     };
   }
   
@@ -78,7 +80,7 @@ class SidePanel extends React.Component {
           <AccordionItem title="Create">
             <div style={{width: '100%', display: 'flex', alignItems: 'center'}}>
                 <div style={{width: '50%'}}>
-                  <Typehead searchList={this.props.users}/>
+                  <ObjectsList searchList={this.props.users}/>
                 </div>
                 <div style={{width: '50%'}}>
                   TypoidUser

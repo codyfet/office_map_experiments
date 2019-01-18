@@ -5,7 +5,7 @@ import "./styles.css";
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
 
-export default class Typehead extends React.Component {
+export default class ObjectsList extends React.Component {
   
   state = {
     selectedObjectId: '' 

@@ -117,6 +117,39 @@
           "level": 11,
           "category": "people",
           "startdate": "2016-04-18"
+        },
+        {
+          "id": "t0021",
+          "userId": "ilya.chehov",
+          "title": "Илья Чехов",
+          "about": "C++, Linux, Qt",
+          "capability": "Got powers his father couldn't have dreamt of",
+          "phone": "",
+          "level": 1,
+          "category": "people",
+          "startdate": "2003-04-18"
+        },
+        {
+          "id": "t0022",
+          "userId": "ivan.lesnik",
+          "title": "Иван Лесник",
+          "about": "Warcraft 3",
+          "capability": "Casting Slow on everyone",
+          "phone": "",
+          "level": 12,
+          "category": "people",
+          "startdate": "2003-04-18"
+        },
+        {
+          "id": "t0023",
+          "userId": "vitas.siplij",
+          "title": "Витас Сиплый ",
+          "about": "High-pitched c#",
+          "capability": "Taking away your music taste",
+          "phone": "",
+          "level": 11,
+          "category": "people",
+          "startdate": "2010-04-18"
         }
       ]
     }

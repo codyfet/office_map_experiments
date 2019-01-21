@@ -13,8 +13,6 @@ import { createObject } from '../../../actions/index';
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
 
-//для анимации переходов компонентов:
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class SidePanel extends React.Component {
   constructor(props) {
@@ -89,25 +87,18 @@ class SidePanel extends React.Component {
           </AccordionItem>
           <AccordionItem title="Create">
             <div style={{width: '100%', 
-                         height: '250px', 
+                         height: '280px', 
                          display: 'flex', 
-                         flexDirection: 'column', 
-                         justifyContent: 'center',
+                         flexDirection: 'column',
+                         
                          alignItems: 'center'}}>
               <ObjectsList 
                 searchList={this.props.users} 
                 onObjectClick={this.selectObjectId}
               />
-              { this.state.selectedObjectId !== '' &&
-                <ReactCSSTransitionGroup
-                  transitionName="fade"
-                  transitionEnterTimeout={2000}
-                  transitionLeaveTimeout={2000}
-                >
-                  <UsersSpecialList className={"userSpecialListWrapperOpen"}/>
-                </ReactCSSTransitionGroup>
+              { this.state.selectedObjectId === 'table' &&
+                <UsersSpecialList className={"userSpecialListWrapperOpen"}/>
               }
-              
             </div>
             <button
               style={{width: '100%'}}

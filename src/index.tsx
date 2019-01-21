@@ -8,12 +8,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
 
+import CSSapp from './components/CSSanimus/index';
 
 const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <CSSapp />
   </Provider>, 
   document.getElementById("root")
 );

@@ -1,0 +1,95 @@
+/*  developer.mozilla.org: text-sliding */
+
+.textClassSlideIn {
+    animation-duration: 3s;
+    animation-name: slidein;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.textClassSlideOut {
+    animation-duration: 3s;
+    animation-name: slideout;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slidein {
+    0% {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    75% {
+        font-size: 300%;
+        margin-left: 25%;
+        width: 150%;
+    }
+
+    100% {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+@keyframes slideout {
+    100% {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    75% {
+        font-size: 300%;
+        margin-left: 25%;
+        width: 150%;
+    }
+
+    0% {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+/* medium.com: transforming object */
+
+
+/* Animation: */
+.animatedBox {
+    width: 100px; 
+    height: 100px;
+    border: 1px solid black;
+    animation-name: animationName;
+    animation-fill-mode: forwards;
+    animation-duration: 3s;
+}
+
+@keyframes animationName {
+      0% { border-radius: 0; background: yellow; }
+    100% { border-radius: 50px; background: teal; }
+}
+
+/* animation timing functions: */
+.linear {
+    animation-timing-function: cubic-bezier(0, 0, 1, 1);
+}
+
+.ease {
+    animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.ease-in {
+    animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+}
+
+.ease-out {
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+}
+
+.ease-in-out {
+    animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/* div:hover {
+    animation-play-state: paused;
+}  */

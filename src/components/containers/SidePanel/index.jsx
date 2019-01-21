@@ -13,6 +13,9 @@ import { createObject } from '../../../actions/index';
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
 
+//для анимации переходов компонентов:
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 class SidePanel extends React.Component {
   constructor(props) {
     super(props);
@@ -96,8 +99,15 @@ class SidePanel extends React.Component {
                 onObjectClick={this.selectObjectId}
               />
               { this.state.selectedObjectId !== '' &&
-                <UsersSpecialList />
+                <ReactCSSTransitionGroup
+                  transitionName="fade"
+                  transitionEnterTimeout={2000}
+                  transitionLeaveTimeout={2000}
+                >
+                  <UsersSpecialList className={"userSpecialListWrapperOpen"}/>
+                </ReactCSSTransitionGroup>
               }
+              
             </div>
             <button
               style={{width: '100%'}}

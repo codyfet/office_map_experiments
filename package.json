@@ -49,6 +49,7 @@
     "bootstrap": "^4.2.1",
     "konva": "^2.6.0",
     "react": "^16.7.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.32.4",
     "react-contexify": "^4.0.0",
     "react-dnd": "^7.0.2",

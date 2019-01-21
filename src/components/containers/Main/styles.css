@@ -8,6 +8,6 @@ h1 {
     padding-left: 10px;
     padding-top: 10px;
     letter-spacing: 3px;
-    transform:scale(1.1, 1);
+    /* transform:scale(1.1, 1); */
 
 }

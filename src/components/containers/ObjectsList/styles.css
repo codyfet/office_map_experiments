@@ -23,3 +23,22 @@ ul {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
 }
+
+/* for element transitions in react: */
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 2s easy-in-out;
+}
+
+.fade-leave {
+    opacity: 1;
+}
+
+.fade-leave-active {
+    opacity: 0;
+    transition: opacity 2s easy-in-out;
+}

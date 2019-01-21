@@ -24,7 +24,7 @@ class UsersSpecialList extends React.Component {
     });
 
     return (
-      <div className="userSpecialListWrapper">
+      <div className={this.props.className}>
         <input className="inputUsersSpecial" type="text" />
         <button className="stretchedButton">Add user</button>
         <ul className="userSpecialList">{loadUsers}</ul>

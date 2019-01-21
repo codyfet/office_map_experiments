@@ -5,6 +5,9 @@ import "./styles.css";
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
 
+//для анимации переходов компонентов:
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 export default class ObjectsList extends React.Component {
   
   state = {
@@ -57,7 +60,13 @@ export default class ObjectsList extends React.Component {
     return (
       <div className="objectsListWrapper">
         <ul className="objectsList">
-          {loadObjects}
+          <ReactCSSTransitionGroup
+                  transitionName="fade"
+                  transitionEnterTimeout={2000}
+                  transitionLeaveTimeout={2000}
+          >
+            {loadObjects}
+          </ReactCSSTransitionGroup>
         </ul>
 
       </div>

@@ -14,7 +14,7 @@ const store = createStore(reducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
-    <CSSapp />
+    <Main />
   </Provider>, 
   document.getElementById("root")
 );

@@ -1,0 +1,13 @@
+.myContainer {
+    background-color: white;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Helvetica';
+    padding-left: 10px;
+    padding-top: 10px;
+    letter-spacing: 3px;
+    transform:scale(1.1, 1);
+
+}

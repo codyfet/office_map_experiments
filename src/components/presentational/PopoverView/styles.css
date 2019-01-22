@@ -1,3 +1,7 @@
+#popover-basic {
+    position: absolute;
+}
+
 .fadein {
     opacity: 0;
     -moz-transition: opacity 2s;

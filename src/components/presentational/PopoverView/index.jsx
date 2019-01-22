@@ -2,6 +2,7 @@ import React from 'react';
 import { Popover, Button } from 'react-bootstrap';
 import IconSVG from '../../presentational/IconSVG/index';
 import iconPaths from '../../../res/iconPaths';
+import './styles.css';
 
 const PopoverView = (props) => {
 

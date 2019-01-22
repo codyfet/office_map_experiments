@@ -76,7 +76,8 @@ export default class TableObject extends React.Component {
           shadowColor={'black'}
           shadowBlur={2}
           shadowOffset={{x : 1, y : 1}}
-          shadowOpacity={0.4}    
+          shadowOpacity={0.4}  
+          name='area'  
             
         />
         <Text

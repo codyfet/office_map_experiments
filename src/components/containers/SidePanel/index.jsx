@@ -96,7 +96,6 @@ class SidePanel extends React.Component {
                 searchList={this.props.users} 
                 onObjectClick={this.selectObjectId}
               />
-              {/* <UsersSpecialList className="show"/> */}
               <UsersSpecialList className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}/>
               {/* { this.state.selectedObjectId === 'table' &&
                 <UsersSpecialList className={"userSpecialListWrapperOpen"}/>

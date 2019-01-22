@@ -15,6 +15,8 @@ import PopoverContainer from '../PopoverContainer/index';
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
 
+
+
 class AdvancedBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -75,6 +77,12 @@ class AdvancedBoard extends React.Component {
   followMovingStage = (e) => {
     console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
     console.log('coords for the moved object:', e.target.x(), e.target.y());
+    var targetRect = e.target.getClientRect();
+    console.log('real coords for moved object:', e.currentTarget.children[0].children.filter((c) => {
+      if ( c.nodeType === "Group" ) {
+        return c;
+      }
+    }));
 
     const newShift = [e.currentTarget.x(), e.currentTarget.y()];
     if ( this.state.stageShift[0] !== newShift[0] || 
@@ -207,6 +215,39 @@ class AdvancedBoard extends React.Component {
                 scaleY={this.state.stageScale}
                 onDragStart={this.hideContextMenu}
                 onDragEnd={this.followMovingStage}
+                onDragMove={(e) => {
+                  
+                  function haveIntersection(r1, r2) {
+                    return !(
+                      r2.x > r1.x + r1.width ||
+                      r2.x + r2.width < r1.x ||
+                      r2.y > r1.y + r1.height ||
+                      r2.y + r2.height < r1.y
+                    );
+                  }
+            
+                  var targetRect = e.target.getClientRect();  
+
+                  e.currentTarget.children[0].children.each( (node) => {
+                    // do not check intersection with itself or with strange lines!
+                    if ( node.nodeType !== 'Group' || node === e.target) {
+                      return;
+                    }
+
+                    if ( haveIntersection(node.getClientRect(), targetRect) ) {
+                      node.findOne('.area').fill('red');
+                      e.target.findOne('.area').fill('red');
+                      return;
+                    } else {
+                      node.findOne('.area').fill('white');
+                      e.target.findOne('.area').fill('white');
+                      return;
+                    }
+                    // do not need to call layer.draw() here
+                    // because it will be called by dragmove action
+                  });
+                  
+                }}
                 
             >
 
@@ -214,8 +255,11 @@ class AdvancedBoard extends React.Component {
                    width={mapWidth} 
                    height={mapHeight} 
                    blockSnapSize={blockSnapSize}
-                   
+     
                 >
+                {/* Borders here: */}
+
+
                     {/*Shadow is here:*/}
                     <Rect 
                       x={this.state.selectedObjectPos[0]}

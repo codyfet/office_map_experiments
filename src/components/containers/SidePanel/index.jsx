@@ -90,15 +90,16 @@ class SidePanel extends React.Component {
                          height: '280px', 
                          display: 'flex', 
                          flexDirection: 'column',
-                         
-                         alignItems: 'center'}}>
+                         alignItems: 'center'
+                         }}>
               <ObjectsList 
                 searchList={this.props.users} 
                 onObjectClick={this.selectObjectId}
               />
-              { this.state.selectedObjectId === 'table' &&
+              <UsersSpecialList className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper" }/>
+              {/* { this.state.selectedObjectId === 'table' &&
                 <UsersSpecialList className={"userSpecialListWrapperOpen"}/>
-              }
+              } */}
             </div>
             <button
               style={{width: '100%'}}

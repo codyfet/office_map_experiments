@@ -1,15 +1,32 @@
-.userSpecialListWrapperOpen {
+
+/* Анимация корявая из-за расширяющегося первого списка! 
+   Возможное решение: анимировать первый список, чтобы элементы плавно опускались
+   Но я попробую решение с flex сначала
+*/
+/* #fade-in {
   width: 100%;
   padding: 5px;
+  height: 0%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  position: relative;
+  visibility: hidden;
+  transition: all 1s ease-in-out;
   
 }
 
-.userSpecialListWrapperClosed {
-  width: 0%;
-  height: 0%;
+.userSpecialListWrapper {
+  height: 0px;
+  visibility: hidden;
 }
+
+#fade-in.show {
+  padding: 5px;
+  height: 75%;
+  visibility: visible;
+
+} */
+
 
 .userSpecialList {
   width: 100%;

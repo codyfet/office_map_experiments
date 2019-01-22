@@ -71,8 +71,8 @@ export default class TableObject extends React.Component {
           width={width}
           height={height}
           fill={this.state.color}
-          // stroke={'black'}
-          // strokeWidth={1}
+          stroke={'black'}
+          strokeWidth={1}
           // shadowColor={'black'}
           // shadowBlur={2}
           // shadowOffset={{x : 1, y : 1}}
@@ -85,9 +85,6 @@ export default class TableObject extends React.Component {
           fontSize={10}
           align="center"
         />
-        {/* <button>
-          <Text text={'Hi'}/>
-        </button> */}
       </Group> 
     );
   }

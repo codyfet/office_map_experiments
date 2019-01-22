@@ -77,7 +77,7 @@ class AdvancedBoard extends React.Component {
   handleStopMoving = (e) => {
     console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
     console.log('coords for the moved object:', e.target.x(), e.target.y());
-    console.log('interesting:', e.currentTarget.children[0].children[163].getClientRect());
+    console.log('interesting:', e);
 
     this.showIntersection(e.currentTarget, e.target);
 
@@ -91,12 +91,22 @@ class AdvancedBoard extends React.Component {
     }
 
   }
-
+  
   // следим, чтобы объект не вышел за границы:
   // функция-оповещатель выхода за границы:
   showIntersection = (currentStage, currentObject) => {
                   
     function haveIntersection(r1, r2) {
+      // обрежем края (они могут совпадать)
+      // край задаётся обводкой: 1px => реальная ширина и длина на 2px меньше:
+      r1.width -= 2;
+      r1.height -= 2;
+      r2.width -= 2;
+      r2.height -= 2;
+
+      //to floor:
+      Math.floor(r1)
+
       return !(
         r2.x >= r1.x + r1.width ||
         r2.x + r2.width <= r1.x ||
@@ -104,6 +114,14 @@ class AdvancedBoard extends React.Component {
         r2.y + r2.height <= r1.y
       );
     }
+
+    // если двинулась сцена:
+    if ( currentStage.x() === currentObject.x() && 
+         currentStage.y() === currentObject.y() ) {
+      
+      // currentObject.findOne('.area').fill('#E9DAA8');  
+      return;
+    } 
 
     let intersected = currentStage.children[0].children.some( (node) => {
       // do not check intersection with itself or with strange lines!
@@ -113,6 +131,7 @@ class AdvancedBoard extends React.Component {
 
       if ( haveIntersection(node.getClientRect(), currentObject.getClientRect()) ) {
         node.findOne('.area').fill('red');
+        console.log('intersection:', node.getClientRect(), currentObject.getClientRect());
         return true;
       } else {
         node.findOne('.area').fill('#E9DAA8');
@@ -127,6 +146,8 @@ class AdvancedBoard extends React.Component {
 
   // обработчик движения:
   handleMovingObject = (e) => {
+    console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
+    console.log('coords for the moved object:', e.target.x(), e.target.y());
     this.showIntersection(e.currentTarget, e.target);
   }
 

@@ -1,34 +1,10 @@
-/* Flex-grow animation не работает, т.к. кнопка не сужается*/
-.userSpecialListWrapper {
+
+#fade-in {
   width: 100%;
   padding: 5px;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  visibility: hidden;
-  transition: flex-grow 1s ease-in-out;
-}
-
-.closed {
-
-}
-
-.show {
-  flex-grow: 4;
-}
-
-/* Анимация корявая из-за расширяющегося первого списка! 
-   Возможное решение: анимировать первый список, чтобы элементы плавно опускались
-   Но я попробую решение с flex сначала
-*/
-/* #fade-in {
-  width: 100%;
-  padding: 5px;
-  height: 0%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  visibility: hidden;
+  visibility: hidden; 
   transition: all 1s ease-in-out;
   
 }
@@ -43,7 +19,7 @@
   height: 75%;
   visibility: visible;
 
-} */
+}
 
 
 .userSpecialList {

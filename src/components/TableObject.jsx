@@ -7,7 +7,7 @@ export default class TableObject extends React.Component {
 
     this.state = {
       isDragging: false,
-      color: '#fff'
+      color: '#E9DAA8'
     };
   }
 
@@ -71,12 +71,12 @@ export default class TableObject extends React.Component {
           width={width}
           height={height}
           fill={this.state.color}
-          stroke={'#ddd'}
-          strokeWidth={1}
-          shadowColor={'black'}
-          shadowBlur={2}
-          shadowOffset={{x : 1, y : 1}}
-          shadowOpacity={0.4}  
+          // stroke={'black'}
+          // strokeWidth={1}
+          // shadowColor={'black'}
+          // shadowBlur={2}
+          // shadowOffset={{x : 1, y : 1}}
+          // shadowOpacity={0.4}  
           name='area'  
             
         />

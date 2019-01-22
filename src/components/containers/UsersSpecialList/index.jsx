@@ -39,7 +39,7 @@ class UsersSpecialList extends React.Component {
     });
 
     return (
-      <div id="fade-in" className={this.props.className}>
+      <div className={"userSpecialListWrapper " + this.props.className}>
         <DebounceInput 
           minLength={1}
           debounceTimeout={300}

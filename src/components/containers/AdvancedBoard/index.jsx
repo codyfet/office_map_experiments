@@ -2,6 +2,7 @@ import * as React from "react";
 import { Stage, Layer, Group, Rect, Text, Line } from "react-konva";
 import TableObject from "../../TableObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
+import MapShape from "../MapShape/index";
 import Portal from "../../Portal";
 
 // redux:
@@ -297,7 +298,9 @@ class AdvancedBoard extends React.Component {
               stroke={"#AE4C01"}
               strokeWidth={2}
             />
+            <MapShape />
             {loadObject}
+            
           </KonvaGridLayer>
         </Stage>
         {/*Context menu for the current object is here:*/}

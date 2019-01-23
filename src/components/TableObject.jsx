@@ -68,7 +68,15 @@ export default class TableObject extends React.Component {
         }
 
         onClick={(e) => {
-          showContextMenu(e.currentTarget.x(), e.currentTarget.y());
+          // надйдём сдвиг Stage относительно окна:
+          console.log('popoverClick', e);
+          const shiftToWindow = {
+                          x: e.evt.clientX - e.evt.layerX,
+                          y: e.evt.clientY - e.evt.layerY
+          };
+          // console.log('popoverClickCheck', shiftX, shiftY);
+          // console.log('popoverClickcheckObject', e.currentTarget.x(), e.currentTarget.y());
+          showContextMenu(e.currentTarget.x(), e.currentTarget.y(), shiftToWindow);
           shareId(id); 
         }}
         

@@ -47,7 +47,7 @@ export default class TableObject extends React.Component {
         
         onDragEnd={(e) => {
           let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
-          console.log('onDragEnd', checkedX, checkedY);
+
           e.currentTarget.position({
             x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
             y: Math.round(checkedY / blockSnapSize) * blockSnapSize
@@ -69,13 +69,10 @@ export default class TableObject extends React.Component {
 
         onClick={(e) => {
           // надйдём сдвиг Stage относительно окна:
-          console.log('popoverClick', e);
           const shiftToWindow = {
                           x: e.evt.clientX - e.evt.layerX,
                           y: e.evt.clientY - e.evt.layerY
           };
-          // console.log('popoverClickCheck', shiftX, shiftY);
-          // console.log('popoverClickcheckObject', e.currentTarget.x(), e.currentTarget.y());
           showContextMenu(e.currentTarget.x(), e.currentTarget.y(), shiftToWindow);
           shareId(id); 
         }}

@@ -12,18 +12,18 @@ class PopoverContainer extends React.Component {
       const { actions, objectId, readyHandler } = this.props;
       actions.deleteObject(objectId);
       readyHandler(); // close popover
-      console.log( 'You deleted an object with ID#', objectId );
+      // console.log( 'You deleted an object with ID#', objectId );
     }
 
     rotateObject = () => {
       const { actions, objectId, readyHandler } = this.props;
       actions.turnObject(objectId);
       readyHandler(); // close popover
-      console.log( 'You turned an object with ID#', this.props.objectId );    
+      // console.log( 'You turned an object with ID#', this.props.objectId );    
     }
 
     editObject = () => {
-      console.log( 'You edited an object with ID#', this.props.objectId );
+      // console.log( 'You edited an object with ID#', this.props.objectId );
     }
 
     render() {

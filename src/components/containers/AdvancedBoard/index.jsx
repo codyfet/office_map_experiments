@@ -75,13 +75,9 @@ class AdvancedBoard extends React.Component {
 
   // следим за сценой:
   handleStopMoving = e => {
-    console.log(
-      "coords for the moved stage:",
-      e.currentTarget.x(),
-      e.currentTarget.y()
-    );
-    console.log("coords for the moved object:", e.target.x(), e.target.y());
-    console.log("interesting:", e);
+    // console.log( "coords for the moved stage:", e.currentTarget.x(), e.currentTarget.y() );
+    // console.log( "coords for the moved object:", e.target.x(), e.target.y() );
+    // console.log( "interesting:", e );
 
     this.showIntersection(e.currentTarget, e.target);
 
@@ -139,12 +135,12 @@ class AdvancedBoard extends React.Component {
         height: node.children[0].attrs.height
       };
 
-      console.log("interestCheck", nodeR);
+      // console.log("interestCheck", nodeR);
 
       if (haveIntersection(nodeR, nodeCurr)) {
         node.findOne(".right").fill("red");
         //node.findOne('.right').name('')
-        console.log("intersection:", nodeR, nodeCurr);
+        // console.log("intersection:", nodeR, nodeCurr);
         return true;
       } else {
         node.findOne(".right").fill("#E9DAA8");
@@ -175,7 +171,6 @@ class AdvancedBoard extends React.Component {
     };
 
     actions.changeBoardState(newState);
-    console.log("created", newState);
   };
 
   // changing position and id of our Object:
@@ -188,7 +183,7 @@ class AdvancedBoard extends React.Component {
         y: this.state.selectedObjectPos[1]
       }
     };
-    console.log("stopShadow", newObjectData);
+
     actions.moveObject(newObjectData);
   };
 
@@ -300,7 +295,18 @@ class AdvancedBoard extends React.Component {
               stroke={"#AE4C01"}
               strokeWidth={2}
             />
-            <MapShape boundaries={this.state.mapBoundaries}/>
+            <MapShape 
+              boundaries={this.state.mapBoundaries}
+              onMouseEnter={(e) => {
+                console.log('onMouseEnter', e);
+              }}
+              onMouseLeave={(e) => {
+                console.log('onMouseLeave', e);
+              }}
+              // onMouseOver={(e) => {
+              //   console.log('onMouseOver', e);
+              // }}
+            />
             {loadObject}
             
           </KonvaGridLayer>

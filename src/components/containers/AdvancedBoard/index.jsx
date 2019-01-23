@@ -3,6 +3,7 @@ import { Stage, Layer, Group, Rect, Text, Line } from "react-konva";
 import TableObject from "../../TableObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
+import MapLayer from "../MapLayer/index";
 import Portal from "../../Portal";
 
 // redux:

@@ -27,6 +27,7 @@ class AdvancedBoard extends React.Component {
       blockSnapSize: mapData.levels[startLvl].levelCellSize,
       mapWidth: mapData.levels[startLvl].levelMapWidth,
       mapHeight: mapData.levels[startLvl].levelMapHeight,
+      mapBoundaries: mapData.levels[startLvl].boundaries,
 
       stageScale: 1,
       stageX: 0,
@@ -298,7 +299,7 @@ class AdvancedBoard extends React.Component {
               stroke={"#AE4C01"}
               strokeWidth={2}
             />
-            <MapShape />
+            <MapShape boundaries={this.state.mapBoundaries}/>
             {loadObject}
             
           </KonvaGridLayer>

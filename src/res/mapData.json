@@ -52,7 +52,6 @@
       "levelMapWidth": 800,
       "levelMapHeight": 800,
       "levelCellSize": 10,
-      "boundaries": [],
 
       "static": [],
 
@@ -69,7 +68,7 @@
       "levelMapWidth": 800,
       "levelMapHeight": 800,
       "levelCellSize": 10,
-      "boundaries": [],
+      "boundaries": "20,20 20,320 320,320 320,220 260,220 260,180 620,180 620,20",
 
       "static": [],
 

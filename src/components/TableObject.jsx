@@ -58,7 +58,13 @@ export default class TableObject extends React.Component {
         }}
             
         onDragMove={
-          (e) => showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height])
+          (e) => {
+            showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height])
+            // e.currentTarget.position({
+            //   x: Math.round(e.currentTarget.x() / blockSnapSize) * blockSnapSize,
+            //   y: Math.round(e.currentTarget.y() / blockSnapSize) * blockSnapSize
+            // });
+          }
         }
 
         onClick={(e) => {
@@ -73,11 +79,11 @@ export default class TableObject extends React.Component {
           fill={this.state.color}
           stroke={'black'}
           strokeWidth={1}
-          // shadowColor={'black'}
-          // shadowBlur={2}
-          // shadowOffset={{x : 1, y : 1}}
-          // shadowOpacity={0.4}  
-          name='area'  
+          shadowColor={'black'}
+          shadowBlur={2}
+          shadowOffset={{x : 1, y : 1}}
+          shadowOpacity={0.4}  
+          name='right' // указывает, есть ли пересечения с другими  
             
         />
         <Text

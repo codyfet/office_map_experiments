@@ -94,18 +94,9 @@ class AdvancedBoard extends React.Component {
   
   // следим, чтобы объект не вышел за границы:
   // функция-оповещатель выхода за границы:
-  showIntersection = (currentStage, currentObject) => {
+  showIntersection = ( currentStage, currentObject ) => {
                   
     function haveIntersection(r1, r2) {
-      // обрежем края (они могут совпадать)
-      // край задаётся обводкой: 1px => реальная ширина и длина на 2px меньше:
-      r1.width -= 2;
-      r1.height -= 2;
-      r2.width -= 2;
-      r2.height -= 2;
-
-      //to floor:
-      Math.floor(r1)
 
       return !(
         r2.x >= r1.x + r1.width ||
@@ -115,13 +106,19 @@ class AdvancedBoard extends React.Component {
       );
     }
 
-    // если двинулась сцена:
+    // если двинулась сцена: нчиего не делаем
     if ( currentStage.x() === currentObject.x() && 
          currentStage.y() === currentObject.y() ) {
-      
-      // currentObject.findOne('.area').fill('#E9DAA8');  
       return;
     } 
+
+    // получить координаты текущей ноды:
+    let nodeCurr = {
+      x: currentObject.attrs.x,
+      y: currentObject.attrs.y,
+      width: currentObject.children[0].attrs.width,
+      height: currentObject.children[0].attrs.height
+    };
 
     let intersected = currentStage.children[0].children.some( (node) => {
       // do not check intersection with itself or with strange lines!
@@ -129,25 +126,36 @@ class AdvancedBoard extends React.Component {
         return false;
       }
 
-      if ( haveIntersection(node.getClientRect(), currentObject.getClientRect()) ) {
-        node.findOne('.area').fill('red');
-        console.log('intersection:', node.getClientRect(), currentObject.getClientRect());
+      // получить текущие координаты и размеры:
+      let nodeR = {
+        x: node.attrs.x,
+        y: node.attrs.y,
+        width: node.children[0].attrs.width,
+        height: node.children[0].attrs.height
+      };
+
+      console.log('interestCheck', nodeR);
+
+      if ( haveIntersection(nodeR, nodeCurr) ) {
+        node.findOne('.right').fill('red');
+        //node.findOne('.right').name('')
+        console.log('intersection:', nodeR, nodeCurr);
         return true;
       } else {
-        node.findOne('.area').fill('#E9DAA8');
+        node.findOne('.right').fill('#E9DAA8');
         return false;
       }
       // do not need to call layer.draw() here
       // because it will be called by dragmove action 
     });
     let currentTargetColor = intersected ? 'red' : '#E9DAA8';
-    currentObject.findOne('.area').fill(currentTargetColor);
+    currentObject.findOne('.right').fill(currentTargetColor);
   }
 
   // обработчик движения:
   handleMovingObject = (e) => {
-    console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
-    console.log('coords for the moved object:', e.target.x(), e.target.y());
+    // console.log('coords for the moved stage:', e.currentTarget.x(), e.currentTarget.y());
+    // console.log('coords for the moved object:', e.target.x(), e.target.y());
     this.showIntersection(e.currentTarget, e.target);
   }
 

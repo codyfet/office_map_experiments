@@ -1,12 +1,21 @@
 import * as React from 'react';
-import { Layer, Line } from 'react-konva';
+import { Layer, Line, Group } from 'react-konva';
 
 
 export default class KonvaGridLayer extends React.Component {
 
     render() {
         // getting settings for drawing grid:
-        const { width, height, blockSnapSize } = this.props;
+        const { width, height, blockSnapSize, boundaries } = this.props;
+
+        // распарсим строку с границами:
+        const borders = boundaries.split(' ').map((point) => {
+            let coords = point.split(',', 2);
+            return { 
+                x: Number(coords[0]), 
+                y: Number(coords[1]) 
+            };
+        });
 
         let padding = blockSnapSize;
         let blocksCount = width / blockSnapSize ^ 0;
@@ -37,9 +46,27 @@ export default class KonvaGridLayer extends React.Component {
 
         return (
             <Layer>
-                {makeVerticalGrid}
-                {makeHorizontalGrid}
-                {this.props.children}
+                <Group
+                    clipFunc={(context) => {
+                        // отрисуем границы:
+                        context.beginPath();
+                        borders.forEach((value, i) => {
+                            if ( i == 0) {
+                            context.moveTo(value.x, value.y);
+                            } else {
+                            context.lineTo(value.x, value.y); 
+                            }
+                        });
+                        context.closePath();
+                        
+                        // // (!) Konva specific method, it is very important
+                        // context.fillStrokeShape(shape);
+                    }}
+                >
+                    {makeVerticalGrid}
+                    {makeHorizontalGrid}
+                    {this.props.children}
+                </Group>
             </Layer>
         );
     }

@@ -16,6 +16,7 @@ import PopoverContainer from "../PopoverContainer/index";
 
 // статические данные карты:
 import mapData from "../../../res/mapData.json";
+import { array } from "prop-types";
 
 class AdvancedBoard extends React.Component {
   constructor(props) {
@@ -138,17 +139,30 @@ class AdvancedBoard extends React.Component {
       // console.log("interestCheck", nodeR);
 
       if (haveIntersection(nodeR, nodeCurr)) {
-        node.findOne(".right").fill("red");
+        // node.findOne(".right").fill("red");
         //node.findOne('.right').name('')
         // console.log("intersection:", nodeR, nodeCurr);
         return true;
       } else {
-        node.findOne(".right").fill("#E9DAA8");
+        // node.findOne(".right").fill("#E9DAA8");
         return false;
       }
       // do not need to call layer.draw() here
       // because it will be called by dragmove action
     });
+
+    let boundariesOverstepped = this.state.mapBoundaries.split(' ').map((val, i, arr) => {
+      if ( i == this.state.mapBoundaries.length-1 ) {
+        return;
+      } else {
+        // делим элемент надвое:
+        let point1 = val.split(',', 2);
+        let point2 = arr[i+1].split(',', 2);
+
+      } 
+
+    });
+
     let currentTargetColor = intersected ? "red" : "#E9DAA8";
     currentObject.findOne(".right").fill(currentTargetColor);
   };
@@ -281,9 +295,9 @@ class AdvancedBoard extends React.Component {
             width={mapWidth}
             height={mapHeight}
             blockSnapSize={blockSnapSize}
-          >
-            {/* Borders here: */}
-
+            boundaries={this.state.mapBoundaries}
+          />
+          <Layer>
             {/*Shadow is here:*/}
             <Rect
               x={this.state.selectedObjectPos[0]}
@@ -297,19 +311,9 @@ class AdvancedBoard extends React.Component {
             />
             <MapShape 
               boundaries={this.state.mapBoundaries}
-              onMouseEnter={(e) => {
-                console.log('onMouseEnter', e);
-              }}
-              onMouseLeave={(e) => {
-                console.log('onMouseLeave', e);
-              }}
-              // onMouseOver={(e) => {
-              //   console.log('onMouseOver', e);
-              // }}
             />
             {loadObject}
-            
-          </KonvaGridLayer>
+          </Layer>
         </Stage>
         {/*Context menu for the current object is here:*/}
         {this.state.contextMenuShow && (

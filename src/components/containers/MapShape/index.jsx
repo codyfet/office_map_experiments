@@ -52,10 +52,6 @@ export default class MapShape extends React.Component {
                 context.fillStrokeShape(this);
               }
             }
-            // getting methods from parent:
-            onMouseOver={onMouseEnter}
-            onMouseOut={onMouseLeave}
-            // onMouseOver={onMouseOver}
           />
         );
     }

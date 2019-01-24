@@ -30,6 +30,7 @@ class AdvancedBoard extends React.Component {
       mapWidth: mapData.levels[startLvl].levelMapWidth,
       mapHeight: mapData.levels[startLvl].levelMapHeight,
       mapBoundaries: mapData.levels[startLvl].boundaries,
+      mapCovering: mapData.levels[startLvl].covering,
 
       stageScale: 1,
       stageX: 0,
@@ -78,7 +79,7 @@ class AdvancedBoard extends React.Component {
   handleStopMoving = e => {
     // console.log( "coords for the moved stage:", e.currentTarget.x(), e.currentTarget.y() );
     // console.log( "coords for the moved object:", e.target.x(), e.target.y() );
-    // console.log( "interesting:", e );
+    console.log( "interesting:", e);
 
     this.showIntersection(e.currentTarget, e.target);
 
@@ -122,9 +123,9 @@ class AdvancedBoard extends React.Component {
       height: currentObject.children[0].attrs.height
     };
 
-    let intersected = currentStage.children[0].children.some(node => {
+    let intersected = currentStage.children[1].children.some((node, i) => {
       // do not check intersection with itself or with strange lines!
-      if (node.nodeType !== "Group" || node === currentObject) {
+      if ( node.nodeType !== "Group" || node === currentObject || i < 2 ) {
         return false;
       }
 
@@ -151,19 +152,32 @@ class AdvancedBoard extends React.Component {
       // because it will be called by dragmove action
     });
 
-    let boundariesOverstepped = this.state.mapBoundaries.split(' ').map((val, i, arr) => {
-      if ( i == this.state.mapBoundaries.length-1 ) {
-        return;
-      } else {
-        // делим элемент надвое:
-        let point1 = val.split(',', 2);
-        let point2 = arr[i+1].split(',', 2);
+    let boundariesOverstepped = currentStage.children[1].children[1].children.some((border, i) => {
+      // do not check intersection with itself or with strange lines!
+      if ( i < 1 ) {
+        return false;
+      }
 
-      } 
+      // получить текущие координаты и размеры:
+      let borderR = {
+        x: border.attrs.x,
+        y: border.attrs.y,
+        width: border.attrs.width,
+        height: border.attrs.height
+      };
+
+      console.log('borders:', borderR, nodeCurr);
+
+      if (haveIntersection(borderR, nodeCurr)) {
+        return true;
+      } else {
+        return false;
+      }
+
 
     });
 
-    let currentTargetColor = intersected ? "red" : "#E9DAA8";
+    let currentTargetColor = intersected || boundariesOverstepped ? "red" : "#E9DAA8";
     currentObject.findOne(".right").fill(currentTargetColor);
   };
 
@@ -172,7 +186,8 @@ class AdvancedBoard extends React.Component {
     // сейчас за пересечение берутся координаты float движимого объекта
     // однако, можно воспользоваться и координатами тени (если требуется):
     // e.currentTarget.children[0].children[162] // где 162 - индекс элемента "тень"
-    this.showIntersection(e.currentTarget, e.target);
+    
+    // this.showIntersection(e.currentTarget, e.target);
   };
 
   // связь с redux store: -------------------------------------------------
@@ -248,6 +263,8 @@ class AdvancedBoard extends React.Component {
     });
   };
 
+  
+
   render() {
     const { width, height, objects } = this.props;
     // settings for map (KonvaGrid):
@@ -311,6 +328,7 @@ class AdvancedBoard extends React.Component {
             />
             <MapShape 
               boundaries={this.state.mapBoundaries}
+              borderlands={this.state.mapCovering}
             />
             {loadObject}
           </Layer>

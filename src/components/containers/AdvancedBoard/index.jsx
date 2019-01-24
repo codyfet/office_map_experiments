@@ -1,13 +1,11 @@
 import * as React from "react";
-import { Stage, Layer, Group, Rect, Text, Line } from "react-konva";
+import { Stage, Layer, Group, Rect } from "react-konva";
 import TableObject from "../../TableObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
-import MapLayer from "../MapLayer/index";
-import Portal from "../../Portal";
 
 // redux:
-import { connect, Provider } from "react-redux";
+import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { changeBoardState, moveObject } from "../../../actions/index";
 
@@ -16,7 +14,6 @@ import PopoverContainer from "../PopoverContainer/index";
 
 // статические данные карты:
 import mapData from "../../../res/mapData.json";
-import { array } from "prop-types";
 
 class AdvancedBoard extends React.Component {
   constructor(props) {
@@ -47,20 +44,31 @@ class AdvancedBoard extends React.Component {
     };
   }
 
-  // управление сценой konva: --------------------------------------
-  // сдвиг и масштаб
-  handleWheel = e => {
-    e.evt.preventDefault();
+  // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
+  // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
+  // 1.1. Обработка сдвига:
+  handleStageShiftChange = (shift) => {
+    // const newShift = [e.currentTarget.x(), e.currentTarget.y()];
+    const newShift = shift;
+    if (
+      this.state.stageShift[0] !== newShift[0] ||
+      this.state.stageShift[1] !== newShift[1]
+    ) {
+      this.setState({
+        stageShift: shift
+      });
+    }
+  }
 
-    const scaleBy = 1.05;
+  // 1.2. Обработка масштабирования:
+  handleStageScaleChange = (e, scale) => {
+    const newScale = scale;
     const stage = e.target.getStage();
     const oldScale = stage.scaleX();
     const mousePointTo = {
       x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
       y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
     };
-
-    const newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
 
     stage.scale({ x: newScale, y: newScale });
 
@@ -72,126 +80,176 @@ class AdvancedBoard extends React.Component {
         -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
     });
 
+  }
+
+  // 1.3. Авто-подстройка масштаба и сдвига под границы stage:
+  autoAdjustStage = (e, mapWidth, mapHeight) => {
+
+    // получаем границы окна:
+    const { width, height } = this.props;
+
+    // настраиваем масштаб:
+    let scaleX = width / mapWidth;
+    let scaleY = height / mapHeight;
+    const newScale = scaleX > scaleY ? scaleX : scaleY;
+
+    this.handleStageScaleChange(e, newScale);
+
+    // возвращаем сдвиг в первоначлаьное положение:
+    const stage = e.target.getStage();
+    stage.attrs.x = 0;
+    stage.attrs.y = 0;
+
+    this.handleStageShiftChange([0, 0]);
+
     this.stageStateToRedux();
+
   };
 
-  // следим за сценой:
-  handleStopMoving = e => {
-    // console.log( "coords for the moved stage:", e.currentTarget.x(), e.currentTarget.y() );
-    // console.log( "coords for the moved object:", e.target.x(), e.target.y() );
-    console.log( "interesting:", e);
+  // 2. ОБРАБОТКА ПЕРЕСЕЧЕНИЙ---------------------------------------------------------------:
+  // 2.1. Простая функция обработки пересечений двух прямоугольников вида:
+  // { x: number, y: number, width: number, height: number }
+  // возвращает true - если пересекаются, false - иначе
+  haveIntersection(r1, r2) {
+    return !(
+      r2.x >= r1.x + r1.width ||
+      r2.x + r2.width <= r1.x ||
+      r2.y >= r1.y + r1.height ||
+      r2.y + r2.height <= r1.y
+    );
+  }
 
-    this.showIntersection(e.currentTarget, e.target);
+  // 2.2. Функция проверяет текущий объект сцены
+  // И подсвечивает объект красным, если он:
+  // - выходит за границы карты (пересекается с граничными областями - borderlands)
+  // - пересекается с объектами внутри карты
+  // иначе:
+  // - подсвечивает объект цветом по-умолчанию
+  checkIntersection = (currentStage, currentObject) => {
 
-    const newShift = [e.currentTarget.x(), e.currentTarget.y()];
-    if (
-      this.state.stageShift[0] !== newShift[0] ||
-      this.state.stageShift[1] !== newShift[1]
-    ) {
-      this.setState({
-        stageShift: [e.currentTarget.x(), e.currentTarget.y()]
-      });
-      this.stageStateToRedux();
-    }
-  };
+    // сейчас за пересечение берутся координаты float движимого объекта
+    // однако, можно воспользоваться и координатами тени (если потребуется)
 
-  // следим, чтобы объект не вышел за границы:
-  // функция-оповещатель выхода за границы:
-  showIntersection = (currentStage, currentObject) => {
-    function haveIntersection(r1, r2) {
-      return !(
-        r2.x >= r1.x + r1.width ||
-        r2.x + r2.width <= r1.x ||
-        r2.y >= r1.y + r1.height ||
-        r2.y + r2.height <= r1.y
-      );
-    }
-
-    // если двинулась сцена: нчиего не делаем
-    if (
-      currentStage.x() === currentObject.x() &&
-      currentStage.y() === currentObject.y()
-    ) {
-      return;
-    }
-
-    // получить координаты текущей ноды:
-    let nodeCurr = {
+    // получить координаты текущего объекта:
+    let currObject = {
       x: currentObject.attrs.x,
       y: currentObject.attrs.y,
       width: currentObject.children[0].attrs.width,
       height: currentObject.children[0].attrs.height
     };
 
-    let intersected = currentStage.children[1].children.some((node, i) => {
-      // do not check intersection with itself or with strange lines!
+    // проверяем, есть ли хотя бы 1 пересечение с объектами (nodes) карты:
+    let intersectedWithMapObjects = currentStage.children[1].children.some((node, i) => {
+      // если узел - не группа, индекс меньше 2 или равен текущему объекту 
+      // то пересечения с этим узлом нет
       if ( node.nodeType !== "Group" || node === currentObject || i < 2 ) {
         return false;
       }
 
-      // получить текущие координаты и размеры:
-      let nodeR = {
+      // получить координаты и размеры текущего узла:
+      // реализовано отдельно специально, ведь при масштабировании
+      // координаты становятся нецелыми и при проверках возникают ошибки 
+      let currNode = {
         x: node.attrs.x,
         y: node.attrs.y,
         width: node.children[0].attrs.width,
         height: node.children[0].attrs.height
       };
 
-      // console.log("interestCheck", nodeR);
-
-      if (haveIntersection(nodeR, nodeCurr)) {
-        // node.findOne(".right").fill("red");
-        //node.findOne('.right').name('')
-        // console.log("intersection:", nodeR, nodeCurr);
+      if ( this.haveIntersection(currNode, currObject) ) {
         return true;
       } else {
-        // node.findOne(".right").fill("#E9DAA8");
         return false;
       }
-      // do not need to call layer.draw() here
-      // because it will be called by dragmove action
+      
     });
 
+    // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borders) карты:
     let boundariesOverstepped = currentStage.children[1].children[1].children.some((border, i) => {
-      // do not check intersection with itself or with strange lines!
-      if ( i < 1 ) {
-        return false;
-      }
+      // индекс первого элемента - это изображение карты
+      if ( i < 1 ) return false;
 
-      // получить текущие координаты и размеры:
-      let borderR = {
+      // получить координаты и размеры текущей области-границы:
+      let currBorder = {
         x: border.attrs.x,
         y: border.attrs.y,
         width: border.attrs.width,
         height: border.attrs.height
       };
 
-      console.log('borders:', borderR, nodeCurr);
-
-      if (haveIntersection(borderR, nodeCurr)) {
+      if ( this.haveIntersection(currBorder, currObject) ) {
         return true;
       } else {
         return false;
-      }
-
+      } 
 
     });
 
-    let currentTargetColor = intersected || boundariesOverstepped ? "red" : "#E9DAA8";
+    let currentTargetColor = intersectedWithMapObjects || boundariesOverstepped ? "red" : "#E9DAA8";
     currentObject.findOne(".right").fill(currentTargetColor);
   };
 
-  // обработчик движения:
-  handleMovingObject = e => {
-    // сейчас за пересечение берутся координаты float движимого объекта
-    // однако, можно воспользоваться и координатами тени (если требуется):
-    // e.currentTarget.children[0].children[162] // где 162 - индекс элемента "тень"
+  // 3. ОБРАБОТКА СОБЫТИЙ STAGE---------------------------------------------------------------:
+  onStageDragStart = (e) => {
+
+    this.hideContextMenu();
+  }
+
+  onStageDragMove = (e) => {
+    // если потребуется проверка пересечений при передвижении объекта:
+    // this.checkIntersection(e.currentTarget, e.target);
+  }
+  
+  onStageDragEnd = (e) => {
+    // for debugging:
+    // console.log( "coords for the moved stage:", e.currentTarget.x(), e.currentTarget.y() );
+    // console.log( "coords for the moved object:", e.target.x(), e.target.y() );
+    // console.log( "interesting:", e);
+
+    // получим текущие координаты сцены и текущего объекта:
+    let currentObject = e.target;
+    let currentStage = e.currentTarget;
+
+    // если сдвинулась сцена:
+    if ( currentStage.x() === currentObject.x() && currentStage.y() === currentObject.y() ) {
+
+      this.handleStageShiftChange( [currentStage.x(), currentStage.y()] );
+      this.stageStateToRedux();
     
-    // this.showIntersection(e.currentTarget, e.target);
+    } else { 
+      // если свдинулся объект:
+      this.checkIntersection(currentStage, currentObject);
+    }
+  
   };
 
-  // связь с redux store: -------------------------------------------------
-  // для передачи состояния сцены в SidePanel:
+  onStageWheel = (e) => {
+    e.evt.preventDefault();
+
+    const scaleBy = 1.05;
+    const oldScale = e.target.getStage().scaleX();
+    const newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+    
+    this.handleStageScaleChange(e, newScale);
+
+    this.stageStateToRedux();
+  }
+
+  // !!! доработать 
+  onStageDblClick = (e) => { 
+    //границы карты:
+    let mapWidth = 600;
+    let mapHeight = 600;
+    // padding:
+    mapWidth += 40;
+    mapHeight += 40;
+
+    this.autoAdjustStage(e, mapWidth, mapHeight);
+
+  }
+
+  // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
+  // 4.1. Изменить состояние (используется для передачи в SidePanel):
   stageStateToRedux = () => {
     const { actions } = this.props;
     const newState = {
@@ -202,7 +260,7 @@ class AdvancedBoard extends React.Component {
     actions.changeBoardState(newState);
   };
 
-  // changing position and id of our Object:
+  // 4.2. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
     const { actions } = this.props;
     let newObjectData = {
@@ -216,8 +274,10 @@ class AdvancedBoard extends React.Component {
     actions.moveObject(newObjectData);
   };
 
-  // тень текущего объекта: ------------------------------------------------
-  activateShadow = (posX, posY, size) => {
+  // 5. РАБОТА С УКРАШЕНИЕМ ТЕКУЩЕГО ОБЪЕКТА:: ------------------------------------------------
+  // 5.1. ТЕНЬ ТЕКУЩЕГО ОБЪЕКТА:: -------------------------------------------------------------
+  // 5.1.1. Показать тень (при движении объекта):
+  showCurrentObjectShadow = (posX, posY, size) => {
     const blockSnapSize = this.state.blockSnapSize;
     this.setState({
       selectedObjectPos: [
@@ -229,7 +289,8 @@ class AdvancedBoard extends React.Component {
     });
   };
 
-  stopShadow = objectPos => {
+  // 5.1.2. Скрыть тень (при остановке движения (drop) объекта):
+  hideCurrentObjectShadow = () => {
     this.objectDataToRedux();
 
     this.setState({
@@ -237,14 +298,8 @@ class AdvancedBoard extends React.Component {
     });
   };
 
-  // выбор объекта:
-  setCurrentObjectId = id => {
-    this.setState({
-      selectedObjectId: id
-    });
-  };
-
-  // контекстное меню текущего объекта: -----------------------------------------------
+  // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------------------------
+  // 5.2.1. Показать контекстное меню
   showContextMenu = (x, y, shiftToWindow) => {
     let coords = [
       Math.floor(x * this.state.stageScale + this.state.stageShift[0]) + shiftToWindow.x, //x
@@ -257,61 +312,22 @@ class AdvancedBoard extends React.Component {
     });
   };
 
+  // 5.2.2. Скрыть контекстное меню
   hideContextMenu = () => {
     this.setState({
       contextMenuShow: false
     });
   };
 
-  // автоподгон карты под границы stage:
-  autoAdjustStage = (e) => {
-    //границы карты:
-    let mapWidth = 600;
-    let mapHeight = 600;
-    // padding:
-    mapWidth += 40;
-    mapHeight += 40;
-
-    // границы окна:
-    const { width, height } = this.props;
-
-    // масштабирование:
-    let scaleX = width / mapWidth;
-    let scaleY = height / mapHeight;
-
-    // масштабирование stage:
-    //const scaleBy = scaleX > scaleY ? scaleX : scaleY;
-    const stage = e.target.getStage();
-    const oldScale = stage.scaleX();
-    const mousePointTo = {
-      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
-    };
-
-    const newScale = scaleX > scaleY ? scaleX : scaleY;
-
-    stage.scale({ x: newScale, y: newScale });
-
+  // 5.3. ДОПОЛНИТЕЛЬНО:
+  // 5.3.1. Выбор текущего объекта:
+  setCurrentObjectId = id => {
     this.setState({
-      stageScale: newScale,
-      stageX:
-        -(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale,
-      stageY:
-        -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
+      selectedObjectId: id
     });
-
-    //---обработка сдвига:
-    stage.attrs.x = 0;
-    stage.attrs.y = 0;
-
-    this.setState({
-        stageShift: [0, 0]
-    });
-
-    this.stageStateToRedux();
-    //---------------------------------
-
   };
+
+  
 
   render() {
     const { width, height, objects } = this.props;
@@ -330,8 +346,8 @@ class AdvancedBoard extends React.Component {
           globalWidth={width - 20}
           globalHeight={height - 20}
           blockSnapSize={blockSnapSize}
-          showShadow={this.activateShadow}
-          stopShadow={this.stopShadow}
+          showShadow={this.showCurrentObjectShadow}
+          stopShadow={this.hideCurrentObjectShadow}
           showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
           shareId={this.setCurrentObjectId}
@@ -349,15 +365,13 @@ class AdvancedBoard extends React.Component {
           width={width}
           height={height}
           draggable={true}
-          onWheel={this.handleWheel}
+          onWheel={this.onStageWheel}
           scaleX={this.state.stageScale}
           scaleY={this.state.stageScale}
-          onDragStart={this.hideContextMenu}
-          onDragEnd={this.handleStopMoving}
-          onDragMove={this.handleMovingObject}
-          onDblClick={(e) => {
-            this.autoAdjustStage(e);
-          }}
+          onDragStart={this.onStageDragStart}
+          onDragEnd={this.onStageDragEnd}
+          onDragMove={this.onStageDragMove}
+          onDblClick={this.onStageDblClick}
         >
           <KonvaGridLayer
             width={mapWidth}

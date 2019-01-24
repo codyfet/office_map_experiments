@@ -263,7 +263,55 @@ class AdvancedBoard extends React.Component {
     });
   };
 
-  
+  // автоподгон карты под границы stage:
+  autoAdjustStage = (e) => {
+    //границы карты:
+    let mapWidth = 600;
+    let mapHeight = 600;
+    // padding:
+    mapWidth += 40;
+    mapHeight += 40;
+
+    // границы окна:
+    const { width, height } = this.props;
+
+    // масштабирование:
+    let scaleX = width / mapWidth;
+    let scaleY = height / mapHeight;
+
+    // масштабирование stage:
+    //const scaleBy = scaleX > scaleY ? scaleX : scaleY;
+    const stage = e.target.getStage();
+    const oldScale = stage.scaleX();
+    const mousePointTo = {
+      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
+      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
+    };
+
+    const newScale = scaleX > scaleY ? scaleX : scaleY;
+
+    stage.scale({ x: newScale, y: newScale });
+
+    this.setState({
+      stageScale: newScale,
+      stageX:
+        -(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale,
+      stageY:
+        -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
+    });
+
+    //---обработка сдвига:
+    stage.attrs.x = 0;
+    stage.attrs.y = 0;
+
+    this.setState({
+        stageShift: [0, 0]
+    });
+
+    this.stageStateToRedux();
+    //---------------------------------
+
+  };
 
   render() {
     const { width, height, objects } = this.props;
@@ -307,6 +355,9 @@ class AdvancedBoard extends React.Component {
           onDragStart={this.hideContextMenu}
           onDragEnd={this.handleStopMoving}
           onDragMove={this.handleMovingObject}
+          onDblClick={(e) => {
+            this.autoAdjustStage(e);
+          }}
         >
           <KonvaGridLayer
             width={mapWidth}

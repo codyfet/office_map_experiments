@@ -91,7 +91,7 @@ export default class RectObject extends React.Component {
         onDragStart={this.onObjectDragStart}
         onDragEnd={this.onObjectDragEnd}
         onDragMove={this.onObjectDragMove}
-        onClick={this.onObjectDragMove}
+        onClick={this.onObjectClick}
 
       >
         <Rect

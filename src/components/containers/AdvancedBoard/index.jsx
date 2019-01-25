@@ -95,11 +95,7 @@ class AdvancedBoard extends React.Component {
 
     this.handleStageScaleChange(e, newScale);
 
-    // возвращаем сдвиг в первоначлаьное положение:
-    const stage = e.target.getStage();
-    stage.attrs.x = 0;
-    stage.attrs.y = 0;
-
+    // возвращаем сдвиг в первоначальное положение:
     this.handleStageShiftChange([0, 0]);
 
     this.stageStateToRedux();
@@ -321,7 +317,8 @@ class AdvancedBoard extends React.Component {
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
   // 5.3.1. Выбор текущего объекта:
-  setCurrentObjectId = id => {
+  setCurrentObjectId = (id) => {
+    console.log('obId', this.state.selectedObjectId);
     this.setState({
       selectedObjectId: id
     });
@@ -362,12 +359,17 @@ class AdvancedBoard extends React.Component {
         }}
       >
         <Stage
+          x={this.state.stageShift[0]}
+          y={this.state.stageShift[1]}
+          
           width={width}
           height={height}
           draggable={true}
+
           onWheel={this.onStageWheel}
           scaleX={this.state.stageScale}
           scaleY={this.state.stageScale}
+
           onDragStart={this.onStageDragStart}
           onDragEnd={this.onStageDragEnd}
           onDragMove={this.onStageDragMove}

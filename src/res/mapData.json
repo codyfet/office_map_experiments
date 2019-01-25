@@ -31,6 +31,12 @@
       "show": "true"
     },
     {
+      "id": "shredder",
+      "title": "Шреддер",
+      "color": "black",
+      "show": "true"
+    },
+    {
       "id": "meeting_room",
       "title": "Переговорная комната",
       "color": "#b7a6bd",

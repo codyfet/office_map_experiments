@@ -48,6 +48,7 @@
     "@types/react-redux": "^6.0.12",
     "bootstrap": "^4.2.1",
     "debounce-input-react": "^1.1.1",
+    "gsap": "^2.0.2",
     "konva": "^2.6.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-bootstrap": "^0.32.4",
@@ -60,6 +61,7 @@
     "react-konva": "^16.7.1",
     "react-portal": "^4.2.0",
     "react-sanfona": "^1.4.0",
+    "react-transition-group": "^1.2.1",
     "svg-react-loader": "^0.4.6"
   }
 }

@@ -66,6 +66,14 @@ class SidePanel extends React.Component {
     this.setState({
       selectedObjectId: id
     });
+    console.log('selectedObjectId', id);
+  }
+
+  selectUserId = (id) => {
+    this.setState({
+      selectedUserId: id
+    });
+    console.log('selectedUserId', id);
   }
 
   render() {
@@ -96,7 +104,11 @@ class SidePanel extends React.Component {
                 searchList={this.props.users} 
                 onObjectClick={this.selectObjectId}
               />
-              <UsersSpecialList className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}/>
+              <UsersSpecialList
+                // className="show" 
+                className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
+                onUserClick={this.selectUserId}
+              />
               {/* { this.state.selectedObjectId === 'table' &&
                 <UsersSpecialList className={"userSpecialListWrapperOpen"}/>
               } */}

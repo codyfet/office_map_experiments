@@ -10,15 +10,31 @@ import { addUser, editUser, deleteUser } from "../../../actions/index";
 
 
 class UsersSpecialList extends React.Component {
+  constructor(props) {
+    super(props);
 
-  state = {
-    searchPhrase: ''
+    this.state = {
+      searchPhrase: '',
+      selectedUserId: ''
+    }
   }
 
   onChangeInput = (e) => {
     this.setState({
       searchPhrase: e.target.value
     });
+  }
+
+  selectUserId = (id) => {
+    // если пользователь выбран, то мы ещё и обнуляем фразу для поиска:
+    this.setState({
+      selectedUserId: this.state.selectedUserId === '' ? id : '',
+      searchPhrase: this.state.selectedUserId === '' ? this.state.searchPhrase : ''
+    });
+
+    // передаём информацию в SidePanel:
+    const { onUserClick } = this.props;
+    onUserClick(id);
   }
 
   render() {
@@ -31,21 +47,46 @@ class UsersSpecialList extends React.Component {
     });
 
     const loadUsers = neededUsers.map((user, i) => {
-      return (
-        <li key={i}>
-          <UserSpecialItem user={user} />
-        </li>
-      );
+      if ( this.state.selectedUserId === '' ) { //если пользователя не выбрали
+        return (
+          <li key={i}>
+            <UserSpecialItem 
+              user={user}
+              isSelected={false} 
+              onClick={this.selectUserId}
+            />
+          </li>
+        );
+      } else if ( this.state.selectedUserId === user.id ) { //иначе
+        return (
+          <li key={i}>
+            <UserSpecialItem 
+              user={user} 
+              isSelected={true}
+              onClick={this.selectUserId}
+            />
+          </li>
+        );
+      } else {
+        return;
+      }
+      
     });
 
     return (
       <div id="fade-in" className={this.props.className}>
-        <DebounceInput 
-          minLength={1}
-          debounceTimeout={300}
-          onChange={this.onChangeInput}
-        /> 
-        <button className="stretchedButton">Add user</button>
+        {
+          this.state.selectedUserId === '' &&
+          <DebounceInput 
+            minLength={1}
+            debounceTimeout={300}
+            onChange={this.onChangeInput}
+          /> 
+        }
+        {
+          this.state.selectedUserId === '' &&
+          <button className="stretchedButton">Add user</button>
+        }
         <ul className="userSpecialList">{loadUsers}</ul>
         
       </div>

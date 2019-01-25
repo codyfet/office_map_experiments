@@ -6,10 +6,21 @@ import './styles.css';
 
 export default function UserSpecialItem(props) {
     
-    const { user } = props;
+    const { user, onClick, isSelected } = props;
+    
+    function onUserSpecialItemCLick() {
+        if ( !isSelected ) {
+            onClick(user.id);
+        } else {
+            onClick('');
+        }
+    }
 
     return (
-        <div className="userItem">
+        <div 
+            className={ isSelected ? "selectedUserItem" : "userItem" } 
+            onClick={onUserSpecialItemCLick}
+        >
             <AdvancedSVG
                 width="30px"
                 fill={['#E7ECED', /*'#556080'*/'#F9BF05']}

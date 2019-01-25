@@ -47,7 +47,7 @@ export default class ObjectItem extends React.Component {
         return rezult;
     }
 
-    handleClick = () => {
+    onObjectClick = () => {
         const { object, onClick, isSelected } = this.props;
         if ( !isSelected ) {
             onClick(object.id);
@@ -63,7 +63,7 @@ export default class ObjectItem extends React.Component {
         return (
             <div 
                 className={ isSelected ? "objectItemSelected " : "objectItem" } 
-                onClick={this.handleClick}
+                onClick={this.onObjectClick}
             >
                 <AdvancedSVG
                     width="30px"

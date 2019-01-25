@@ -6,19 +6,21 @@ import "./styles.css";
 import mapData from '../../../res/mapData.json';
 
 export default class ObjectsList extends React.Component {
-  
-  state = {
-    selectedObjectId: '' 
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedObjectId: ''
+    }
+  }
 
   selectObject = (id) => {
-    const { onObjectClick } = this.props;
-
     this.setState({
-      selectedObjectId: id
+      selectedObjectId: this.state.selectedObjectId === '' ? id : ''
     });
 
-    // pass information to SidePanel
+    // передаём информацию в SidePanel:
+    const { onObjectClick } = this.props;
     onObjectClick(id);
 
   }

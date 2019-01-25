@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Stage, Layer, Group, Rect } from "react-konva";
-import TableObject from "../../TableObject";
+import RectObject from "../../RectObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
 
@@ -336,7 +336,7 @@ class AdvancedBoard extends React.Component {
 
     const loadObject = objects.map((elem, i) => {
       return (
-        <TableObject
+        <RectObject
           key={i}
           id={elem.id}
           x={elem.coordinates.x}

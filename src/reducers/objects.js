@@ -28,9 +28,7 @@ export default function objects(state = initialState, action) {
     const movedObject = state.find( (val) => (val.id === objectId) );
     if ( movedObject !== undefined ) {
       movedObject.coordinates = newPosition;
-    } 
-
-    console.log(movedObject);
+    }
 
     return state;
 
@@ -43,8 +41,6 @@ export default function objects(state = initialState, action) {
       object.width = object.height;
       object.height = tempW;
     } 
-
-    console.log('!!!', objectId, object);
 
     return state;
 

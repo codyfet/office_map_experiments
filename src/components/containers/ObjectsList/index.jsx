@@ -57,8 +57,12 @@ export default class ObjectsList extends React.Component {
     } 
     
     return (
-      <div className="objectsListWrapper">
-        <ul className="objectsList">
+      <div 
+        className="objectsListWrapper"
+      >
+        <ul 
+          className="objectsList"
+        >
           {loadObjects}
         </ul>
 

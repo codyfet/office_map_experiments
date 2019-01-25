@@ -4,6 +4,8 @@ import UsersList from '../UsersList/index';
 import UsersSpecialList from '../UsersSpecialList/index';
 import ObjectsList from '../ObjectsList/index';
 import './styles.css';
+import { TransitionGroup } from 'react-transition-group';
+import FadeUpContainer from '../../FadeUpContainer';
 
 // redux:
 import { connect } from 'react-redux';
@@ -105,6 +107,7 @@ class SidePanel extends React.Component {
             </div>
           </AccordionItem>
           <AccordionItem title="Create">
+
             <div style={{width: '100%', 
                          height: '280px', 
                          display: 'flex', 
@@ -112,14 +115,32 @@ class SidePanel extends React.Component {
                          justifyContent: 'center',
                          alignItems: 'center'}}
             >
-              <ObjectsList 
-                searchList={this.props.users} 
-                onObjectClick={this.selectObjectId}
-              />
-              <UsersSpecialList
-                className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
-                onUserClick={this.selectUserId}
-              />
+              <TransitionGroup>
+                <FadeUpContainer
+                  delayEnter={0.2}
+                  delayLeave={0.2}
+                >
+                  <ObjectsList 
+                    searchList={this.props.users} 
+                    onObjectClick={this.selectObjectId}
+                  />
+                </FadeUpContainer>
+                {
+                  this.state.selectedObjectId === 'table' &&
+                  <FadeUpContainer
+                    delayEnter={0.2}
+                    delayLeave={0.2}
+                  >
+                    <UsersSpecialList
+                      className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
+                      onUserClick={this.selectUserId}
+                    />
+                  </FadeUpContainer>
+                }
+                
+              </TransitionGroup>
+              
+              
             </div>
             <button
               style={{width: '100%'}}

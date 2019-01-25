@@ -24,22 +24,3 @@ ul {
   background: transparent; /* make scrollbar transparent */
 }
 
-/* for element transitions in react: */
-.animated-enter {
-  opacity: 0.01;
-}
-
-.animated-enter.animated-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.animated-leave {
-  opacity: 1;
-}
-
-.animated-leave.animated-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-

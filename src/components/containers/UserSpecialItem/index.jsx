@@ -1,6 +1,5 @@
 import * as React from 'react';
-import MultiColorSVG from '../../presentational/MultiColorSVG/index';
-import IconSVG from '../../presentational/IconSVG/index';
+import AdvancedSVG from '../../presentational/AdvancedSVG/index';
 import iconPaths from '../../../res/iconPaths';
 import './styles.css';
 
@@ -11,7 +10,7 @@ export default function UserSpecialItem(props) {
 
     return (
         <div className="userItem">
-            <MultiColorSVG
+            <AdvancedSVG
                 width="30px"
                 fill={['#E7ECED', /*'#556080'*/'#F9BF05']}
                 content={iconPaths.user}

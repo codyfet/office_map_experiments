@@ -1,6 +1,5 @@
 import * as React from 'react';
-import MultiColorSVG from '../../presentational/MultiColorSVG/index';
-import IconSVG from '../../presentational/IconSVG/index';
+import AdvancedSVG from '../../presentational/AdvancedSVG/index';
 import iconPaths from '../../../res/iconPaths';
 import './styles.css';
 
@@ -11,7 +10,7 @@ export default function UserItem(props) {
 
     return (
         <div className="userItem">
-            <MultiColorSVG
+            <AdvancedSVG
                 width="30px"
                 fill={['#E7ECED', /*'#556080'*/'#F9BF05']}
                 content={iconPaths.user}
@@ -20,8 +19,8 @@ export default function UserItem(props) {
                 <div>{user.title}</div>
                 <div>{user.capability}</div>
             </div>
-            <IconSVG width="15px" content={iconPaths.edit} />
-            <IconSVG width="15px" content={iconPaths.delete} />
+            <AdvancedSVG width="15px" content={iconPaths.edit} />
+            <AdvancedSVG width="15px" content={iconPaths.delete} />
 
         </div>         
     );

@@ -5,10 +5,17 @@ import './styles.css';
 class AdvancedSVG extends React.Component {
   
   render() {
-    const { width, fill, content, onClick, viewBox } = this.props;
+    const { width, fill, content, onClick } = this.props;
     
-    const unzippedContent = content.map( (elem, i) => {
-      return <path key={i} d={elem}/>;
+    const unzippedContent = content.path.map( (elem, i) => {
+      return ( 
+        <path 
+          key={i} 
+          d={elem} 
+          fill={fill[i]}
+        />
+      );
+      
     });
 
     return (
@@ -17,7 +24,7 @@ class AdvancedSVG extends React.Component {
             width={width}
             height={width} 
             xmlns='http://www.w3.org/2000/svg'  
-            viewBox={viewBox}
+            viewBox={content.viewBox}
         >
             <g fill={fill}>
             {unzippedContent}
@@ -32,7 +39,7 @@ class AdvancedSVG extends React.Component {
 
 AdvancedSVG.defaultProps = {
     width: "100%",
-    fill: "#FFA500",
+    fill: ["#FFA500"],
     content: []
 };
 

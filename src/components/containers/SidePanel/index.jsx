@@ -46,20 +46,37 @@ class SidePanel extends React.Component {
     
   }
 
-  handleClick = () => {
-    const { actions } = this.props;
-    
-    const newObject = {
-      category: 'table',
-      id: this.getNewId(),
-      coordinates: this.getConvertedCoordsFrom(750, 20),
-      width: 20,
-      height: 30
-    };
+  checkUserAssignedToTable(userId) {
+    const { objects } = this.props;
+    for ( let obj of objects) {
+      if ( obj.userId === userId ) {
+        return true;
+      }
+    }
+    return false;
+  }
 
-    actions.createObject(newObject);
-    console.log('created', newObject);
+  onSubmitClick = () => {
+    const { actions } = this.props;
+    const { selectedObjectId, selectedUserId } = this.state;
     
+    if ( this.checkUserAssignedToTable(selectedUserId) ) {
+      alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
+    } else if ( selectedObjectId === '' ) {
+      alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Выберите объект!");
+    } else {
+      const newObject = {
+        category: selectedObjectId,
+        id: this.getNewId(),
+        coordinates: this.getConvertedCoordsFrom(750, 20),
+        width: 20,
+        height: 30,
+        userId: selectedUserId
+      };
+  
+      actions.createObject(newObject);
+      console.log('created', newObject);
+    }
   }
 
   selectObjectId = (id) => {
@@ -80,12 +97,6 @@ class SidePanel extends React.Component {
 
     return (
       <div className="sidePanelContainer">
-        <button 
-          style={{width: '100%'}}
-          onClick={this.handleClick}
-        >
-          Create
-        </button>
         {/* accordeon: */}
         <Accordion>
           <AccordionItem title="Current object" expanded={true} >
@@ -99,22 +110,20 @@ class SidePanel extends React.Component {
                          display: 'flex', 
                          flexDirection: 'column',
                          justifyContent: 'center',
-                         alignItems: 'center'}}>
+                         alignItems: 'center'}}
+            >
               <ObjectsList 
                 searchList={this.props.users} 
                 onObjectClick={this.selectObjectId}
               />
               <UsersSpecialList
-                // className="show" 
                 className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
                 onUserClick={this.selectUserId}
               />
-              {/* { this.state.selectedObjectId === 'table' &&
-                <UsersSpecialList className={"userSpecialListWrapperOpen"}/>
-              } */}
             </div>
             <button
               style={{width: '100%'}}
+              onClick={this.onSubmitClick}
             >
               Submit
             </button>

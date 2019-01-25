@@ -38,10 +38,39 @@ function getBoundariesLikeRectangles(borders, step, globalAreaSize) {
 
 export default class MapShape extends React.Component {
 
+    // ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ВИУЗАЛЬНЫХ ГРАНИЦ КАРТЫ:
+    drawMapVisualBorders = (context, shape) => {
+      const { boundaries } = this.props;
+      
+      // распарсим строку с границами:
+      const borders = boundaries.split(' ').map((point) => {
+        let coords = point.split(',', 2);
+        return { 
+            x: Number(coords[0]), 
+            y: Number(coords[1]) 
+        };
+      });
+
+      // рисовка границ:
+      context.beginPath();
+      borders.forEach((value, i) => {
+        if ( i == 0) {
+          context.moveTo(value.x, value.y);
+        } else {
+          context.lineTo(value.x, value.y); 
+        }
+      });
+      context.closePath();
+            
+      // (!) Konva specific method, it is very important
+      context.fillStrokeShape(shape);
+
+    }
+
     render() {
         // getting settings for drawing grid:
-        const { borderlands, boundaries, onMouseEnter, onMouseLeave, onMouseOver } = this.props;
-
+        const { borderlands, onMouseEnter, onMouseLeave, onMouseOver } = this.props;
+        
         // предположим, мы получили ограничивающие области:
         const borderAreas = borderlands.slice(0).map( (val, i) => {
           let coords = val.split(' ', 4).map( v => Number(v) );
@@ -62,37 +91,12 @@ export default class MapShape extends React.Component {
 
         });
 
-
-
-        // распарсим строку с границами:
-        const borders = boundaries.split(' ').map((point) => {
-            let coords = point.split(',', 2);
-            return { 
-                x: Number(coords[0]), 
-                y: Number(coords[1]) 
-            };
-        });
-
         return (
           <Group
             name="borderAreas"
           >
             <Shape
-              sceneFunc={(context, shape) => {
-                // отрисуем границы:
-                context.beginPath();
-                borders.forEach((value, i) => {
-                    if ( i == 0) {
-                      context.moveTo(value.x, value.y);
-                    } else {
-                      context.lineTo(value.x, value.y); 
-                    }
-                });
-                context.closePath();
-                
-                // (!) Konva specific method, it is very important
-                context.fillStrokeShape(shape);
-              }}
+              sceneFunc={this.drawMapVisualBorders}
               // fill="#00D2FF"
               stroke="black"
               strokeWidth={1}

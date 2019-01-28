@@ -31,8 +31,14 @@ export const deleteObject = (objectId) => ({
   payload: objectId
 });
 
+// actions with board and panel:
 export const changeBoardState = (newState) => ({
   type: CHANGE_BOARD_STATE,
+  payload: newState
+});
+
+export const changeCurrentObjectState = (newState) => ({
+  type: CHANGE_CURRENT_OBJECT_STATE,
   payload: newState
 });
 

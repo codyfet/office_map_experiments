@@ -8,7 +8,7 @@ export default function UserSpecialItem(props) {
     
     const { user, onClick, isSelected } = props;
     
-    function onUserSpecialItemCLick() {
+    function onUserSpecialItemClick() {
         if ( !isSelected ) {
             onClick(user.id);
         } else {
@@ -16,10 +16,12 @@ export default function UserSpecialItem(props) {
         }
     }
 
+    console.log('UserSpecialItem', user);
+
     return (
         <div 
             className={ isSelected ? "selectedUserItem" : "userItem" } 
-            onClick={onUserSpecialItemCLick}
+            onClick={onUserSpecialItemClick}
         >
             <AdvancedSVG
                 width="30px"

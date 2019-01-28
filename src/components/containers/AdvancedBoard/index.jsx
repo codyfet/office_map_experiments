@@ -306,6 +306,7 @@ class AdvancedBoard extends React.Component {
       selectedObjectPos: coords,
       contextMenuShow: true
     });
+
   };
 
   // 5.2.2. Скрыть контекстное меню
@@ -313,21 +314,34 @@ class AdvancedBoard extends React.Component {
     this.setState({
       contextMenuShow: false
     });
+
+    // при закрытии контекстного меню, 
+    // мы должны обнулить id объекта для SidePanel:
+    const { changeSelectedObjectId } = this.props;
+    changeSelectedObjectId('');
+
   };
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
   // 5.3.1. Выбор текущего объекта:
   setCurrentObjectId = (id) => {
-    console.log('obId', this.state.selectedObjectId);
+    
+    // изменим выбранный объект для AdvancedBoard:
     this.setState({
       selectedObjectId: id
     });
+
+    // изменим выбранный объект для GlobalArea:
+    const { changeSelectedObjectId } = this.props;
+    changeSelectedObjectId(this.state.selectedObjectId);
+
   };
 
   
 
   render() {
     const { width, height, objects } = this.props;
+    
     // settings for map (KonvaGrid):
     const { mapWidth, mapHeight, blockSnapSize } = this.state;
 

@@ -8,6 +8,7 @@ class AdvancedSVG extends React.Component {
     const { width, fill, content, onClick } = this.props;
     
     const unzippedContent = content.path.map( (elem, i) => {
+
       return ( 
         <path 
           key={i} 

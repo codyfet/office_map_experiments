@@ -44,6 +44,42 @@
     position: relative;
 }
 
+/* Для внутреннего accordion  */
+.innerAccordion {
+    width: '100%'; 
+    height: '280px'; 
+    display: 'flex';
+    flex-direction: 'column';
+    justify-content: 'center';
+    align-items: 'center';
+    margin-bottom: 0px;
+}
+
+.innerAccordion-item-title {
+    height: 100%;
+    font-size: 12px;
+    text-align: center;
+    background: #ccc;
+    border-top: 1px solid #ccc;
+    color: rgb(7, 7, 7);
+    padding: 10px;
+    text-transform: uppercase;
+    -webkit-transition: background-color 2s;
+    transition: background-color 2s;
+}
+
+  
+.innerAccordion-item-expanded .innerAccordion-item-title {
+    background-color: var(--color-primary);
+    color: #fff;
+}
+  
+.innerAccordion-item-body-wrapper {
+    color: #666;
+    position: relative;
+    max-height: 280px;
+}
+
 
 
 

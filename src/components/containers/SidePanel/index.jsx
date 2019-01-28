@@ -5,7 +5,7 @@ import UsersSpecialList from '../UsersSpecialList/index';
 import ObjectsList from '../ObjectsList/index';
 import './styles.css';
 import { TransitionGroup } from 'react-transition-group';
-import FadeUpContainer from '../../FadeUpContainer';
+import CreateTab from '../../containers/CreateTab/index';
 
 // redux:
 import { connect } from 'react-redux';
@@ -107,41 +107,52 @@ class SidePanel extends React.Component {
             </div>
           </AccordionItem>
           <AccordionItem title="Create">
-
-            <div style={{width: '100%', 
+            <CreateTab
+              searchList={this.props.objects} 
+              onObjectClick={this.selectObjectId}
+              
+              objectId={this.state.selectedObjectId}
+              onUserClick={this.selectUserId} 
+            />
+            {/* <Accordion 
+              className="innerAccordion"
+              allowMultiple={true} 
+            >
+              <AccordionItem 
+                titleClassName="innerAccordion-item-title"
+                bodyClassName="innerAccordion-item-body-wrapper"
+                expandedClassName="innerAccordion-item-expanded"
+                disabledClassName="innerAccordion-item-title"
+              >
+                <ObjectsList 
+                  searchList={this.props.users} 
+                  onObjectClick={this.selectObjectId}
+                />
+              </AccordionItem>
+                
+              <AccordionItem>
+                <UsersSpecialList
+                  className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
+                  onUserClick={this.selectUserId}
+                />
+              </AccordionItem>
+            </Accordion > */}
+            {/* <div style={{width: '100%', 
                          height: '280px', 
                          display: 'flex', 
                          flexDirection: 'column',
                          justifyContent: 'center',
                          alignItems: 'center'}}
             >
-              <TransitionGroup>
-                <FadeUpContainer
-                  delayEnter={0.2}
-                  delayLeave={0.2}
-                >
-                  <ObjectsList 
-                    searchList={this.props.users} 
-                    onObjectClick={this.selectObjectId}
-                  />
-                </FadeUpContainer>
-                {
-                  this.state.selectedObjectId === 'table' &&
-                  <FadeUpContainer
-                    delayEnter={0.2}
-                    delayLeave={0.2}
-                  >
-                    <UsersSpecialList
-                      className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
-                      onUserClick={this.selectUserId}
-                    />
-                  </FadeUpContainer>
-                }
-                
-              </TransitionGroup>
-              
-              
-            </div>
+              <ObjectsList 
+                searchList={this.props.users} 
+                onObjectClick={this.selectObjectId}
+              />
+              <UsersSpecialList
+                className={this.state.selectedObjectId === 'table' ? "show" : "userSpecialListWrapper"}
+                onUserClick={this.selectUserId}
+              />
+            </div> */}
             <button
               style={{width: '100%'}}
               onClick={this.onSubmitClick}

@@ -148,8 +148,8 @@ export default class RectObject extends React.Component {
             
         />
         <Text
-          text={`ID:\n${id}`}
-          fontSize={10}
+          text={`ID:${id}`}
+          fontSize={6}
           align="center"
         />
       </Group> 

@@ -73,7 +73,7 @@
 
       "levelMapWidth": 800,
       "levelMapHeight": 800,
-      "levelCellSize": 10,
+      "levelCellSize": 5,
       "boundaries": "20,20 20,320 320,320 320,220 260,220 260,180 620,180 620,20",
       "covering": [
         "0 0 20 800",
@@ -100,7 +100,7 @@
           "category": "table",
           "id": 0,
           "coordinates": { "x": 20, "y": 20 },
-          "width": 20,
+          "width": 15,
           "height": 30,
           "userId": "t0018"
         }

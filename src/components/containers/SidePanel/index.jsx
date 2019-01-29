@@ -15,6 +15,7 @@ import { createObject, changeCurrentObject, changeCurrentUser } from '../../../a
 
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
+import createMapObject from './objectsFactory';
 
 
 class SidePanel extends React.Component {
@@ -75,14 +76,17 @@ class SidePanel extends React.Component {
       }
     }
       
-    const newObject = {
-        category: selectedObjectId,
-        id: this.getNewId(),
-        coordinates: this.getConvertedCoordsFrom(750, 20),
-        width: 20,
-        height: 30,
-        userId: selectedUserId
-    };
+    const newObject = createMapObject(selectedObjectId, 
+                                      this.getNewId(), 
+                                      this.getConvertedCoordsFrom(750, 20),
+                                      selectedUserId);
+    //     category: selectedObjectId,
+    //     id: this.getNewId(),
+    //     coordinates: this.getConvertedCoordsFrom(750, 20),
+    //     width: 20,
+    //     height: 30,
+    //     userId: selectedUserId
+    // };
   
     actions.createObject(newObject);
 

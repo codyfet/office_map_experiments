@@ -63,26 +63,32 @@ class SidePanel extends React.Component {
     const { actions } = this.props;
     const { selectedObjectId, selectedUserId } = this.state;
     
-    if ( this.checkUserAssignedToTable(selectedUserId) ) {
-      alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
+    
+    // Проверки на ошибки:
     if ( selectedObjectId === '' ) {
       alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Выберите объект!");
-    } else {
-      const newObject = {
+      return;
+    } else if ( selectedObjectId === 'table' ) {
+      if ( this.checkUserAssignedToTable(selectedUserId) ) {
+        alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
+        return;
+      }
+    }
+      
+    const newObject = {
         category: selectedObjectId,
         id: this.getNewId(),
         coordinates: this.getConvertedCoordsFrom(750, 20),
         width: 20,
         height: 30,
         userId: selectedUserId
-      };
+    };
   
-      actions.createObject(newObject);
-      console.log('created', newObject);
-    }
+    actions.createObject(newObject);
+    console.log('created', newObject);
 
-    // подчистить данные:
-    this.cleanCurrentObjectState();
+    // подчистить данные redux:
+    // this.cleanCurrentObjectState();
 
   }
 

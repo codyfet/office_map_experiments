@@ -7,7 +7,10 @@ import {
 
   ADD_USER, 
   EDIT_USER, 
-  DELETE_USER
+  DELETE_USER,
+
+  CHANGE_CURRENT_OBJECT,
+  CHANGE_CURRENT_USER
 } from '../res/constants';
 
 // actions wuth objects:

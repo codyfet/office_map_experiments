@@ -47,15 +47,21 @@ class CurrentObjectTab extends React.Component {
     console.log('required:', requiredObject, requiredUser);
 
     return (
-      <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
-        <label>Выбранный объект #ID: {selectedObjectId}</label>
+      <div style={{
+          width: '100%', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center',
+          alignItems: 'center'
+
+      }}>
+        <label className="labelCurrObj">Выбранный объект #ID: {selectedObjectId}</label>
         <CurrentObjectItem  
             object={requiredObject}
             isSelected={false}
             onClick={this.selectObject} 
         />
-        <hr />
-        <label>Информация о пользователе:</label>
+        <label className="labelCurrObj">Информация о пользователе:</label>
         {
             requiredObject !== undefined && requiredUser !== undefined &&
             <UserSpecialItem  
@@ -63,8 +69,7 @@ class CurrentObjectTab extends React.Component {
                 isSelected={false}
                 onClick={this.selectUser} 
             />
-        }
-        <hr />     
+        }   
         
       </div>
     );

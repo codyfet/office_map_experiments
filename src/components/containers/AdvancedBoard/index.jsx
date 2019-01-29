@@ -413,6 +413,10 @@ class AdvancedBoard extends React.Component {
             />
             {loadObject}
           </Layer>
+          {/* Еще один слой для tooltip: */}
+          <Layer 
+            name="objectTooltip"
+          />
         </Stage>
         {/*Context menu for the current object is here:*/}
         {this.state.contextMenuShow && (

@@ -16,8 +16,6 @@ export default function UserSpecialItem(props) {
         }
     }
 
-    console.log('UserSpecialItem', user);
-
     return (
         <div 
             className={ isSelected ? "selectedUserItem" : "userItem" } 

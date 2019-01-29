@@ -40,7 +40,7 @@ class SidePanel extends React.Component {
 
   getConvertedCoordsFrom(x, y) {
     const { shift, scale } = this.props.boardState;
-    console.log('SidePanel', scale, shift);
+    // console.log('SidePanel', scale, shift);
     
     return { 
       x: (x - shift[0])/scale, 
@@ -85,7 +85,6 @@ class SidePanel extends React.Component {
     };
   
     actions.createObject(newObject);
-    console.log('created', newObject);
 
     // подчистить данные redux:
     // this.cleanCurrentObjectState();

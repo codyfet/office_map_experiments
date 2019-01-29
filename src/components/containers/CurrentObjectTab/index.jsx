@@ -44,7 +44,7 @@ class CurrentObjectTab extends React.Component {
     
     }
 
-    console.log('required:', requiredObject, requiredUser);
+    // console.log('required:', requiredObject, requiredUser);
 
     return (
       <div style={{

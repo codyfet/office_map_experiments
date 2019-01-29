@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stage, Layer, Group, Rect } from "react-konva";
+import { Stage, Layer, Group, Rect, Text } from "react-konva";
 import RectObject from "../../RectObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
@@ -340,12 +340,16 @@ class AdvancedBoard extends React.Component {
   
 
   render() {
-    const { width, height, objects } = this.props;
+    const { width, height, objects, users } = this.props;
     
     // settings for map (KonvaGrid):
-    const { mapWidth, mapHeight, blockSnapSize } = this.state;
+    const { mapWidth, mapHeight, blockSnapSize } = this.state; 
 
     const loadObject = objects.map((elem, i) => {
+      // find userInfo for object:
+      let userInfo = users.find( (user) => user.id === elem.userId );
+      userInfo = userInfo === undefined ? 'no user' : userInfo.title;
+
       return (
         <RectObject
           key={i}
@@ -357,11 +361,16 @@ class AdvancedBoard extends React.Component {
           globalWidth={width - 20}
           globalHeight={height - 20}
           blockSnapSize={blockSnapSize}
+          
           showShadow={this.showCurrentObjectShadow}
           stopShadow={this.hideCurrentObjectShadow}
+
           showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
           shareId={this.setCurrentObjectId}
+
+          userInfo={userInfo}
+
         />
       );
     });
@@ -388,6 +397,7 @@ class AdvancedBoard extends React.Component {
           onDragEnd={this.onStageDragEnd}
           onDragMove={this.onStageDragMove}
           onDblClick={this.onStageDblClick}
+
         >
           <KonvaGridLayer
             width={mapWidth}
@@ -414,9 +424,21 @@ class AdvancedBoard extends React.Component {
             {loadObject}
           </Layer>
           {/* Еще один слой для tooltip: */}
-          <Layer 
-            name="objectTooltip"
-          />
+          <Layer>
+            <Text
+              text=""
+              fontFamily="Calibri"
+              fontSize={12}
+              padding={5}
+              visible={false}
+              fill="black"
+              opacity={0.75}
+              textFill="white"
+              name="objectTooltip"
+            />
+            
+          </Layer> 
+
         </Stage>
         {/*Context menu for the current object is here:*/}
         {this.state.contextMenuShow && (
@@ -435,6 +457,7 @@ class AdvancedBoard extends React.Component {
 // for redux:
 const mapStateToProps = state => ({
   objects: state.objects,
+  users: state.users,
   boardState: state.boardState
 });
 

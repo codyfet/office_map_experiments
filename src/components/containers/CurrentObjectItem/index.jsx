@@ -16,7 +16,6 @@ export default class CurrentObjectItem extends React.Component {
     
     getSettingsForObject(object) {
         // на случай, если объект пустой:
-        console.log('getSettingsForObject', object);
         if ( object === undefined ) {
             return {
                 text: 'Unknown',
@@ -62,15 +61,13 @@ export default class CurrentObjectItem extends React.Component {
                 break;
         }
 
-        console.log('getSettingsForObject: after switch', rezult);
         return rezult;
     }
 
     onObjectClick = () => {
         const { object, onClick, isSelected } = this.props;
         if ( !isSelected ) {
-            let selector = ( object.category !== undefined ) ? object.category : object.id;
-            onClick(selector);
+            onClick( object.category );
         } else {
             onClick('');
         }
@@ -79,7 +76,6 @@ export default class CurrentObjectItem extends React.Component {
     render() {
         const { object, isSelected } = this.props;
         const { content, text, fill } = this.getSettingsForObject(object);
-        console.log('OBJECT:', text, ':', content);
 
         return (
             <div 

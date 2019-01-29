@@ -69,6 +69,45 @@ export default class RectObject extends React.Component {
     showContextMenu(e.currentTarget.x(), e.currentTarget.y(), shiftToWindow);
     shareId(id); 
   }
+
+  onObjectMouseMove = (e) => {
+    const { userInfo } = this.props;
+    console.log(e);
+
+    let tooltipLayer = e.target.getStage().children[2];
+    console.log(tooltipLayer);
+    let tooltip = tooltipLayer.children[0];
+    console.log(tooltip);
+
+    var mousePos = e.target.getStage().getPointerPosition();
+    tooltip.position({
+      x : mousePos.x,
+      y : mousePos.y
+    });
+
+    // добавить userId:
+    tooltip.text = userInfo;
+    tooltip.visible = true;
+    tooltip.show();
+    tooltipLayer.draw();
+
+  }
+
+  // onObjectMouseOut = (e) => {
+  //   const { userInfo } = this.props;
+  //   console.log(e.ext);
+  //   let tooltipLayer = e.target.getStage().children[2];
+  //   console.log(tooltipLayer);
+  //   tooltip.position({
+  //     x : 0,
+  //     y : 0
+  //   });
+  //   // добавить userId:
+  //   tooltip.text(userInfo);
+  //   tooltip.show();
+  //   tooltipLayer.batchDraw();
+
+  // }
   //---------------------------------------------------------------------------
 
 
@@ -92,7 +131,7 @@ export default class RectObject extends React.Component {
         onDragEnd={this.onObjectDragEnd}
         onDragMove={this.onObjectDragMove}
         onClick={this.onObjectClick}
-        
+        onMouseMove={this.onObjectMouseMove}
 
       >
         <Rect

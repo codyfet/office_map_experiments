@@ -11,7 +11,7 @@ import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createObject } from '../../../actions/index';
+import { createObject, changeCurrentObject, changeCurrentUser } from '../../../actions/index';
 
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
@@ -65,7 +65,7 @@ class SidePanel extends React.Component {
     
     if ( this.checkUserAssignedToTable(selectedUserId) ) {
       alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
-    } else if ( selectedObjectId === '' ) {
+    if ( selectedObjectId === '' ) {
       alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Выберите объект!");
     } else {
       const newObject = {
@@ -82,16 +82,11 @@ class SidePanel extends React.Component {
     }
 
     // подчистить данные:
-    this.cleanDataOnSelectedObject();
+    this.cleanCurrentObjectState();
 
   }
 
-  cleanDataOnSelectedObject = () => {
-    this.setState({
-      selectedObjectId: '',
-      selectedUserId: ''
-    });
-  }
+  
 
   selectObjectId = (id) => {
     this.setState({
@@ -106,6 +101,19 @@ class SidePanel extends React.Component {
     });
     console.log('selectedUserId', id);
   }
+
+  // for redux:
+  // обнулить состояние:
+  cleanCurrentObjectState = () => {
+    const { actions } = this.props;
+    actions.changeCurrentObject('');
+    actions.changeCurrentUser('');
+    
+    console.log('current state cleaned');
+  }
+
+
+  // изменить пользователя:
 
   render() {
 
@@ -158,11 +166,12 @@ class SidePanel extends React.Component {
 const mapStateToProps = (state) => ({
   objects: state.objects,
   boardState: state.boardState,
+  currentObjectState: state.currentObjectState,
   users: state.users
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ createObject }, dispatch)
+  actions: bindActionCreators({ createObject, changeCurrentObject, changeCurrentUser }, dispatch)
 });
 
 

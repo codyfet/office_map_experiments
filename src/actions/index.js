@@ -37,9 +37,14 @@ export const changeBoardState = (newState) => ({
   payload: newState
 });
 
-export const changeCurrentObjectState = (newState) => ({
-  type: CHANGE_CURRENT_OBJECT_STATE,
-  payload: newState
+export const changeCurrentObject = (objectId) => ({
+  type: CHANGE_CURRENT_OBJECT,
+  payload: objectId
+});
+
+export const changeCurrentUser = (userId) => ({
+  type: CHANGE_CURRENT_USER,
+  payload: userId
 });
 
 // actions with users:

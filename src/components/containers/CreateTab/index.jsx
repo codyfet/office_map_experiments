@@ -4,7 +4,10 @@ import UsersSpecialList from '../UsersSpecialList/index';
 import ObjectsList from '../ObjectsList/index';
 import './styles.css';
 
-
+// redux:
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { changeCurrentObject, changeCurrentUser } from '../../../actions/index';
 
 class CreateTab extends React.Component {
 
@@ -48,4 +51,17 @@ class CreateTab extends React.Component {
   }
 }
 
-export default CreateTab;
+// for redux:
+const mapStateToProps = (state) => ({
+  currentObjectState: state.currentObjectState,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ changeCurrentObject, changeCurrentUser }, dispatch)
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateTab);

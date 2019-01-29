@@ -3,6 +3,11 @@ import AdvancedSVG from '../../presentational/AdvancedSVG/index';
 import iconPaths from '../../../res/iconPaths';
 import './styles.css';
 
+// redux:
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { changeCurrentObject, changeCurrentUser } from '../../../actions/index';
+
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
 

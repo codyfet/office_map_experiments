@@ -2,7 +2,8 @@ import {
   CREATE_OBJECT, 
   MOVE_OBJECT, 
   TURN_OBJECT, 
-  DELETE_OBJECT 
+  DELETE_OBJECT,
+  CHANGE_OBJECTS_LEVEL 
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 
@@ -44,6 +45,12 @@ export default function objects(state = initialState, action) {
 
     return state;
 
+  } else if ( action.type === CHANGE_OBJECTS_LEVEL ) {
+    const level = action.payload;
+    return mapData.levels[level].movable;
+    
   }
+
+
   return state;
 }

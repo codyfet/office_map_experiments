@@ -4,6 +4,9 @@ import {
   DELETE_OBJECT,
   MOVE_OBJECT,
   TURN_OBJECT,
+  CHANGE_OBJECTS_LEVEL,
+
+  CHANGE_MAP_LEVEL,
 
   ADD_USER, 
   EDIT_USER, 
@@ -34,6 +37,18 @@ export const deleteObject = (objectId) => ({
   payload: objectId
 });
 
+export const changeObjectsLevel = (level) => ({
+  type: CHANGE_OBJECTS_LEVEL,
+  payload: level
+});
+
+// actions with map:
+export const changeMapLevel = (level) => ({
+  type: CHANGE_MAP_LEVEL,
+  payload: level
+});
+
+
 // actions with board and panel:
 export const changeBoardState = (newState) => ({
   type: CHANGE_BOARD_STATE,
@@ -53,7 +68,7 @@ export const changeCurrentUser = (userId) => ({
 // actions with users:
 export const addUser = (newUser) => ({
   type: ADD_USER,
-  payload: newUSER
+  payload: newUser
 });
 
 export const editUser = (userData) => ({

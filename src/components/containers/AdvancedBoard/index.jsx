@@ -60,25 +60,22 @@ class AdvancedBoard extends React.Component {
     }
   }
 
-  // 1.2. Обработка масштабирования:
-  handleStageScaleChange = (e, scale) => {
-    const newScale = scale;
+  // 1.2. Масштабируем сцену и фиксируем данные в redux:
+  handleStageScaleChange = (e, newScale) => {
+    // масштабируем сцену
     const stage = e.target.getStage();
-    const oldScale = stage.scaleX();
-    const mousePointTo = {
-      x: stage.getPointerPosition().x / oldScale - stage.x() / oldScale,
-      y: stage.getPointerPosition().y / oldScale - stage.y() / oldScale
-    };
-
     stage.scale({ x: newScale, y: newScale });
 
-    this.setState({
-      stageScale: newScale,
-      stageX:
-        -(mousePointTo.x - stage.getPointerPosition().x / newScale) * newScale,
-      stageY:
-        -(mousePointTo.y - stage.getPointerPosition().y / newScale) * newScale
-    });
+    // заносим данные в redux:
+    const { actions } = this.props;
+    const newState = Object.assign({}, this.props.boardState);
+    newState.scale = newScale;
+
+    actions.changeBoardState(newState);
+    // this.setState({
+    //   stageScale: newScale,
+
+    // });
 
   }
 
@@ -228,7 +225,7 @@ class AdvancedBoard extends React.Component {
     
     this.handleStageScaleChange(e, newScale);
 
-    this.stageStateToRedux();
+    // this.stageStateToRedux();
   }
 
   // !!! доработать 
@@ -297,9 +294,10 @@ class AdvancedBoard extends React.Component {
   // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------------------------
   // 5.2.1. Показать контекстное меню
   showContextMenu = (x, y, shiftToWindow) => {
+    const { scale, shift } = this.props.boardState;
     let coords = [
-      Math.floor(x * this.state.stageScale + this.state.stageShift[0]) + shiftToWindow.x, //x
-      Math.floor(y * this.state.stageScale + this.state.stageShift[1]) + shiftToWindow.y - 50 //y
+      Math.floor(x * scale + shift[0]) + shiftToWindow.x, //x
+      Math.floor(y * scale + shift[1]) + shiftToWindow.y - 50 //y
     ];
 
     this.setState({
@@ -390,8 +388,8 @@ class AdvancedBoard extends React.Component {
           draggable={true}
 
           onWheel={this.onStageWheel}
-          scaleX={this.state.stageScale}
-          scaleY={this.state.stageScale}
+          scaleX={this.props.boardState.scale}
+          scaleY={this.props.boardState.scale}
 
           onDragStart={this.onStageDragStart}
           onDragEnd={this.onStageDragEnd}

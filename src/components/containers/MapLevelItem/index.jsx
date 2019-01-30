@@ -12,9 +12,11 @@ import mapData from '../../../res/mapData.json';
 
 
 class MapLevelItem extends React.Component {
-    
-    _onSelect(option) {
-        console.log(option);
+
+    _onSelect = (option) => {
+        console.log('selected', option);
+        const { onSelectLevel } = this.props;
+        onSelectLevel(option.value);
     }
 
     render() {
@@ -24,7 +26,13 @@ class MapLevelItem extends React.Component {
                 label: lvl.title
             };
         })
-        const defaultOption = options[1];
+
+        const { currentLevel } = this.props;
+        var defaultOption = mapData.levelsInfo.find((lvl) => lvl.sortId === currentLevel);
+        defaultOption = {
+            value: defaultOption.sortId,
+            label: defaultOption.title
+        };
 
         return (
             <div>

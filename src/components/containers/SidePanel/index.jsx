@@ -13,7 +13,13 @@ import MapLevelItem from '../../containers/MapLevelItem/index';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { createObject, changeCurrentObject, changeCurrentUser } from '../../../actions/index';
+import { 
+  createObject, 
+  changeCurrentObject, 
+  changeCurrentUser,
+  changeMapLevel,
+  changeObjectsLevel
+} from '../../../actions/index';
 
 // статические данные карты:
 import mapData from '../../../res/mapData.json';
@@ -113,6 +119,15 @@ class SidePanel extends React.Component {
     console.log('current state cleaned');
   }
 
+  // изменить уровень (этаж здания)
+  onSelectLevel = (levelNumber) => {
+
+    const { actions } = this.props;
+    actions.changeMapLevel(levelNumber);
+    actions.changeObjectsLevel(levelNumber);
+  
+  }
+
 
   // изменить пользователя:
 
@@ -123,7 +138,9 @@ class SidePanel extends React.Component {
     return (
       <div className="sidePanelContainer">
         {/* handle map level change: */}
-        <MapLevelItem />
+        <MapLevelItem 
+          currentLevel={this.props.mapState.mapLevel}
+          onSelectLevel={this.onSelectLevel}/>
         {/* accordeon: */}
         <Accordion allowMultiple>
           <AccordionItem 
@@ -170,11 +187,18 @@ const mapStateToProps = (state) => ({
   objects: state.objects,
   boardState: state.boardState,
   currentObjectState: state.currentObjectState,
-  users: state.users
+  users: state.users,
+  mapState: state.mapState
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ createObject, changeCurrentObject, changeCurrentUser }, dispatch)
+  actions: bindActionCreators({ 
+    createObject, 
+    changeCurrentObject, 
+    changeCurrentUser,
+    changeMapLevel,
+    changeObjectsLevel 
+  }, dispatch)
 });
 
 

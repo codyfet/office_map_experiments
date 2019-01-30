@@ -26,7 +26,7 @@ export default class KonvaGridLayer extends React.Component {
                     key={Number(`1${i}`)}
                     points={[Math.round(i * padding) + 0.5, 0, Math.round(i * padding) + 0.5, height]} 
                     stroke={'#ddd'}
-                    strokeWidth={1}
+                    strokeWidth={0.5}
                 >    
                 </Line>
             ); 

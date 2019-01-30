@@ -72,12 +72,12 @@ export default class RectObject extends React.Component {
 
   onObjectMouseMove = (e) => {
     const { userInfo } = this.props;
-    console.log(e);
+    // console.log(e);
 
     let tooltipLayer = e.target.getStage().children[2];
-    console.log(tooltipLayer);
+    // console.log(tooltipLayer);
     let tooltip = tooltipLayer.children[0];
-    console.log(tooltip);
+    // console.log(tooltip);
 
     var mousePos = e.target.getStage().getPointerPosition();
     tooltip.position({

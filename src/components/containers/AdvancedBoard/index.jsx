@@ -29,11 +29,6 @@ class AdvancedBoard extends React.Component {
       mapBoundaries: mapData.levels[startLvl].boundaries,
       mapCovering: mapData.levels[startLvl].covering,
 
-      stageScale: 1,
-      stageX: 0,
-      stageY: 0,
-      stageShift: [0, 0],
-
       selectedObjectId: -1,
       selectedObjectPos: [10, 10],
       selectedObjectSizes: [10, 10],
@@ -46,17 +41,18 @@ class AdvancedBoard extends React.Component {
 
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
   // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
-  // 1.1. Обработка сдвига:
-  handleStageShiftChange = (shift) => {
-    // const newShift = [e.currentTarget.x(), e.currentTarget.y()];
-    const newShift = shift;
+  // 1.1. Фиксируем данные по сдвигу в redux:
+  handleStageShiftChange = (newShift) => {
     if (
-      this.state.stageShift[0] !== newShift[0] ||
-      this.state.stageShift[1] !== newShift[1]
+      this.props.boardState.shift[0] !== newShift[0] ||
+      this.props.boardState.shift[1] !== newShift[1]
     ) {
-      this.setState({
-        stageShift: shift
-      });
+      // заносим данные в redux: 
+      const { actions } = this.props;
+      const newState = Object.assign({}, this.props.boardState);
+      newState.shift = newShift;
+
+      actions.changeBoardState(newState);
     }
   }
 
@@ -72,10 +68,6 @@ class AdvancedBoard extends React.Component {
     newState.scale = newScale;
 
     actions.changeBoardState(newState);
-    // this.setState({
-    //   stageScale: newScale,
-
-    // });
 
   }
 
@@ -95,7 +87,6 @@ class AdvancedBoard extends React.Component {
     // возвращаем сдвиг в первоначальное положение:
     this.handleStageShiftChange([0, 0]);
 
-    this.stageStateToRedux();
 
   };
 
@@ -207,7 +198,6 @@ class AdvancedBoard extends React.Component {
     if ( currentStage.x() === currentObject.x() && currentStage.y() === currentObject.y() ) {
 
       this.handleStageShiftChange( [currentStage.x(), currentStage.y()] );
-      this.stageStateToRedux();
     
     } else { 
       // если свдинулся объект:
@@ -225,7 +215,6 @@ class AdvancedBoard extends React.Component {
     
     this.handleStageScaleChange(e, newScale);
 
-    // this.stageStateToRedux();
   }
 
   // !!! доработать 
@@ -242,18 +231,7 @@ class AdvancedBoard extends React.Component {
   }
 
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
-  // 4.1. Изменить состояние (используется для передачи в SidePanel):
-  stageStateToRedux = () => {
-    const { actions } = this.props;
-    const newState = {
-      shift: this.state.stageShift,
-      scale: this.state.stageScale
-    };
-
-    actions.changeBoardState(newState);
-  };
-
-  // 4.2. Изменить положение объекта (данные объекта)
+  // 4.1. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
     const { actions } = this.props;
     let newObjectData = {
@@ -380,8 +358,8 @@ class AdvancedBoard extends React.Component {
         }}
       >
         <Stage
-          x={this.state.stageShift[0]}
-          y={this.state.stageShift[1]}
+          x={this.props.boardState.shift[0]}
+          y={this.props.boardState.shift[1]}
           
           width={width}
           height={height}

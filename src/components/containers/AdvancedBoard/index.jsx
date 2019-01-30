@@ -7,7 +7,7 @@ import MapShape from "../MapShape/index";
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeBoardState, moveObject } from "../../../actions/index";
+import { changeBoardState, changeMapLevel, changeObjectsLevel, moveObject } from "../../../actions/index";
 
 //popup:
 import PopoverContainer from "../PopoverContainer/index";
@@ -19,15 +19,7 @@ class AdvancedBoard extends React.Component {
   constructor(props) {
     super(props);
 
-    const startLvl = 1;
-
     this.state = {
-      mapLevel: startLvl,
-      blockSnapSize: mapData.levels[startLvl].levelCellSize,
-      mapWidth: mapData.levels[startLvl].levelMapWidth,
-      mapHeight: mapData.levels[startLvl].levelMapHeight,
-      mapBoundaries: mapData.levels[startLvl].boundaries,
-      mapCovering: mapData.levels[startLvl].covering,
 
       selectedObjectId: -1,
       selectedObjectPos: [10, 10],
@@ -216,17 +208,14 @@ class AdvancedBoard extends React.Component {
     this.handleStageScaleChange(e, newScale);
 
   }
-
-  // !!! доработать 
+ 
   onStageDblClick = (e) => { 
     //границы карты:
-    let mapWidth = 600;
-    let mapHeight = 600;
+    const { mapWidth, mapHeight } = this.props.mapState;
     // padding:
-    mapWidth += 40;
-    mapHeight += 40;
+    const padding = 20;
 
-    this.autoAdjustStage(e, mapWidth, mapHeight);
+    this.autoAdjustStage(e, mapWidth + padding, mapHeight + padding);
 
   }
 
@@ -249,7 +238,7 @@ class AdvancedBoard extends React.Component {
   // 5.1. ТЕНЬ ТЕКУЩЕГО ОБЪЕКТА:: -------------------------------------------------------------
   // 5.1.1. Показать тень (при движении объекта):
   showCurrentObjectShadow = (posX, posY, size) => {
-    const blockSnapSize = this.state.blockSnapSize;
+    const blockSnapSize = this.props.mapState.blockSnapSize;
     this.setState({
       selectedObjectPos: [
         Math.round(posX / blockSnapSize) * blockSnapSize,
@@ -319,7 +308,7 @@ class AdvancedBoard extends React.Component {
     const { width, height, objects, users } = this.props;
     
     // settings for map (KonvaGrid):
-    const { mapWidth, mapHeight, blockSnapSize } = this.state; 
+    const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = this.props.mapState; 
 
     const loadObject = objects.map((elem, i) => {
       // find userInfo for object:
@@ -379,7 +368,7 @@ class AdvancedBoard extends React.Component {
             width={mapWidth}
             height={mapHeight}
             blockSnapSize={blockSnapSize}
-            boundaries={this.state.mapBoundaries}
+            boundaries={mapBoundaries}
           />
           <Layer>
             {/*Shadow is here:*/}
@@ -394,8 +383,8 @@ class AdvancedBoard extends React.Component {
               strokeWidth={2}
             />
             <MapShape 
-              boundaries={this.state.mapBoundaries}
-              borderlands={this.state.mapCovering}
+              boundaries={mapBoundaries}
+              borderlands={mapCovering}
             />
             {loadObject}
           </Layer>
@@ -435,11 +424,12 @@ const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,
   boardState: state.boardState,
+  mapState: state.mapState
   
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ changeBoardState, moveObject }, dispatch)
+  actions: bindActionCreators({ changeBoardState, changeMapLevel, changeObjectsLevel, moveObject }, dispatch)
 });
 
 export default connect(

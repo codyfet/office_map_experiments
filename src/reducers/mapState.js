@@ -4,6 +4,7 @@ import mapData from '../res/mapData.json';
 // по умолчанию грузим 2 этаж (1 уровень):
 const initialState = { 
     mapLevel: 1,
+    title: mapData.levels[1].title,
     blockSnapSize: mapData.levels[1].levelCellSize,
     mapWidth: mapData.levels[1].levelMapWidth,
     mapHeight: mapData.levels[1].levelMapHeight,
@@ -17,6 +18,7 @@ export default function mapState(state = initialState, action) {
     
     return {
         mapLevel: level,
+        title: mapData.levels[level].title,
         blockSnapSize: mapData.levels[level].levelCellSize,
         mapWidth: mapData.levels[level].levelMapWidth,
         mapHeight: mapData.levels[level].levelMapHeight,

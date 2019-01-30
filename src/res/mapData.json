@@ -117,6 +117,23 @@
       "startdate": "2010-04-18"
     }
   ],
+  "levelsInfo": [
+    {
+      "id": "ground_floor",
+      "sortId": 0,
+      "title": "Цокольный этаж"
+    },
+    {
+      "id": "second_floor",
+      "sortId": 1,
+      "title": "Второй этаж"
+    },
+    {
+      "id": "third_floor",
+      "sortId": 2,
+      "title": "Третий этаж"
+    }
+  ],
   "levels": [
     {
       "id": "ground_floor",

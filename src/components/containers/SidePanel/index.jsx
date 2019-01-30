@@ -7,6 +7,8 @@ import './styles.css';
 import { TransitionGroup } from 'react-transition-group';
 import CreateTab from '../../containers/CreateTab/index';
 import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
+import MapLevelItem from '../../containers/MapLevelItem/index';
+
 
 // redux:
 import { connect } from 'react-redux';
@@ -80,18 +82,8 @@ class SidePanel extends React.Component {
                                       this.getNewId(), 
                                       this.getConvertedCoordsFrom(750, 20),
                                       selectedUserId);
-    //     category: selectedObjectId,
-    //     id: this.getNewId(),
-    //     coordinates: this.getConvertedCoordsFrom(750, 20),
-    //     width: 20,
-    //     height: 30,
-    //     userId: selectedUserId
-    // };
   
     actions.createObject(newObject);
-
-    // подчистить данные redux:
-    // this.cleanCurrentObjectState();
 
   }
 
@@ -130,6 +122,8 @@ class SidePanel extends React.Component {
 
     return (
       <div className="sidePanelContainer">
+        {/* handle map level change: */}
+        <MapLevelItem />
         {/* accordeon: */}
         <Accordion allowMultiple>
           <AccordionItem 

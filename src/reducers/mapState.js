@@ -1,4 +1,4 @@
-import { CHANGE_MAP_STATE } from '../res/constants';
+import { CHANGE_MAP_LEVEL } from '../res/constants';
 import mapData from '../res/mapData.json';
 
 // по умолчанию грузим 2 этаж (1 уровень):
@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export default function mapState(state = initialState, action) {
-  if (action.type === CHANGE_MAP_STATE) {
+  if (action.type === CHANGE_MAP_LEVEL) {
     const level = action.payload;
     
     return {

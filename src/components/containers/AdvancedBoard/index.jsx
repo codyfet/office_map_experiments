@@ -434,7 +434,8 @@ class AdvancedBoard extends React.Component {
 const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,
-  boardState: state.boardState
+  boardState: state.boardState,
+  
 });
 
 const mapDispatchToProps = dispatch => ({

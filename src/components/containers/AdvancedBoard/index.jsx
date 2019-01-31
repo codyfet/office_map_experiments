@@ -145,6 +145,7 @@ class AdvancedBoard extends React.Component {
 
     // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borders) карты:
     let boundariesOverstepped = currentStage.children[1].children[1].children.some((border, i) => {
+      
       // индекс первого элемента - это изображение карты
       if ( i < 1 ) return false;
 
@@ -164,10 +165,35 @@ class AdvancedBoard extends React.Component {
 
     });
 
-    let currentTargetColor = intersectedWithMapObjects || boundariesOverstepped 
-      ? WARNING_COLOR : DEFAULT_COLOR;
-      
-    currentObject.findOne(".right").fill(currentTargetColor);
+    //!!! ЛОГИКА СЛЕДУЮЩИХ ДЕЙСТВИЙ НЕРАЗРЫВНО СВЯЗАНА С 
+    // ВЫДЕЛЕНИЕМ ОБЪЕКТА В RectObject:
+    
+    // залить цветом прямоугольник данного объекта:
+    let rect = currentObject.children[0];
+
+    // сначала проверим, пересекается ли объект с границами или другим объектом:
+    if ( intersectedWithMapObjects || boundariesOverstepped ) {
+      // сначала сохраним данные о цвете, причем если элемент сейчас предупреждающего цвета,
+      // то данные переписывать не нужно:
+      rect.prevFill = rect.fill === WARNING_COLOR ? rect.prevFill : rect.fill;
+      // в этом случае закрашиваем предупреждающим цветом (даже если объект выделен):
+      rect.fill(WARNING_COLOR);
+    } else {
+      // иначе - проверим текущий цвет объекта
+      // если цвет для выделения, то мы должны его оставить:
+      if ( rect.attrs.fill === SELECTED_COLOR ) {
+        rect.fill(SELECTED_COLOR);
+      } else if ( rect.attrs.fill === WARNING_COLOR ) { //если объект был красного цвета, а сейчас все норм
+        // то закрасим предыдущим цветом, но не WARNING_COLOR:
+        if ( rect.attrs.prevFill === WARNING_COLOR ) {
+          rect.fill(DEFAULT_COLOR);
+        } else {
+          rect.fill(rect.attrs.prevFill);
+        }
+        
+      }
+    }
+    
   };
 
   // 3. ОБРАБОТКА СОБЫТИЙ STAGE---------------------------------------------------------------:
@@ -346,6 +372,7 @@ class AdvancedBoard extends React.Component {
           shareId={this.setCurrentObjectId}
 
           userInfo={userInfo}
+          // color={this.state.selectedObjectId === elem.id ? SELECTED_COLOR : DEFAULT_COLOR}
 
         />
       );

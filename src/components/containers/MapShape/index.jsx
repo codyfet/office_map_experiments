@@ -85,7 +85,6 @@ export default class MapShape extends React.Component {
               fill={'white'}
               // stroke={'red'}
               // strokeWidth={1}  
-              name='right' // указывает, есть ли пересечения с другими  
             />
           );
 

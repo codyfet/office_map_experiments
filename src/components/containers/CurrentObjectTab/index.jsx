@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ObjectItem from '../../containers/ObjectItem/index';
 import UserSpecialItem from '../../containers/UserSpecialItem/index';
+import UsersSpecialList from '../../containers/UsersSpecialList/index';
 import CurrentObjectItem from '../../containers/CurrentObjectItem/index';
 
 import './styles.css';
@@ -12,11 +13,16 @@ import { bindActionCreators } from 'redux';
 
 
 class CurrentObjectTab extends React.Component {
+    constructor(props) {
+        super(props);
 
-  state = {
-    showObjectInfo: false,
-    showUserInfo: false
-  };
+        this.state = {
+            showObjectInfo: false,
+            showUserInfo: false,
+            chosenUser: {}
+        }
+    }
+ 
   
   // select object:
   selectObject = (id) => {
@@ -27,8 +33,11 @@ class CurrentObjectTab extends React.Component {
 
   // select user:
   selectUser = (id) => {
+    const newUser = this.props.users.find((user) => (user.id === id));
+
     this.setState({
-        showUserInfo: !this.state.showUserInfo
+        showUserInfo: !this.state.showUserInfo,
+        chosenUser: newUser
     });
   }
 
@@ -44,7 +53,6 @@ class CurrentObjectTab extends React.Component {
     
     }
 
-    // console.log('required:', requiredObject, requiredUser);
 
     return (
       <div style={{
@@ -69,7 +77,13 @@ class CurrentObjectTab extends React.Component {
                 isSelected={false}
                 onClick={this.selectUser} 
             />
-        }   
+        }
+        { 
+            this.state.showUserInfo &&
+            <UsersSpecialList
+                onUserClick={this.selectUser}
+            />
+        }
         
       </div>
     );

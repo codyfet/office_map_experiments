@@ -4,6 +4,7 @@ import {
   DELETE_OBJECT,
   MOVE_OBJECT,
   TURN_OBJECT,
+  UPDATE_USER,
   CHANGE_OBJECTS_LEVEL,
 
   CHANGE_MAP_LEVEL,
@@ -35,6 +36,11 @@ export const turnObject = (objectId) => ({
 export const deleteObject = (objectId) => ({
   type: DELETE_OBJECT,
   payload: objectId
+});
+
+export const updateUser = (objData) => ({
+  type: UPDATE_USER,
+  payload: objData
 });
 
 export const changeObjectsLevel = (level) => ({

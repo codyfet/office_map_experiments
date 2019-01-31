@@ -3,6 +3,7 @@ import {
   MOVE_OBJECT, 
   TURN_OBJECT, 
   DELETE_OBJECT,
+  UPDATE_USER,
   CHANGE_OBJECTS_LEVEL 
 } from '../res/constants';
 import mapData from '../res/mapData.json';
@@ -49,6 +50,16 @@ export default function objects(state = initialState, action) {
     const level = action.payload;
     return mapData.levels[level].movable;
     
+  } else if ( action.type === UPDATE_USER ) {
+    const objectId = action.payload.id;
+    const newUserId = action.payload.userId;
+        
+    const object = state.find( (val) => (val.id === objectId) );
+    if ( object !== undefined ) {
+      object.userId = newUserId;
+    }
+
+    return state;
   }
 
 

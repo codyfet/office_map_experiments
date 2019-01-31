@@ -14,6 +14,7 @@ import PopoverContainer from "../PopoverContainer/index";
 
 // статические данные карты:
 import mapData from "../../../res/mapData.json";
+import { DEFAULT_COLOR, WARNING_COLOR, SELECTED_COLOR } from '../../../res/constantsObjectsColors';
 
 class AdvancedBoard extends React.Component {
   constructor(props) {
@@ -163,7 +164,9 @@ class AdvancedBoard extends React.Component {
 
     });
 
-    let currentTargetColor = intersectedWithMapObjects || boundariesOverstepped ? "red" : "#E9DAA8";
+    let currentTargetColor = intersectedWithMapObjects || boundariesOverstepped 
+      ? WARNING_COLOR : DEFAULT_COLOR;
+      
     currentObject.findOne(".right").fill(currentTargetColor);
   };
 

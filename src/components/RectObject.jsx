@@ -1,13 +1,14 @@
 import React from 'react';
 import { Rect, Text, Group } from 'react-konva';
+import { DEFAULT_COLOR } from '../res/constantsObjectsColors';
 
 export default class RectObject extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      isDragging: false,
-      color: '#E9DAA8'
+      isDragging: false
+      
     };
   }
 
@@ -62,7 +63,7 @@ export default class RectObject extends React.Component {
   onObjectClick = (e) => {
     const { shareId, id } = this.props;
     shareId(id);
-     
+
   }
 
   onObjectMouseMove = (e) => {
@@ -133,7 +134,7 @@ export default class RectObject extends React.Component {
         <Rect
           width={width}
           height={height}
-          fill={this.state.color}
+          fill={DEFAULT_COLOR}
           stroke={'black'}
           strokeWidth={1}
           shadowColor={'black'}

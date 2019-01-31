@@ -25,6 +25,8 @@ class AdvancedBoard extends React.Component {
       selectedObjectPos: [10, 10],
       selectedObjectSizes: [10, 10],
 
+      contextMenuPos: [10, 10],
+
       shadowOpacity: 0,
 
       contextMenuShow: false
@@ -219,6 +221,12 @@ class AdvancedBoard extends React.Component {
 
   }
 
+  onStageContextMenu = (e) => {
+    e.evt.preventDefault();
+    this.showContextMenu(e.evt.clientX, e.evt.clientY);
+    console.log('contextmenu', e);
+  }
+
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
@@ -260,15 +268,16 @@ class AdvancedBoard extends React.Component {
 
   // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------------------------
   // 5.2.1. Показать контекстное меню
-  showContextMenu = (x, y, shiftToWindow) => {
-    const { scale, shift } = this.props.boardState;
-    let coords = [
-      Math.floor(x * scale + shift[0]) + shiftToWindow.x, //x
-      Math.floor(y * scale + shift[1]) + shiftToWindow.y - 50 //y
-    ];
+  showContextMenu = (x, y) => {
+    // const { scale, shift } = this.props.boardState;
+    // let coords = [
+    //   Math.floor(x * scale + shift[0]) + shiftToWindow.x, //x
+    //   Math.floor(y * scale + shift[1]) + shiftToWindow.y - 50 //y
+    // ];
 
     this.setState({
-      selectedObjectPos: coords,
+      // selectedObjectPos: coords,
+      contextMenuPos: [ x + 5, y + 5],
       contextMenuShow: true
     });
 
@@ -362,6 +371,7 @@ class AdvancedBoard extends React.Component {
           onDragEnd={this.onStageDragEnd}
           onDragMove={this.onStageDragMove}
           onDblClick={this.onStageDblClick}
+          onContentContextMenu={this.onStageContextMenu}
 
         >
           <KonvaGridLayer
@@ -408,8 +418,8 @@ class AdvancedBoard extends React.Component {
         {/*Context menu for the current object is here:*/}
         {this.state.contextMenuShow && (
           <PopoverContainer
-            x={this.state.selectedObjectPos[0]}
-            y={this.state.selectedObjectPos[1]}
+            x={this.state.contextMenuPos[0]}
+            y={this.state.contextMenuPos[1]}
             objectId={this.state.selectedObjectId}
             readyHandler={this.hideContextMenu}
           />

@@ -60,15 +60,9 @@ export default class RectObject extends React.Component {
   
 
   onObjectClick = (e) => {
-    const { showContextMenu, shareId, id } = this.props;
-    // // надйдём сдвиг Stage относительно окна:
-    // const shiftToWindow = {
-    //                 x: e.evt.clientX - e.evt.layerX,
-    //                 y: e.evt.clientY - e.evt.layerY
-    // };
-    // showContextMenu(e.currentTarget.x(), e.currentTarget.y(), shiftToWindow);
-    console.log('objectclick', e);
-    shareId(id); 
+    const { shareId, id } = this.props;
+    shareId(id);
+     
   }
 
   onObjectMouseMove = (e) => {

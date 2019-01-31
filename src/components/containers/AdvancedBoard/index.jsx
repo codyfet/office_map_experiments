@@ -339,7 +339,6 @@ class AdvancedBoard extends React.Component {
           showShadow={this.showCurrentObjectShadow}
           stopShadow={this.hideCurrentObjectShadow}
 
-          showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
           shareId={this.setCurrentObjectId}
 

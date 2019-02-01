@@ -1,67 +1,64 @@
-import { 
-  CREATE_OBJECT, 
-  MOVE_OBJECT, 
-  TURN_OBJECT, 
+import {
+  CREATE_OBJECT,
+  MOVE_OBJECT,
+  TURN_OBJECT,
   DELETE_OBJECT,
   UPDATE_USER,
-  CHANGE_OBJECTS_LEVEL 
-} from '../res/constants';
-import mapData from '../res/mapData.json';
-
+  CHANGE_OBJECTS_LEVEL
+} from "../res/constants";
+import mapData from "../res/mapData.json";
 
 const initialState = mapData.levels[1].movable;
 
 export default function objects(state = initialState, action) {
-  if ( action.type === CREATE_OBJECT ) {
-    return [
-      ...state,
-      action.payload
-    ];
-  
-  } else if ( action.type === DELETE_OBJECT ) {
-    const newState = state.slice(0);
-    const objectId = action.payload;
-    return newState.filter( (val) => (val.id !== objectId) );
-  
-  } else if ( action.type === MOVE_OBJECT ) {
-    const objectId = action.payload.id;
-    const newPosition = action.payload.pos;
-        
-    const movedObject = state.find( (val) => (val.id === objectId) );
-    if ( movedObject !== undefined ) {
-      movedObject.coordinates = newPosition;
-    }
+  switch (action.type) {
+    case CREATE_OBJECT:
+      return [...state, action.payload];
 
-    return state;
+    case DELETE_OBJECT:
+      const newState = state.slice(0);
+      const objectId = action.payload;
+      return newState.filter(val => val.id !== objectId);
 
-  } else if ( action.type === TURN_OBJECT ) {
-    const objectId = action.payload;
+    case MOVE_OBJECT:
+      const objectId = action.payload.id;
+      const newPosition = action.payload.pos;
 
-    const object = state.find( (val) => (val.id === objectId) );
-    if ( object !== undefined ) {
-      let tempW = object.width; 
-      object.width = object.height;
-      object.height = tempW;
-    } 
+      const movedObject = state.find(val => val.id === objectId);
+      if (movedObject !== undefined) {
+        movedObject.coordinates = newPosition;
+      }
 
-    return state;
+      return state;
 
-  } else if ( action.type === CHANGE_OBJECTS_LEVEL ) {
-    const level = action.payload;
-    return mapData.levels[level].movable;
-    
-  } else if ( action.type === UPDATE_USER ) {
-    const objectId = action.payload.id;
-    const newUserId = action.payload.userId;
-        
-    const object = state.find( (val) => (val.id === objectId) );
-    if ( object !== undefined ) {
-      object.userId = newUserId;
-    }
+    case TURN_OBJECT:
+      const objectId = action.payload;
 
-    return state;
+      const object = state.find(val => val.id === objectId);
+      if (object !== undefined) {
+        let tempW = object.width;
+        object.width = object.height;
+        object.height = tempW;
+      }
+
+      return state;
+
+    case CHANGE_OBJECTS_LEVEL:
+      const level = action.payload;
+      return mapData.levels[level].movable;
+
+    case UPDATE_USER:
+      const objectId = action.payload.id;
+      const newUserId = action.payload.userId;
+
+      const object = state.find(val => val.id === objectId);
+      if (object !== undefined) {
+        object.userId = newUserId;
+      }
+
+      return state;
+
+    default:
+      return state;
   }
-
-
-  return state;
 }

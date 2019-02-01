@@ -7,14 +7,16 @@ const initialState = { objectId: '',
                        userId: '' };
 
 export default function currentObjectState(state = initialState, action) {
-  if ( action.type === CHANGE_CURRENT_OBJECT ) {
-    state.objectId = action.payload;
-    return state;
-
-  } else if ( action.type === CHANGE_CURRENT_USER ) {
-    state.userId = action.payload;
-    return state;
+  switch ( action.type ) {
+    case CHANGE_CURRENT_OBJECT:
+      state.objectId = action.payload;
+      return state;
     
+    case CHANGE_CURRENT_USER: 
+      state.userId = action.payload;
+      return state;
+    
+    default:
+      return state;
   }
-  return state;
 }

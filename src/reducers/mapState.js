@@ -13,18 +13,20 @@ const initialState = {
 }
 
 export default function mapState(state = initialState, action) {
-  if (action.type === CHANGE_MAP_LEVEL) {
-    const level = action.payload;
-    
-    return {
-        mapLevel: level,
-        title: mapData.levels[level].title,
-        blockSnapSize: mapData.levels[level].levelCellSize,
-        mapWidth: mapData.levels[level].levelMapWidth,
-        mapHeight: mapData.levels[level].levelMapHeight,
-        mapBoundaries: mapData.levels[level].boundaries,
-        mapCovering: mapData.levels[level].covering
-    };
+  switch ( action.type ) {
+    case CHANGE_MAP_LEVEL:
+      const level = action.payload;
+      
+      return {
+          mapLevel: level,
+          title: mapData.levels[level].title,
+          blockSnapSize: mapData.levels[level].levelCellSize,
+          mapWidth: mapData.levels[level].levelMapWidth,
+          mapHeight: mapData.levels[level].levelMapHeight,
+          mapBoundaries: mapData.levels[level].boundaries,
+          mapCovering: mapData.levels[level].covering
+      };
+    default:
+      return state;
   }
-  return state;
-}
+} 

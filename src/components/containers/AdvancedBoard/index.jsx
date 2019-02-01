@@ -312,11 +312,6 @@ class AdvancedBoard extends React.Component {
       contextMenuShow: false
     });
 
-    // при закрытии контекстного меню, 
-    // мы должны обнулить id объекта для SidePanel:
-    // const { changeSelectedObjectId } = this.props;
-    // changeSelectedObjectId('');
-
   };
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
@@ -372,7 +367,6 @@ class AdvancedBoard extends React.Component {
           showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
           shareId={this.setObjectId}
-          shareIdOutside={this.setCurrentObjectId}
 
           userInfo={userInfo}
 
@@ -466,6 +460,7 @@ class AdvancedBoard extends React.Component {
             x={this.state.contextMenuPos[0]}
             y={this.state.contextMenuPos[1]}
             objectId={this.state.selectedObjectId}
+            editHandler={this.setCurrentObjectId}
             readyHandler={this.hideContextMenu}
           />
         )}

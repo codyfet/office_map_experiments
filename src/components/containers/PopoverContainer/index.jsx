@@ -8,6 +8,10 @@ import { deleteObject, turnObject } from '../../../actions/index';
 
 class PopoverContainer extends React.Component {
 
+    state = {
+        editHandlerClicked: false
+    }
+
     deleteObject = () => {
       const { actions, objectId, readyHandler } = this.props;
       actions.deleteObject(objectId);
@@ -23,6 +27,14 @@ class PopoverContainer extends React.Component {
     }
 
     editObject = () => {
+      const { objectId, editHandler } = this.props;
+      let id = this.state.editHandlerClicked ? '' : objectId;
+
+      this.setState({
+        editHandlerClicked: !this.state.editHandlerClicked
+      },
+      editHandler(id));
+      // readyHandler(); // close popover
       // console.log( 'You edited an object with ID#', this.props.objectId );
     }
 

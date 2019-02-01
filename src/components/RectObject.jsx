@@ -136,24 +136,31 @@ export default class RectObject extends React.Component {
 
   onObjectClick = (e) => {
     // всегда сообщаем id объекта:
-    const { shareId, id, shareIdOutside } = this.props;
+    const { shareId, id, hideContextMenu } = this.props;
     shareId(id);
+    
+    // ВЫДЕЛЕНИЕ ОБЪЕКТА ЦВЕТОМ:
+    console.log('objectclick object', e.currentTarget);
+    let stage = e.target.getStage();
+    let currentObject = e.currentTarget;
 
-    if (e.evt.button === 0) { // если нажата левая кнопка мыши:
-      // ВЫДЕЛЕНИЕ ОБЪЕКТА ЦВЕТОМ:
-      console.log('objectclick object', e.currentTarget);
-      let stage = e.target.getStage();
-      let currentObject = e.currentTarget;
+    // обработка нажатий кнопок:
+    if (e.evt.button === 0) { // если нажата левая: то снимем выделение:
+      this.unselectObjectWithColor(currentObject);
+      hideContextMenu();
+      // // если объект уже выделен, то снимем выделение:
+      // if (currentObject.children[0].attrs.fill === SELECTED_COLOR) {
+      //   this.unselectObjectWithColor(currentObject);
+      // } else {
+      //   this.selectObjectWithColor(currentObject, stage);
+      // }
 
-      // если объект уже выделен, то снимем выделение:
-      if (currentObject.children[0].attrs.fill === SELECTED_COLOR) {
-        this.unselectObjectWithColor(currentObject);
-        shareIdOutside('');
-      } else {
+    } else if (e.evt.button === 2) { // если нажата правая, то выделяем цветом:
+      console.log('button 2', e);
+      // выделяем объект цветом, только если он еще не выделен:
+      if (currentObject.children[0].attrs.fill !== SELECTED_COLOR) {
         this.selectObjectWithColor(currentObject, stage);
-        shareIdOutside(id);
-      }
-
+      } 
     }
     
   }

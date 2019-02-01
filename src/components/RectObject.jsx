@@ -62,7 +62,37 @@ export default class RectObject extends React.Component {
     
   }
 
+  //4. Показать tooltip-информацию о пользователе объекта:
+  showTooltipObjectInfo = (e) => {
+    const { userInfo } = this.props;
+
+    let tooltipLayer = e.target.getStage().children[2];
+    let tooltip = tooltipLayer.children[0];
+
+    var mousePos = e.target.getStage().getPointerPosition();
+    console.log('pointerPosition', mousePos);
+    tooltip.position({
+      x : e.currentTarget.x(),
+      y : e.currentTarget.y()
+    });
+
+    // добавить userId:
+    tooltip.getText().setText(userInfo);
+    tooltip.show();
+    tooltipLayer.draw();
+  }
+
+  //5. Скрыть tooltip-информацию о пользователе объекта:
+  hideTooltipObjectInfo = (e) => {
+    let tooltipLayer = e.target.getStage().children[2];
+    let tooltip = tooltipLayer.children[0];
+
+    tooltip.hide();
+    tooltipLayer.draw();
+  }
+
   // ОБРАБОТКА СОБЫТИЙ:
+  //---------------------------------------------------------
   onObjectDragStart = (e) => {
     const { hideContextMenu } = this.props;
     
@@ -100,6 +130,7 @@ export default class RectObject extends React.Component {
     } = this.props;
     
     showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]);
+    this.showTooltipObjectInfo(e);
   }
   
 
@@ -127,46 +158,22 @@ export default class RectObject extends React.Component {
     
   }
 
+  onObjectContextMenu = (e) => {
+    const { showContextMenu } = this.props;
+    e.evt.preventDefault();
+    showContextMenu(e.evt.clientX, e.evt.clientY);
+  }
+
   onObjectMouseMove = (e) => {
-    const { userInfo } = this.props;
-    // console.log(e);
-
-    let tooltipLayer = e.target.getStage().children[2];
-    // console.log(tooltipLayer);
-    let tooltip = tooltipLayer.children[0];
-    // console.log(tooltip);
-
-    var mousePos = e.target.getStage().getPointerPosition();
-    tooltip.position({
-      x : mousePos.x,
-      y : mousePos.y
-    });
-
-    // добавить userId:
-    tooltip.text = userInfo;
-    tooltip.visible = true;
-    tooltip.show();
-    tooltipLayer.draw();
+    this.showTooltipObjectInfo(e);
 
   }
 
-  // onObjectMouseOut = (e) => {
-  //   const { userInfo } = this.props;
-  //   console.log(e.ext);
-  //   let tooltipLayer = e.target.getStage().children[2];
-  //   console.log(tooltipLayer);
-  //   tooltip.position({
-  //     x : 0,
-  //     y : 0
-  //   });
-  //   // добавить userId:
-  //   tooltip.text(userInfo);
-  //   tooltip.show();
-  //   tooltipLayer.batchDraw();
-
-  // }
-  //---------------------------------------------------------------------------
-
+  onObjectMouseOut = (e) => {
+    this.hideTooltipObjectInfo(e);
+  
+  }
+  
 
   render() {
     const {
@@ -188,7 +195,9 @@ export default class RectObject extends React.Component {
         onDragEnd={this.onObjectDragEnd}
         onDragMove={this.onObjectDragMove}
         onClick={this.onObjectClick}
-        onMouseMove={this.onObjectMouseMove}
+        onContextMenu={this.onObjectContextMenu}
+        onMouseEnter={this.onObjectMouseMove}
+        onMouseLeave={this.onObjectMouseOut}
         name="object"
 
       >

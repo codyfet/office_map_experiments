@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stage, Layer, Group, Rect, Text } from "react-konva";
+import { Stage, Layer, Group, Rect, Text, Label, Tag } from "react-konva";
 import RectObject from "../../RectObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
@@ -256,12 +256,6 @@ class AdvancedBoard extends React.Component {
 
   }
 
-  onStageContextMenu = (e) => {
-    e.evt.preventDefault();
-    this.showContextMenu(e.evt.clientX, e.evt.clientY);
-    console.log('contextmenu', e);
-  }
-
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
@@ -375,6 +369,7 @@ class AdvancedBoard extends React.Component {
           showShadow={this.showCurrentObjectShadow}
           stopShadow={this.hideCurrentObjectShadow}
 
+          showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
           shareId={this.setObjectId}
           shareIdOutside={this.setCurrentObjectId}
@@ -407,7 +402,6 @@ class AdvancedBoard extends React.Component {
           onDragEnd={this.onStageDragEnd}
           onDragMove={this.onStageDragMove}
           onDblClick={this.onStageDblClick}
-          onContentContextMenu={this.onStageContextMenu}
 
         >
           <KonvaGridLayer
@@ -436,17 +430,32 @@ class AdvancedBoard extends React.Component {
           </Layer>
           {/* Еще один слой для tooltip: */}
           <Layer>
-            <Text
-              text=""
-              fontFamily="Calibri"
-              fontSize={12}
-              padding={5}
-              visible={false}
-              fill="black"
+            <Label
               opacity={0.75}
-              textFill="white"
-              name="objectTooltip"
-            />
+              visible={false}
+              listening={false}
+            >
+              <Tag
+                fill='black'
+                pointerDirection='down'
+                pointerWidth={10}
+                pointerHeight={10}
+                lineJoin='round'
+                shadowColor='black'
+                shadowBlur={10}
+                shadowOffset={10}
+                shadowOpacity={0.2} 
+              />
+              <Text
+                text=""
+                fontFamily="Calibri"
+                fontSize={12}
+                padding={5}
+                fill="white"
+                name="objectTooltip"
+              />
+            </Label>
+            
             
           </Layer> 
 

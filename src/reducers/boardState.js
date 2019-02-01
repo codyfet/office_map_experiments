@@ -5,11 +5,12 @@ const initialState = { shift: [0, 0],
 
 export default function boardState(state = initialState, action) {
   switch ( action.type ) {
-    case CHANGE_BOARD_STATE:
+    case CHANGE_BOARD_STATE: {
       return action.payload;  
-      
-    default:
+    }
+    default: {
       return state;
+    }
+  
   } 
-
 }

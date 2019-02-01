@@ -14,7 +14,7 @@ const initialState = {
 
 export default function mapState(state = initialState, action) {
   switch ( action.type ) {
-    case CHANGE_MAP_LEVEL:
+    case CHANGE_MAP_LEVEL: {
       const level = action.payload;
       
       return {
@@ -26,7 +26,11 @@ export default function mapState(state = initialState, action) {
           mapBoundaries: mapData.levels[level].boundaries,
           mapCovering: mapData.levels[level].covering
       };
-    default:
+    
+    }
+    default: {
       return state;
+    }
+  
   }
 } 

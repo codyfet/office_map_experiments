@@ -146,10 +146,9 @@
       "boundaries": "20,20 20,320 320,320 320,220 260,220 260,180 620,180 620,20",
       "covering": [],
 
-      "static": [],
-
       "movableIdNext": 0,
-      "movable": [],
+      "objects": [],
+
       "users": []
     },
 
@@ -179,17 +178,16 @@
 
       ],
 
-      "static": [],
-
       "movableIdNext": 3,
-      "movable": [
+      "objects": [
         {
           "category": "table",
           "id": 0,
           "coordinates": { "x": 20, "y": 20 },
           "width": 15,
           "height": 30,
-          "userId": "t0018"
+          "userId": "t0018",
+          "movable": true
         },
         {
           "category": "table",
@@ -197,7 +195,8 @@
           "coordinates": { "x": 35, "y": 20 },
           "width": 15,
           "height": 30,
-          "userId": "t0019"
+          "userId": "t0019",
+          "movable": true
         },
         {
           "category": "table",
@@ -205,7 +204,8 @@
           "coordinates": { "x": 50, "y": 20 },
           "width": 15,
           "height": 30,
-          "userId": "t0020"
+          "userId": "t0020",
+          "movable": true
         }
       ]
       
@@ -237,17 +237,16 @@
 
       ],
 
-      "static": [],
-
       "movableIdNext": 1,
-      "movable": [
+      "objects": [
         {
           "category": "table",
           "id": 0,
           "coordinates": { "x": 20, "y": 20 },
           "width": 15,
           "height": 30,
-          "userId": "t0018"
+          "userId": "t0018",
+          "movable": true
         }
 
       ]

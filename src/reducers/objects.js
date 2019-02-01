@@ -8,19 +8,20 @@ import {
 } from "../res/constants";
 import mapData from "../res/mapData.json";
 
-const initialState = mapData.levels[1].movable;
+const initialState = mapData.levels[1].objects;
 
 export default function objects(state = initialState, action) {
   switch (action.type) {
-    case CREATE_OBJECT:
+    case CREATE_OBJECT: {
       return [...state, action.payload];
 
-    case DELETE_OBJECT:
+    }      
+    case DELETE_OBJECT: {
       const newState = state.slice(0);
       const objectId = action.payload;
       return newState.filter(val => val.id !== objectId);
-
-    case MOVE_OBJECT:
+    }
+    case MOVE_OBJECT: {
       const objectId = action.payload.id;
       const newPosition = action.payload.pos;
 
@@ -30,8 +31,8 @@ export default function objects(state = initialState, action) {
       }
 
       return state;
-
-    case TURN_OBJECT:
+    }
+    case TURN_OBJECT: {
       const objectId = action.payload;
 
       const object = state.find(val => val.id === objectId);
@@ -42,12 +43,12 @@ export default function objects(state = initialState, action) {
       }
 
       return state;
-
-    case CHANGE_OBJECTS_LEVEL:
+    }
+    case CHANGE_OBJECTS_LEVEL: {
       const level = action.payload;
-      return mapData.levels[level].movable;
-
-    case UPDATE_USER:
+      return mapData.levels[level].objects;
+    }
+    case UPDATE_USER: {
       const objectId = action.payload.id;
       const newUserId = action.payload.userId;
 
@@ -57,8 +58,10 @@ export default function objects(state = initialState, action) {
       }
 
       return state;
-
-    default:
+    }
+    default: {
       return state;
+    }
+    
   }
 }

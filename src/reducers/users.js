@@ -5,17 +5,20 @@ const initialState = mapData.users;
 
 export default function users(state = initialState, action) {
   switch ( action.type ) {
-    case ADD_USER:
+    case ADD_USER: {
       return [...state, action.payload];
-
-    case EDIT_USER:
-      return state;
-
-    case DELETE_USER:
-      return state;
+    }
     
-    default:
+    case EDIT_USER: {
       return state;
+    }
+    case DELETE_USER: {
+      return state;
+    }
+    default: {
+      return state;
+    }
+    
   }
-  
+
 }

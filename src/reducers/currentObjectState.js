@@ -6,7 +6,7 @@ import {
 const initialState = { objectId: '', 
                        userId: '' };
 
-export default function boardState(state = initialState, action) {
+export default function currentObjectState(state = initialState, action) {
   if ( action.type === CHANGE_CURRENT_OBJECT ) {
     state.objectId = action.payload;
     return state;

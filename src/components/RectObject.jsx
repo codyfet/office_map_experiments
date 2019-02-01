@@ -25,9 +25,6 @@ export default class RectObject extends React.Component {
   // передаваемое через jsx значение, даже если оно связано с state
   // не меняет элемент (на примере fill)
   selectObjectWithColor = (currentObject, stage) => {
-    // console.log('objectclick object', e.currentTarget);
-    // let stage = e.target.getStage();
-    // let currentObject = e.currentTarget;
   
     //1. рассмотрим все объекты и вернем им предыдущий цвет, если они были выделены:
     stage.children[1].children.forEach((node, i) => {
@@ -108,7 +105,7 @@ export default class RectObject extends React.Component {
 
   onObjectClick = (e) => {
     // всегда сообщаем id объекта:
-    const { shareId, id } = this.props;
+    const { shareId, id, shareIdOutside } = this.props;
     shareId(id);
 
     if (e.evt.button === 0) { // если нажата левая кнопка мыши:
@@ -120,8 +117,10 @@ export default class RectObject extends React.Component {
       // если объект уже выделен, то снимем выделение:
       if (currentObject.children[0].attrs.fill === SELECTED_COLOR) {
         this.unselectObjectWithColor(currentObject);
+        shareIdOutside('');
       } else {
         this.selectObjectWithColor(currentObject, stage);
+        shareIdOutside(id);
       }
 
     }

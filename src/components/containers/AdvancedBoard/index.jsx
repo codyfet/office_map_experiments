@@ -7,7 +7,13 @@ import MapShape from "../MapShape/index";
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeBoardState, changeMapLevel, changeObjectsLevel, moveObject } from "../../../actions/index";
+import { 
+  changeBoardState, 
+  changeMapLevel, 
+  changeObjectsLevel, 
+  moveObject 
+
+} from "../../../actions/index";
 
 //popup:
 import PopoverContainer from "../PopoverContainer/index";
@@ -298,14 +304,8 @@ class AdvancedBoard extends React.Component {
   // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------------------------
   // 5.2.1. Показать контекстное меню
   showContextMenu = (x, y) => {
-    // const { scale, shift } = this.props.boardState;
-    // let coords = [
-    //   Math.floor(x * scale + shift[0]) + shiftToWindow.x, //x
-    //   Math.floor(y * scale + shift[1]) + shiftToWindow.y - 50 //y
-    // ];
 
     this.setState({
-      // selectedObjectPos: coords,
       contextMenuPos: [ x + 5, y + 5],
       contextMenuShow: true
     });
@@ -320,25 +320,32 @@ class AdvancedBoard extends React.Component {
 
     // при закрытии контекстного меню, 
     // мы должны обнулить id объекта для SidePanel:
-    const { changeSelectedObjectId } = this.props;
-    changeSelectedObjectId('');
+    // const { changeSelectedObjectId } = this.props;
+    // changeSelectedObjectId('');
 
   };
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
-  // 5.3.1. Выбор текущего объекта:
-  setCurrentObjectId = (id) => {
+  // следующие методы работают вместе:
+  // 5.3.1. Выбор текущего объекта для AdvancedBoard:
+  setObjectId = (id) => {
     
     // изменим выбранный объект для AdvancedBoard:
     this.setState({
       selectedObjectId: id
     });
 
+  };
+
+  // 5.3.2. Выбор текущего объекта для SidePanel:
+  setCurrentObjectId = (id) => {
+
     // изменим выбранный объект для GlobalArea:
     const { changeSelectedObjectId } = this.props;
-    changeSelectedObjectId(this.state.selectedObjectId);
+    changeSelectedObjectId(id);
+  
+  } 
 
-  };
 
   
 
@@ -369,10 +376,10 @@ class AdvancedBoard extends React.Component {
           stopShadow={this.hideCurrentObjectShadow}
 
           hideContextMenu={this.hideContextMenu}
-          shareId={this.setCurrentObjectId}
+          shareId={this.setObjectId}
+          shareIdOutside={this.setCurrentObjectId}
 
           userInfo={userInfo}
-          // color={this.state.selectedObjectId === elem.id ? SELECTED_COLOR : DEFAULT_COLOR}
 
         />
       );

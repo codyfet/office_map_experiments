@@ -23,9 +23,11 @@ class CurrentObjectTab extends React.Component {
 
   checkUserAssignedToTable(userId) {
     const { objects } = this.props;
-    for (let obj of objects.levels[objects.mapLevel]) {
-      if (obj.userId === userId) {
-        return true;
+    for ( let lvl of objects.levels) {
+      for ( let obj of lvl) {
+        if ( obj.userId === userId ) {
+          return true;
+        }
       }
     }
     return false;

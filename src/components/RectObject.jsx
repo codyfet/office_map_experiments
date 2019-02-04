@@ -104,11 +104,13 @@ export default class RectObject extends React.Component {
     const { 
       showShadow, 
       stopShadow, 
-      shareId, 
+      shareId,
+      shareObjectData,
+      id,
+      userId, 
       blockSnapSize, 
       width, 
-      height,
-      id 
+      height
     } = this.props;
     
     let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
@@ -119,6 +121,8 @@ export default class RectObject extends React.Component {
     
     showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]);
     shareId(id);  
+    shareObjectData(id, userId);
+
     stopShadow();
   }
       
@@ -136,9 +140,17 @@ export default class RectObject extends React.Component {
 
   onObjectClick = (e) => {
     // всегда сообщаем id объекта:
-    const { shareId, id, hideContextMenu } = this.props;
+    const { 
+      shareId, 
+      shareObjectData,
+      id,
+      userId,
+      hideContextMenu 
+    } = this.props;
+
     shareId(id);
-    
+    shareObjectData(id, userId);
+
     // ВЫДЕЛЕНИЕ ОБЪЕКТА ЦВЕТОМ:
     console.log('objectclick object', e.currentTarget);
     let stage = e.target.getStage();
@@ -148,12 +160,6 @@ export default class RectObject extends React.Component {
     if (e.evt.button === 0) { // если нажата левая: то снимем выделение:
       this.unselectObjectWithColor(currentObject);
       hideContextMenu();
-      // // если объект уже выделен, то снимем выделение:
-      // if (currentObject.children[0].attrs.fill === SELECTED_COLOR) {
-      //   this.unselectObjectWithColor(currentObject);
-      // } else {
-      //   this.selectObjectWithColor(currentObject, stage);
-      // }
 
     } else if (e.evt.button === 2) { // если нажата правая, то выделяем цветом:
       console.log('button 2', e);
@@ -191,7 +197,7 @@ export default class RectObject extends React.Component {
       id
     } = this.props;
     
-    console.log('redraw?');
+    
     return (
       <Group
         x={x}
@@ -205,7 +211,7 @@ export default class RectObject extends React.Component {
         onContextMenu={this.onObjectContextMenu}
         onMouseEnter={this.onObjectMouseMove}
         onMouseLeave={this.onObjectMouseOut}
-        name="object"
+        name={""+id}
 
       >
         <Rect

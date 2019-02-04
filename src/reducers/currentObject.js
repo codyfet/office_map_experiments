@@ -1,13 +1,14 @@
 import { 
   CHANGE_CURRENT_OBJECT,
-  CHANGE_CURRENT_USER
+  CHANGE_CURRENT_USER,
+  CHANGE_CURRENT_OBJECT_STATE
 } from '../res/constants';
 
 const initialState = { objectId: '', 
                        userId: '',
                        state: 'none' };
 
-export default function currentObjectState(state = initialState, action) {
+export default function currentObject(state = initialState, action) {
   switch ( action.type ) {
     case CHANGE_CURRENT_OBJECT: {
       state.objectId = action.payload;

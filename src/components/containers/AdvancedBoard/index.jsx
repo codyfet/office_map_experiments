@@ -11,7 +11,9 @@ import {
   changeBoardState, 
   changeMapLevel, 
   changeObjectsLevel, 
-  moveObject 
+  moveObject, 
+  changeCurrentObject,
+  changeCurrentUser 
 
 } from "../../../actions/index";
 
@@ -335,6 +337,15 @@ class AdvancedBoard extends React.Component {
   
   } 
 
+  //5.3.3. Выбор текущего объекта и пользователя (если есть):
+  setCurrentObjectData = (objectId, userId) => {
+    //изменим текущий объект для redux:
+    const { actions } = this.props;
+    actions.changeCurrentObject(objectId);
+    actions.changeCurrentUser(userId);
+
+  }
+
 
   
 
@@ -357,6 +368,10 @@ class AdvancedBoard extends React.Component {
         <RectObject
           key={i}
           id={elem.id}
+          // исправить:!!!!
+          userId={elem.userId}
+          userInfo={userInfo}
+
           x={elem.coordinates.x}
           y={elem.coordinates.y}
           width={elem.width}
@@ -371,8 +386,7 @@ class AdvancedBoard extends React.Component {
           showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
           shareId={this.setObjectId}
-
-          userInfo={userInfo}
+          shareObjectData={this.setCurrentObjectData}
 
         />
       );
@@ -483,7 +497,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ changeBoardState, changeMapLevel, changeObjectsLevel, moveObject }, dispatch)
+  actions: bindActionCreators({ 
+    changeBoardState, 
+    changeMapLevel, 
+    changeObjectsLevel, 
+    moveObject,
+    changeCurrentObject,
+    changeCurrentUser  
+  }, dispatch)
 });
 
 export default connect(

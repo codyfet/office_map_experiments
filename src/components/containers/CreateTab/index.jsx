@@ -53,7 +53,7 @@ class CreateTab extends React.Component {
 
 // for redux:
 const mapStateToProps = (state) => ({
-  currentObjectState: state.currentObjectState,
+  currentObject: state.currentObject,
 });
 
 const mapDispatchToProps = (dispatch) => ({

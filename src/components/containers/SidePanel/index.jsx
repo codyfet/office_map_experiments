@@ -59,6 +59,12 @@ class SidePanel extends React.Component {
   }
 
   checkUserAssignedToTable(userId) {
+    // если пользователя нет, то проверять ничего не надо:
+    if ( userId === '' ) {
+      return false
+    }
+
+    // иначе ищем пользователя по объектам всех уровней:
     const { objects } = this.props;
     for ( let lvl of objects.levels) {
       for ( let obj of lvl) {
@@ -84,7 +90,7 @@ class SidePanel extends React.Component {
       if ( this.checkUserAssignedToTable(selectedUserId) ) {
         alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
         return;
-      }
+      } 
     }
       
     const newObject = createMapObject(selectedObjectId, 

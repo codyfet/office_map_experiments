@@ -61,7 +61,7 @@ class CurrentObjectTab extends React.Component {
   };
 
   // select user:
-  selectUser = newUserId => {
+  selectUser = (newUserId) => {
     const { actions, selectedObjectId } = this.props;
 
     if ( this.checkUserAssignedToTable(newUserId) ) {

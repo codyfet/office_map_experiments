@@ -14,7 +14,8 @@ import {
   DELETE_USER,
 
   CHANGE_CURRENT_OBJECT,
-  CHANGE_CURRENT_USER
+  CHANGE_CURRENT_USER,
+  CHANGE_CURRENT_OBJECT_STATE
 } from '../res/constants';
 
 // actions wuth objects:
@@ -69,6 +70,11 @@ export const changeCurrentObject = (objectId) => ({
 export const changeCurrentUser = (userId) => ({
   type: CHANGE_CURRENT_USER,
   payload: userId
+});
+
+export const changeCurrentObjectState = (newState) => ({
+  type: CHANGE_CURRENT_OBJECT_STATE,
+  payload: newState
 });
 
 // actions with users:

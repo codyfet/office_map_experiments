@@ -151,7 +151,7 @@ class SidePanel extends React.Component {
           currentLevel={this.props.mapState.mapLevel}
           onSelectLevel={this.onSelectLevel}/>
         {/* accordeon: */}
-        <Accordion allowMultiple>
+        <Accordion>
           <AccordionItem 
             title="Current object" 
             expanded={ currentObject.state !== 'none' } 
@@ -162,7 +162,10 @@ class SidePanel extends React.Component {
             />
             
           </AccordionItem>
-          <AccordionItem title="Create">
+          <AccordionItem 
+            title="Create"
+            // expanded={ currentObject.state === 'none' }
+          >
             <CreateTab
               searchList={this.props.objects} 
               onObjectClick={this.selectObjectId}

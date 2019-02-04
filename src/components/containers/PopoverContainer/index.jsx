@@ -4,13 +4,9 @@ import PopoverView from '../../presentational/PopoverView/index';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteObject, turnObject } from '../../../actions/index';
+import { deleteObject, turnObject, changeCurrentObjectState } from '../../../actions/index';
 
 class PopoverContainer extends React.Component {
-
-    state = {
-        editHandlerClicked: false
-    }
 
     deleteObject = () => {
       const { 
@@ -37,13 +33,10 @@ class PopoverContainer extends React.Component {
     }
 
     editObject = () => {
-      const { currentObject, editHandler } = this.props;
-      let id = this.state.editHandlerClicked ? '' : currentObject.objectId;
-
-      this.setState({
-        editHandlerClicked: !this.state.editHandlerClicked
-      },
-      editHandler(id));
+      const { actions, currentObject } = this.props;
+      // повторное нажатие закрывает панель редактирования на SidePanel:
+      const newState = currentObject.state === 'none' ? 'edit' : 'none';
+      actions.changeCurrentObjectState(newState);
    
     }
 
@@ -78,7 +71,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ 
         deleteObject, 
-        turnObject 
+        turnObject,
+        changeCurrentObjectState 
     }, dispatch)
 });
     

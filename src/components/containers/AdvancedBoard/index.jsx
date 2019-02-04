@@ -13,7 +13,8 @@ import {
   changeObjectsLevel, 
   moveObject, 
   changeCurrentObject,
-  changeCurrentUser 
+  changeCurrentUser,
+  changeCurrentObjectState 
 
 } from "../../../actions/index";
 
@@ -316,21 +317,15 @@ class AdvancedBoard extends React.Component {
   };
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
-  // 5.3.1. Выбор текущего объекта для SidePanel:
-  setCurrentObjectId = (id) => {
-
-    // изменим выбранный объект для GlobalArea:
-    const { changeSelectedObjectId } = this.props;
-    changeSelectedObjectId(id);
-  
-  } 
-
-  //5.3.2. Выбор текущего объекта и пользователя (если есть):
+  // 5.3.1. Выбор текущего объекта и пользователя (если есть):
   setCurrentObjectData = (objectId, userId) => {
-    //изменим текущий объект для redux:
+    // изменим текущий объект для redux:
     const { actions } = this.props;
     actions.changeCurrentObject(objectId);
     actions.changeCurrentUser(userId);
+
+    // при каждом изменении пользователя мы закрываем меню редактирования:
+    actions.changeCurrentObjectState('none');
 
   }
 
@@ -464,7 +459,6 @@ class AdvancedBoard extends React.Component {
           <PopoverContainer
             x={this.state.contextMenuPos[0]}
             y={this.state.contextMenuPos[1]}
-            editHandler={this.setCurrentObjectId}
             readyHandler={this.hideContextMenu}
           />
         )}
@@ -490,7 +484,8 @@ const mapDispatchToProps = dispatch => ({
     changeObjectsLevel, 
     moveObject,
     changeCurrentObject,
-    changeCurrentUser  
+    changeCurrentUser,
+    changeCurrentObjectState   
   }, dispatch)
 });
 

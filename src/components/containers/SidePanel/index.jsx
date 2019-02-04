@@ -142,7 +142,7 @@ class SidePanel extends React.Component {
 
   render() {
 
-    const { selectedObjectId } = this.props;
+    const { selectedObjectId, currentObject } = this.props;
 
     return (
       <div className="sidePanelContainer">
@@ -154,9 +154,12 @@ class SidePanel extends React.Component {
         <Accordion allowMultiple>
           <AccordionItem 
             title="Current object" 
-            expanded={ selectedObjectId !== '' } 
+            expanded={ currentObject.state !== 'none' } 
           >
-            <CurrentObjectTab selectedObjectId={selectedObjectId}/>
+            <CurrentObjectTab 
+              selectedObjectId={currentObject.objectId}
+              
+            />
             
           </AccordionItem>
           <AccordionItem title="Create">
@@ -195,7 +198,7 @@ class SidePanel extends React.Component {
 const mapStateToProps = (state) => ({
   objects: state.objects,
   boardState: state.boardState,
-  currentObjectState: state.currentObjectState,
+  currentObject: state.currentObject,
   users: state.users,
   mapState: state.mapState
 });

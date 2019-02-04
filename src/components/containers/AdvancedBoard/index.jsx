@@ -30,7 +30,6 @@ class AdvancedBoard extends React.Component {
 
     this.state = {
 
-      selectedObjectId: -1,
       selectedObjectPos: [10, 10],
       selectedObjectSizes: [10, 10],
 
@@ -263,7 +262,7 @@ class AdvancedBoard extends React.Component {
   objectDataToRedux = () => {
     const { actions } = this.props;
     let newObjectData = {
-      id: this.state.selectedObjectId,
+      id: this.props.currentObject.objectId,
       pos: {
         x: this.state.selectedObjectPos[0],
         y: this.state.selectedObjectPos[1]
@@ -317,18 +316,7 @@ class AdvancedBoard extends React.Component {
   };
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
-  // следующие методы работают вместе:
-  // 5.3.1. Выбор текущего объекта для AdvancedBoard:
-  setObjectId = (id) => {
-    
-    // изменим выбранный объект для AdvancedBoard:
-    this.setState({
-      selectedObjectId: id
-    });
-
-  };
-
-  // 5.3.2. Выбор текущего объекта для SidePanel:
+  // 5.3.1. Выбор текущего объекта для SidePanel:
   setCurrentObjectId = (id) => {
 
     // изменим выбранный объект для GlobalArea:
@@ -337,7 +325,7 @@ class AdvancedBoard extends React.Component {
   
   } 
 
-  //5.3.3. Выбор текущего объекта и пользователя (если есть):
+  //5.3.2. Выбор текущего объекта и пользователя (если есть):
   setCurrentObjectData = (objectId, userId) => {
     //изменим текущий объект для redux:
     const { actions } = this.props;
@@ -357,7 +345,6 @@ class AdvancedBoard extends React.Component {
 
     // вынуть объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
-    console.log(thisLevelObjects);
     
     const loadObject = thisLevelObjects.map((elem, i) => {
       // find userInfo for object:
@@ -385,7 +372,7 @@ class AdvancedBoard extends React.Component {
 
           showContextMenu={this.showContextMenu}
           hideContextMenu={this.hideContextMenu}
-          shareId={this.setObjectId}
+        
           shareObjectData={this.setCurrentObjectData}
 
         />
@@ -477,7 +464,6 @@ class AdvancedBoard extends React.Component {
           <PopoverContainer
             x={this.state.contextMenuPos[0]}
             y={this.state.contextMenuPos[1]}
-            objectId={this.state.selectedObjectId}
             editHandler={this.setCurrentObjectId}
             readyHandler={this.hideContextMenu}
           />
@@ -492,7 +478,8 @@ const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,
   boardState: state.boardState,
-  mapState: state.mapState
+  mapState: state.mapState,
+  currentObject: state.currentObject
   
 });
 

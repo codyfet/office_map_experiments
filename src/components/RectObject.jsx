@@ -104,7 +104,6 @@ export default class RectObject extends React.Component {
     const { 
       showShadow, 
       stopShadow, 
-      shareId,
       shareObjectData,
       id,
       userId, 
@@ -119,8 +118,7 @@ export default class RectObject extends React.Component {
       y: Math.round(checkedY / blockSnapSize) * blockSnapSize
     });
     
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]);
-    shareId(id);  
+    showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]); 
     shareObjectData(id, userId);
 
     stopShadow();
@@ -141,14 +139,12 @@ export default class RectObject extends React.Component {
   onObjectClick = (e) => {
     // всегда сообщаем id объекта:
     const { 
-      shareId, 
       shareObjectData,
       id,
       userId,
       hideContextMenu 
     } = this.props;
 
-    shareId(id);
     shareObjectData(id, userId);
 
     // ВЫДЕЛЕНИЕ ОБЪЕКТА ЦВЕТОМ:

@@ -23,7 +23,7 @@ class CurrentObjectTab extends React.Component {
 
   checkUserAssignedToTable(userId) {
     const { objects } = this.props;
-    for (let obj of objects) {
+    for (let obj of objects.levels[objects.mapLevel]) {
       if (obj.userId === userId) {
         return true;
       }
@@ -73,7 +73,10 @@ class CurrentObjectTab extends React.Component {
   render() {
     const { selectedObjectId, objects, users } = this.props;
 
-    const requiredObject = objects.find(val => val.id === selectedObjectId);
+    // вынуть объекты текущего уровня:
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+
+    const requiredObject = thisLevelObjects.find(val => val.id === selectedObjectId);
     var requiredUser = {
       title: "Not assigned",
       capability: ""

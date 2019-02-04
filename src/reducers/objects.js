@@ -8,56 +8,102 @@ import {
 } from "../res/constants";
 import mapData from "../res/mapData.json";
 
-const initialState = mapData.levels[1].objects;
+// загрузка объектов всех уровней:
+const allLevelsObjects = mapData.levels.map( (elem) => (elem.objects) ); 
 
+const initialState = {
+  mapLevel: 1, //по умолчанию мы загружаем 1 уровень
+  levels: allLevelsObjects
+};
+
+//Изменим:
 export default function objects(state = initialState, action) {
   switch (action.type) {
     case CREATE_OBJECT: {
-      return [...state, action.payload];
+      
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      newLevels[lvl] = [...state.levels[lvl], action.payload];
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
 
     }      
     case DELETE_OBJECT: {
-      const newState = state.slice(0);
+      
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
       const objectId = action.payload;
-      return newState.filter(val => val.id !== objectId);
+
+      newLevels[lvl] = newLevels[lvl].filter(val => val.id !== objectId);
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
+
     }
     case MOVE_OBJECT: {
+      
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      
       const objectId = action.payload.id;
       const newPosition = action.payload.pos;
 
-      const movedObject = state.find(val => val.id === objectId);
+      const movedObject = newLevels[lvl].find(val => val.id === objectId);
       if (movedObject !== undefined) {
         movedObject.coordinates = newPosition;
       }
 
-      return state;
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
     }
     case TURN_OBJECT: {
+      
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      
       const objectId = action.payload;
-
-      const object = state.find(val => val.id === objectId);
+      const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
         let tempW = object.width;
         object.width = object.height;
         object.height = tempW;
       }
 
-      return state;
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
+
     }
     case CHANGE_OBJECTS_LEVEL: {
-      const level = action.payload;
-      return mapData.levels[level].objects;
+      return {
+        mapLevel: action.payload,
+        levels: state.levels
+      };
+
     }
     case UPDATE_USER: {
+
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      
       const objectId = action.payload.id;
       const newUserId = action.payload.userId;
-
-      const object = state.find(val => val.id === objectId);
+      const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
         object.userId = newUserId;
       }
 
-      return state;
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
+
     }
     default: {
       return state;

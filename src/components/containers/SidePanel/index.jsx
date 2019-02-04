@@ -60,7 +60,7 @@ class SidePanel extends React.Component {
 
   checkUserAssignedToTable(userId) {
     const { objects } = this.props;
-    for ( let obj of objects) {
+    for ( let obj of objects.levels[objects.mapLevel]) {
       if ( obj.userId === userId ) {
         return true;
       }

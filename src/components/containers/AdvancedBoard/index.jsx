@@ -344,7 +344,11 @@ class AdvancedBoard extends React.Component {
     // settings for map (KonvaGrid):
     const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = this.props.mapState; 
 
-    const loadObject = objects.map((elem, i) => {
+    // вынуть объекты текущего уровня:
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    console.log(thisLevelObjects);
+    
+    const loadObject = thisLevelObjects.map((elem, i) => {
       // find userInfo for object:
       let userInfo = users.find( (user) => user.id === elem.userId );
       userInfo = userInfo === undefined ? 'no user' : userInfo.title;

@@ -9,7 +9,7 @@ import "./styles.css";
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateUser } from "../../../actions/index";
+import { updateUser, changeCurrentUser } from "../../../actions/index";
 
 class CurrentObjectTab extends React.Component {
   constructor(props) {
@@ -47,10 +47,10 @@ class CurrentObjectTab extends React.Component {
     });
   };
 
-  // open changing user panel:
+  // ? open changing user panel:
   openChangeUserPanel = (id) => {
-    const { selectedObjectId } = this.props;
-    if ( selectedObjectId === '' ) {
+    const { currentObject } = this.props;
+    if ( currentObject.objectId === '' ) {
         alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Щелкните на одном из объектов!");
     } else {
         this.setState({
@@ -62,16 +62,19 @@ class CurrentObjectTab extends React.Component {
 
   // select user:
   selectUser = (newUserId) => {
-    const { actions, selectedObjectId } = this.props;
+    const { actions, currentObject } = this.props;
 
-    if ( this.checkUserAssignedToTable(newUserId) ) {
+    if ( currentObject.userId === newUserId) { // если выбрали того же пользователя
+      alert("ПРЕДУПРЕЖДЕНИЕ: ВЫ ВЫБРАЛИ ТОГО ЖЕ ПОЛЬЗОВАТЕЛЯ. LOL=) А зачем?)");
+    } else if ( this.checkUserAssignedToTable(newUserId) ) {
       alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
     } else {
       const newObjData = {
-        id: selectedObjectId,
+        id: currentObject.objectId,
         userId: newUserId
       };
       actions.updateUser(newObjData);
+      actions.changeCurrentUser(newUserId);
     }
 
     this.setState({
@@ -80,12 +83,12 @@ class CurrentObjectTab extends React.Component {
   };
 
   render() {
-    const { selectedObjectId, objects, users } = this.props;
+    const { currentObject, objects, users } = this.props;
 
     // вынуть объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
 
-    const requiredObject = thisLevelObjects.find(val => val.id === selectedObjectId);
+    const requiredObject = thisLevelObjects.find(val => val.id === currentObject.objectId);
     var requiredUser = {
       title: "Not assigned",
       capability: ""
@@ -93,9 +96,9 @@ class CurrentObjectTab extends React.Component {
     if (requiredObject !== undefined) {
       // объект определен
 
-      if (requiredObject.userId !== undefined && requiredObject.userId !== "") {
+      if (currentObject.userId !== undefined && currentObject.userId !== '') {
         // к объекту привязан пользователь
-        requiredUser = users.find(val => val.id === requiredObject.userId);
+        requiredUser = users.find(val => val.id === currentObject.userId);
       }
     } // иначе - либо объект не определен, либо к нему не привязан пользователь
 
@@ -110,7 +113,7 @@ class CurrentObjectTab extends React.Component {
         }}
       >
         <label className="labelCurrObj">
-          Выбранный объект #ID: {selectedObjectId}
+          Выбранный объект #ID: {currentObject.objectId}
         </label>
         <CurrentObjectItem
           object={requiredObject}
@@ -134,11 +137,12 @@ class CurrentObjectTab extends React.Component {
 //for redux:
 const mapStateToProps = state => ({
   objects: state.objects,
-  users: state.users
+  users: state.users,
+  currentObject: state.currentObject
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateUser }, dispatch)
+  actions: bindActionCreators({ updateUser, changeCurrentUser }, dispatch)
 });
 
 export default connect(

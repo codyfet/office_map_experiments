@@ -13,7 +13,7 @@ class CreateTab extends React.Component {
 
   render() {
 
-    const { searchList, onObjectClick, objectId, onUserClick } = this.props;
+    const { onObjectClick, objectId, onUserClick } = this.props;
 
     return (
       <Accordion allowMultiple>
@@ -23,7 +23,6 @@ class CreateTab extends React.Component {
           duration={300}  
         >
           <ObjectsList 
-            searchList={searchList} 
             onObjectClick={onObjectClick}
           />
         </AccordionItem>

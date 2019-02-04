@@ -329,6 +329,11 @@ class AdvancedBoard extends React.Component {
 
   }
 
+  // 5.3.2. Выделение объекта цветом:
+  setColor = () => {
+    
+  }
+
 
   
 
@@ -361,6 +366,7 @@ class AdvancedBoard extends React.Component {
           globalWidth={width - 20}
           globalHeight={height - 20}
           blockSnapSize={blockSnapSize}
+          // color={}
           
           showShadow={this.showCurrentObjectShadow}
           stopShadow={this.hideCurrentObjectShadow}

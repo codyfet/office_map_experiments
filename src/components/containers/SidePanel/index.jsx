@@ -156,18 +156,11 @@ class SidePanel extends React.Component {
             title="Current object" 
             expanded={ currentObject.state !== 'none' } 
           >
-            <CurrentObjectTab 
-              selectedObjectId={currentObject.objectId}
-              
-            />
+            <CurrentObjectTab />
             
           </AccordionItem>
-          <AccordionItem 
-            title="Create"
-            // expanded={ currentObject.state === 'none' }
-          >
+          <AccordionItem title="Create">
             <CreateTab
-              searchList={this.props.objects} 
               onObjectClick={this.selectObjectId}
               
               objectId={this.state.selectedObjectId}

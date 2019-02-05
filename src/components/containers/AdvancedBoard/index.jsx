@@ -364,7 +364,6 @@ class AdvancedBoard extends React.Component {
     const loadObject = thisLevelObjects.map((elem, i) => {
       // find userInfo for object:
       let currUser = users.find( (user) => user.id === elem.userId );
-      let userInfo = currUser === undefined ? 'no user' : currUser.title;
 
       if ( elem.movable === true ) {
         return  (

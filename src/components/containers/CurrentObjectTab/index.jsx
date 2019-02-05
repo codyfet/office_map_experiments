@@ -17,7 +17,7 @@ class CurrentObjectTab extends React.Component {
 
     this.state = {
       showObjectInfo: false,
-      showUserInfo: false
+      showChangeUserPanel: false
     };
   }
 
@@ -54,7 +54,7 @@ class CurrentObjectTab extends React.Component {
         alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Щелкните на одном из объектов!");
     } else {
         this.setState({
-            showUserInfo: !this.state.showUserInfo
+            showChangeUserPanel: !this.state.showChangeUserPanel
         });
     }
     
@@ -78,7 +78,7 @@ class CurrentObjectTab extends React.Component {
     }
 
     this.setState({
-        showUserInfo: !this.state.showUserInfo
+        showChangeUserPanel: !this.state.showChangeUserPanel
     });
   };
 
@@ -103,32 +103,33 @@ class CurrentObjectTab extends React.Component {
     } // иначе - либо объект не определен, либо к нему не привязан пользователь
 
     return (
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <div className="currentObjectContainer">
         <label className="labelCurrObj">
-          Выбранный объект #ID: {currentObject.objectId}
+          Изменить выбранный объект #ID: {currentObject.objectId}
         </label>
         <CurrentObjectItem
           object={requiredObject}
           isSelected={false}
           onClick={this.selectObject}
         />
-        <label className="labelCurrObj">Информация о пользователе:</label>
-        <UserSpecialItem
-            user={requiredUser}
-            isSelected={false}
-            onClick={this.openChangeUserPanel}
-        />
-        {this.state.showUserInfo && (
-          <UsersSpecialList onUserClick={this.selectUser} />
-        )}
+        { /*Пользователь показывается, только если текущий объект - стол: */
+          requiredObject !== undefined  && requiredObject.category === "table" &&
+          <div className="currentObjectContainer">
+            <label className="labelCurrObj">Изменить пользователя:</label>
+            <UserSpecialItem
+                user={requiredUser}
+                isSelected={false}
+                onClick={this.openChangeUserPanel}
+            />
+          </div>
+          
+        }
+        {
+          this.state.showChangeUserPanel && (
+            <UsersSpecialList onUserClick={this.selectUser} />
+          )
+        }
+        
       </div>
     );
   }

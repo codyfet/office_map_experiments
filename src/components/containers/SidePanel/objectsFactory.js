@@ -34,14 +34,6 @@ export default function createMapObject(type, id, coords, userId) {
             newObject.height = 15;
             break;
 
-        case "meeting_room":
-            
-            break;
-        
-        case "public_place":
-            
-            break;
-
         default:
             break; 
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Stage, Layer, Group, Rect, Text, Label, Tag } from "react-konva";
 import RectObject from "../../RectObject";
+import MovableObject from "../MovableObject/index";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
 
@@ -364,34 +365,39 @@ class AdvancedBoard extends React.Component {
       let userInfo = users.find( (user) => user.id === elem.userId );
       userInfo = userInfo === undefined ? 'no user' : userInfo.title;
 
-      return (
-        <RectObject
-          key={i}
-          id={elem.id}
-          // исправить:!!!!
-          userId={elem.userId}
-          userInfo={userInfo}
-
-          x={elem.coordinates.x}
-          y={elem.coordinates.y}
-          width={elem.width}
-          height={elem.height}
-          globalWidth={width - 20}
-          globalHeight={height - 20}
-          blockSnapSize={blockSnapSize}
-          setColor={this.setColor}
-          correctLocation={elem.correctLocation}
+      if ( elem.movable === true ) {
+        return  (
+          <MovableObject
+            key={i}
+            id={elem.id}
+            // исправить:!!!!
+            userId={elem.userId}
+            userInfo={userInfo}
+  
+            x={elem.coordinates.x}
+            y={elem.coordinates.y}
+            width={elem.width}
+            height={elem.height}
+            globalWidth={width - 20}
+            globalHeight={height - 20}
+            blockSnapSize={blockSnapSize}
+            setColor={this.setColor}
+            correctLocation={elem.correctLocation}
+            
+            showShadow={this.showCurrentObjectShadow}
+            stopShadow={this.hideCurrentObjectShadow}
+  
+            showContextMenu={this.showContextMenu}
+            hideContextMenu={this.hideContextMenu}
           
-          showShadow={this.showCurrentObjectShadow}
-          stopShadow={this.hideCurrentObjectShadow}
-
-          showContextMenu={this.showContextMenu}
-          hideContextMenu={this.hideContextMenu}
-        
-          shareObjectData={this.setCurrentObjectData}
-
-        />
-      );
+            shareObjectData={this.setCurrentObjectData}
+  
+          />
+        );
+      } else {
+        return;
+      }
+     
     });
 
     return (

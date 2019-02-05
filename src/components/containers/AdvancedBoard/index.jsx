@@ -362,27 +362,21 @@ class AdvancedBoard extends React.Component {
     
     const loadObject = thisLevelObjects.map((elem, i) => {
       // find userInfo for object:
-      let userInfo = users.find( (user) => user.id === elem.userId );
-      userInfo = userInfo === undefined ? 'no user' : userInfo.title;
+      let currUser = users.find( (user) => user.id === elem.userId );
+      let userInfo = currUser === undefined ? 'no user' : currUser.title;
 
       if ( elem.movable === true ) {
         return  (
           <MovableObject
             key={i}
-            id={elem.id}
-            // исправить:!!!!
-            userId={elem.userId}
-            userInfo={userInfo}
-  
-            x={elem.coordinates.x}
-            y={elem.coordinates.y}
-            width={elem.width}
-            height={elem.height}
+            object={elem}
+            user={currUser}
+            setColor={this.setColor}
+
             globalWidth={width - 20}
             globalHeight={height - 20}
             blockSnapSize={blockSnapSize}
-            setColor={this.setColor}
-            correctLocation={elem.correctLocation}
+            
             
             showShadow={this.showCurrentObjectShadow}
             stopShadow={this.hideCurrentObjectShadow}

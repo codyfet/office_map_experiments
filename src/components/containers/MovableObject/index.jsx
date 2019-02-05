@@ -14,9 +14,9 @@ export default class MovableObject extends React.Component {
     return {checkedX, checkedY};
   }
 
-  //2. Показать tooltip-информацию о пользователе объекта:
+  //2. Показать tooltip-информацию:
   showTooltipObjectInfo = (e) => {
-    const { userInfo } = this.props;
+    const { object, user } = this.props;
 
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -26,13 +26,15 @@ export default class MovableObject extends React.Component {
       y : e.currentTarget.y()
     });
 
-    // добавить userId:
-    tooltip.getText().setText(userInfo);
+    // добавить текст:
+    let text = object.category + ' : ';
+    text += (user !== undefined) ? user.title : 'no user';
+    tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();
   }
 
-  //3. Скрыть tooltip-информацию о пользователе объекта:
+  //3. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = (e) => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -44,10 +46,10 @@ export default class MovableObject extends React.Component {
   // ОБРАБОТКА СОБЫТИЙ:
   //---------------------------------------------------------
   onObjectDragStart = (e) => {
-    const { hideContextMenu, id, userId, shareObjectData } = this.props;
+    const { hideContextMenu, object, shareObjectData } = this.props;
     
     e.currentTarget.moveToTop();
-    shareObjectData(id, userId);
+    shareObjectData(object.id, object.userId);
     hideContextMenu();
   }
   
@@ -56,11 +58,8 @@ export default class MovableObject extends React.Component {
       showShadow, 
       stopShadow, 
       shareObjectData,
-      id,
-      userId, 
       blockSnapSize, 
-      width, 
-      height
+      object
     } = this.props;
     
     let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
@@ -69,8 +68,8 @@ export default class MovableObject extends React.Component {
       y: Math.round(checkedY / blockSnapSize) * blockSnapSize
     });
     
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]); 
-    shareObjectData(id, userId);
+    showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]); 
+    shareObjectData(object.id, object.userId);
 
     stopShadow();
   }
@@ -78,11 +77,10 @@ export default class MovableObject extends React.Component {
   onObjectDragMove = (e) => {
     const { 
       showShadow, 
-      width, 
-      height 
+      object 
     } = this.props;
     
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]);
+    showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
     this.showTooltipObjectInfo(e);
   }
   
@@ -91,12 +89,10 @@ export default class MovableObject extends React.Component {
     // всегда сообщаем id объекта:
     const { 
       shareObjectData,
-      id,
-      userId,
-      hideContextMenu 
+      object
     } = this.props;
 
-    shareObjectData(id, userId);
+    shareObjectData(object.id, object.userId);
     
   }
 
@@ -119,14 +115,11 @@ export default class MovableObject extends React.Component {
 
   render() {
     const {
-      x, 
-      y,
-      width,
-      height,
-      id,
-      correctLocation,
+      object,
       setColor
     } = this.props;
+
+    console.log('movable object', object);
 
     // draw a picture:
     // const drawIcon = iconPaths.shredder.path.map( (elem) => {
@@ -149,8 +142,8 @@ export default class MovableObject extends React.Component {
     
     return (
       <Group
-        x={x}
-        y={y}
+        x={object.coordinates.x}
+        y={object.coordinates.y}
         draggable={true}
         
         onDragStart={this.onObjectDragStart}
@@ -164,21 +157,20 @@ export default class MovableObject extends React.Component {
 
       >
         <Rect
-          width={width}
-          height={height}
-          fill={setColor(id, correctLocation)}
+          width={object.width}
+          height={object.height}
+          fill={setColor(object.id, object.correctLocation)}
           stroke={'black'}
-          strokeWidth={1}
+          strokeWidth={0.5}
           shadowColor={'black'}
           shadowBlur={2}
           shadowOffset={{x : 1, y : 1}}
           shadowOpacity={0.4}  
-          name='right' // имя объекта  
-          prevFill={setColor(id, correctLocation)}
+          name='right' // имя объекта 
             
         />
         <Text
-          text={`ID:${id}`}
+          text={`ID:${object.id}`}
           fontSize={6}
           align="center"
         />

@@ -1,4 +1,4 @@
-const DEFAULT_COLOR = "#E9DAA8";
+const DEFAULT_COLOR = "#E9DAA8"; //"#F9F2DC"
 const WARNING_COLOR = "red";
 const SELECTED_COLOR = "orange";
 

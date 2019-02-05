@@ -122,22 +122,23 @@ export default class MovableObject extends React.Component {
     console.log('movable object', object);
 
     // draw a picture:
-    // const drawIcon = iconPaths.shredder.path.map( (elem) => {
-    //   return (
-    //     <Path
-    //       x={width/2-5}
-    //       y={height/2-5}
-    //       data={elem}
-    //       fill='black'
-    //       scale={{
-    //         x: 0.02,
-    //         y: 0.02
-    //       }}
+    const drawIcon = iconPaths[object.category].path.map( (path, i) => {
+      return (
+        <Path
+          key={i}
+          x={object.width/2-5}
+          y={object.height/2-5}
+          data={path}
+          fill='black'
+          scale={{
+            x: 0.02,
+            y: 0.02
+          }}
 
-    //     />
-    //   );
+        />
+      );
 
-    // });
+    });
     
     
     return (
@@ -160,13 +161,12 @@ export default class MovableObject extends React.Component {
           width={object.width}
           height={object.height}
           fill={setColor(object.id, object.correctLocation)}
-          stroke={'black'}
-          strokeWidth={0.5}
+          // stroke={'black'}
+          // strokeWidth={0.5}
           shadowColor={'black'}
           shadowBlur={2}
           shadowOffset={{x : 1, y : 1}}
           shadowOpacity={0.4}  
-          name='right' // имя объекта 
             
         />
         <Text
@@ -174,7 +174,7 @@ export default class MovableObject extends React.Component {
           fontSize={6}
           align="center"
         />
-        {/* {drawIcon} */}
+        {drawIcon}
       </Group> 
     );
   }

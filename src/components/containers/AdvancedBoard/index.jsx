@@ -2,6 +2,7 @@ import * as React from "react";
 import { Stage, Layer, Group, Rect, Text, Label, Tag } from "react-konva";
 import RectObject from "../../RectObject";
 import MovableObject from "../MovableObject/index";
+import StaticObject from "../StaticObject/index";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
 
@@ -377,7 +378,6 @@ class AdvancedBoard extends React.Component {
             globalHeight={height - 20}
             blockSnapSize={blockSnapSize}
             
-            
             showShadow={this.showCurrentObjectShadow}
             stopShadow={this.hideCurrentObjectShadow}
   
@@ -389,7 +389,19 @@ class AdvancedBoard extends React.Component {
           />
         );
       } else {
-        return;
+        return (
+          <StaticObject
+            key={i}
+            object={elem}
+            user={currUser}
+            setColor={this.setColor}
+
+            showContextMenu={this.showContextMenu}
+            hideContextMenu={this.hideContextMenu}
+          
+            shareObjectData={this.setCurrentObjectData}
+          />
+        );
       }
      
     });

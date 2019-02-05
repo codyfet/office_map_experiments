@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { changeCurrentObject, changeCurrentUser } from '../../../actions/index';
 
 // статические данные карты:
-import mapData from '../../../res/mapData.json';
+import objectCategories from '../../../res/objectCategories.json';
 
 
 export default class CurrentObjectItem extends React.Component {
@@ -26,7 +26,7 @@ export default class CurrentObjectItem extends React.Component {
 
         // иначе:
         let rezult = { 
-            text: mapData.categories.find((cat) => cat.id === object.category).title,
+            text: objectCategories.find((cat) => cat.id === object.category).title,
             fill: ['black'] 
         };
 
@@ -51,6 +51,7 @@ export default class CurrentObjectItem extends React.Component {
 
             case "column":
                 rezult.content = iconPaths.column;
+                break;
 
             case "meeting_room":
                 rezult.content = iconPaths.meeting_room;

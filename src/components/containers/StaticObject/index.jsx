@@ -1,23 +1,14 @@
 import React from 'react';
 import { Rect, Text, Group, Path } from 'react-konva';
-import { DEFAULT_COLOR, SELECTED_COLOR } from '../res/constantsObjectsColors';
 
-import iconPaths from '../res/iconPaths';
+import iconPaths from '../../../res/iconPaths';
 
 export default class StaticObject extends React.Component {
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
-  //1. Держать координаты в границах глобальной области:
-  checkBoundaries(x, y){
-    const { globalWidth, globalHeight, width, height } = this.props;
-    let checkedX = x < 10 ? 10 : (x > (globalWidth-(width-10)) ? (globalWidth-(width-10)) : x);
-    let checkedY = y < 10 ? 10 : (y > (globalHeight-(height-10)) ? (globalHeight-(height-10)) : y);
-    return {checkedX, checkedY};
-  }
-
-  //2. Показать tooltip-информацию о пользователе объекта:
+  // 1. Показать tooltip-информацию:
   showTooltipObjectInfo = (e) => {
-    const { userInfo } = this.props;
+    const { object } = this.props;
 
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -27,13 +18,14 @@ export default class StaticObject extends React.Component {
       y : e.currentTarget.y()
     });
 
-    // добавить userId:
-    tooltip.getText().setText(userInfo);
+    // добавить текст:
+    let text = object.category;
+    tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();
   }
 
-  //3. Скрыть tooltip-информацию о пользователе объекта:
+  //2. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = (e) => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -44,60 +36,14 @@ export default class StaticObject extends React.Component {
 
   // ОБРАБОТКА СОБЫТИЙ:
   //---------------------------------------------------------
-  onObjectDragStart = (e) => {
-    const { hideContextMenu, id, userId, shareObjectData } = this.props;
-    
-    e.currentTarget.moveToTop();
-    shareObjectData(id, userId);
-    hideContextMenu();
-  }
-  
-  onObjectDragEnd = (e) => {
-    const { 
-      showShadow, 
-      stopShadow, 
-      shareObjectData,
-      id,
-      userId, 
-      blockSnapSize, 
-      width, 
-      height
-    } = this.props;
-    
-    let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
-    e.currentTarget.position({
-      x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
-      y: Math.round(checkedY / blockSnapSize) * blockSnapSize
-    });
-    
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]); 
-    shareObjectData(id, userId);
-
-    stopShadow();
-  }
-      
-  onObjectDragMove = (e) => {
-    const { 
-      showShadow, 
-      width, 
-      height 
-    } = this.props;
-    
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [width, height]);
-    this.showTooltipObjectInfo(e);
-  }
-  
-
   onObjectClick = (e) => {
     // всегда сообщаем id объекта:
     const { 
       shareObjectData,
-      id,
-      userId,
-      hideContextMenu 
+      object
     } = this.props;
 
-    shareObjectData(id, userId);
+    shareObjectData(object.id, object.userId);
     
   }
 
@@ -120,43 +66,62 @@ export default class StaticObject extends React.Component {
 
   render() {
     const {
-      x, 
-      y,
-      width,
-      height,
-      id,
-      correctLocation,
+      object,
       setColor
     } = this.props;
 
+    console.log('movable object', object);
+
     // draw a picture:
-    // const drawIcon = iconPaths.shredder.path.map( (elem) => {
-    //   return (
-    //     <Path
-    //       x={width/2-5}
-    //       y={height/2-5}
-    //       data={elem}
-    //       fill='black'
-    //       scale={{
-    //         x: 0.02,
-    //         y: 0.02
-    //       }}
+    // рассчитаем scale и paddingTop, paddingLeft: потом исправить!!!
+    let scale = 1;
+    let paddingTop = 0;
+    let paddingLeft = 0;
+    switch (object.category) {
+        case "column":
+            scale = 0.015;
+            paddingLeft = 3.5;
+            paddingTop = 3.5;
+            break;
+        case "meeting_room":
+            scale = 0.02;
+            paddingLeft = 5;
+            paddingTop = 5;
+            break;
+        case "public_place":
+            scale = 0.15;
+            paddingLeft = 5.5;
+            paddingTop = 5.5;
+            break;
+        default:
+            break;
+    };
 
-    //     />
-    //   );
+    const drawIcon = iconPaths[object.category].path.map( (path, i) => {
+      return (
+        <Path
+          key={i}
+          x={object.width/2-paddingLeft}
+          y={object.height/2-paddingTop}
+          data={path}
+          fill='black'
+          scale={{
+            x: scale,
+            y: scale
+          }}
 
-    // });
+        />
+      );
+
+    });
     
     
     return (
       <Group
-        x={x}
-        y={y}
-        draggable={true}
+        x={object.coordinates.x}
+        y={object.coordinates.y}
+        draggable={false}
         
-        onDragStart={this.onObjectDragStart}
-        onDragEnd={this.onObjectDragEnd}
-        onDragMove={this.onObjectDragMove}
         onClick={this.onObjectClick}
         onContextMenu={this.onObjectContextMenu}
         onMouseEnter={this.onObjectMouseMove}
@@ -165,25 +130,23 @@ export default class StaticObject extends React.Component {
 
       >
         <Rect
-          width={width}
-          height={height}
-          fill={setColor(id, correctLocation)}
-          stroke={'black'}
-          strokeWidth={1}
+          width={object.width}
+          height={object.height}
+          fill={setColor(object.id, object.correctLocation)}
+          // stroke={'black'}
+          // strokeWidth={0.5}
           shadowColor={'black'}
           shadowBlur={2}
           shadowOffset={{x : 1, y : 1}}
           shadowOpacity={0.4}  
-          name='right' // имя объекта  
-          prevFill={setColor(id, correctLocation)}
             
         />
         <Text
-          text={`ID:${id}`}
+          text={`ID:${object.id}`}
           fontSize={6}
           align="center"
         />
-        {/* {drawIcon} */}
+        {drawIcon}
       </Group> 
     );
   }

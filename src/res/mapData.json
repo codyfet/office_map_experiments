@@ -1,42 +1,4 @@
 {
-  "categories": [
-    {
-      "id": "people",
-      "title": "Сотрудники",
-      "color": "#b7a6bd",
-      "show": "false"
-    },
-    {
-      "id": "table",
-      "title": "Стол",
-      "color": "black",
-      "show": "true"
-    },
-    {
-      "id": "cupboard",
-      "title": "Шкаф",
-      "color": "black",
-      "show": "true"
-    },
-    {
-      "id": "printer",
-      "title": "Принтер",
-      "color": "black",
-      "show": "true"
-    },
-    {
-      "id": "scaner",
-      "title": "Сканер",
-      "color": "black",
-      "show": "true"
-    },
-    {
-      "id": "shredder",
-      "title": "Шреддер",
-      "color": "black",
-      "show": "true"
-    }
-  ],
   "users": [
     {
       "id": "t0018",
@@ -166,7 +128,7 @@
 
       ],
 
-      "movableIdNext": 6,
+      "movableIdNext": 10,
       "objects": [
         {
           "category": "column",
@@ -225,6 +187,46 @@
           "width": 15,
           "height": 30,
           "userId": "t0020",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "cupboard",
+          "id": 6,
+          "coordinates": { "x": 65, "y": 20 },
+          "width": 10,
+          "height": 20,
+          "userId": "",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "printer",
+          "id": 7,
+          "coordinates": { "x": 75, "y": 20 },
+          "width": 15,
+          "height": 15,
+          "userId": "",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "scaner",
+          "id": 8,
+          "coordinates": { "x": 90, "y": 20 },
+          "width": 15,
+          "height": 15,
+          "userId": "",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "shredder",
+          "id": 9,
+          "coordinates": { "x": 105, "y": 20 },
+          "width": 15,
+          "height": 15,
+          "userId": "",
           "movable": true,
           "correctLocation": true
         }

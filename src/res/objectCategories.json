@@ -1,0 +1,49 @@
+[
+    {
+      "id": "people",
+      "title": "Сотрудники",
+      "color": "#b7a6bd"
+    },
+    {
+      "id": "column",
+      "title": "Колонна",
+      "color": "black"
+    },
+    {
+      "id": "meeting_room",
+      "title": "Переговорная комната",
+      "color": "black"
+    },
+    {
+      "id": "public_place",
+      "title": "Общественное место",
+      "color": "black"
+    },
+
+    {
+      "id": "table",
+      "title": "Стол",
+      "color": "black"
+    },
+    {
+      "id": "cupboard",
+      "title": "Шкаф",
+      "color": "black"
+    },
+    {
+      "id": "printer",
+      "title": "Принтер",
+      "color": "black"
+    },
+    {
+      "id": "scaner",
+      "title": "Сканер",
+      "color": "black"
+    },
+    {
+      "id": "shredder",
+      "title": "Шреддер",
+      "color": "black"
+    }
+]
+

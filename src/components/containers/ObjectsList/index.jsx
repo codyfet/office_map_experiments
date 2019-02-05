@@ -3,7 +3,7 @@ import ObjectItem from '../ObjectItem/index';
 import "./styles.css";
 
 // статические данные карты:
-import mapData from '../../../res/mapData.json';
+import objectCategories from '../../../res/objectCategories.json';
 
 export default class ObjectsList extends React.Component {
   constructor(props) {
@@ -26,7 +26,8 @@ export default class ObjectsList extends React.Component {
   }
 
   render() {
-    const searchList = mapData.categories.slice(1);
+    // до 4-ой позиции идут категории статичных объектов и пользователей:
+    const searchList = objectCategories.slice(4);
 
     let loadObjects = searchList.map((elem, i) => {
       return (

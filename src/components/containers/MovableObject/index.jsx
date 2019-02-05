@@ -27,8 +27,12 @@ export default class MovableObject extends React.Component {
     });
 
     // добавить текст:
-    let text = object.category + ' : ';
-    text += (user !== undefined) ? user.title : 'no user';
+    let text = object.category;
+    if (object.category === "table") {
+        text += " : ";
+        text += (user !== undefined) ? user.title : 'no user';
+    }
+
     tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();
@@ -48,7 +52,7 @@ export default class MovableObject extends React.Component {
   onObjectDragStart = (e) => {
     const { hideContextMenu, object, shareObjectData } = this.props;
     
-    e.currentTarget.moveToTop();
+    // e.currentTarget.moveToTop();
     shareObjectData(object.id, object.userId);
     hideContextMenu();
   }
@@ -94,6 +98,9 @@ export default class MovableObject extends React.Component {
 
     shareObjectData(object.id, object.userId);
     
+    // если нужно - выведем объект на передний план:
+    e.currentTarget.moveToTop();
+    
   }
 
   onObjectContextMenu = (e) => {
@@ -122,17 +129,51 @@ export default class MovableObject extends React.Component {
     console.log('movable object', object);
 
     // draw a picture:
+    // рассчитаем scale и paddingTop, paddingLeft: потом исправить!!!
+    let scale = 1;
+    let paddingTop = 0;
+    let paddingLeft = 0;
+    switch (object.category) {
+        case "table":
+            scale = 0.025;
+            paddingLeft = 6;
+            paddingTop = 4;
+            break;
+        case "cupboard":
+            scale = 0.02;
+            paddingLeft = 5;
+            paddingTop = 5;
+            break;
+        case "printer":
+            scale = 0.03;
+            paddingLeft = 5.5;
+            paddingTop = 5.5;
+            break;
+        case "scaner":
+            scale = 0.02;
+            paddingLeft = 5;
+            paddingTop = 5;
+            break;
+        case "shredder":
+            scale = 0.02;
+            paddingLeft = 5;
+            paddingTop = 5;
+            break;
+        default:
+            break;
+    };
+
     const drawIcon = iconPaths[object.category].path.map( (path, i) => {
       return (
         <Path
           key={i}
-          x={object.width/2-5}
-          y={object.height/2-5}
+          x={object.width/2-paddingLeft}
+          y={object.height/2-paddingTop}
           data={path}
           fill='black'
           scale={{
-            x: 0.02,
-            y: 0.02
+            x: scale,
+            y: scale
           }}
 
         />
@@ -169,11 +210,11 @@ export default class MovableObject extends React.Component {
           shadowOpacity={0.4}  
             
         />
-        <Text
+        {/* <Text
           text={`ID:${object.id}`}
           fontSize={6}
           align="center"
-        />
+        /> */}
         {drawIcon}
       </Group> 
     );

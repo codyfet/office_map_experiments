@@ -14,7 +14,8 @@ import {
   moveObject, 
   changeCurrentObject,
   changeCurrentUser,
-  changeCurrentObjectState 
+  changeCurrentObjectState,
+  changeCorrectLocation 
 
 } from "../../../actions/index";
 
@@ -177,30 +178,43 @@ class AdvancedBoard extends React.Component {
     // ВЫДЕЛЕНИЕМ ОБЪЕКТА В RectObject:
     
     // залить цветом прямоугольник данного объекта:
-    let rect = currentObject.children[0];
+    // let rect = currentObject.children[0];
 
-    // сначала проверим, пересекается ли объект с границами или другим объектом:
-    if ( intersectedWithMapObjects || boundariesOverstepped ) {
-      // сначала сохраним данные о цвете, причем если элемент сейчас предупреждающего цвета,
-      // то данные переписывать не нужно:
-      rect.prevFill = rect.fill === WARNING_COLOR ? rect.prevFill : rect.fill;
-      // в этом случае закрашиваем предупреждающим цветом (даже если объект выделен):
-      rect.fill(WARNING_COLOR);
-    } else {
-      // иначе - проверим текущий цвет объекта
-      // если цвет для выделения, то мы должны его оставить:
-      if ( rect.attrs.fill === SELECTED_COLOR ) {
-        rect.fill(SELECTED_COLOR);
-      } else if ( rect.attrs.fill === WARNING_COLOR ) { //если объект был красного цвета, а сейчас все норм
-        // то закрасим предыдущим цветом, но не WARNING_COLOR:
-        if ( rect.attrs.prevFill === WARNING_COLOR ) {
-          rect.fill(DEFAULT_COLOR);
-        } else {
-          rect.fill(rect.attrs.prevFill);
-        }
+    // // сначала проверим, пересекается ли объект с границами или другим объектом:
+    // if ( intersectedWithMapObjects || boundariesOverstepped ) {
+    //   // сначала сохраним данные о цвете, причем если элемент сейчас предупреждающего цвета,
+    //   // то данные переписывать не нужно:
+    //   rect.prevFill = rect.fill === WARNING_COLOR ? rect.prevFill : rect.fill;
+    //   // в этом случае закрашиваем предупреждающим цветом (даже если объект выделен):
+    //   rect.fill(WARNING_COLOR);
+    // } else {
+    //   // иначе - проверим текущий цвет объекта
+    //   // если цвет для выделения, то мы должны его оставить:
+    //   if ( rect.attrs.fill === SELECTED_COLOR ) {
+    //     rect.fill(SELECTED_COLOR);
+    //   } else if ( rect.attrs.fill === WARNING_COLOR ) { //если объект был красного цвета, а сейчас все норм
+    //     // то закрасим предыдущим цветом, но не WARNING_COLOR:
+    //     if ( rect.attrs.prevFill === WARNING_COLOR ) {
+    //       rect.fill(DEFAULT_COLOR);
+    //     } else {
+    //       rect.fill(rect.attrs.prevFill);
+    //     }
         
-      }
+    //   }
+    // }
+    
+    // новая реализация:
+    const { actions } = this.props;
+    let newLocData = {
+      id: this.props.currentObject.objectId
+    };
+    if ( intersectedWithMapObjects || boundariesOverstepped ) {
+      newLocData.corrLoc = false;
+    } else {
+      newLocData.corrLoc = true; 
     }
+    actions.changeCorrectLocation(newLocData);
+
     
   };
 
@@ -330,7 +344,16 @@ class AdvancedBoard extends React.Component {
   }
 
   // 5.3.2. Выделение объекта цветом:
-  setColor = () => {
+  setColor = (id, isLocationCorrect) => {
+    const { currentObject } = this.props;
+    console.log( 'isLocationCorrect', isLocationCorrect );
+
+    if ( isLocationCorrect ) {
+      return currentObject.objectId === id ? SELECTED_COLOR : DEFAULT_COLOR;
+    } else {
+      return WARNING_COLOR;
+    }
+    
     
   }
 
@@ -338,7 +361,7 @@ class AdvancedBoard extends React.Component {
   
 
   render() {
-    const { width, height, objects, users } = this.props;
+    const { width, height, objects, users, currentObject } = this.props;
     
     // settings for map (KonvaGrid):
     const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = this.props.mapState; 
@@ -366,7 +389,8 @@ class AdvancedBoard extends React.Component {
           globalWidth={width - 20}
           globalHeight={height - 20}
           blockSnapSize={blockSnapSize}
-          // color={}
+          setColor={this.setColor}
+          correctLocation={elem.correctLocation}
           
           showShadow={this.showCurrentObjectShadow}
           stopShadow={this.hideCurrentObjectShadow}
@@ -491,7 +515,8 @@ const mapDispatchToProps = dispatch => ({
     moveObject,
     changeCurrentObject,
     changeCurrentUser,
-    changeCurrentObjectState   
+    changeCurrentObjectState,
+    changeCorrectLocation    
   }, dispatch)
 });
 

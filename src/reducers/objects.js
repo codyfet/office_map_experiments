@@ -4,7 +4,8 @@ import {
   TURN_OBJECT,
   DELETE_OBJECT,
   UPDATE_USER,
-  CHANGE_OBJECTS_LEVEL
+  CHANGE_OBJECTS_LEVEL,
+  CHANGE_CORRECT_LOCATION
 } from "../res/constants";
 import mapData from "../res/mapData.json";
 
@@ -54,6 +55,22 @@ export default function objects(state = initialState, action) {
       const movedObject = newLevels[lvl].find(val => val.id === objectId);
       if (movedObject !== undefined) {
         movedObject.coordinates = newPosition;
+      }
+
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
+    }
+    case CHANGE_CORRECT_LOCATION: {
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      
+      const objectId = action.payload.id;
+      const corrLoc = action.payload.corrLoc;
+      const object = newLevels[lvl].find(val => val.id === objectId);
+      if (object !== undefined) {
+        object.correctLocation = corrLoc;
       }
 
       return {

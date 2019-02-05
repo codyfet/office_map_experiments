@@ -148,22 +148,22 @@ export default class RectObject extends React.Component {
     shareObjectData(id, userId);
 
     // ВЫДЕЛЕНИЕ ОБЪЕКТА ЦВЕТОМ:
-    console.log('objectclick object', e.currentTarget);
-    let stage = e.target.getStage();
-    let currentObject = e.currentTarget;
+    // console.log('objectclick object', e.currentTarget);
+    // let stage = e.target.getStage();
+    // let currentObject = e.currentTarget;
 
-    // обработка нажатий кнопок:
-    if (e.evt.button === 0) { // если нажата левая: то снимем выделение:
-      this.unselectObjectWithColor(currentObject);
-      hideContextMenu();
+    // // обработка нажатий кнопок:
+    // if (e.evt.button === 0) { // если нажата левая: то снимем выделение:
+    //   this.unselectObjectWithColor(currentObject);
+    //   hideContextMenu();
 
-    } else if (e.evt.button === 2) { // если нажата правая, то выделяем цветом:
-      console.log('button 2', e);
-      // выделяем объект цветом, только если он еще не выделен:
-      if (currentObject.children[0].attrs.fill !== SELECTED_COLOR) {
-        this.selectObjectWithColor(currentObject, stage);
-      } 
-    }
+    // } else if (e.evt.button === 2) { // если нажата правая, то выделяем цветом:
+    //   console.log('button 2', e);
+    //   // выделяем объект цветом, только если он еще не выделен:
+    //   if (currentObject.children[0].attrs.fill !== SELECTED_COLOR) {
+    //     this.selectObjectWithColor(currentObject, stage);
+    //   } 
+    // }
     
   }
 
@@ -190,7 +190,9 @@ export default class RectObject extends React.Component {
       y,
       width,
       height,
-      id
+      id,
+      correctLocation,
+      setColor
     } = this.props;
     
     
@@ -213,7 +215,7 @@ export default class RectObject extends React.Component {
         <Rect
           width={width}
           height={height}
-          fill={DEFAULT_COLOR}
+          fill={setColor(id, correctLocation)}
           stroke={'black'}
           strokeWidth={1}
           shadowColor={'black'}
@@ -221,7 +223,7 @@ export default class RectObject extends React.Component {
           shadowOffset={{x : 1, y : 1}}
           shadowOpacity={0.4}  
           name='right' // имя объекта  
-          prevFill={DEFAULT_COLOR}
+          prevFill={setColor(id, correctLocation)}
             
         />
         <Text

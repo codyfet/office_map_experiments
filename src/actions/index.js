@@ -6,6 +6,7 @@ import {
   TURN_OBJECT,
   UPDATE_USER,
   CHANGE_OBJECTS_LEVEL,
+  CHANGE_CORRECT_LOCATION,
 
   CHANGE_MAP_LEVEL,
 
@@ -47,6 +48,11 @@ export const updateUser = (objData) => ({
 export const changeObjectsLevel = (level) => ({
   type: CHANGE_OBJECTS_LEVEL,
   payload: level
+});
+
+export const changeCorrectLocation = (objData) => ({
+  type: CHANGE_CORRECT_LOCATION,
+  payload: objData
 });
 
 // actions with map:

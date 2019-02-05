@@ -35,18 +35,6 @@
       "title": "Шреддер",
       "color": "black",
       "show": "true"
-    },
-    {
-      "id": "meeting_room",
-      "title": "Переговорная комната",
-      "color": "#b7a6bd",
-      "show": "true"
-    },
-    {
-      "id": "public_place",
-      "title": "Общественное место",
-      "color": "#b7a6bd",
-      "show": "false"
     }
   ],
   "users": [
@@ -181,8 +169,38 @@
       "movableIdNext": 3,
       "objects": [
         {
-          "category": "table",
+          "category": "column",
           "id": 0,
+          "coordinates": { "x": 100, "y": 100 },
+          "width": 15,
+          "height": 15,
+          "userId": "",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "public_place",
+          "id": 1,
+          "coordinates": { "x": 120, "y": 120 },
+          "width": 30,
+          "height": 30,
+          "userId": "",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "meeting_room",
+          "id": 2,
+          "coordinates": { "x": 120, "y": 180 },
+          "width": 20,
+          "height": 20,
+          "userId": "",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "table",
+          "id": 3,
           "coordinates": { "x": 20, "y": 20 },
           "width": 15,
           "height": 30,
@@ -192,7 +210,7 @@
         },
         {
           "category": "table",
-          "id": 1,
+          "id": 4,
           "coordinates": { "x": 35, "y": 20 },
           "width": 15,
           "height": 30,
@@ -202,7 +220,7 @@
         },
         {
           "category": "table",
-          "id": 2,
+          "id": 5,
           "coordinates": { "x": 50, "y": 20 },
           "width": 15,
           "height": 30,

@@ -30,14 +30,6 @@ export default class ObjectItem extends React.Component {
             case "shredder":
                 rezult.content = iconPaths.shredder;
                 break;
-
-            case "meeting_room":
-                rezult.content = iconPaths.meeting_room;
-                break;
-            
-            case "public_place":
-                rezult.content = iconPaths.public_place;
-                break;
     
             default:
                 break;

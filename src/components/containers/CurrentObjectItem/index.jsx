@@ -49,6 +49,9 @@ export default class CurrentObjectItem extends React.Component {
                 rezult.content = iconPaths.shredder;
                 break;
 
+            case "column":
+                rezult.content = iconPaths.column;
+
             case "meeting_room":
                 rezult.content = iconPaths.meeting_room;
                 break;

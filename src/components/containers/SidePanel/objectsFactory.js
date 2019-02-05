@@ -5,11 +5,12 @@ export default function createMapObject(type, id, coords, userId) {
         id: id,
         coordinates: coords,
         userId: '',
+        movable: true,
         correctLocation: true
     };
 
     switch (type) {
-        case 'table':
+        case "table":
             newObject.width = 15;
             newObject.height = 30;
             newObject.userId = userId;

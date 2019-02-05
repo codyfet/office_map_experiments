@@ -1,6 +1,8 @@
 import React from 'react';
-import { Rect, Text, Group } from 'react-konva';
+import { Rect, Text, Group, Path } from 'react-konva';
 import { DEFAULT_COLOR, SELECTED_COLOR } from '../res/constantsObjectsColors';
+
+import iconPaths from '../res/iconPaths';
 
 export default class RectObject extends React.Component {
   constructor(props){
@@ -20,49 +22,7 @@ export default class RectObject extends React.Component {
     return {checkedX, checkedY};
   }
 
-  //2. Выделить объект цветом:
-  // замечу, что на объекты react-konva
-  // передаваемое через jsx значение, даже если оно связано с state
-  // не меняет элемент (на примере fill)
-  selectObjectWithColor = (currentObject, stage) => {
-  
-    //1. рассмотрим все объекты и вернем им предыдущий цвет, если они были выделены:
-    stage.children[1].children.forEach((node, i) => {
-      // текущий объект не проверяем: 
-      // 0 и 1 объекты - это тень и границы - их не трогаем!
-      if ( node === currentObject || i < 2 ) {
-        return false;
-      }
-
-      let rect = node.children[0];
-      let currentFill = rect.attrs.fill;
-      let prevFill = rect.attrs.prevFill;
-      console.log('objectclick fill', i, node.children[0], currentFill, prevFill);
-        
-      if ( currentFill === SELECTED_COLOR ) {
-        rect.fill(prevFill);
-      }
-
-    });
-
-    //2. перекрасим текущий объект:
-    // сохраняем текущий цвет:
-    currentObject.children[0].attrs.prevFill = currentObject.children[0].attrs.fill;
-    // закрашиваем в новый:
-    currentObject.children[0].fill(SELECTED_COLOR);
-  }
-
-  //3. Снять выделение объекта:
-  unselectObjectWithColor = (currentObject) => {
-    // в этом случае уже не будет разных вариантов:
-    // объект был выделен и не нужно проверять другие объекты,
-    // ведь выделенным м.б. только 1 объект:
-    let rect = currentObject.children[0];
-    rect.fill(rect.attrs.prevFill);
-    
-  }
-
-  //4. Показать tooltip-информацию о пользователе объекта:
+  //2. Показать tooltip-информацию о пользователе объекта:
   showTooltipObjectInfo = (e) => {
     const { userInfo } = this.props;
 
@@ -70,7 +30,7 @@ export default class RectObject extends React.Component {
     let tooltip = tooltipLayer.children[0];
 
     var mousePos = e.target.getStage().getPointerPosition();
-    console.log('pointerPosition', mousePos);
+    
     tooltip.position({
       x : e.currentTarget.x(),
       y : e.currentTarget.y()
@@ -82,7 +42,7 @@ export default class RectObject extends React.Component {
     tooltipLayer.draw();
   }
 
-  //5. Скрыть tooltip-информацию о пользователе объекта:
+  //3. Скрыть tooltip-информацию о пользователе объекта:
   hideTooltipObjectInfo = (e) => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -94,9 +54,10 @@ export default class RectObject extends React.Component {
   // ОБРАБОТКА СОБЫТИЙ:
   //---------------------------------------------------------
   onObjectDragStart = (e) => {
-    const { hideContextMenu } = this.props;
+    const { hideContextMenu, id, userId, shareObjectData } = this.props;
     
     e.currentTarget.moveToTop();
+    shareObjectData(id, userId);
     hideContextMenu();
   }
   
@@ -146,24 +107,6 @@ export default class RectObject extends React.Component {
     } = this.props;
 
     shareObjectData(id, userId);
-
-    // ВЫДЕЛЕНИЕ ОБЪЕКТА ЦВЕТОМ:
-    // console.log('objectclick object', e.currentTarget);
-    // let stage = e.target.getStage();
-    // let currentObject = e.currentTarget;
-
-    // // обработка нажатий кнопок:
-    // if (e.evt.button === 0) { // если нажата левая: то снимем выделение:
-    //   this.unselectObjectWithColor(currentObject);
-    //   hideContextMenu();
-
-    // } else if (e.evt.button === 2) { // если нажата правая, то выделяем цветом:
-    //   console.log('button 2', e);
-    //   // выделяем объект цветом, только если он еще не выделен:
-    //   if (currentObject.children[0].attrs.fill !== SELECTED_COLOR) {
-    //     this.selectObjectWithColor(currentObject, stage);
-    //   } 
-    // }
     
   }
 
@@ -194,6 +137,24 @@ export default class RectObject extends React.Component {
       correctLocation,
       setColor
     } = this.props;
+
+    // draw a picture:
+    // const drawIcon = iconPaths.shredder.path.map( (elem) => {
+    //   return (
+    //     <Path
+    //       x={width/2-5}
+    //       y={height/2-5}
+    //       data={elem}
+    //       fill='black'
+    //       scale={{
+    //         x: 0.02,
+    //         y: 0.02
+    //       }}
+
+    //     />
+    //   );
+
+    // });
     
     
     return (
@@ -231,6 +192,7 @@ export default class RectObject extends React.Component {
           fontSize={6}
           align="center"
         />
+        {/* {drawIcon} */}
       </Group> 
     );
   }

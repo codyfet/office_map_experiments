@@ -14,7 +14,6 @@ import mapData from '../../../res/mapData.json';
 class MapLevelItem extends React.Component {
 
     _onSelect = (option) => {
-        console.log('selected', option);
         const { onSelectLevel } = this.props;
         onSelectLevel(option.value);
     }

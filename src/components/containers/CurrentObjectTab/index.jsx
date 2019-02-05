@@ -1,6 +1,5 @@
 import * as React from "react";
-import ObjectItem from "../../containers/ObjectItem/index";
-import UserSpecialItem from "../../containers/UserSpecialItem/index";
+import UserCurrentItem from "../../containers/UserCurrentItem/index";
 import UsersSpecialList from "../../containers/UsersSpecialList/index";
 import CurrentObjectItem from "../../containers/CurrentObjectItem/index";
 
@@ -82,6 +81,22 @@ class CurrentObjectTab extends React.Component {
     });
   };
 
+  onDeleteUser = () => {
+    const { actions, currentObject } = this.props;
+    const newUserId = "";
+    const newObjData = {
+      id: currentObject.objectId,
+      userId: newUserId
+    };
+    actions.updateUser(newObjData);
+    actions.changeCurrentUser(newUserId);
+  
+
+    this.setState({
+        showChangeUserPanel: false
+    });
+  }
+
   render() {
     const { currentObject, objects, users } = this.props;
 
@@ -116,10 +131,11 @@ class CurrentObjectTab extends React.Component {
           requiredObject !== undefined  && requiredObject.category === "table" &&
           <div className="currentObjectContainer">
             <label className="labelCurrObj">Изменить пользователя:</label>
-            <UserSpecialItem
+            <UserCurrentItem
                 user={requiredUser}
                 isSelected={false}
                 onClick={this.openChangeUserPanel}
+                onDeleteClick={this.onDeleteUser}
             />
           </div>
           

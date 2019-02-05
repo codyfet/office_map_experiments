@@ -272,6 +272,19 @@ class AdvancedBoard extends React.Component {
 
   }
 
+  onStageClick = (e) => {
+    // т.к. для каждый объект - группа, 
+    // каждая группа имеет имя "object"
+    // stage ловит объект низкого уровня - rect, line, text
+    // то мы можем понять объект это или нет по имени его родительского узла:
+    if (e.target.parent.attrs.name !== "object") {
+      // если мы поймали не объект,
+      // значит щелчко был не на объекте и мы сбрасываем, если есть:
+      // контекстное меню и выбранный объект:
+      this.flushAll();
+    } 
+  }
+
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
@@ -354,7 +367,13 @@ class AdvancedBoard extends React.Component {
       return WARNING_COLOR;
     }
     
-    
+  }
+
+  // 5.3.3. Сброс объекта и контекстного меню (для popover и konvaGrid):
+  flushAll = () => {
+    this.hideContextMenu();
+    this.setCurrentObjectData('', '');
+
   }
 
 
@@ -426,6 +445,7 @@ class AdvancedBoard extends React.Component {
           onDragEnd={this.onStageDragEnd}
           onDragMove={this.onStageDragMove}
           onDblClick={this.onStageDblClick}
+          onClick={this.onStageClick}
 
         >
           <KonvaGridLayer
@@ -433,6 +453,7 @@ class AdvancedBoard extends React.Component {
             height={mapHeight}
             blockSnapSize={blockSnapSize}
             boundaries={mapBoundaries}
+            flushAll={this.flushAll}
           />
           <Layer>
             {/*Shadow is here:*/}
@@ -489,7 +510,7 @@ class AdvancedBoard extends React.Component {
           <PopoverContainer
             x={this.state.contextMenuPos[0]}
             y={this.state.contextMenuPos[1]}
-            readyHandler={this.hideContextMenu}
+            readyHandler={this.flushAll}
           />
         )}
       </div>

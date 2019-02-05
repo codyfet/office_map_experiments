@@ -6,7 +6,7 @@ export default class KonvaGridLayer extends React.Component {
 
     render() {
         // getting settings for drawing grid:
-        const { width, height, blockSnapSize, boundaries } = this.props;
+        const { width, height, blockSnapSize, boundaries, flushAll } = this.props;
 
         // распарсим строку с границами:
         const borders = boundaries.split(' ').map((point) => {

@@ -209,7 +209,7 @@ export default class RectObject extends React.Component {
         onContextMenu={this.onObjectContextMenu}
         onMouseEnter={this.onObjectMouseMove}
         onMouseLeave={this.onObjectMouseOut}
-        name={""+id}
+        name="object"
 
       >
         <Rect

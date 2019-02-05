@@ -28,7 +28,6 @@ class PopoverContainer extends React.Component {
       } = this.props;
 
       actions.turnObject(currentObject.objectId);
-      readyHandler();
 
     }
 

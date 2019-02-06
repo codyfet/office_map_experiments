@@ -2,6 +2,7 @@ import * as React from "react";
 import UserCurrentItem from "../../containers/UserCurrentItem/index";
 import UsersSpecialList from "../../containers/UsersSpecialList/index";
 import CurrentObjectItem from "../../containers/CurrentObjectItem/index";
+import CurrentObjectSettings from "../../containers/CurrentObjectSettings/index";
 
 import "./styles.css";
 
@@ -15,7 +16,7 @@ class CurrentObjectTab extends React.Component {
     super(props);
 
     this.state = {
-      showObjectInfo: false,
+      showObjectSettings: false,
       showChangeUserPanel: false
     };
   }
@@ -42,7 +43,7 @@ class CurrentObjectTab extends React.Component {
   // select object:
   selectObject = id => {
     this.setState({
-      showObjectInfo: !this.state.showObjectInfo
+      showObjectSettings: !this.state.showObjectSettings
     });
   };
 
@@ -127,6 +128,12 @@ class CurrentObjectTab extends React.Component {
           isSelected={false}
           onClick={this.selectObject}
         />
+        {
+          requiredObject !== undefined && this.state.showObjectSettings && 
+          <CurrentObjectSettings 
+            object={requiredObject}
+          />
+        }
         { /*Пользователь показывается, только если текущий объект - стол: */
           requiredObject !== undefined  && requiredObject.category === "table" &&
           <div className="currentObjectContainer">

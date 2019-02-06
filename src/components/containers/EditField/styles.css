@@ -1,0 +1,12 @@
+.editField {
+  width: 100%;
+  display: flex;
+}
+
+.editFieldLabel {
+  width: 30%;
+}
+
+.editFieldInput {
+  width: 70%;
+}

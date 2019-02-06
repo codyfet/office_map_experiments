@@ -142,6 +142,7 @@
         },
         {
           "category": "public_place",
+          "title": "Кухня",
           "id": 1,
           "coordinates": { "x": 120, "y": 120 },
           "width": 30,
@@ -152,6 +153,7 @@
         },
         {
           "category": "meeting_room",
+          "title": "Тверь",
           "id": 2,
           "coordinates": { "x": 120, "y": 180 },
           "width": 20,
@@ -162,6 +164,7 @@
         },
         {
           "category": "service_room",
+          "title": "Склад IT",
           "id": 3,
           "coordinates": { "x": 140, "y": 180 },
           "width": 60,

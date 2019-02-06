@@ -2,6 +2,7 @@ import React from 'react';
 import { Rect, Text, Group, Path } from 'react-konva';
 
 import iconPaths from '../../../res/iconPaths';
+import objectCategories from '../../../res/objectCategories.json';
 
 export default class MovableObject extends React.Component {
 
@@ -27,11 +28,14 @@ export default class MovableObject extends React.Component {
     });
 
     // добавить текст:
-    let text = object.category;
+    let text = objectCategories.find((cat) => cat.id === object.category).title;
     if (object.category === "table") {
         text += " : ";
-        text += (user !== undefined) ? user.title : 'empty';
-    }
+        text += (user !== undefined) ? user.title : 'пустой';
+    } else if ( object.title !== undefined ) {
+      text += (" : " + object.title);
+    } 
+    
 
     tooltip.getText().setText(text);
     tooltip.show();

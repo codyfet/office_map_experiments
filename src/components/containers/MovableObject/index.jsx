@@ -30,7 +30,7 @@ export default class MovableObject extends React.Component {
     let text = object.category;
     if (object.category === "table") {
         text += " : ";
-        text += (user !== undefined) ? user.title : 'no user';
+        text += (user !== undefined) ? user.title : 'empty';
     }
 
     tooltip.getText().setText(text);
@@ -98,7 +98,7 @@ export default class MovableObject extends React.Component {
 
     shareObjectData(object.id, object.userId);
     
-    // если нужно - выведем объект на передний план:
+    // выведем объект на передний план:
     e.currentTarget.moveToTop();
     
   }
@@ -129,35 +129,35 @@ export default class MovableObject extends React.Component {
     console.log('movable object', object);
 
     // draw a picture:
-    // рассчитаем scale и paddingTop, paddingLeft: потом исправить!!!
+    // рассчитаем scale и shiftY, shiftX: потом исправить!!!
     let scale = 1;
-    let paddingTop = 0;
-    let paddingLeft = 0;
+    let shiftY = 0;
+    let shiftX = 0;
     switch (object.category) {
         case "table":
             scale = 0.025;
-            paddingLeft = 6;
-            paddingTop = 4;
+            shiftX = 6;
+            shiftY = 4;
             break;
         case "cupboard":
             scale = 0.02;
-            paddingLeft = 5;
-            paddingTop = 5;
+            shiftX = 5;
+            shiftY = 5;
             break;
         case "printer":
             scale = 0.03;
-            paddingLeft = 5.5;
-            paddingTop = 5.5;
+            shiftX = 5.5;
+            shiftY = 5.5;
             break;
         case "scaner":
             scale = 0.02;
-            paddingLeft = 5;
-            paddingTop = 5;
+            shiftX = 5;
+            shiftY = 5;
             break;
         case "shredder":
             scale = 0.02;
-            paddingLeft = 5;
-            paddingTop = 5;
+            shiftX = 5;
+            shiftY = 5;
             break;
         default:
             break;
@@ -167,8 +167,8 @@ export default class MovableObject extends React.Component {
       return (
         <Path
           key={i}
-          x={object.width/2-paddingLeft}
-          y={object.height/2-paddingTop}
+          x={object.width/2-shiftX}
+          y={object.height/2-shiftY}
           data={path}
           fill='black'
           scale={{

@@ -128,7 +128,7 @@
 
       ],
 
-      "movableIdNext": 10,
+      "movableIdNext": 11,
       "objects": [
         {
           "category": "column",
@@ -161,8 +161,18 @@
           "correctLocation": true
         },
         {
-          "category": "table",
+          "category": "service_room",
           "id": 3,
+          "coordinates": { "x": 140, "y": 180 },
+          "width": 60,
+          "height": 40,
+          "userId": "",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "table",
+          "id": 4,
           "coordinates": { "x": 20, "y": 20 },
           "width": 15,
           "height": 30,
@@ -172,7 +182,7 @@
         },
         {
           "category": "table",
-          "id": 4,
+          "id": 5,
           "coordinates": { "x": 35, "y": 20 },
           "width": 15,
           "height": 30,
@@ -182,7 +192,7 @@
         },
         {
           "category": "table",
-          "id": 5,
+          "id": 6,
           "coordinates": { "x": 50, "y": 20 },
           "width": 15,
           "height": 30,
@@ -192,7 +202,7 @@
         },
         {
           "category": "cupboard",
-          "id": 6,
+          "id": 7,
           "coordinates": { "x": 65, "y": 20 },
           "width": 10,
           "height": 20,
@@ -202,7 +212,7 @@
         },
         {
           "category": "printer",
-          "id": 7,
+          "id": 8,
           "coordinates": { "x": 75, "y": 20 },
           "width": 15,
           "height": 15,
@@ -212,7 +222,7 @@
         },
         {
           "category": "scaner",
-          "id": 8,
+          "id": 9,
           "coordinates": { "x": 90, "y": 20 },
           "width": 15,
           "height": 15,
@@ -222,7 +232,7 @@
         },
         {
           "category": "shredder",
-          "id": 9,
+          "id": 10,
           "coordinates": { "x": 105, "y": 20 },
           "width": 15,
           "height": 15,
@@ -236,7 +246,7 @@
 
     {
       "id": "third_floor",
-      "sortId": 2,
+      "sortId": 3,
       "title": "Третий этаж",
 
       "levelMapWidth": 3500,

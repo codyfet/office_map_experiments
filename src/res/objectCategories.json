@@ -19,6 +19,11 @@
       "title": "Общественное место",
       "color": "black"
     },
+    {
+      "id": "service_room",
+      "title": "Закрытое помещение",
+      "color": "black"
+    },
 
     {
       "id": "table",

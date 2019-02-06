@@ -27,7 +27,7 @@ export default class ObjectsList extends React.Component {
 
   render() {
     // до 4-ой позиции идут категории статичных объектов и пользователей:
-    const searchList = objectCategories.slice(4);
+    const searchList = objectCategories.slice(5);
 
     let loadObjects = searchList.map((elem, i) => {
       return (

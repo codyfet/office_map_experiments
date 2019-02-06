@@ -44,7 +44,9 @@ export default class StaticObject extends React.Component {
     } = this.props;
 
     shareObjectData(object.id, object.userId);
-    
+
+    // выведем объект на передний план:
+    e.currentTarget.moveToTop();
   }
 
   onObjectContextMenu = (e) => {
@@ -73,26 +75,31 @@ export default class StaticObject extends React.Component {
     console.log('movable object', object);
 
     // draw a picture:
-    // рассчитаем scale и paddingTop, paddingLeft: потом исправить!!!
+    // рассчитаем scale и shiftY, shiftX: потом исправить!!!
     let scale = 1;
-    let paddingTop = 0;
-    let paddingLeft = 0;
+    let shiftY = 0;
+    let shiftX = 0;
     switch (object.category) {
         case "column":
-            scale = 0.015;
-            paddingLeft = 3.5;
-            paddingTop = 3.5;
+            scale = 0.010;
+            shiftX = 2.5;
+            shiftY = 2.5;
             break;
         case "meeting_room":
             scale = 0.02;
-            paddingLeft = 5;
-            paddingTop = 5;
+            shiftX = 5;
+            shiftY = 5;
             break;
         case "public_place":
             scale = 0.15;
-            paddingLeft = 5.5;
-            paddingTop = 5.5;
+            shiftX = 5.5;
+            shiftY = 5.5;
             break;
+        case "service_room":
+            scale = 0.2;
+            shiftX = 5.5;
+            shiftY = 5.5;
+            break;  
         default:
             break;
     };
@@ -101,8 +108,8 @@ export default class StaticObject extends React.Component {
       return (
         <Path
           key={i}
-          x={object.width/2-paddingLeft}
-          y={object.height/2-paddingTop}
+          x={object.width/2-shiftX}
+          y={object.height/2-shiftY}
           data={path}
           fill='black'
           scale={{
@@ -141,11 +148,11 @@ export default class StaticObject extends React.Component {
           shadowOpacity={0.4}  
             
         />
-        <Text
+        {/* <Text
           text={`ID:${object.id}`}
           fontSize={6}
           align="center"
-        />
+        /> */}
         {drawIcon}
       </Group> 
     );

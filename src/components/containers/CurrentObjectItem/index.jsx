@@ -60,6 +60,9 @@ export default class CurrentObjectItem extends React.Component {
             case "public_place":
                 rezult.content = iconPaths.public_place;
                 break;
+            
+            case "service_room":
+                rezult.content = iconPaths.service_room;
     
             default:
                 break;

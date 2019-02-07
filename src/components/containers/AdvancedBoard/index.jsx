@@ -63,9 +63,9 @@ class AdvancedBoard extends React.Component {
   }
 
   // 1.2. Масштабируем сцену и фиксируем данные в redux:
-  handleStageScaleChange = (e, newScale) => {
+  handleStageScaleChange = (stage, newScale) => {
     // масштабируем сцену
-    const stage = e.target.getStage();
+    // const stage = e.target.getStage();
     stage.scale({ x: newScale, y: newScale });
 
     // заносим данные в redux:
@@ -78,17 +78,20 @@ class AdvancedBoard extends React.Component {
   }
 
   // 1.3. Авто-подстройка масштаба и сдвига под границы stage:
-  autoAdjustStage = (e, mapWidth, mapHeight) => {
+  autoAdjustStage = (stage, mapWidth, mapHeight) => {
+    // padding:
+    const padding = 20;
 
     // получаем границы окна:
     const { width, height } = this.props;
 
     // настраиваем масштаб:
-    let scaleX = width / mapWidth;
-    let scaleY = height / mapHeight;
+    let scaleX = width / (mapWidth + padding);
+    let scaleY = height / (mapHeight + padding);
     const newScale = scaleX > scaleY ? scaleX : scaleY;
 
-    this.handleStageScaleChange(e, newScale);
+    // const stage = e.target.getStage();
+    this.handleStageScaleChange(stage, newScale);
 
     // возвращаем сдвиг в первоначальное положение:
     this.handleStageShiftChange([0, 0]);
@@ -228,20 +231,19 @@ class AdvancedBoard extends React.Component {
     e.evt.preventDefault();
 
     const scaleBy = 1.05;
-    const oldScale = e.target.getStage().scaleX();
+    const stage = e.target.getStage();
+    const oldScale = stage.scaleX();
     const newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
     
-    this.handleStageScaleChange(e, newScale);
+    this.handleStageScaleChange(stage, newScale);
 
   }
  
   onStageDblClick = (e) => { 
     //границы карты:
     const { mapWidth, mapHeight } = this.props.mapState;
-    // padding:
-    const padding = 20;
 
-    this.autoAdjustStage(e, mapWidth + padding, mapHeight + padding);
+    this.autoAdjustStage(this.stageRef.getStage(), mapWidth, mapHeight);
 
   }
 
@@ -257,6 +259,7 @@ class AdvancedBoard extends React.Component {
       this.flushAll();
     } 
   }
+  
 
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
@@ -412,6 +415,7 @@ class AdvancedBoard extends React.Component {
         }}
       >
         <Stage
+          ref={ref => { this.stageRef = ref; }} // получим ссылку на stage
           x={this.props.boardState.shift[0]}
           y={this.props.boardState.shift[1]}
           

@@ -56,7 +56,9 @@ export default class MovableObject extends React.Component {
   onObjectDragStart = (e) => {
     const { hideContextMenu, object, shareObjectData } = this.props;
     
-    // e.currentTarget.moveToTop();
+    // выведем объект на передний план:
+    e.currentTarget.moveToTop();
+    
     shareObjectData(object.id, object.userId);
     hideContextMenu();
   }
@@ -130,7 +132,6 @@ export default class MovableObject extends React.Component {
       setColor
     } = this.props;
 
-    console.log('movable object', object);
 
     // draw a picture:
     // рассчитаем scale и shiftY, shiftX: потом исправить!!!

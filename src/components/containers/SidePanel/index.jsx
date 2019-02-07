@@ -18,7 +18,8 @@ import {
   changeCurrentObject, 
   changeCurrentUser,
   changeMapLevel,
-  changeObjectsLevel
+  changeObjectsLevel,
+  changeBoardState
 } from '../../../actions/index';
 
 // статические данные карты:
@@ -118,7 +119,7 @@ class SidePanel extends React.Component {
     console.log('selectedUserId', id);
   }
 
-  // for redux:
+  // FOR REDUX:
   // обнулить состояние:
   cleanCurrentObjectState = () => {
     const { actions } = this.props;
@@ -134,11 +135,62 @@ class SidePanel extends React.Component {
     const { actions } = this.props;
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
+
+    console.log('changeLevel');
+    // this.autoAdjustStage();
   
   }
 
+  // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
+  // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
+  // Фиксируем данные по сдвигу в redux:
+  handleStageShiftChange = (newShift) => {
+    if (
+      this.props.boardState.shift[0] !== newShift[0] ||
+      this.props.boardState.shift[1] !== newShift[1]
+    ) {
+      // заносим данные в redux: 
+      const { actions } = this.props;
+      const newState = Object.assign({}, this.props.boardState);
+      newState.shift = newShift;
 
-  // изменить пользователя:
+      actions.changeBoardState(newState);
+    }
+  }
+
+  // Масштабируем сцену и фиксируем данные в redux:
+  handleStageScaleChange = (newScale) => {
+    // заносим данные в redux:
+    const { actions } = this.props;
+    const newState = Object.assign({}, this.props.boardState);
+    newState.scale = newScale;
+
+    actions.changeBoardState(newState);
+
+  }
+
+  // Авто-подстройка масштаба и сдвига под границы stage:
+  autoAdjustStage = () => {
+    // padding:
+    const padding = 20;
+    // получаем границы карты:
+    const { mapWidth, mapHeight } = this.props.mapState;
+
+    // получаем границы окна :
+    const { width, height } = this.props;
+
+    // настраиваем масштаб:
+    let scaleX = width / (mapWidth + padding);
+    let scaleY = height / (mapHeight + padding);
+    const newScale = scaleX > scaleY ? scaleX : scaleY;
+
+    this.handleStageScaleChange(newScale);
+
+    // возвращаем сдвиг в первоначальное положение:
+    this.handleStageShiftChange([0, 0]);
+
+
+  };
 
   render() {
 
@@ -205,7 +257,8 @@ const mapDispatchToProps = (dispatch) => ({
     changeCurrentObject, 
     changeCurrentUser,
     changeMapLevel,
-    changeObjectsLevel 
+    changeObjectsLevel,
+    changeBoardState 
   }, dispatch)
 });
 

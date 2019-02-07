@@ -63,11 +63,7 @@ class AdvancedBoard extends React.Component {
   }
 
   // 1.2. Масштабируем сцену и фиксируем данные в redux:
-  handleStageScaleChange = (stage, newScale) => {
-    // масштабируем сцену
-    // const stage = e.target.getStage();
-    stage.scale({ x: newScale, y: newScale });
-
+  handleStageScaleChange = (newScale) => {
     // заносим данные в redux:
     const { actions } = this.props;
     const newState = Object.assign({}, this.props.boardState);
@@ -78,11 +74,13 @@ class AdvancedBoard extends React.Component {
   }
 
   // 1.3. Авто-подстройка масштаба и сдвига под границы stage:
-  autoAdjustStage = (stage, mapWidth, mapHeight) => {
+  autoAdjustStage = () => {
     // padding:
     const padding = 20;
+    // получаем границы карты:
+    const { mapWidth, mapHeight } = this.props.mapState;
 
-    // получаем границы окна:
+    // получаем границы окна :
     const { width, height } = this.props;
 
     // настраиваем масштаб:
@@ -90,8 +88,7 @@ class AdvancedBoard extends React.Component {
     let scaleY = height / (mapHeight + padding);
     const newScale = scaleX > scaleY ? scaleX : scaleY;
 
-    // const stage = e.target.getStage();
-    this.handleStageScaleChange(stage, newScale);
+    this.handleStageScaleChange(newScale);
 
     // возвращаем сдвиг в первоначальное положение:
     this.handleStageShiftChange([0, 0]);
@@ -231,19 +228,15 @@ class AdvancedBoard extends React.Component {
     e.evt.preventDefault();
 
     const scaleBy = 1.05;
-    const stage = e.target.getStage();
-    const oldScale = stage.scaleX();
+    const oldScale = this.props.boardState.scale;
     const newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
     
-    this.handleStageScaleChange(stage, newScale);
+    this.handleStageScaleChange(newScale);
 
   }
  
   onStageDblClick = (e) => { 
-    //границы карты:
-    const { mapWidth, mapHeight } = this.props.mapState;
-
-    this.autoAdjustStage(this.stageRef.getStage(), mapWidth, mapHeight);
+    this.autoAdjustStage();
 
   }
 
@@ -252,12 +245,14 @@ class AdvancedBoard extends React.Component {
     // каждая группа имеет имя "object"
     // stage ловит объект низкого уровня - rect, line, text
     // то мы можем понять объект это или нет по имени его родительского узла:
-    if (e.target.parent.attrs.name !== "object") {
+    if (e.target.parent === undefined || e.target.parent.attrs.name !== "object") {
       // если мы поймали не объект,
       // значит щелчко был не на объекте и мы сбрасываем, если есть:
       // контекстное меню и выбранный объект:
       this.flushAll();
-    } 
+    } else {
+      console.log(e);
+    }
   }
   
 
@@ -415,7 +410,6 @@ class AdvancedBoard extends React.Component {
         }}
       >
         <Stage
-          ref={ref => { this.stageRef = ref; }} // получим ссылку на stage
           x={this.props.boardState.shift[0]}
           y={this.props.boardState.shift[1]}
           
@@ -424,8 +418,10 @@ class AdvancedBoard extends React.Component {
           draggable={true}
 
           onWheel={this.onStageWheel}
-          scaleX={this.props.boardState.scale}
-          scaleY={this.props.boardState.scale}
+          scale={{ 
+            x: this.props.boardState.scale, 
+            y: this.props.boardState.scale 
+          }}
 
           onDragStart={this.onStageDragStart}
           onDragEnd={this.onStageDragEnd}

@@ -15,6 +15,7 @@ class MapLevelItem extends React.Component {
 
     _onSelect = (option) => {
         const { onSelectLevel } = this.props;
+        console.log('Change level on:', option.value);
         onSelectLevel(option.value);
     }
 

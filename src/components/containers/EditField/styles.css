@@ -10,3 +10,7 @@
 .editFieldInput {
   width: 70%;
 }
+
+.editFieldInput:focus{
+  outline: 2px solid orange;     /* oranges! yey */
+}

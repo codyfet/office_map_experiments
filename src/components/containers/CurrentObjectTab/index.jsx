@@ -41,13 +41,20 @@ class CurrentObjectTab extends React.Component {
   }
 
   // select object:
-  selectObject = id => {
+  openCloseObjectSettings = () => {
     this.setState({
       showObjectSettings: !this.state.showObjectSettings
     });
   };
 
-  // ? open changing user panel:
+  // open object settings panel:
+  closeObjectSettings = () => {
+    this.setState({
+      showObjectSettings: false
+    });
+  }
+
+  // open changing user panel:
   openChangeUserPanel = (id) => {
     const { currentObject } = this.props;
     if ( currentObject.objectId === '' ) {
@@ -126,12 +133,13 @@ class CurrentObjectTab extends React.Component {
         <CurrentObjectItem
           object={requiredObject}
           isSelected={false}
-          onClick={this.selectObject}
+          onClick={this.openCloseObjectSettings}
         />
         {
           requiredObject !== undefined && this.state.showObjectSettings && 
           <CurrentObjectSettings 
             object={requiredObject}
+            closeSettings={this.closeObjectSettings}
           />
         }
         { /*Пользователь показывается, только если текущий объект - стол: */

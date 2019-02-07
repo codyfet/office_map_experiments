@@ -6,7 +6,7 @@
 
 :root {
     --border-radius: 6px;
-    --color-primary: rgb(2, 2, 2);
+    --color-primary: rgb(77, 76, 76);
     --color-background: var(--color-primary);
     --color-background-active: rgb(39, 148, 235);
     --color-border: rgb(22, 110, 170);
@@ -25,7 +25,7 @@
     text-align: center;
     background: #ccc;
     border-top: 1px solid #ccc;
-    color: rgb(7, 7, 7);
+    color:black;
     padding: 10px;
     text-transform: uppercase;
     -webkit-transition: background-color 2s;
@@ -62,7 +62,7 @@
     text-align: center;
     background: #ccc;
     border-top: 1px solid #ccc;
-    color: rgb(7, 7, 7);
+    color: rgb(77, 76, 76);
     padding: 10px;
     text-transform: uppercase;
     -webkit-transition: background-color 2s;

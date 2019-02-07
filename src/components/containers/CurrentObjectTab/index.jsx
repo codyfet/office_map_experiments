@@ -120,9 +120,9 @@ class CurrentObjectTab extends React.Component {
 
     return (
       <div className="currentObjectContainer">
-        <label className="labelCurrObj">
+        <div className="labelCurrObj">
           Изменить выбранный объект #ID: {currentObject.objectId}
-        </label>
+        </div>
         <CurrentObjectItem
           object={requiredObject}
           isSelected={false}
@@ -137,7 +137,7 @@ class CurrentObjectTab extends React.Component {
         { /*Пользователь показывается, только если текущий объект - стол: */
           requiredObject !== undefined  && requiredObject.category === "table" &&
           <div className="currentObjectContainer">
-            <label className="labelCurrObj">Изменить пользователя:</label>
+            <div className="labelCurrObj">Изменить пользователя:</div>
             <UserCurrentItem
                 user={requiredUser}
                 isSelected={false}

@@ -5,22 +5,16 @@
   padding: 10px;
 }
 
-.editField {
+.buttonsSet {
   width: 100%;
   display: flex;
-  
+  justify-content: flex-end;
 }
 
-.editFieldLabel {
-  width: 30%;
-  
+.buttonAccept {
+  width: 35%;
 }
 
-.editFieldInput {
-  width: 70%;
-  
-}
-
-.labelCurrObj {
-  font-family: Helvetica;
+.buttonClose {
+  width: 35%;
 }

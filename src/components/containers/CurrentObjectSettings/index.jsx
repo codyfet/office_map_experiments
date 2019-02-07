@@ -45,8 +45,24 @@ class CurrentObjectSettings extends React.Component {
      
     });
 
+    
+
     return (
-      <div className="currentObjectSettingsContainer">{editFieldsPanel}</div>
+      <div className="currentObjectSettingsContainer">
+        {editFieldsPanel}
+        <div className="buttonsSet">
+          <button 
+            className="buttonAccept"
+          >
+            Применить
+          </button>
+          <button
+            className="buttonClose"
+          >
+            Закрыть
+          </button>
+        </div>
+      </div>
     );
   }
 }

@@ -6,7 +6,7 @@ import "./styles.css";
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateUser, changeCurrentUser } from "../../../actions/index";
+import { updateUser, changeCurrentUser, changeAnyObjectData } from "../../../actions/index";
 
 // статические данные карты:
 import objectCategories from '../../../res/objectCategories.json';
@@ -25,6 +25,15 @@ class CurrentObjectSettings extends React.Component {
       objectSettings: newObjectSettings
     },
     () => { console.log('objSettings', this.state.objectSettings) });
+
+  }
+
+  sendChangedDataToRedux = (objectData) => {
+    const { currentObject, actions } = this.props;
+    let newObjectData = Object.assign({}, objectData);
+    newObjectData.id = currentObject.objectId;
+
+    actions.changeAnyObjectData(newObjectData);
 
   }
 
@@ -90,6 +99,7 @@ class CurrentObjectSettings extends React.Component {
     }
 
     console.log('objDat', objectData);
+    this.sendChangedDataToRedux(objectData);
     
   }
 
@@ -162,7 +172,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateUser, changeCurrentUser }, dispatch)
+  actions: bindActionCreators({ updateUser, changeCurrentUser, changeAnyObjectData }, dispatch)
 });
 
 export default connect(

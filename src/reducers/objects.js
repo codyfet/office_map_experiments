@@ -5,7 +5,8 @@ import {
   DELETE_OBJECT,
   UPDATE_USER,
   CHANGE_OBJECTS_LEVEL,
-  CHANGE_CORRECT_LOCATION
+  CHANGE_CORRECT_LOCATION,
+  CHANGE_ANY_OBJECT_DATA
 } from "../res/constants";
 import mapData from "../res/mapData.json";
 
@@ -121,6 +122,23 @@ export default function objects(state = initialState, action) {
         levels: newLevels
       };
 
+    }
+    case CHANGE_ANY_OBJECT_DATA: {
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      
+      const objectData = action.payload;
+      const object = newLevels[lvl].find(val => val.id === objectData.id);
+      if (object !== undefined) {
+        for ( let key in objectData ) {
+          object[key] = objectData[key];
+        }
+      }
+
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
     }
     default: {
       return state;

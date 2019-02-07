@@ -76,8 +76,6 @@ export default class StaticObject extends React.Component {
       setColor
     } = this.props;
 
-    console.log('movable object', object);
-
     // draw a picture:
     // рассчитаем scale и shiftY, shiftX: потом исправить!!!
     let scale = 1;

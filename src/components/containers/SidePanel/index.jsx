@@ -109,14 +109,14 @@ class SidePanel extends React.Component {
     this.setState({
       selectedObjectId: id
     });
-    console.log('selectedObjectId', id);
+    // console.log('selectedObjectId', id);
   }
 
   selectUserId = (id) => {
     this.setState({
       selectedUserId: id
     });
-    console.log('selectedUserId', id);
+    // console.log('selectedUserId', id);
   }
 
   // FOR REDUX:
@@ -126,49 +126,22 @@ class SidePanel extends React.Component {
     actions.changeCurrentObject('');
     actions.changeCurrentUser('');
     
-    console.log('current state cleaned');
+    // console.log('current state cleaned');
   }
 
   // изменить уровень (этаж здания)
   onSelectLevel = (levelNumber) => {
+    this.cleanCurrentObjectState();
 
     const { actions } = this.props;
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
-
     console.log('changeLevel');
     // this.autoAdjustStage();
   
   }
 
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
-  // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
-  // Фиксируем данные по сдвигу в redux:
-  handleStageShiftChange = (newShift) => {
-    if (
-      this.props.boardState.shift[0] !== newShift[0] ||
-      this.props.boardState.shift[1] !== newShift[1]
-    ) {
-      // заносим данные в redux: 
-      const { actions } = this.props;
-      const newState = Object.assign({}, this.props.boardState);
-      newState.shift = newShift;
-
-      actions.changeBoardState(newState);
-    }
-  }
-
-  // Масштабируем сцену и фиксируем данные в redux:
-  handleStageScaleChange = (newScale) => {
-    // заносим данные в redux:
-    const { actions } = this.props;
-    const newState = Object.assign({}, this.props.boardState);
-    newState.scale = newScale;
-
-    actions.changeBoardState(newState);
-
-  }
-
   // Авто-подстройка масштаба и сдвига под границы stage:
   autoAdjustStage = () => {
     // padding:
@@ -184,11 +157,14 @@ class SidePanel extends React.Component {
     let scaleY = height / (mapHeight + padding);
     const newScale = scaleX > scaleY ? scaleX : scaleY;
 
-    this.handleStageScaleChange(newScale);
+    // сразу в redux:
+    const { actions } = this.props;
+    const newState = { 
+      shift: [0, 0], 
+      scale: newScale            
+    };
 
-    // возвращаем сдвиг в первоначальное положение:
-    this.handleStageShiftChange([0, 0]);
-
+    actions.changeBoardState(newState);
 
   };
 

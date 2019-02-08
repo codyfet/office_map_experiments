@@ -11,6 +11,12 @@ import { changeCurrentObject, changeCurrentUser } from '../../../actions/index';
 
 class CreateTab extends React.Component {
 
+  resetUserToDefault = () => {
+    const { onUserClick } = this.props;
+    onUserClick('');
+
+  }
+
   render() {
 
     const { onObjectClick, objectId, onUserClick } = this.props;
@@ -29,6 +35,7 @@ class CreateTab extends React.Component {
         <AccordionItem 
           title="Выберите пользователя"
           expanded={objectId === 'table'}
+          onClose={this.resetUserToDefault}
           duration={300}
         >
           { 

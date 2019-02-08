@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Stage, Layer, Group, Rect, Text, Label, Tag } from "react-konva";
-import RectObject from "../../RectObject";
-import MovableObject from "../MovableObject/index";
-import StaticObject from "../StaticObject/index";
+import MovableObject from "../MapObjects/MovableObject";
+import StaticObject from "../MapObjects/StaticObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
 

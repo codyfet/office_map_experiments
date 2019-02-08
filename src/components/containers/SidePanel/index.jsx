@@ -128,6 +128,7 @@ class SidePanel extends React.Component {
     console.log("levelNumber", levelNumber);
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
+    
     console.log('mapLevel', this.props.mapState.mapLevel);
     console.log('changeLevel');
     this.autoAdjustStage();
@@ -175,7 +176,7 @@ class SidePanel extends React.Component {
         <MapLevelItem 
           currentLevel={this.props.mapState.mapLevel}
           onSelectLevel={this.onSelectLevel}
-          
+
         />
         {/* accordeon: */}
         <Accordion>

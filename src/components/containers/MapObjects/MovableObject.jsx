@@ -3,13 +3,22 @@ import { Rect, Text, Group, Path } from 'react-konva';
 
 import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
+import getIconSettings from './iconSettingsForObjects';
 
-export default class StaticObject extends React.Component {
+export default class MovableObject extends React.Component {
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
-  // 1. Показать tooltip-информацию:
+  //1. Держать координаты в границах глобальной области:
+  checkBoundaries(x, y){
+    const { globalWidth, globalHeight, width, height } = this.props;
+    let checkedX = x < 10 ? 10 : (x > (globalWidth-(width-10)) ? (globalWidth-(width-10)) : x);
+    let checkedY = y < 10 ? 10 : (y > (globalHeight-(height-10)) ? (globalHeight-(height-10)) : y);
+    return {checkedX, checkedY};
+  }
+
+  //2. Показать tooltip-информацию:
   showTooltipObjectInfo = (e) => {
-    const { object } = this.props;
+    const { object, user } = this.props;
 
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -21,15 +30,20 @@ export default class StaticObject extends React.Component {
 
     // добавить текст:
     let text = objectCategories.find((cat) => cat.id === object.category).title;
-    if ( object.title !== undefined ) {
+    if (object.category === "table") {
+        text += " : ";
+        text += (user !== undefined) ? user.title : 'пустой';
+    } else if ( object.title !== undefined ) {
       text += (" : " + object.title);
-    }
+    } 
+    
+
     tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();
   }
 
-  //2. Скрыть tooltip-информацию:
+  //3. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = (e) => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -40,6 +54,48 @@ export default class StaticObject extends React.Component {
 
   // ОБРАБОТКА СОБЫТИЙ:
   //---------------------------------------------------------
+  onObjectDragStart = (e) => {
+    const { hideContextMenu, object, shareObjectData } = this.props;
+    
+    // выведем объект на передний план:
+    e.currentTarget.moveToTop();
+    
+    shareObjectData(object.id, object.userId);
+    hideContextMenu();
+  }
+  
+  onObjectDragEnd = (e) => {
+    const { 
+      showShadow, 
+      stopShadow, 
+      shareObjectData,
+      blockSnapSize, 
+      object
+    } = this.props;
+    
+    let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
+    e.currentTarget.position({
+      x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
+      y: Math.round(checkedY / blockSnapSize) * blockSnapSize
+    });
+    
+    showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]); 
+    shareObjectData(object.id, object.userId);
+
+    stopShadow();
+  }
+      
+  onObjectDragMove = (e) => {
+    const { 
+      showShadow, 
+      object 
+    } = this.props;
+    
+    showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
+    this.showTooltipObjectInfo(e);
+  }
+  
+
   onObjectClick = (e) => {
     // всегда сообщаем id объекта:
     const { 
@@ -48,9 +104,10 @@ export default class StaticObject extends React.Component {
     } = this.props;
 
     shareObjectData(object.id, object.userId);
-
+    
     // выведем объект на передний план:
     e.currentTarget.moveToTop();
+    
   }
 
   onObjectContextMenu = (e) => {
@@ -76,35 +133,9 @@ export default class StaticObject extends React.Component {
       setColor
     } = this.props;
 
+
     // draw a picture:
-    // рассчитаем scale и shiftY, shiftX: потом исправить!!!
-    let scale = 1;
-    let shiftY = 0;
-    let shiftX = 0;
-    switch (object.category) {
-        case "column":
-            scale = 0.010;
-            shiftX = 2.5;
-            shiftY = 2.5;
-            break;
-        case "meeting_room":
-            scale = 0.02;
-            shiftX = 5;
-            shiftY = 5;
-            break;
-        case "public_place":
-            scale = 0.15;
-            shiftX = 5.5;
-            shiftY = 5.5;
-            break;
-        case "service_room":
-            scale = 0.2;
-            shiftX = 5.5;
-            shiftY = 5.5;
-            break;  
-        default:
-            break;
-    };
+    const { shiftX, shiftY, scale } = getIconSettings(object.category);
 
     const drawIcon = iconPaths[object.category].path.map( (path, i) => {
       return (
@@ -129,8 +160,11 @@ export default class StaticObject extends React.Component {
       <Group
         x={object.coordinates.x}
         y={object.coordinates.y}
-        draggable={false}
+        draggable={true}
         
+        onDragStart={this.onObjectDragStart}
+        onDragEnd={this.onObjectDragEnd}
+        onDragMove={this.onObjectDragMove}
         onClick={this.onObjectClick}
         onContextMenu={this.onObjectContextMenu}
         onMouseEnter={this.onObjectMouseMove}

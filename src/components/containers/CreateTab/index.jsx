@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
-import UsersSpecialList from '../UsersSpecialList/index';
-import ObjectsList from '../ObjectsList/index';
+import UsersSpecialList from '../ListsComponents/UsersSpecialList/index';
+import ObjectsList from '../ListsComponents/ObjectsList/index';
 import './styles.css';
 
 // redux:

@@ -1,29 +1,20 @@
 import * as React from 'react';
+// redux:
+import { connect } from 'react-redux';
 import { Accordion, AccordionItem } from 'react-sanfona';
-import UsersList from '../UsersList/index';
-import './styles.css';
+import { bindActionCreators } from 'redux';
+import { changeBoardState, changeCurrentObject, changeCurrentUser, changeMapLevel, changeObjectsLevel, createObject } from '../../../actions/index';
 import CreateTab from '../../containers/CreateTab/index';
 import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
 import MapLevelItem from '../../containers/MapLevelItem/index';
+import UsersList from '../ListsComponents/UsersList/index';
+import createMapObject from './objectsFactory';
+import './styles.css';
 
 // для генерирования уникальных id:
 var genUniqId = require('uniqid');
 
-// redux:
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { 
-  createObject, 
-  changeCurrentObject, 
-  changeCurrentUser,
-  changeMapLevel,
-  changeObjectsLevel,
-  changeBoardState
-} from '../../../actions/index';
 
-// статические данные карты:
-import mapData from '../../../res/mapData.json';
-import createMapObject from './objectsFactory';
 
 
 class SidePanel extends React.Component {
@@ -126,10 +117,11 @@ class SidePanel extends React.Component {
 
     const { actions } = this.props;
     console.log("levelNumber", levelNumber);
+    console.log('actionsBefore', actions);
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
     
-    console.log('mapLevel', this.props.mapState.mapLevel);
+    console.log('actionsAfter', actions);
     console.log('changeLevel');
     this.autoAdjustStage();
     console.log('mapState', this.props.mapState);
@@ -169,6 +161,7 @@ class SidePanel extends React.Component {
   render() {
 
     const { selectedObjectId, currentObject } = this.props;
+    console.log('mapLevel', this.props.mapState.mapLevel);
 
     return (
       <div className="sidePanelContainer">

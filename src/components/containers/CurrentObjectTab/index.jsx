@@ -1,6 +1,6 @@
 import * as React from "react";
-import UserCurrentItem from "../../containers/UserCurrentItem/index";
-import UsersSpecialList from "../../containers/UsersSpecialList/index";
+import UserCurrentItem from "../../containers/ListsComponents/UserCurrentItem/index";
+import UsersSpecialList from "../../containers/ListsComponents/UsersSpecialList/index";
 import CurrentObjectItem from "../../containers/CurrentObjectItem/index";
 import CurrentObjectSettings from "../../containers/CurrentObjectSettings/index";
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import AdvancedSVG from '../../presentational/AdvancedSVG/index';
-import iconPaths from '../../../res/iconPaths';
+import iconPaths from '../../../../res/iconPaths';
+import AdvancedSVG from '../../../presentational/AdvancedSVG/index';
 import './styles.css';
 
 

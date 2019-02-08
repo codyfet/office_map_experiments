@@ -1,12 +1,11 @@
 import * as React from 'react';
-import AdvancedSVG from '../../presentational/AdvancedSVG/index';
-import iconPaths from '../../../res/iconPaths';
+import iconPaths from '../../../../res/iconPaths';
+import AdvancedSVG from '../../../presentational/AdvancedSVG/index';
 import './styles.css';
 
-
-export default function UserCurrentItem(props) {
+export default function UserSpecialItem(props) {
     
-    const { user, onClick, isSelected, onDeleteClick } = props;
+    const { user, onClick, isSelected } = props;
     
     function onUserSpecialItemClick() {
         if ( !isSelected ) {
@@ -18,7 +17,8 @@ export default function UserCurrentItem(props) {
 
     return (
         <div 
-            className="userItem"
+            className={ isSelected ? "selectedUserItem" : "userItem" } 
+            onClick={onUserSpecialItemClick}
         >
             <AdvancedSVG
                 width="30px"
@@ -29,16 +29,7 @@ export default function UserCurrentItem(props) {
                 <div>{user.title}</div>
                 <div>{user.capability}</div>
             </div>
-            <AdvancedSVG 
-                width="20px" 
-                content={iconPaths.edit} 
-                onClick={onUserSpecialItemClick}
-            />
-            <AdvancedSVG 
-                width="20px" 
-                content={iconPaths.delete} 
-                onClick={onDeleteClick}
-            />
+
 
         </div>         
     );

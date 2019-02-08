@@ -1,9 +1,7 @@
 import React from "react";
-import ObjectItem from '../ObjectItem/index';
+import objectCategories from './../../../../res/objectCategories.json';
+import ObjectItem from './../ObjectItem/index';
 import "./styles.css";
-
-// статические данные карты:
-import objectCategories from '../../../res/objectCategories.json';
 
 export default class ObjectsList extends React.Component {
   constructor(props) {

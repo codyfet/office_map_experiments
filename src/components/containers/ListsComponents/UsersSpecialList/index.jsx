@@ -1,12 +1,11 @@
 import * as React from "react";
-import UserSpecialItem from "../UserSpecialItem/index";
-import {DebounceInput} from 'react-debounce-input';
-import "./styles.css";
-
+import { DebounceInput } from 'react-debounce-input';
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addUser, editUser, deleteUser } from "../../../actions/index";
+import { addUser, deleteUser, editUser } from "../../../../actions/index";
+import UserSpecialItem from "../UserSpecialItem/index";
+import "./styles.css";
 
 
 class UsersSpecialList extends React.Component {

@@ -1,11 +1,13 @@
 import * as React from "react";
-import UserItem from "../UserItem/index";
-import "./styles.css";
-
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addUser, editUser, deleteUser } from "../../../actions/index";
+import { addUser, deleteUser, editUser } from "../../../../actions/index";
+// components:
+import UserItem from "../UserItem/index";
+import "./styles.css";
+
+
 
 class UsersList extends React.Component {
   

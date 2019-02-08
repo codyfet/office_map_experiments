@@ -9,6 +9,7 @@ import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
 import MapLevelItem from '../../containers/MapLevelItem/index';
 import UsersList from '../ListsComponents/UsersList/index';
 import createMapObject from './objectsFactory';
+import mapData from '../../../res/mapData.json';
 import './styles.css';
 
 // для генерирования уникальных id:
@@ -25,6 +26,15 @@ class SidePanel extends React.Component {
       selectedObjectId: '',
       selectedUserId: ''
     };
+  }
+
+  componentWillReceiveProps(nextProps){
+    // для центрирования сцены при изменении level:
+    if (nextProps.mapState !== this.props.mapState) {
+      console.log('mapState receive props', nextProps.mapState);
+      const { mapWidth, mapHeight } = nextProps.mapState;
+      this.autoAdjustStage(mapWidth, mapHeight);
+    }
   }
 
   getConvertedCoordsFrom(x, y) {
@@ -57,6 +67,7 @@ class SidePanel extends React.Component {
     return false;
   }
 
+  // ОБРАБОТЧИКИ НАЖАТИЙ НА КНОПКИ:
   onSubmitClick = () => {
     const { actions } = this.props;
     const { selectedObjectId, selectedUserId } = this.state;
@@ -85,8 +96,26 @@ class SidePanel extends React.Component {
 
   }
 
-  
+  onSaveMapClick = () => {
+    const { objects, users } = this.props;
+    // сохранение карты со всеми объектами и пользователями:
+    // сначала подггрузим весь файл mapData:
+    let mapDataFile = Object.assign({}, mapData);
+    console.log("mapData", mapData);
+    // дополним его изменившимися данными:
+    console.log("objects", objects);
+    console.log("users", users);
+    // mapDataFile.levels = objects.levels.map( lvl => {
 
+    // });
+    mapDataFile.users = users;
+    console.log("changedMapData", mapDataFile);
+
+    
+  }
+
+  
+  // ИЗМЕНЕНИЕ СОСТОЯНИЯ SIDE_PANEL:
   selectObjectId = (id) => {
     this.setState({
       selectedObjectId: id
@@ -120,22 +149,14 @@ class SidePanel extends React.Component {
     console.log('actionsBefore', actions);
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
-    
-    console.log('actionsAfter', actions);
-    console.log('changeLevel');
-    this.autoAdjustStage();
-    console.log('mapState', this.props.mapState);
 
   }
 
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
   // Авто-подстройка масштаба и сдвига под границы stage:
-  autoAdjustStage = () => {
+  autoAdjustStage = (mapWidth, mapHeight) => {
     // padding:
     const padding = 20;
-    // получаем границы карты:
-    const { mapWidth, mapHeight } = this.props.mapState;
-    console.log('mapState', this.props.mapState);
 
     // получаем границы окна :
     const { boardWidth, boardHeight } = this.props;
@@ -161,7 +182,6 @@ class SidePanel extends React.Component {
   render() {
 
     const { selectedObjectId, currentObject } = this.props;
-    console.log('mapLevel', this.props.mapState.mapLevel);
 
     return (
       <div className="sidePanelContainer">
@@ -200,6 +220,7 @@ class SidePanel extends React.Component {
           <AccordionItem title="Карта">
             <button
               style={{width: '100%'}}
+              onClick={this.onSaveMapClick}
             >
               Сохранить карту
             </button>

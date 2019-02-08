@@ -10,10 +10,16 @@ import MapLevelItem from '../../containers/MapLevelItem/index';
 import UsersList from '../ListsComponents/UsersList/index';
 import createMapObject from './objectsFactory';
 import mapData from '../../../res/mapData.json';
+
+import { saveAs } from 'file-saver';
 import './styles.css';
 
+// для сохранения файлов:
+var FileSaver = require('file-saver');
 // для генерирования уникальных id:
 var genUniqId = require('uniqid');
+// загрузить lodash:
+var _ = require('lodash');
 
 
 
@@ -126,7 +132,7 @@ class SidePanel extends React.Component {
     const { objects, users } = this.props;
     // сохранение карты со всеми объектами и пользователями:
     // сначала подггрузим весь файл mapData:
-    let mapDataFile = Object.assign({}, mapData);
+    let mapDataFile = _.cloneDeep(mapData);
     console.log("mapData", mapData);
     // дополним его изменившимися данными:
     console.log("objects", objects);
@@ -139,6 +145,10 @@ class SidePanel extends React.Component {
     });
     mapDataFile.users = users;
     console.log("changedMapData", mapDataFile);
+
+    // предлагаем загрузку пользователю:
+    var file = new File([JSON.stringify(mapDataFile)], "newMapData.json", {type: "text/plain;charset=utf-8"});
+    FileSaver.saveAs(file);
 
     
   }

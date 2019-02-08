@@ -1,7 +1,11 @@
 import { ADD_USER, EDIT_USER, DELETE_USER } from "../res/constants";
 import mapData from "../res/mapData.json";
+// загрузить lodash:
+var _ = require('lodash');
 
-const initialState = mapData.users;
+// загрузка объектов всех уровней:
+const mapDataCloned = _.cloneDeep(mapData);
+const initialState = mapDataCloned.users;
 
 export default function users(state = initialState, action) {
   switch ( action.type ) {

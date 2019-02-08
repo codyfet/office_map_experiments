@@ -9,9 +9,12 @@ import {
   CHANGE_ANY_OBJECT_DATA
 } from "../res/constants";
 import mapData from "../res/mapData.json";
+// загрузить lodash:
+var _ = require('lodash');
 
 // загрузка объектов всех уровней:
-const allLevelsObjects = mapData.levels.map( (elem) => (elem.objects) ); 
+const mapDataCloned = _.cloneDeep(mapData);
+const allLevelsObjects = mapDataCloned.levels.map( (elem) => (elem.objects) ); 
 
 const initialState = {
   mapLevel: 1, //по умолчанию мы загружаем 1 уровень

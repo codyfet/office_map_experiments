@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
 import UsersList from '../UsersList/index';
-import UsersSpecialList from '../UsersSpecialList/index';
-import ObjectsList from '../ObjectsList/index';
 import './styles.css';
-import { TransitionGroup } from 'react-transition-group';
 import CreateTab from '../../containers/CreateTab/index';
 import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
 import MapLevelItem from '../../containers/MapLevelItem/index';
 
+// для генерирования уникальных id:
+var genUniqId = require('uniqid');
 
 // redux:
 import { connect } from 'react-redux';
@@ -30,22 +29,11 @@ import createMapObject from './objectsFactory';
 class SidePanel extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.levelNum = 1;
 
     this.state = {
-      idCounter: mapData.levels[this.levelNum].movableIdNext,
       selectedObjectId: '',
       selectedUserId: ''
     };
-  }
-  
-  getNewId() {
-    const curr_id = this.state.idCounter;
-    this.setState({
-      idCounter: this.state.idCounter + 1
-    });
-    return curr_id; 
   }
 
   getConvertedCoordsFrom(x, y) {
@@ -95,10 +83,11 @@ class SidePanel extends React.Component {
     }
       
     const newObject = createMapObject(selectedObjectId, 
-                                      this.getNewId(), 
+                                      genUniqId(), 
                                       this.getConvertedCoordsFrom(750, 20),
                                       selectedUserId);
-  
+    
+    console.log('newObject', newObject);
     actions.createObject(newObject);
 
   }

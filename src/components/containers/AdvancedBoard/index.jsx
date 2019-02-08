@@ -250,9 +250,7 @@ class AdvancedBoard extends React.Component {
       // значит щелчко был не на объекте и мы сбрасываем, если есть:
       // контекстное меню и выбранный объект:
       this.flushAll();
-    } else {
-      console.log(e);
-    }
+    } 
   }
   
 

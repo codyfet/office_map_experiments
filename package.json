@@ -64,6 +64,7 @@
     "react-portal": "^4.2.0",
     "react-sanfona": "^1.4.0",
     "react-transition-group": "^1.2.1",
-    "svg-react-loader": "^0.4.6"
+    "svg-react-loader": "^0.4.6",
+    "uniqid": "^5.0.3"
   }
 }

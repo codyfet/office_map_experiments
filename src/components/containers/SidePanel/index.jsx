@@ -37,6 +37,32 @@ class SidePanel extends React.Component {
     }
   }
 
+  // Авто-подстройка масштаба и сдвига под границы stage:
+  autoAdjustStage = (mapWidth, mapHeight) => {
+    // padding:
+    const padding = 20;
+
+    // получаем границы окна :
+    const { boardWidth, boardHeight } = this.props;
+    console.log('wh', boardWidth, boardHeight);
+
+    // настраиваем масштаб:
+    let scaleX = boardWidth / (mapWidth + padding);
+    let scaleY = boardHeight / (mapHeight + padding);
+    console.log('scales', scaleX, scaleY);
+    const newScale = scaleX > scaleY ? scaleX : scaleY;
+
+    // сразу в redux:
+    const { actions } = this.props;
+    const newState = { 
+      shift: [0, 0], 
+      scale: newScale            
+    };
+
+    actions.changeBoardState(newState);
+
+  };
+
   getConvertedCoordsFrom(x, y) {
     const { shift, scale } = this.props.boardState;
     console.log('SidePanel shift, scale', scale, shift);
@@ -105,9 +131,12 @@ class SidePanel extends React.Component {
     // дополним его изменившимися данными:
     console.log("objects", objects);
     console.log("users", users);
-    // mapDataFile.levels = objects.levels.map( lvl => {
+    mapDataFile.levels = objects.levels.map( (objects, i) => {
+      let levelData = Object.assign({}, mapDataFile.levels[i]);
+      levelData.objects = objects;
+      return levelData;
 
-    // });
+    });
     mapDataFile.users = users;
     console.log("changedMapData", mapDataFile);
 
@@ -152,32 +181,7 @@ class SidePanel extends React.Component {
 
   }
 
-  // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
-  // Авто-подстройка масштаба и сдвига под границы stage:
-  autoAdjustStage = (mapWidth, mapHeight) => {
-    // padding:
-    const padding = 20;
-
-    // получаем границы окна :
-    const { boardWidth, boardHeight } = this.props;
-    console.log('wh', boardWidth, boardHeight);
-
-    // настраиваем масштаб:
-    let scaleX = boardWidth / (mapWidth + padding);
-    let scaleY = boardHeight / (mapHeight + padding);
-    console.log('scales', scaleX, scaleY);
-    const newScale = scaleX > scaleY ? scaleX : scaleY;
-
-    // сразу в redux:
-    const { actions } = this.props;
-    const newState = { 
-      shift: [0, 0], 
-      scale: newScale            
-    };
-
-    actions.changeBoardState(newState);
-
-  };
+ 
 
   render() {
 

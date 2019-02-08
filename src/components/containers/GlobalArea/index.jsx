@@ -7,14 +7,21 @@ import './style.css';
 export default class GlobalArea extends React.Component {
 
   render() {
+    // размеры доски:
+    const width = 800;
+    const height = 800;
+
     return (
        <div className="globalArea"> 
           <AdvancedBoard
-            width={800}
-            height={800}
+            width={width}
+            height={height}
 
           />
-          <SidePanel />
+          <SidePanel
+            boardWidth={width}
+            boardHeight={height}
+          />
       </div>          
     );
   }

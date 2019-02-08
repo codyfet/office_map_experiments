@@ -38,7 +38,7 @@ class SidePanel extends React.Component {
 
   getConvertedCoordsFrom(x, y) {
     const { shift, scale } = this.props.boardState;
-    // console.log('SidePanel', scale, shift);
+    console.log('SidePanel shift, scale', scale, shift);
     
     return { 
       x: (x - shift[0])/scale, 
@@ -81,7 +81,9 @@ class SidePanel extends React.Component {
         return;
       } 
     }
-      
+    
+    console.log('convertCoords', this.getConvertedCoordsFrom(750, 20));
+    
     const newObject = createMapObject(selectedObjectId, 
                                       genUniqId(), 
                                       this.getConvertedCoordsFrom(750, 20),
@@ -123,11 +125,14 @@ class SidePanel extends React.Component {
     this.cleanCurrentObjectState();
 
     const { actions } = this.props;
+    console.log("levelNumber", levelNumber);
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
+    console.log('mapLevel', this.props.mapState.mapLevel);
     console.log('changeLevel');
-    // this.autoAdjustStage();
-  
+    this.autoAdjustStage();
+    console.log('mapState', this.props.mapState);
+
   }
 
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
@@ -137,13 +142,16 @@ class SidePanel extends React.Component {
     const padding = 20;
     // получаем границы карты:
     const { mapWidth, mapHeight } = this.props.mapState;
+    console.log('mapState', this.props.mapState);
 
     // получаем границы окна :
-    const { width, height } = this.props;
+    const { boardWidth, boardHeight } = this.props;
+    console.log('wh', boardWidth, boardHeight);
 
     // настраиваем масштаб:
-    let scaleX = width / (mapWidth + padding);
-    let scaleY = height / (mapHeight + padding);
+    let scaleX = boardWidth / (mapWidth + padding);
+    let scaleY = boardHeight / (mapHeight + padding);
+    console.log('scales', scaleX, scaleY);
     const newScale = scaleX > scaleY ? scaleX : scaleY;
 
     // сразу в redux:
@@ -166,7 +174,9 @@ class SidePanel extends React.Component {
         {/* handle map level change: */}
         <MapLevelItem 
           currentLevel={this.props.mapState.mapLevel}
-          onSelectLevel={this.onSelectLevel}/>
+          onSelectLevel={this.onSelectLevel}
+          
+        />
         {/* accordeon: */}
         <Accordion>
           <AccordionItem 

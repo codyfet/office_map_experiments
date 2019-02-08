@@ -16,7 +16,7 @@ export default function mapState(state = initialState, action) {
   switch ( action.type ) {
     case CHANGE_MAP_LEVEL: {
       const level = action.payload;
-      
+      console.log('change level inside', level);
       return {
           mapLevel: level,
           title: mapData.levels[level].title,

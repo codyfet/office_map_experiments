@@ -20,7 +20,7 @@ class MapLevelItem extends React.Component {
     }
 
     render() {
-        const options = mapData.levelsInfo.map((lvl) => {
+        const options = mapData.levels.map((lvl) => {
             return {
                 value: lvl.sortId,
                 label: lvl.title
@@ -28,7 +28,7 @@ class MapLevelItem extends React.Component {
         })
 
         const { currentLevel } = this.props;
-        var defaultOption = mapData.levelsInfo.find((lvl) => lvl.sortId === currentLevel);
+        var defaultOption = mapData.levels.find((lvl) => lvl.sortId === currentLevel);
         defaultOption = {
             value: defaultOption.sortId,
             label: defaultOption.title

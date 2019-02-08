@@ -170,13 +170,13 @@ class SidePanel extends React.Component {
         {/* accordeon: */}
         <Accordion>
           <AccordionItem 
-            title="Current object" 
+            title="Редактировать" 
             expanded={ currentObject.state !== 'none' } 
           >
             <CurrentObjectTab />
             
           </AccordionItem>
-          <AccordionItem title="Create">
+          <AccordionItem title="Создать">
             <CreateTab
               onObjectClick={this.selectObjectId}
               
@@ -187,17 +187,17 @@ class SidePanel extends React.Component {
               style={{width: '100%'}}
               onClick={this.onSubmitClick}
             >
-              Submit
+              Создать
             </button>
           </AccordionItem>
-          <AccordionItem title="Users">
+          <AccordionItem title="Пользователи">
             <UsersList />
           </AccordionItem>
-          <AccordionItem title="Save map">
+          <AccordionItem title="Карта">
             <button
               style={{width: '100%'}}
             >
-              Download the current map
+              Сохранить карту
             </button>
           </AccordionItem>
         </Accordion>

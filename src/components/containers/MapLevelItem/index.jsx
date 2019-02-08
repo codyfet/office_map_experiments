@@ -36,7 +36,7 @@ class MapLevelItem extends React.Component {
 
         return (
             <div>
-                <div style={{ textAlign: 'center' }}>CURRENT MAP LEVEL:</div>
+                <div style={{ textAlign: 'center' }}>Текущая карта:</div>
                 <Dropdown 
                     options={options} 
                     onChange={this._onSelect} 

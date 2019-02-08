@@ -22,7 +22,7 @@ class UsersList extends React.Component {
     return (
       <React.Fragment>
         <ul className="userList">{loadUsers}</ul>
-        <button className="stretched">Add user</button>
+        <button className="stretched">Добавить пользователя</button>
       </React.Fragment>
     );
   }

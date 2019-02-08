@@ -87,7 +87,7 @@ class UsersSpecialList extends React.Component {
         }
         {
           this.state.selectedUserId === '' &&
-          <button className="stretchedButton">Add user</button>
+          <button className="stretchedButton">Добавить пользователя</button>
         }
         <ul className="userSpecialList">{loadUsers}</ul>
         

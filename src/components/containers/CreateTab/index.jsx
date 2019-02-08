@@ -18,7 +18,7 @@ class CreateTab extends React.Component {
     return (
       <Accordion allowMultiple>
         <AccordionItem
-          title="Choose object" 
+          title="Выберите объект" 
           expanded="true"
           duration={300}  
         >
@@ -27,7 +27,7 @@ class CreateTab extends React.Component {
           />
         </AccordionItem>
         <AccordionItem 
-          title="Choose user"
+          title="Выберите пользователя"
           expanded={objectId === 'table'}
           duration={300}
         >
@@ -38,9 +38,15 @@ class CreateTab extends React.Component {
             />
           }
           { 
-            objectId !== 'table' &&
+            objectId !== 'table' && objectId !== '' &&
             <div>
-                <p className="chooseUserText">You couldn't add User to this object!</p>
+                <p className="chooseUserText">К этому объекту нельзя добавить пользователя!</p>
+            </div>
+          }
+          { 
+            objectId === '' &&
+            <div>
+                <p className="chooseUserText">Чтобы выбрать пользователя - выберите объект!</p>
             </div>
           }
           

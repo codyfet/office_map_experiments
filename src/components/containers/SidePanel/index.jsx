@@ -8,7 +8,6 @@ import CreateTab from '../../containers/CreateTab/index';
 import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
 import MapLevelItem from '../../containers/MapLevelItem/index';
 import UsersList from '../ListsComponents/UsersList/index';
-import createMapObject from './objectsFactory';
 import mapData from '../../../res/mapData.json';
 
 import { saveAs } from 'file-saver';
@@ -16,8 +15,8 @@ import './styles.css';
 
 // для сохранения файлов:
 var FileSaver = require('file-saver');
-// для генерирования уникальных id:
-var genUniqId = require('uniqid');
+// // для генерирования уникальных id:
+// var genUniqId = require('uniqid');
 // загрузить lodash:
 var _ = require('lodash');
 
@@ -25,14 +24,14 @@ var _ = require('lodash');
 
 
 class SidePanel extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      selectedObjectId: '',
-      selectedUserId: ''
-    };
-  }
+  //   this.state = {
+  //     selectedObjectId: '',
+  //     selectedUserId: ''
+  //   };
+  // }
 
   componentWillReceiveProps(nextProps){
     // для центрирования сцены при изменении level:
@@ -69,64 +68,64 @@ class SidePanel extends React.Component {
 
   };
 
-  getConvertedCoordsFrom(x, y) {
-    const { shift, scale } = this.props.boardState;
-    console.log('SidePanel shift, scale', scale, shift);
+  // getConvertedCoordsFrom(x, y) {
+  //   const { shift, scale } = this.props.boardState;
+  //   console.log('SidePanel shift, scale', scale, shift);
     
-    return { 
-      x: (x - shift[0])/scale, 
-      y: (y - shift[1])/scale
-    };
+  //   return { 
+  //     x: (x - shift[0])/scale, 
+  //     y: (y - shift[1])/scale
+  //   };
     
-  }
+  // }
 
-  checkUserAssignedToTable(userId) {
-    // если пользователя нет, то проверять ничего не надо:
-    if ( userId === '' ) {
-      return false
-    }
+  // checkUserAssignedToTable(userId) {
+  //   // если пользователя нет, то проверять ничего не надо:
+  //   if ( userId === '' ) {
+  //     return false
+  //   }
 
-    // иначе ищем пользователя по объектам всех уровней:
-    const { objects } = this.props;
-    for ( let lvl of objects.levels) {
-      for ( let obj of lvl) {
-        if ( obj.userId === userId ) {
-          return true;
-        }
-      }
+  //   // иначе ищем пользователя по объектам всех уровней:
+  //   const { objects } = this.props;
+  //   for ( let lvl of objects.levels) {
+  //     for ( let obj of lvl) {
+  //       if ( obj.userId === userId ) {
+  //         return true;
+  //       }
+  //     }
 
-    }
-    return false;
-  }
+  //   }
+  //   return false;
+  // }
 
-  // ОБРАБОТЧИКИ НАЖАТИЙ НА КНОПКИ:
-  onSubmitClick = () => {
-    const { actions } = this.props;
-    const { selectedObjectId, selectedUserId } = this.state;
+  // // ОБРАБОТЧИКИ НАЖАТИЙ НА КНОПКИ:
+  // onSubmitClick = () => {
+  //   const { actions } = this.props;
+  //   const { selectedObjectId, selectedUserId } = this.state;
     
     
-    // Проверки на ошибки:
-    if ( selectedObjectId === '' ) {
-      alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Выберите объект!");
-      return;
-    } else if ( selectedObjectId === 'table' ) {
-      if ( this.checkUserAssignedToTable(selectedUserId) ) {
-        alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
-        return;
-      } 
-    }
+  //   // Проверки на ошибки:
+  //   if ( selectedObjectId === '' ) {
+  //     alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Выберите объект!");
+  //     return;
+  //   } else if ( selectedObjectId === 'table' ) {
+  //     if ( this.checkUserAssignedToTable(selectedUserId) ) {
+  //       alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
+  //       return;
+  //     } 
+  //   }
     
-    console.log('convertCoords', this.getConvertedCoordsFrom(750, 20));
+  //   console.log('convertCoords', this.getConvertedCoordsFrom(750, 20));
     
-    const newObject = createMapObject(selectedObjectId, 
-                                      genUniqId(), 
-                                      this.getConvertedCoordsFrom(750, 20),
-                                      selectedUserId);
+  //   const newObject = createMapObject(selectedObjectId, 
+  //                                     genUniqId(), 
+  //                                     this.getConvertedCoordsFrom(750, 20),
+  //                                     selectedUserId);
     
-    console.log('newObject', newObject);
-    actions.createObject(newObject);
+  //   console.log('newObject', newObject);
+  //   actions.createObject(newObject);
 
-  }
+  // }
 
   onSaveMapClick = () => {
     const { objects, users } = this.props;
@@ -154,20 +153,20 @@ class SidePanel extends React.Component {
   }
 
   
-  // ИЗМЕНЕНИЕ СОСТОЯНИЯ SIDE_PANEL:
-  selectObjectId = (id) => {
-    this.setState({
-      selectedObjectId: id
-    });
-    // console.log('selectedObjectId', id);
-  }
+  // // ИЗМЕНЕНИЕ СОСТОЯНИЯ SIDE_PANEL:
+  // selectObjectId = (id) => {
+  //   this.setState({
+  //     selectedObjectId: id
+  //   });
+  //   // console.log('selectedObjectId', id);
+  // }
 
-  selectUserId = (id) => {
-    this.setState({
-      selectedUserId: id
-    });
-    // console.log('selectedUserId', id);
-  }
+  // selectUserId = (id) => {
+  //   this.setState({
+  //     selectedUserId: id
+  //   });
+  //   // console.log('selectedUserId', id);
+  // }
 
   // FOR REDUX:
   // обнулить состояние:
@@ -195,7 +194,7 @@ class SidePanel extends React.Component {
 
   render() {
 
-    const { selectedObjectId, currentObject } = this.props;
+    const { currentObject } = this.props;
 
     return (
       <div className="sidePanelContainer">
@@ -212,25 +211,16 @@ class SidePanel extends React.Component {
             expanded={ currentObject.state !== 'none' } 
           >
             <CurrentObjectTab />
-            
           </AccordionItem>
+
           <AccordionItem title="Создать">
-            <CreateTab
-              onObjectClick={this.selectObjectId}
-              
-              objectId={this.state.selectedObjectId}
-              onUserClick={this.selectUserId} 
-            />
-            <button
-              style={{width: '100%'}}
-              onClick={this.onSubmitClick}
-            >
-              Создать
-            </button>
+            <CreateTab />
           </AccordionItem>
+
           <AccordionItem title="Пользователи">
             <UsersList />
           </AccordionItem>
+
           <AccordionItem title="Карта">
             <button
               style={{width: '100%'}}
@@ -239,6 +229,7 @@ class SidePanel extends React.Component {
               Сохранить карту
             </button>
           </AccordionItem>
+          
         </Accordion>
       </div>
       

@@ -10,7 +10,6 @@ import MapLevelItem from '../../containers/MapLevelItem/index';
 import UsersList from '../ListsComponents/UsersList/index';
 import mapData from '../../../res/mapData.json';
 
-import { saveAs } from 'file-saver';
 import './styles.css';
 
 // для сохранения файлов:

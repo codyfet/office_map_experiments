@@ -60,7 +60,9 @@ export default class MovableObject extends React.Component {
     // выведем объект на передний план:
     e.currentTarget.moveToTop();
     
-    shareObjectData(object.id, object.userId);
+    // обработка информации о пользователе:
+    let userId = (object.userId === undefined) ? '' : object.userId;
+    shareObjectData(object.id, userId);
     hideContextMenu();
   }
   
@@ -80,7 +82,9 @@ export default class MovableObject extends React.Component {
     });
     
     showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]); 
-    shareObjectData(object.id, object.userId);
+    // обработка информации о пользователе:
+    let userId = (object.userId === undefined) ? '' : object.userId;
+    shareObjectData(object.id, userId);
 
     stopShadow();
   }
@@ -103,7 +107,9 @@ export default class MovableObject extends React.Component {
       object
     } = this.props;
 
-    shareObjectData(object.id, object.userId);
+    // обработка информации о пользователе:
+    let userId = (object.userId === undefined) ? '' : object.userId;
+    shareObjectData(object.id, userId);
     
     // выведем объект на передний план:
     e.currentTarget.moveToTop();

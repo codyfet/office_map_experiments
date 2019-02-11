@@ -357,10 +357,14 @@ class AdvancedBoard extends React.Component {
     const thisLevelObjects = objects.levels[objects.mapLevel];
     
     const loadObject = thisLevelObjects.map((elem, i) => {
-      // find userInfo for object:
-      let currUser = users.find( (user) => user.id === elem.userId );
 
       if ( elem.movable === true ) {
+        // если у объекта нет свойства userId, то искать ничего не нужно:
+        let currUser = { };
+        if ( elem.userId !== undefined ) {
+          currUser = users.find( (user) => user.id === elem.userId );
+        }
+
         return  (
           <MovableObject
             key={i}
@@ -387,7 +391,6 @@ class AdvancedBoard extends React.Component {
           <StaticObject
             key={i}
             object={elem}
-            user={currUser}
             setColor={this.setColor}
 
             showContextMenu={this.showContextMenu}

@@ -4,7 +4,6 @@ export default function createMapObject(type, id, coords, userId) {
         category: type,
         id: id,
         coordinates: coords,
-        userId: '',
         movable: true,
         correctLocation: true
     };

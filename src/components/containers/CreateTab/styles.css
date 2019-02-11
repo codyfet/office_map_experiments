@@ -1,35 +1,33 @@
 
-.react-sanfona {
+.create-tab-accordion {
   border: 1px solid #ccc;
-  margin-bottom: 0px;
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  padding: 5px;
 }
 
-.react-sanfona-item-title {
-  height: 100%;
-  font-size: 12px;
+.create-tab-accordion-item-title {
+  height: 20px;
+  font-size: 10px;
   text-align: center;
-  background: #ccc;
-  border-top: 1px solid #ccc;
-  color: rgb(7, 7, 7);
-  padding: 10px;
+  background: rgb(235, 233, 228);
+  border: 1px solid white;
+  border-radius: 10px;
+  color:black;
+  padding: 5px;
   text-transform: uppercase;
   -webkit-transition: background-color 2s;
   transition: background-color 2s;
 }
 
-.react-sanfona-item-expanded .react-sanfona-item-title {
-  background-color:  rgb(77, 76, 76);
+.create-tab-accordion-item-expanded .create-tab-accordion-item-title {
+  background-color: rgba(240, 175, 54, 0.74);
   color: #fff;
 }
 
-.react-sanfona-item-body-wrapper {
+.create-tab-accordion-item-body-wrapper {
   color: #666;
-  padding: 5px;
   position: relative;
 }
 
-/* Text styles: */
 .chooseUserText {
     width: 100%; 
     text-align: center;

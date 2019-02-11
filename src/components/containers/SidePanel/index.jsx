@@ -121,23 +121,45 @@ class SidePanel extends React.Component {
 
         />
         {/* accordeon: */}
-        <Accordion>
-          <AccordionItem 
+        <Accordion className="mainAccordion">
+          <AccordionItem
+            bodyClassName="mainAccordion-item-body-wrapper"
+            expandedClassName="mainAccordion-item-expanded" 
+            titleClassName="mainAccordion-item-title"
+
             title="Редактировать" 
             expanded={ currentObject.state !== 'none' } 
           >
             <CurrentObjectTab />
           </AccordionItem>
 
-          <AccordionItem title="Создать">
+          <AccordionItem 
+            bodyClassName="mainAccordion-item-body-wrapper"
+            expandedClassName="mainAccordion-item-expanded" 
+            titleClassName="mainAccordion-item-title"
+
+            title="Создать"
+          >
             <CreateTab />
           </AccordionItem>
 
-          <AccordionItem title="Пользователи">
+          <AccordionItem 
+            bodyClassName="mainAccordion-item-body-wrapper"
+            expandedClassName="mainAccordion-item-expanded" 
+            titleClassName="mainAccordion-item-title"
+
+            title="Пользователи"
+          >
             <UsersList />
           </AccordionItem>
 
-          <AccordionItem title="Карта">
+          <AccordionItem 
+            bodyClassName="mainAccordion-item-body-wrapper"
+            expandedClassName="mainAccordion-item-expanded" 
+            titleClassName="mainAccordion-item-title"
+
+            title="Карта"
+          >
             <button
               style={{width: '100%'}}
               onClick={this.onSaveMapClick}

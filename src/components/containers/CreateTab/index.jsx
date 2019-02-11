@@ -23,11 +23,6 @@ class CreateTab extends React.Component {
     };
   }
 
-  resetUserToDefault = () => {
-    this.selectUserId('');
-
-  }
-
   getConvertedCoordsFrom(x, y) {
     const { shift, scale } = this.props.boardState;
     console.log('SidePanel shift, scale', scale, shift);
@@ -118,11 +113,18 @@ class CreateTab extends React.Component {
 
     return (
       <React.Fragment>
-        <Accordion allowMultiple>
+        <Accordion 
+          className="create-tab-accordion"
+          allowMultiple="true"
+        >
           <AccordionItem
+            bodyClassName="create-tab-accordion-item-body-wrapper"
+            expandedClassName="create-tab-accordion-item-expanded" 
+            titleClassName="create-tab-accordion-item-title"
+
             title="Выберите объект" 
             expanded="true"
-            duration={300}  
+            duration={400}  
           >
             <ObjectsList 
               objectId={this.state.selectedObjectId}
@@ -131,10 +133,13 @@ class CreateTab extends React.Component {
           </AccordionItem>
 
           <AccordionItem 
+            bodyClassName="create-tab-accordion-item-body-wrapper"
+            expandedClassName="create-tab-accordion-item-expanded" 
+            titleClassName="create-tab-accordion-item-title"
+
             title="Выберите пользователя"
             expanded={selectedObjectId === 'table'}
-            onClose={this.resetUserToDefault}
-            duration={300}
+            duration={400}
           >
             { 
               selectedObjectId === 'table' &&

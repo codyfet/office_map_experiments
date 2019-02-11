@@ -126,22 +126,24 @@ class CurrentObjectTab extends React.Component {
     } // иначе - либо объект не определен, либо к нему не привязан пользователь
 
     return (
-      <div className="currentObjectContainer">
-        <div className="labelCurrObj">
-          Изменить выбранный объект #ID: {currentObject.objectId}
-        </div>
-        <CurrentObjectItem
-          object={requiredObject}
-          isSelected={false}
-          onClick={this.openCloseObjectSettings}
-        />
-        {
-          requiredObject !== undefined && this.state.showObjectSettings && 
-          <CurrentObjectSettings 
+      <div> 
+        <div className="currentObjectContainer">
+          <div className="labelCurrObj">
+            Изменить выбранный объект #ID: {currentObject.objectId}
+          </div>
+          <CurrentObjectItem
             object={requiredObject}
-            closeSettings={this.closeObjectSettings}
+            isSelected={false}
+            onClick={this.openCloseObjectSettings}
           />
-        }
+          { 
+            requiredObject !== undefined && this.state.showObjectSettings && 
+            <CurrentObjectSettings 
+              object={requiredObject}
+              closeSettings={this.closeObjectSettings}
+            />
+          }
+        </div>
         { /*Пользователь показывается, только если текущий объект - стол: */
           requiredObject !== undefined  && requiredObject.category === "table" &&
           <div className="currentObjectContainer">

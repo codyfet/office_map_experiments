@@ -13,8 +13,8 @@
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.418);
+    color: black;
+    background-color: rgba(202, 134, 250, 0.4);
 }
   
 .userInfo {
@@ -24,6 +24,6 @@
 
 .userSimpleItem:hover {
     cursor: pointer;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.418);
+    color: black;
+    background-color: rgba(202, 134, 250, 0.4);
 }

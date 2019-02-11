@@ -133,7 +133,6 @@ class CurrentObjectTab extends React.Component {
           </div>
           <CurrentObjectItem
             object={requiredObject}
-            isSelected={false}
             onClick={this.openCloseObjectSettings}
           />
           { 

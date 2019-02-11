@@ -4,7 +4,7 @@
     align-items: center;
     border-radius: 10px;
     -webkit-transition: background-color 2s;
-    transition: height 2s;
+    transition: background-color 2s;
 }
 
 .objectItemSelected {
@@ -13,12 +13,12 @@
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
-    color: white;
-    background-color: rgba(240, 175, 54, 0.74);
+    color: black;
+    background-color: rgba(239, 255, 121, 0.5);
 }
 
 .objectItem:hover {
     cursor: pointer;
-    color: white;
-    background-color: rgba(240, 175, 54, 0.74);
+    color: black;
+    background-color: rgba(239, 255, 121, 0.5);
 }

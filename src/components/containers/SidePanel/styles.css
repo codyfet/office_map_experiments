@@ -12,7 +12,7 @@
     height: 100%;
     font-size: 12px;
     text-align: center;
-    background: rgb(235, 233, 228);
+    background: rgb(230, 228, 235);
     border: 1px solid white;
     color:black;
     padding: 10px;
@@ -22,7 +22,7 @@
 }
 
 .mainAccordion-item-expanded .mainAccordion-item-title {
-    background-color: rgb(77, 76, 76);
+    background-color: rgb(80, 89, 221);
     color: #fff;
 }
 

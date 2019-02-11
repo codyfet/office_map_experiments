@@ -14,6 +14,10 @@ import objectCategories from '../../../res/objectCategories.json';
 
 export default class CurrentObjectItem extends React.Component {
     
+    state = {
+        isSelected: false
+    } 
+
     getSettingsForObject(object) {
         // на случай, если объект пустой:
         if ( object === undefined ) {
@@ -72,21 +76,23 @@ export default class CurrentObjectItem extends React.Component {
     }
 
     onObjectClick = () => {
-        const { object, onClick, isSelected } = this.props;
-        if ( !isSelected ) {
+        const { object, onClick } = this.props;
+        if ( !this.state.isSelected ) {
             onClick( object.category );
+            this.setState({ isSelected: true });
         } else {
             onClick('');
+            this.setState({ isSelected: false });
         }
     }
 
     render() {
-        const { object, isSelected } = this.props;
+        const { object } = this.props;
         const { content, text, fill } = this.getSettingsForObject(object);
 
         return (
             <div 
-                className={ isSelected ? "currentObjectItemSelected " : "currentObjectItem" } 
+                className={ this.state.isSelected ? "currentObjectItemSelected " : "currentObjectItem" } 
                 onClick={this.onObjectClick}
             >
                 <AdvancedSVG

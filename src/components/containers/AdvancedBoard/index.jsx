@@ -444,10 +444,10 @@ class AdvancedBoard extends React.Component {
               y={this.state.selectedObjectPos[1]}
               width={this.state.selectedObjectSizes[0]}
               height={this.state.selectedObjectSizes[1]}
-              fill={"orange"}
+              fill={"#AE4C01"}
               opacity={this.state.shadowOpacity}
-              stroke={"#AE4C01"}
-              strokeWidth={2}
+              stroke={"#823B04"}
+              strokeWidth={1}
             />
             <MapShape 
               boundaries={mapBoundaries}

@@ -4,13 +4,6 @@ import ObjectItem from './../ObjectItem/index';
 import "./styles.css";
 
 export default class ObjectsList extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     selectedObjectId: ''
-  //   }
-  // }
 
   onObjectClick = (id) => {
     const { objectId, onObjectClick } = this.props;

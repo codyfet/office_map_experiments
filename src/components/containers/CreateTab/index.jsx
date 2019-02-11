@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
-import UsersSpecialList from '../ListsComponents/UsersSpecialList/index';
+import ChooseUserList from '../ListsComponents/ChooseUserList/index';
 import ObjectsList from '../ListsComponents/ObjectsList/index';
 import './styles.css';
 import createMapObject from './objectsFactory';
@@ -138,8 +138,9 @@ class CreateTab extends React.Component {
           >
             { 
               selectedObjectId === 'table' &&
-              <UsersSpecialList
-                  onUserClick={this.selectUserId}
+              <ChooseUserList
+                userId={this.state.selectedUserId}
+                onUserClick={this.selectUserId}
               />
             }
             { 

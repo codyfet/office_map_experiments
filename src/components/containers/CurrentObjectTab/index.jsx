@@ -157,7 +157,9 @@ class CurrentObjectTab extends React.Component {
         }
         {
           this.state.showChangeUserPanel && (
-            <UsersSpecialList onUserClick={this.selectUser} />
+            <UsersSpecialList 
+              onUserClick={this.selectUser} 
+            />
           )
         }
         

@@ -1,0 +1,40 @@
+.chooseUserListWrapper {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.chooseUserList {
+  width: 100%;
+  height: 150px;
+  list-style-type: none;
+  padding-left: 0;
+  overflow: hidden;
+  overflow-y: scroll; /* для прокрутки */
+  
+}
+
+.chooseUserListChosen {
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  padding-left: 0;
+  
+}
+
+ul {
+  margin-bottom: 0;
+}
+
+/* .userSpecialList::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+/*} */
+
+
+.stretchedButton {
+  width: 100%;
+}
+

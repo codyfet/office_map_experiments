@@ -4,23 +4,24 @@ import ObjectItem from './../ObjectItem/index';
 import "./styles.css";
 
 export default class ObjectsList extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      selectedObjectId: ''
+  //   this.state = {
+  //     selectedObjectId: ''
+  //   }
+  // }
+
+  onObjectClick = (id) => {
+    const { objectId, onObjectClick } = this.props;
+
+    // если объект не выбран:
+    if ( objectId === '' ) {
+      onObjectClick(id);
+    } else { // если повторный клик:
+      onObjectClick('');
     }
-  }
-
-  selectObject = (id) => {
-    this.setState({
-      selectedObjectId: this.state.selectedObjectId === '' ? id : ''
-    });
-
-    // передаём информацию в SidePanel:
-    const { onObjectClick } = this.props;
-    onObjectClick(id);
-
+    
   }
 
   render() {
@@ -33,7 +34,7 @@ export default class ObjectsList extends React.Component {
             <ObjectItem 
               object={elem}
               isSelected={false}
-              onClick={this.selectObject} 
+              onClick={this.onObjectClick} 
             />
         </li>
       );
@@ -41,7 +42,7 @@ export default class ObjectsList extends React.Component {
 
     // если выбрали элемент:
     let isSelected = false;
-    const foundObject = searchList.find((elem) => (elem.id === this.state.selectedObjectId));
+    const foundObject = searchList.find((elem) => (elem.id === this.props.objectId));
     if ( foundObject !== undefined ) {
       isSelected = true;
       loadObjects = (
@@ -49,7 +50,7 @@ export default class ObjectsList extends React.Component {
             <ObjectItem 
               object={foundObject}
               isSelected={true}
-              onClick={this.selectObject}  
+              onClick={this.onObjectClick}  
             />
         </li>
       );
@@ -60,7 +61,7 @@ export default class ObjectsList extends React.Component {
         className="objectsListWrapper"
       >
         <ul 
-          className="objectsList"
+          className={isSelected ? "objectsListChosen" : "objectsList"}
         >
           {loadObjects}
         </ul>

@@ -85,9 +85,12 @@ class CreateTab extends React.Component {
     console.log('newObject', newObject);
     actions.createObject(newObject);
 
+    // сбросить выбор:
+    this.fullResetIDs();
+
   }
 
-  // ИЗМЕНЕНИЕ СОСТОЯНИЯ SIDE_PANEL:
+  // ИЗМЕНЕНИЕ СОСТОЯНИЯ CREATE_TAB:
   selectObjectId = (id) => {
     this.setState({
       selectedObjectId: id
@@ -100,6 +103,13 @@ class CreateTab extends React.Component {
       selectedUserId: id
     });
     // console.log('selectedUserId', id);
+  }
+
+  fullResetIDs = () => {
+    this.setState({
+      selectedObjectId: '',
+      selectedUserId: ''
+    });
   }
 
   render() {
@@ -115,6 +125,7 @@ class CreateTab extends React.Component {
             duration={300}  
           >
             <ObjectsList 
+              objectId={this.state.selectedObjectId}
               onObjectClick={this.selectObjectId}
             />
           </AccordionItem>

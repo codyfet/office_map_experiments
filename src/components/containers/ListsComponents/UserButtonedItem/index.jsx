@@ -4,21 +4,21 @@ import AdvancedSVG from './../../../presentational/AdvancedSVG/index';
 import './styles.css';
 
 
-export default function UserCurrentItem(props) {
+export default function UserButtonedItem(props) {
     
-    const { user, onClick, isSelected, onDeleteClick } = props;
+    const { user, onEditClick, isSelected, onDeleteClick } = props;
     
     function onUserSpecialItemClick() {
         if ( !isSelected ) {
-            onClick(user.id);
+            onEditClick(user.id);
         } else {
-            onClick('');
+            onEditClick('');
         }
     }
 
     return (
         <div 
-            className="userItem"
+            className={ isSelected ? "selectedUserButtonedItem" : "userButtonedItem" } 
         >
             <AdvancedSVG
                 width="30px"

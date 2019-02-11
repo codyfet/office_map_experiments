@@ -4,9 +4,11 @@ import { DebounceInput } from 'react-debounce-input';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addUser, deleteUser, editUser } from "../../../../actions/index";
-import UserSpecialItem from "../UserSpecialItem/index";
+import UserSimpleItem from "../UserSimpleItem/index";
 import "./styles.css";
 
+// компонент реализован специально для CurrentObjectTab:
+// для выбора нового пользователя для текущего объекта:
 
 class UsersSpecialList extends React.Component {
   constructor(props) {
@@ -49,7 +51,7 @@ class UsersSpecialList extends React.Component {
       if ( this.state.selectedUserId === '' ) { //если пользователя не выбрали
         return (
           <li key={i}>
-            <UserSpecialItem 
+            <UserSimpleItem 
               user={user}
               isSelected={false} 
               onClick={this.selectUserId}
@@ -59,7 +61,7 @@ class UsersSpecialList extends React.Component {
       } else if ( this.state.selectedUserId === user.id ) { //иначе
         return (
           <li key={i}>
-            <UserSpecialItem 
+            <UserSimpleItem 
               user={user} 
               isSelected={true}
               onClick={this.selectUserId}

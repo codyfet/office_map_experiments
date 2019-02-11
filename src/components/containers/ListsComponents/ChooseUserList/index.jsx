@@ -4,7 +4,7 @@ import { DebounceInput } from 'react-debounce-input';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addUser, deleteUser, editUser } from "../../../../actions/index";
-import UserSpecialItem from "../UserSpecialItem/index";
+import UserSimpleItem from "../UserSimpleItem/index";
 import "./styles.css";
 
 
@@ -53,7 +53,7 @@ class ChooseUserList extends React.Component {
       if ( userId === '' ) { //если пользователя не выбрали
         return (
           <li key={i}>
-            <UserSpecialItem 
+            <UserSimpleItem 
               user={user}
               isSelected={false} 
               onClick={this.onUserClick}
@@ -63,7 +63,7 @@ class ChooseUserList extends React.Component {
       } else if ( userId === user.id ) { //иначе
         return (
           <li key={i}>
-            <UserSpecialItem 
+            <UserSimpleItem 
               user={user} 
               isSelected={true}
               onClick={this.onUserClick}

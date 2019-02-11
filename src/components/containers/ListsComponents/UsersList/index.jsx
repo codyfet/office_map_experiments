@@ -4,19 +4,34 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addUser, deleteUser, editUser } from "../../../../actions/index";
 // components:
-import UserItem from "../UserItem/index";
+import UserButtonedItem from "../UserButtonedItem/index";
 import "./styles.css";
 
 
 
 class UsersList extends React.Component {
   
+  onUserEditClick = (id) => {
+    console.log('пока не реализовано');
+  
+  }
+
+  onUserDeleteClick = () => {
+    console.log('пока не реализовано');
+
+  }
+
   render() {
     
     const loadUsers = this.props.users.map((user, i) => {
       return (
         <li key={i}>
-          <UserItem user={user} />
+          <UserButtonedItem 
+            user={user} 
+            isSelected={false}
+            onEditClick={this.onUserEditClick}
+            onDeleteClick={this.onUserDeleteClick}
+          />
         </li>
       );
     });

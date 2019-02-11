@@ -1,5 +1,5 @@
 import * as React from "react";
-import UserCurrentItem from "../../containers/ListsComponents/UserCurrentItem/index";
+import UserButtonedItem from "../../containers/ListsComponents/UserButtonedItem/index";
 import UsersSpecialList from "../../containers/ListsComponents/UsersSpecialList/index";
 import CurrentObjectItem from "../../containers/CurrentObjectItem/index";
 import CurrentObjectSettings from "../../containers/CurrentObjectSettings/index";
@@ -146,10 +146,10 @@ class CurrentObjectTab extends React.Component {
           requiredObject !== undefined  && requiredObject.category === "table" &&
           <div className="currentObjectContainer">
             <div className="labelCurrObj">Изменить пользователя:</div>
-            <UserCurrentItem
+            <UserButtonedItem
                 user={requiredUser}
                 isSelected={false}
-                onClick={this.openChangeUserPanel}
+                onEditClick={this.openChangeUserPanel}
                 onDeleteClick={this.onDeleteUser}
             />
           </div>

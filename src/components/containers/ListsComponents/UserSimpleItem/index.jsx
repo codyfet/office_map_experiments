@@ -3,11 +3,11 @@ import iconPaths from '../../../../res/iconPaths';
 import AdvancedSVG from '../../../presentational/AdvancedSVG/index';
 import './styles.css';
 
-export default function UserSpecialItem(props) {
+export default function UserSimpleItem(props) {
     
     const { user, onClick, isSelected } = props;
     
-    function onUserSpecialItemClick() {
+    function onUserSimpleItemClick() {
         if ( !isSelected ) {
             onClick(user.id);
         } else {
@@ -17,8 +17,8 @@ export default function UserSpecialItem(props) {
 
     return (
         <div 
-            className={ isSelected ? "selectedUserItem" : "userItem" } 
-            onClick={onUserSpecialItemClick}
+            className={ isSelected ? "selectedUserSimpleItem" : "userSimpleItem" } 
+            onClick={onUserSimpleItemClick}
         >
             <AdvancedSVG
                 width="30px"

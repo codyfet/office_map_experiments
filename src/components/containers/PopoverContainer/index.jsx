@@ -8,6 +8,26 @@ import { deleteObject, turnObject, changeCurrentObjectState } from '../../../act
 
 class PopoverContainer extends React.Component {
 
+    // componentWillReceiveProps(nextProps){
+    //   const { checkObjectLocation, currentObject } = this.props;
+
+    //   const thisLevelobjectsNext = nextProps.objects.levels[nextProps.objects.mapLevel];
+    //   const objNext = thisLevelobjectsNext.find(val => val.id === currentObject.objectId);
+
+    //   const thisLevelObjects = this.props.objects.levels[this.props.objects.mapLevel];
+    //   const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
+    
+    //   console.log('objects receive props', objNext, obj );
+    //   // проверим границы для измененного объекта:
+    //   if ( objNext != undefined && objNext.width !== obj.width ) {
+    //     console.log('objects receive props', objNext);
+    //     // проверим границы для измененного объекта:
+    //     // это не трудно, ведь данный компонент тесно связан с currentObject:
+    //     // через currentObject получим id измененного объекта:
+    //     checkObjectLocation(objNext);
+    //   }
+    // }
+
     deleteObject = () => {
       const { 
         actions, 

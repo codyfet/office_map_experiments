@@ -176,6 +176,7 @@ export default class MovableObject extends React.Component {
         onMouseEnter={this.onObjectMouseMove}
         onMouseLeave={this.onObjectMouseOut}
         name="object"
+        nameID={object.id}
 
       >
         <Rect

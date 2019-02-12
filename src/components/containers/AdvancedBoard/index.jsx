@@ -190,6 +190,87 @@ class AdvancedBoard extends React.Component {
     
   };
 
+  // 2.3. Более автономная функция, проверяющее местоположение объекта сцены:
+  // если пересекается с границами карты или объектами, то correctLocation = false
+  // иначе  - correctLocation = true
+  checkObjectLocation = (object) => {
+    // получить координаты сцены:
+    let stage = this.stageRef.getStage();
+
+    // получить координаты текущего объекта:
+    let currObject = {
+      x: object.coordinates.x,
+      y: object.coordinates.y,
+      width: object.width,
+      height: object.height
+    };
+
+    // console.log('checkObjectLocation stage', stage);
+    // console.log('checkObjectLocation object', object);
+
+    // проверяем, есть ли хотя бы 1 пересечение с объектами (nodes) карты:
+    let intersectedWithMapObjects = stage.children[1].children.some((node, i) => {
+      // если узел - не группа, индекс меньше 2 или равен текущему объекту 
+      // то пересечения с этим узлом нет
+      if ( node.nodeType !== "Group" || node.attrs.nameID === object.id || i < 2 ) {
+        return false;
+      }
+
+      // получить координаты и размеры текущего узла:
+      // реализовано отдельно специально, ведь при масштабировании
+      // координаты становятся нецелыми и при проверках возникают ошибки 
+      let currNode = {
+        x: node.attrs.x,
+        y: node.attrs.y,
+        width: node.children[0].attrs.width,
+        height: node.children[0].attrs.height
+      };
+
+      if ( this.haveIntersection(currNode, currObject) ) {
+        return true;
+      } else {
+        return false;
+      }
+      
+    });
+
+    // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borders) карты:
+    let boundariesOverstepped = stage.children[1].children[1].children.some((border, i) => {
+      
+      // индекс первого элемента - это изображение карты
+      if ( i < 1 ) return false;
+
+      // получить координаты и размеры текущей области-границы:
+      let currBorder = {
+        x: border.attrs.x,
+        y: border.attrs.y,
+        width: border.attrs.width,
+        height: border.attrs.height
+      };
+
+      if ( this.haveIntersection(currBorder, currObject) ) {
+        return true;
+      } else {
+        return false;
+      } 
+
+    });
+
+    // Поменять цвет текущего объекта:
+    const { actions } = this.props;
+    let newLocData = {
+      id: object.id
+    };
+    if ( intersectedWithMapObjects || boundariesOverstepped ) {
+      newLocData.corrLoc = false;
+    } else {
+      newLocData.corrLoc = true; 
+    }
+    actions.changeCorrectLocation(newLocData);
+
+    
+  }
+
   // 3. ОБРАБОТКА СОБЫТИЙ STAGE---------------------------------------------------------------:
   onStageDragStart = (e) => {
 
@@ -208,17 +289,21 @@ class AdvancedBoard extends React.Component {
     // console.log( "interesting:", e);
 
     // получим текущие координаты сцены и текущего объекта:
-    let currentObject = e.target;
+    let currObj = e.target;
     let currentStage = e.currentTarget;
 
     // если сдвинулась сцена:
-    if ( currentStage.x() === currentObject.x() && currentStage.y() === currentObject.y() ) {
+    if ( currentStage.x() === currObj.x() && currentStage.y() === currObj.y() ) {
 
       this.handleStageShiftChange( [currentStage.x(), currentStage.y()] );
     
     } else { 
       // если свдинулся объект:
-      this.checkIntersection(currentStage, currentObject);
+      const { currentObject, objects } = this.props;
+      const thisLevelObjects = objects.levels[objects.mapLevel];
+      const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
+      
+      this.checkObjectLocation(obj);
     }
   
   };
@@ -418,6 +503,7 @@ class AdvancedBoard extends React.Component {
         }}
       >
         <Stage
+          ref={ref => { this.stageRef = ref; }} // получим ссылку на stage
           x={this.props.boardState.shift[0]}
           y={this.props.boardState.shift[1]}
           
@@ -501,6 +587,7 @@ class AdvancedBoard extends React.Component {
             x={this.state.contextMenuPos[0]}
             y={this.state.contextMenuPos[1]}
             readyHandler={this.flushAll}
+            checkObjectLocation={this.checkObjectLocation}
           />
         )}
       </div>

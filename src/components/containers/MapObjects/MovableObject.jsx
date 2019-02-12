@@ -139,6 +139,7 @@ export default class MovableObject extends React.Component {
       setColor
     } = this.props;
 
+    const userId = object.userId;
 
     // draw a picture:
     const { shiftX, shiftY, scale } = getIconSettings(object.category);
@@ -161,7 +162,6 @@ export default class MovableObject extends React.Component {
 
     });
     
-    
     return (
       <Group
         x={object.coordinates.x}
@@ -181,7 +181,10 @@ export default class MovableObject extends React.Component {
         <Rect
           width={object.width}
           height={object.height}
-          fill={setColor(object.id, object.correctLocation)}
+          fill={setColor(object.id, 
+                         object.correctLocation, 
+                         object.color,
+                         userId)}
           // stroke={'black'}
           // strokeWidth={0.5}
           shadowColor={'black'}

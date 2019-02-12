@@ -25,7 +25,7 @@ import PopoverContainer from "../PopoverContainer/index";
 
 // статические данные карты:
 import mapData from "../../../res/mapData.json";
-import { DEFAULT_COLOR, WARNING_COLOR, SELECTED_COLOR } from '../../../res/constantsObjectsColors';
+import { DEFAULT_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR, SELECTED_COLOR } from '../../../res/constantsObjectsColors';
 
 class AdvancedBoard extends React.Component {
   constructor(props) {
@@ -325,15 +325,23 @@ class AdvancedBoard extends React.Component {
   }
 
   // 5.3.2. Выделение объекта цветом:
-  setColor = (id, isLocationCorrect) => {
+  setColor = (id, isLocationCorrect, originalColor, userId) => {
     const { currentObject } = this.props;
-    // console.log( 'isLocationCorrect', isLocationCorrect );
+    
+    let chosenColor = originalColor;
+
+    // если userId определено и пусто, то это стол без пользователя:
+    if ( userId !== undefined && userId === '' ) {
+      chosenColor = EMPTY_TABLE_COLOR;
+    }
 
     if ( isLocationCorrect ) {
-      return currentObject.objectId === id ? SELECTED_COLOR : DEFAULT_COLOR;
-    } else {
-      return WARNING_COLOR;
-    }
+      chosenColor = (currentObject.objectId === id) ? SELECTED_COLOR : chosenColor;
+    } else  {
+      chosenColor = WARNING_COLOR;
+    } 
+
+    return chosenColor;
     
   }
 

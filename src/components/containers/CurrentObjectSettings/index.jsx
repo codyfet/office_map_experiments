@@ -113,6 +113,7 @@ class CurrentObjectSettings extends React.Component {
       "coordinates",
       "width",
       "height",
+      "color",
       "movable"
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {

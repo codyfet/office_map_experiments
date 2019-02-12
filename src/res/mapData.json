@@ -117,7 +117,8 @@
           "width": 15,
           "height": 15,
           "movable": false,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#CCCAC2"
         },
         {
           "category": "public_place",
@@ -127,7 +128,8 @@
           "width": 30,
           "height": 30,
           "movable": false,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#FEE471"
         },
         {
           "category": "meeting_room",
@@ -137,7 +139,8 @@
           "width": 20,
           "height": 20,
           "movable": false,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#83DDE9"
         },
         {
           "category": "service_room",
@@ -147,7 +150,8 @@
           "width": 60,
           "height": 40,
           "movable": false,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#EDEADD"
         },
         {
           "category": "table",
@@ -157,7 +161,8 @@
           "height": 30,
           "userId": "t0018",
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DED9C3"
         },
         {
           "category": "table",
@@ -167,7 +172,8 @@
           "height": 30,
           "userId": "t0019",
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DED9C3"
         },
         {
           "category": "table",
@@ -177,7 +183,8 @@
           "height": 30,
           "userId": "t0020",
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DED9C3"
         },
         {
           "category": "cupboard",
@@ -186,7 +193,8 @@
           "width": 10,
           "height": 20,
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DED9C3"
         },
         {
           "category": "printer",
@@ -195,7 +203,8 @@
           "width": 15,
           "height": 15,
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DDDDDD"
         },
         {
           "category": "scaner",
@@ -204,7 +213,8 @@
           "width": 15,
           "height": 15,
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DDDDDD"
         },
         {
           "category": "shredder",
@@ -213,7 +223,8 @@
           "width": 15,
           "height": 15,
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DDDDDD"
         }
       ]
       
@@ -254,7 +265,8 @@
           "height": 30,
           "userId": "t0023",
           "movable": true,
-          "correctLocation": true
+          "correctLocation": true,
+          "color": "#DED9C3"
         }
 
       ]

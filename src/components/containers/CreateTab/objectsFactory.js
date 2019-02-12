@@ -1,11 +1,31 @@
 
+import {  
+    DEFAULT_COLOR,
+    EMPTY_TABLE_COLOR,
+    WARNING_COLOR,
+    SELECTED_COLOR,
+  
+    TABLE_COLOR,
+    CUPBOARD_COLOR,
+    PRINTER_COLOR,
+    SCANER_COLOR,
+    SHREDDER_COLOR,
+  
+    PUBLIC_PLACE_COLOR,
+    MEETING_ROOM_COLOR,
+    SERVICE_ROOM_COLOR,
+    COLUMN_COLOR
+        
+} from '../../../res/constantsObjectsColors';
+
 export default function createMapObject(type, id, coords, userId) {
     var newObject = {
         category: type,
         id: id,
         coordinates: coords,
         movable: true,
-        correctLocation: true
+        correctLocation: true,
+        color: TABLE_COLOR
     };
 
     switch (type) {
@@ -13,24 +33,29 @@ export default function createMapObject(type, id, coords, userId) {
             newObject.width = 15;
             newObject.height = 30;
             newObject.userId = userId;
+            newObject.color = TABLE_COLOR;
             break;
         case "cupboard":
             newObject.width = 10;
             newObject.height = 20;
+            newObject.color = CUPBOARD_COLOR;
             break;
         case "printer":
             newObject.width = 15;
             newObject.height = 15;
+            newObject.color = PRINTER_COLOR;
             break;
 
         case "scaner":
             newObject.width = 15;
             newObject.height = 15;
+            newObject.color = SCANER_COLOR;
             break;
         
         case "shredder":
             newObject.width = 15;
             newObject.height = 15;
+            newObject.color = SHREDDER_COLOR;
             break;
 
         default:

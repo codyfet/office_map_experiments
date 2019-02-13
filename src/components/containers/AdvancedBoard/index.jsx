@@ -380,7 +380,6 @@ class AdvancedBoard extends React.Component {
   render() {
     const { boardWidth, boardHeight, objects, users, currentObject } = this.props;
     
-    console.log('board sizes:', boardWidth, boardHeight);
     // settings for map (KonvaGrid):
     const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = this.props.mapState; 
 
@@ -404,8 +403,8 @@ class AdvancedBoard extends React.Component {
             user={currUser}
             setColor={this.setColor}
 
-            globalWidth={boardWidth - 20}
-            globalHeight={boardHeight - 20}
+            mapWidth={mapWidth}
+            mapHeight={mapHeight}
             blockSnapSize={blockSnapSize}
             
             showShadow={this.showCurrentObjectShadow}

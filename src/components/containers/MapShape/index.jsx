@@ -83,8 +83,8 @@ export default class MapShape extends React.Component {
               width={ coords[2] - coords[0] }
               height={ coords[3] - coords[1] }
               fill={'white'}
-              // stroke={'red'}
-              // strokeWidth={1}  
+              stroke={'red'}
+              strokeWidth={1}  
             />
           );
 

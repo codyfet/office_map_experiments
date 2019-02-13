@@ -24,9 +24,18 @@ export default class MovableObject extends React.Component {
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
   //1. Держать координаты в границах глобальной области:
   checkBoundaries(x, y){
-    const { globalWidth, globalHeight, width, height } = this.props;
-    let checkedX = x < 10 ? 10 : (x > (globalWidth-(width-10)) ? (globalWidth-(width-10)) : x);
-    let checkedY = y < 10 ? 10 : (y > (globalHeight-(height-10)) ? (globalHeight-(height-10)) : y);
+    const { mapWidth, mapHeight, object } = this.props;
+    let checkedX = x <= 0 ? 0  
+                   : ( x >= ( mapWidth - object.width ) 
+                       ? ( mapWidth - object.width ) 
+                       : x
+                     );
+    let checkedY = y <= 0 ? 0  
+                   : ( y >= ( mapHeight - object.height ) 
+                       ? ( mapHeight - object.height ) 
+                       : y
+                     );
+    console.log('checked:', checkedX, checkedY);
     return {checkedX, checkedY};
   }
 

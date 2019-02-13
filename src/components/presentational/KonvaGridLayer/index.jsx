@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Layer, Line, Group } from 'react-konva';
 
 
-export default class KonvaGridLayer extends React.Component {
+export default class KonvaGridLayer extends React.PureComponent {
 
     render() {
         // getting settings for drawing grid:

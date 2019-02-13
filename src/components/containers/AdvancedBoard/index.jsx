@@ -78,22 +78,35 @@ class AdvancedBoard extends React.Component {
   autoAdjustStage = () => {
     // padding:
     const padding = 20;
+
     // получаем границы карты:
     const { mapWidth, mapHeight } = this.props.mapState;
 
     // получаем границы окна :
-    const { width, height } = this.props;
+    const { boardWidth, boardHeight } = this.props;
 
     // настраиваем масштаб:
-    let scaleX = width / (mapWidth + padding);
-    let scaleY = height / (mapHeight + padding);
-    const newScale = scaleX > scaleY ? scaleX : scaleY;
+    // считаем используя отступ с 2-х сторон (поэтому * 2)
+    let scaleX = boardWidth / (mapWidth + padding*2);
+    let scaleY = boardHeight / (mapHeight + padding*2);
 
-    this.handleStageScaleChange(newScale);
+    // если реальная карта больше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY < 1),
+    // то выберем наибольший масштаб:
+    let newScale;
+    if ( scaleX < 1 || scaleY < 1) {
+      newScale = scaleX > scaleY ? scaleY : scaleX;
+    } else { // иначе:
+      newScale = scaleX > scaleY ? scaleX : scaleY;
+    }
 
-    // возвращаем сдвиг в первоначальное положение:
-    this.handleStageShiftChange([0, 0]);
+    // сразу в redux:
+    const { actions } = this.props;
+    const newState = { 
+      shift: [padding*newScale, padding*newScale], 
+      scale: newScale            
+    };
 
+    actions.changeBoardState(newState);
 
   };
 
@@ -243,7 +256,7 @@ class AdvancedBoard extends React.Component {
 
   }
  
-  onStageDblClick = (e) => { 
+  onStageDblClick = (e) => {
     this.autoAdjustStage();
 
   }
@@ -365,8 +378,9 @@ class AdvancedBoard extends React.Component {
   
 
   render() {
-    const { width, height, objects, users, currentObject } = this.props;
+    const { boardWidth, boardHeight, objects, users, currentObject } = this.props;
     
+    console.log('board sizes:', boardWidth, boardHeight);
     // settings for map (KonvaGrid):
     const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = this.props.mapState; 
 
@@ -390,8 +404,8 @@ class AdvancedBoard extends React.Component {
             user={currUser}
             setColor={this.setColor}
 
-            globalWidth={width - 20}
-            globalHeight={height - 20}
+            globalWidth={boardWidth - 20}
+            globalHeight={boardHeight - 20}
             blockSnapSize={blockSnapSize}
             
             showShadow={this.showCurrentObjectShadow}
@@ -433,8 +447,8 @@ class AdvancedBoard extends React.Component {
           x={this.props.boardState.shift[0]}
           y={this.props.boardState.shift[1]}
           
-          width={width}
-          height={height}
+          width={boardWidth}
+          height={boardHeight}
           draggable={true}
 
           onWheel={this.onStageWheel}

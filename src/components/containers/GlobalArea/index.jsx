@@ -14,8 +14,8 @@ export default class GlobalArea extends React.Component {
     return (
        <div className="globalArea"> 
           <AdvancedBoard
-            width={width}
-            height={height}
+            boardWidth={width}
+            boardHeight={height}
 
           />
           <SidePanel

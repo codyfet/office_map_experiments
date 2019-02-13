@@ -25,9 +25,9 @@ class SidePanel extends React.Component {
   componentDidUpdate(prevProps){
     // для центрирования сцены при изменении level:
     if (prevProps.mapState !== this.props.mapState) {
-      console.log('mapState receive props', this.props.mapState);
       const { mapWidth, mapHeight } = this.props.mapState;
       this.autoAdjustStage(mapWidth, mapHeight);
+      
     }
   }
 
@@ -41,15 +41,23 @@ class SidePanel extends React.Component {
     console.log('wh', boardWidth, boardHeight);
 
     // настраиваем масштаб:
-    let scaleX = boardWidth / (mapWidth + padding);
-    let scaleY = boardHeight / (mapHeight + padding);
+    // считаем используя отступ с 2-х сторон (поэтому * 2)
+    let scaleX = boardWidth / (mapWidth + padding*2);
+    let scaleY = boardHeight / (mapHeight + padding*2);
     console.log('scales', scaleX, scaleY);
-    const newScale = scaleX > scaleY ? scaleX : scaleY;
+    // если реальная карта меньше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY > 1),
+    // то выберем наибольший масштаб:
+    let newScale;
+    if ( scaleX < 1 || scaleY < 1) {
+      newScale = scaleX > scaleY ? scaleY : scaleX;
+    } else {
+      newScale = scaleX > scaleY ? scaleX : scaleY;
+    }
 
     // сразу в redux:
     const { actions } = this.props;
     const newState = { 
-      shift: [0, 0], 
+      shift: [padding*newScale, padding*newScale], 
       scale: newScale            
     };
 

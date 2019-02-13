@@ -59,7 +59,6 @@ class CurrentObjectSettings extends React.Component {
           } else {
             throw new Error('Неправильная категория');
           }
-          
         } else if ( key === "movable" ) {
           if ( this.state.objectSettings[key] === "true" ) {
             objectData[key] = true;
@@ -82,7 +81,7 @@ class CurrentObjectSettings extends React.Component {
           } else { // если некорректно
             throw new Error("Неправильно введены координаты");
           }
-        } else {
+        } else if ( key !== "title" ) {
           // остался только тип "номер":
           if ( /^\d*$/.test(this.state.objectSettings[key]) ) {
             objectData[key] = Number(this.state.objectSettings[key]);
@@ -91,6 +90,7 @@ class CurrentObjectSettings extends React.Component {
           }
           
         }
+        // заметим, что key === title преобразовывать не нужно - это строка
       }
     } 
     catch(e) {
@@ -110,6 +110,7 @@ class CurrentObjectSettings extends React.Component {
     const allowedProperties = [
       "id",
       "category",
+      "title",
       "coordinates",
       "width",
       "height",
@@ -117,6 +118,10 @@ class CurrentObjectSettings extends React.Component {
       "movable"
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
+      if ( object[prop] === undefined ) {
+        return;
+      } 
+
       if (prop === "coordinates") {
         return (
           <EditField

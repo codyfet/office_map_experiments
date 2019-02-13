@@ -1,7 +1,8 @@
 import { CHANGE_BOARD_STATE } from '../res/constants';
 
-const initialState = { shift: [0, 0], 
-                       scale: 1 };
+// в соответствии со вторым этажом:
+const initialState = { shift: [4, 4], 
+                       scale: 0.217 };
 
 export default function boardState(state = initialState, action) {
   switch ( action.type ) {

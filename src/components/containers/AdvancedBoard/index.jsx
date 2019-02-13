@@ -45,24 +45,23 @@ class AdvancedBoard extends React.Component {
   }
 
   // 0
-  componentWillReceiveProps(nextProps){
+  componentDidUpdate(prevProps){
       const { checkObjectLocation, currentObject } = this.props;
 
-      const thisLevelobjectsNext = nextProps.objects.levels[nextProps.objects.mapLevel];
-      const objNext = thisLevelobjectsNext.find(val => val.id === currentObject.objectId);
+      // получаем предыдущий объект:
+      const thisLevelobjectsPrev = prevProps.objects.levels[prevProps.objects.mapLevel];
+      const objPrev = thisLevelobjectsPrev.find(val => val.id === currentObject.objectId);
 
+      // получаем текущий объект:
       const thisLevelObjects = this.props.objects.levels[this.props.objects.mapLevel];
       const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
     
-      console.log('objects receive props', objNext, obj );
+      console.log('objects receive props: (objPrev, obj):', objPrev, obj );
 
       // проверим границы для измененного объекта:
-      if ( objNext != undefined && objNext.width !== obj.width ) {
-        console.log('objects receive props', objNext);
-        // проверим границы для измененного объекта:
-        // это не трудно, ведь данный компонент тесно связан с currentObject:
-        // через currentObject получим id измененного объекта:
-        checkObjectLocation(objNext);
+      if ( obj != undefined && objPrev.width !== obj.width ) {
+        console.log('objects receive props', obj);
+        checkObjectLocation(obj);
       }
   }
 

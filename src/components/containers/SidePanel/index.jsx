@@ -24,11 +24,11 @@ var _ = require('lodash');
 
 class SidePanel extends React.Component {
 
-  componentWillReceiveProps(nextProps){
+  componentDidUpdate(prevProps){
     // для центрирования сцены при изменении level:
-    if (nextProps.mapState !== this.props.mapState) {
-      console.log('mapState receive props', nextProps.mapState);
-      const { mapWidth, mapHeight } = nextProps.mapState;
+    if (prevProps.mapState !== this.props.mapState) {
+      console.log('mapState receive props', this.props.mapState);
+      const { mapWidth, mapHeight } = this.props.mapState;
       this.autoAdjustStage(mapWidth, mapHeight);
     }
   }

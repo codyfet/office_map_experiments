@@ -44,6 +44,28 @@ class AdvancedBoard extends React.Component {
     };
   }
 
+  // 0
+  componentWillReceiveProps(nextProps){
+      const { checkObjectLocation, currentObject } = this.props;
+
+      const thisLevelobjectsNext = nextProps.objects.levels[nextProps.objects.mapLevel];
+      const objNext = thisLevelobjectsNext.find(val => val.id === currentObject.objectId);
+
+      const thisLevelObjects = this.props.objects.levels[this.props.objects.mapLevel];
+      const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
+    
+      console.log('objects receive props', objNext, obj );
+
+      // проверим границы для измененного объекта:
+      if ( objNext != undefined && objNext.width !== obj.width ) {
+        console.log('objects receive props', objNext);
+        // проверим границы для измененного объекта:
+        // это не трудно, ведь данный компонент тесно связан с currentObject:
+        // через currentObject получим id измененного объекта:
+        checkObjectLocation(objNext);
+      }
+  }
+
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
   // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
   // 1.1. Фиксируем данные по сдвигу в redux:
@@ -108,89 +130,7 @@ class AdvancedBoard extends React.Component {
     );
   }
 
-  // 2.2. Функция проверяет текущий объект сцены
-  // И подсвечивает объект красным, если он:
-  // - выходит за границы карты (пересекается с граничными областями - borderlands)
-  // - пересекается с объектами внутри карты
-  // иначе:
-  // - подсвечивает объект цветом по-умолчанию
-  checkIntersection = (currentStage, currentObject) => {
-
-    // сейчас за пересечение берутся координаты float движимого объекта
-    // однако, можно воспользоваться и координатами тени (если потребуется)
-
-    // получить координаты текущего объекта:
-    let currObject = {
-      x: currentObject.attrs.x,
-      y: currentObject.attrs.y,
-      width: currentObject.children[0].attrs.width,
-      height: currentObject.children[0].attrs.height
-    };
-
-    // проверяем, есть ли хотя бы 1 пересечение с объектами (nodes) карты:
-    let intersectedWithMapObjects = currentStage.children[1].children.some((node, i) => {
-      // если узел - не группа, индекс меньше 2 или равен текущему объекту 
-      // то пересечения с этим узлом нет
-      if ( node.nodeType !== "Group" || node === currentObject || i < 2 ) {
-        return false;
-      }
-
-      // получить координаты и размеры текущего узла:
-      // реализовано отдельно специально, ведь при масштабировании
-      // координаты становятся нецелыми и при проверках возникают ошибки 
-      let currNode = {
-        x: node.attrs.x,
-        y: node.attrs.y,
-        width: node.children[0].attrs.width,
-        height: node.children[0].attrs.height
-      };
-
-      if ( this.haveIntersection(currNode, currObject) ) {
-        return true;
-      } else {
-        return false;
-      }
-      
-    });
-
-    // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borders) карты:
-    let boundariesOverstepped = currentStage.children[1].children[1].children.some((border, i) => {
-      
-      // индекс первого элемента - это изображение карты
-      if ( i < 1 ) return false;
-
-      // получить координаты и размеры текущей области-границы:
-      let currBorder = {
-        x: border.attrs.x,
-        y: border.attrs.y,
-        width: border.attrs.width,
-        height: border.attrs.height
-      };
-
-      if ( this.haveIntersection(currBorder, currObject) ) {
-        return true;
-      } else {
-        return false;
-      } 
-
-    });
-
-    // Поменять цвет текущего объекта:
-    const { actions } = this.props;
-    let newLocData = {
-      id: this.props.currentObject.objectId
-    };
-    if ( intersectedWithMapObjects || boundariesOverstepped ) {
-      newLocData.corrLoc = false;
-    } else {
-      newLocData.corrLoc = true; 
-    }
-    actions.changeCorrectLocation(newLocData);
-
-    
-  };
-
-  // 2.3. Более автономная функция, проверяющее местоположение объекта сцены:
+  // 2.2. Функция проверяет текущий объект сцены:
   // если пересекается с границами карты или объектами, то correctLocation = false
   // иначе  - correctLocation = true
   checkObjectLocation = (object) => {
@@ -271,6 +211,14 @@ class AdvancedBoard extends React.Component {
     
   }
 
+  checkCurrentObjectLocation = () => {
+    const { currentObject, objects } = this.props;
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
+      
+    this.checkObjectLocation(obj);
+  }
+
   // 3. ОБРАБОТКА СОБЫТИЙ STAGE---------------------------------------------------------------:
   onStageDragStart = (e) => {
 
@@ -279,7 +227,7 @@ class AdvancedBoard extends React.Component {
 
   onStageDragMove = (e) => {
     // если потребуется проверка пересечений при передвижении объекта:
-    // this.checkIntersection(e.currentTarget, e.target);
+    // this.checkCurrentObjectLocation();
   }
   
   onStageDragEnd = (e) => {
@@ -299,11 +247,7 @@ class AdvancedBoard extends React.Component {
     
     } else { 
       // если свдинулся объект:
-      const { currentObject, objects } = this.props;
-      const thisLevelObjects = objects.levels[objects.mapLevel];
-      const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
-      
-      this.checkObjectLocation(obj);
+      this.checkCurrentObjectLocation();
     }
   
   };
@@ -597,7 +541,8 @@ class AdvancedBoard extends React.Component {
 
 // for redux:
 const mapStateToProps = state => ({
-  objects: state.objects,
+  objects: { mapLevel: state.objects.mapLevel,
+             levels: state.objects.levels.slice(0) },
   users: state.users,
   boardState: state.boardState,
   mapState: state.mapState,

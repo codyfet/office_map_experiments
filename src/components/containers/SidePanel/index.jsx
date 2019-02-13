@@ -14,8 +14,6 @@ import './styles.css';
 
 // для сохранения файлов:
 var FileSaver = require('file-saver');
-// // для генерирования уникальных id:
-// var genUniqId = require('uniqid');
 // загрузить lodash:
 var _ = require('lodash');
 

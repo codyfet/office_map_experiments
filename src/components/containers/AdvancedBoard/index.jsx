@@ -4,6 +4,7 @@ import MovableObject from "../MapObjects/MovableObject";
 import StaticObject from "../MapObjects/StaticObject";
 import KonvaGridLayer from "../../presentational/KonvaGridLayer/index";
 import MapShape from "../MapShape/index";
+import { DEFAULT_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR, SELECTED_COLOR } from '../../../res/constantsObjectsColors';
 
 // redux:
 import { connect } from "react-redux";
@@ -23,9 +24,10 @@ import {
 //popup:
 import PopoverContainer from "../PopoverContainer/index";
 
-// статические данные карты:
-import mapData from "../../../res/mapData.json";
-import { DEFAULT_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR, SELECTED_COLOR } from '../../../res/constantsObjectsColors';
+// загрузить lodash:
+var _ = require('lodash');
+
+
 
 class AdvancedBoard extends React.Component {
   constructor(props) {
@@ -42,27 +44,6 @@ class AdvancedBoard extends React.Component {
 
       contextMenuShow: false
     };
-  }
-
-  // 0
-  componentDidUpdate(prevProps){
-      const { checkObjectLocation, currentObject } = this.props;
-
-      // получаем предыдущий объект:
-      const thisLevelobjectsPrev = prevProps.objects.levels[prevProps.objects.mapLevel];
-      const objPrev = thisLevelobjectsPrev.find(val => val.id === currentObject.objectId);
-
-      // получаем текущий объект:
-      const thisLevelObjects = this.props.objects.levels[this.props.objects.mapLevel];
-      const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
-    
-      console.log('objects receive props: (objPrev, obj):', objPrev, obj );
-
-      // проверим границы для измененного объекта:
-      if ( obj != undefined && objPrev.width !== obj.width ) {
-        console.log('objects receive props', obj);
-        checkObjectLocation(obj);
-      }
   }
 
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
@@ -393,18 +374,19 @@ class AdvancedBoard extends React.Component {
     const thisLevelObjects = objects.levels[objects.mapLevel];
     
     const loadObject = thisLevelObjects.map((elem, i) => {
-
-      if ( elem.movable === true ) {
+      // здесь нужно глубокое копирование:
+      const object = _.cloneDeep(elem);
+      if ( object.movable === true ) {
         // если у объекта нет свойства userId, то искать ничего не нужно:
         let currUser = { };
-        if ( elem.userId !== undefined ) {
-          currUser = users.find( (user) => user.id === elem.userId );
+        if ( object.userId !== undefined ) {
+          currUser = users.find( (user) => user.id === object.userId );
         }
 
         return  (
           <MovableObject
             key={i}
-            object={elem}
+            object={object}
             user={currUser}
             setColor={this.setColor}
 
@@ -419,6 +401,7 @@ class AdvancedBoard extends React.Component {
             hideContextMenu={this.hideContextMenu}
           
             shareObjectData={this.setCurrentObjectData}
+            checkObjectLocation={this.checkObjectLocation}
   
           />
         );
@@ -426,7 +409,7 @@ class AdvancedBoard extends React.Component {
         return (
           <StaticObject
             key={i}
-            object={elem}
+            object={object}
             setColor={this.setColor}
 
             showContextMenu={this.showContextMenu}

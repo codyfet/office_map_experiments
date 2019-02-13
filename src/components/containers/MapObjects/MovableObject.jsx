@@ -5,7 +5,21 @@ import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 
+// загрузить lodash:
+var _ = require('lodash');
+
 export default class MovableObject extends React.Component {
+
+  componentDidUpdate(prevProps){
+    const { checkObjectLocation, object } = this.props;
+
+    // проверим границы для измененного объекта:
+    // будем проверять границы при каждом изменении размеров объекта:
+    if ( prevProps.object.width !== object.width ) {
+      console.log('check loaction for object: ', object);
+      checkObjectLocation(object);
+    }
+  }
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
   //1. Держать координаты в границах глобальной области:

@@ -16,8 +16,11 @@ export default function currentObject(state = initialState, action) {
       
     }
     case CHANGE_CURRENT_USER: { 
-      state.userId = action.payload;
-      return state;
+      return {
+        objectId: state.objectId, 
+        userId: action.payload,
+        state: action.payload
+      };
 
     }
     case CHANGE_CURRENT_OBJECT_STATE: {

@@ -40,7 +40,6 @@ class ChooseUserList extends React.Component {
 
   render() {
     const { userId } = this.props;
-    console.log('ChooseUserList', userId);
 
     const neededUsers = this.props.users.filter((user) => {
       let formattedUser = user.title.toLowerCase().split(' ', 2);

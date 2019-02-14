@@ -24,8 +24,7 @@ class CurrentObjectSettings extends React.Component {
 
     this.setState({
       objectSettings: newObjectSettings
-    },
-    () => { console.log('objSettings', this.state.objectSettings) });
+    });
 
   }
 
@@ -83,7 +82,7 @@ class CurrentObjectSettings extends React.Component {
       return;
     }
 
-    console.log('objDat', objectData);
+    // console.log('objDat', objectData);
     this.sendChangedDataToRedux(objectData);
     
   }

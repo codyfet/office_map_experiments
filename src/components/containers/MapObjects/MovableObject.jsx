@@ -9,6 +9,14 @@ import getIconSettings from './iconSettingsForObjects';
 var _ = require('lodash');
 
 export default class MovableObject extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPointed: false
+    }
+  }
+
 
   componentDidUpdate(prevProps){
     const { checkObjectLocation, object } = this.props;
@@ -54,16 +62,21 @@ export default class MovableObject extends React.Component {
     // добавить текст:
     let text = objectCategories.find((cat) => cat.id === object.category).title;
     if (object.category === "table") {
-        text += " : ";
+        text += " :\n";
         text += (user !== undefined) ? user.title : 'пустой';
     } else if ( object.title !== undefined ) {
-      text += (" : " + object.title);
+      text += (" :\n" + object.title);
     } 
     
 
     tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();
+
+    // позаботимся о выделении объекта:
+    this.setState({
+      isPointed: true
+    });
   }
 
   //3. Скрыть tooltip-информацию:
@@ -73,6 +86,12 @@ export default class MovableObject extends React.Component {
 
     tooltip.hide();
     tooltipLayer.draw();
+
+    // позаботимся о выделении объекта:
+    this.setState({
+      isPointed: false
+    });
+
   }
 
   // ОБРАБОТКА СОБЫТИЙ:
@@ -218,6 +237,7 @@ export default class MovableObject extends React.Component {
                          object.correctLocation, 
                          object.color,
                          userId)}
+          opacity={this.state.isPointed ? 0.5 : 1}
           // stroke={'black'}
           // strokeWidth={0.5}
           shadowColor={'black'}

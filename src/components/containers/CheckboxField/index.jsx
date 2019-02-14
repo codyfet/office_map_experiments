@@ -20,7 +20,7 @@ class CheckboxField extends React.Component {
 
     let newSetting = {};
     newSetting[label] = e.target.checked;
-    console.log(newSetting);
+    // console.log(newSetting);
     
     onInputChange(newSetting);
 

@@ -509,7 +509,7 @@ class AdvancedBoard extends React.Component {
               <Text
                 text=""
                 fontFamily="Calibri"
-                fontSize={12}
+                fontSize={Math.floor(14 / this.props.boardState.scale)}
                 padding={5}
                 fill="white"
                 name="objectTooltip"

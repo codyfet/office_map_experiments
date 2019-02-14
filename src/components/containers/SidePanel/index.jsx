@@ -68,7 +68,7 @@ class SidePanel extends React.Component {
   onSaveMapClick = () => {
     const { objects, users } = this.props;
     // order for objects:
-    const objectOrder = ["category", "title", "id", "coordinates", "width", "height", "movable", "correctLocation", "color"];
+    const objectOrder = ["category", "title", "id", "coordinates", "width", "height", "color", "movable", "correctLocation", "userId"];
     
     // сохранение карты со всеми объектами и пользователями:
     // сначала подггрузим весь файл mapData:

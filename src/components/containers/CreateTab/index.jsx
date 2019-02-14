@@ -25,7 +25,6 @@ class CreateTab extends React.Component {
 
   getConvertedCoordsFrom(x, y) {
     const { shift, scale } = this.props.boardState;
-    console.log('SidePanel shift, scale', scale, shift);
     
     return { 
       x: (x - shift[0])/scale, 
@@ -70,14 +69,14 @@ class CreateTab extends React.Component {
       } 
     }
     
-    console.log('convertCoords', this.getConvertedCoordsFrom(750, 20));
+    // console.log('convertCoords', this.getConvertedCoordsFrom(750, 20));
     
     const newObject = createMapObject(selectedObjectId, 
                                       genUniqId(), 
                                       this.getConvertedCoordsFrom(750, 20),
                                       selectedUserId);
     
-    console.log('newObject', newObject);
+    // console.log('newObject', newObject);
     actions.createObject(newObject);
 
     // сбросить выбор:

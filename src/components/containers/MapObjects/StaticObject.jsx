@@ -6,6 +6,13 @@ import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 
 export default class StaticObject extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPointed: false
+    }
+  }
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
   // 1. Показать tooltip-информацию:
@@ -23,11 +30,16 @@ export default class StaticObject extends React.Component {
     // добавить текст:
     let text = objectCategories.find((cat) => cat.id === object.category).title;
     if ( object.title !== undefined ) {
-      text += (" : " + object.title);
+      text += (" :\n" + object.title);
     }
     tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();
+
+    // позаботимся о выделении объекта:
+    this.setState({
+      isPointed: true
+    });
   }
 
   //2. Скрыть tooltip-информацию:
@@ -37,6 +49,12 @@ export default class StaticObject extends React.Component {
 
     tooltip.hide();
     tooltipLayer.draw();
+
+    // позаботимся о выделении объекта:
+    this.setState({
+      isPointed: false
+    });
+    
   }
 
   // ОБРАБОТКА СОБЫТИЙ:
@@ -127,6 +145,7 @@ export default class StaticObject extends React.Component {
           width={object.width}
           height={object.height}
           fill={setColor(object.id, object.correctLocation, object.color)}
+          opacity={this.state.isPointed ? 0.5 : 1}
           stroke={'black'}
           strokeWidth={0.5}
           // shadowColor={'black'}

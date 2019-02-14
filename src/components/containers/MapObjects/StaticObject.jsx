@@ -78,7 +78,17 @@ export default class StaticObject extends React.Component {
     } = this.props;
 
     // draw a picture:
-    const { shiftX, shiftY, scale } = getIconSettings(object.category);
+    let { shiftX, shiftY, scale } = getIconSettings(object.category);
+
+    // отредактируем размер иконки по размеру объекта:
+    let minSizeObjectValue = object.width < object.height ? object.width : object.height;
+    let minSizeValue = 15;
+    let scaleIncrease = (minSizeObjectValue/2) / minSizeValue;
+
+    shiftX *= scaleIncrease;
+    shiftY *= scaleIncrease;
+    scale *= scaleIncrease;
+    
 
     const drawIcon = iconPaths[object.category].path.map( (path, i) => {
       return (
@@ -89,8 +99,8 @@ export default class StaticObject extends React.Component {
           data={path}
           fill='black'
           scale={{
-            x: scale,
-            y: scale
+            x: scale, //* scaleIncrease,
+            y: scale //* scaleIncrease
           }}
 
         />
@@ -125,11 +135,6 @@ export default class StaticObject extends React.Component {
           // shadowOpacity={0.4}  
             
         />
-        {/* <Text
-          text={`ID:${object.id}`}
-          fontSize={6}
-          align="center"
-        /> */}
         {drawIcon}
       </Group> 
     );

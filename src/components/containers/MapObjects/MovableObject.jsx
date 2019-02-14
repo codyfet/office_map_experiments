@@ -165,7 +165,16 @@ export default class MovableObject extends React.Component {
     const userId = object.userId;
 
     // draw a picture:
-    const { shiftX, shiftY, scale } = getIconSettings(object.category);
+    let { shiftX, shiftY, scale } = getIconSettings(object.category);
+
+    // отредактируем размер иконки по размеру объекта:
+    let minSizeObjectValue = object.width < object.height ? object.width : object.height;
+    let minSizeValue = 15;
+    let scaleIncrease = (minSizeObjectValue) / minSizeValue;
+
+    shiftX *= scaleIncrease;
+    shiftY *= scaleIncrease;
+    scale *= scaleIncrease;
 
     const drawIcon = iconPaths[object.category].path.map( (path, i) => {
       return (
@@ -217,11 +226,6 @@ export default class MovableObject extends React.Component {
           shadowOpacity={0.4}  
             
         />
-        {/* <Text
-          text={`ID:${object.id}`}
-          fontSize={6}
-          align="center"
-        /> */}
         {drawIcon}
       </Group> 
     );

@@ -45,7 +45,7 @@ export default function getIconSettings(objCategory) {
             settings.shiftY = 5;
             break;
         case "public_place":
-            settings.scale = 0.15;
+            settings.scale = 0.028;
             settings.shiftX = 5.5;
             settings.shiftY = 5.5;
             break;

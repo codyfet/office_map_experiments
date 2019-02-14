@@ -119,10 +119,10 @@ export default class StaticObject extends React.Component {
           fill={setColor(object.id, object.correctLocation, object.color)}
           // stroke={'black'}
           // strokeWidth={0.5}
-          shadowColor={'black'}
-          shadowBlur={2}
-          shadowOffset={{x : 1, y : 1}}
-          shadowOpacity={0.4}  
+          // shadowColor={'black'}
+          // shadowBlur={2}
+          // shadowOffset={{x : 1, y : 1}}
+          // shadowOpacity={0.4}  
             
         />
         {/* <Text

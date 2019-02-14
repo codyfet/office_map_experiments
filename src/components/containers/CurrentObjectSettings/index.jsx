@@ -1,5 +1,6 @@
 import * as React from "react";
 import EditField from "../../containers/EditField/index";
+import CheckboxField from "../../containers/CheckboxField/index";
 
 import "./styles.css";
 
@@ -60,27 +61,9 @@ class CurrentObjectSettings extends React.Component {
             throw new Error('Неправильная категория');
           }
         } else if ( key === "movable" ) {
-          if ( this.state.objectSettings[key] === "true" ) {
-            objectData[key] = true;
-          } else if ( this.state.objectSettings[key] === "false" ) {
-            objectData[key] = false;
-          } else {
-            throw new Error("Булевское значение введено неверно");
-          }
-        
-        } else if ( key === "coordinates (x,y)" ){
-          // проверяем, корректно ли указаны координаты:
-          let regExp = /^(\d+)[,](\d+)\s*$/;
-          if ( regExp.test(this.state.objectSettings[key]) ) {
-            let xyData = regExp.exec(this.state.objectSettings[key])
-            objectData.coordinates = {
-              x: Number(xyData[1]),
-              y: Number(xyData[2])
-            };
-
-          } else { // если некорректно
-            throw new Error("Неправильно введены координаты");
-          }
+          // с checkbox булевское значение невозможно ввести неверно:
+          objectData[key] = this.state.objectSettings[key];
+      
         } else if ( key !== "title" && key !== "color" ) {
           // остался только тип "номер":
           if ( /^\d*$/.test(this.state.objectSettings[key]) ) {
@@ -113,19 +96,18 @@ class CurrentObjectSettings extends React.Component {
       "id",
       "category",
       "title",
-      "coordinates",
       "width",
       "height",
       "color",
       "movable"
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
-      if (prop === "coordinates") {
+      if (prop === "movable") {
         return (
-          <EditField
+          <CheckboxField
             key={i}
-            label="coordinates (x,y)"
-            placeholder={String(object[prop].x) + ',' + String(object[prop].y)}
+            label={prop}
+            placeholder={object[prop]}
             disabled={false}
             onInputChange={this.onInputChange}
           />

@@ -30,8 +30,8 @@ export default function createMapObject(type, id, coords, userId) {
 
     switch (type) {
         case "table":
-            newObject.width = 15;
-            newObject.height = 30;
+            newObject.width = 40;
+            newObject.height = 70;
             newObject.userId = userId;
             newObject.color = TABLE_COLOR;
             break;

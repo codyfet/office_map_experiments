@@ -67,19 +67,34 @@ class SidePanel extends React.Component {
 
   onSaveMapClick = () => {
     const { objects, users } = this.props;
+    // order for objects:
+    const objectOrder = ["category", "title", "id", "coordinates", "width", "height", "movable", "correctLocation", "color"];
+    
     // сохранение карты со всеми объектами и пользователями:
     // сначала подггрузим весь файл mapData:
     let mapDataFile = _.cloneDeep(mapData);
-    console.log("mapData", mapData);
+    
     // дополним его изменившимися данными:
-    console.log("objects", objects);
-    console.log("users", users);
     mapDataFile.levels = objects.levels.map( (objects, i) => {
+
       let levelData = Object.assign({}, mapDataFile.levels[i]);
-      levelData.objects = objects;
+      levelData.objects = objects.map( (obj, j) => {
+        // запишем поля в алфавитном порядке:
+        // console.log('fields obj:', obj);
+        let formattedObject = {};
+        objectOrder.forEach( property => {
+          // console.log('fields obj:', obj);
+          if ( obj[property] !== undefined ) {
+            formattedObject[property] = obj[property];
+
+          }
+        });
+        return formattedObject;
+      });
       return levelData;
 
     });
+
     mapDataFile.users = users;
     console.log("changedMapData", mapDataFile);
 

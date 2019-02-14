@@ -67,45 +67,34 @@
       "startdate": "2010-04-18"
     }
   ],
-  
   "levels": [
     {
       "id": "ground_floor",
       "sortId": 0,
       "title": "Цокольный этаж",
-
       "levelMapWidth": 800,
       "levelMapHeight": 800,
       "levelCellSize": 10,
       "boundaries": "20,20 20,320 320,320 320,220 260,220 260,180 620,180 620,20",
       "covering": [],
-
       "objects": []
     },
-
     {
       "id": "second_floor",
       "sortId": 1,
       "title": "Второй этаж",
-
       "levelMapWidth": 3650,
       "levelMapHeight": 1670,
       "levelCellSize": 5,
       "boundaries": "0,0 0,1550 540,1550 540,1670 830,1670 830,1550 1100,1550 1100,1200 830,1200 830,820 1900,820 1900,1140 2180,1140 2180,820 3650,820 3650,0",
       "covering": [
         "0 1550 540 1670",
-
         "830 820 1100 1200",
         "830 1550 1100 1670",
-        
         "1100 820 1900 1670",
-        
         "1900 1140 2180 1670",
-
         "2180 820 3650 1670"
-        
       ],
-
       "objects": [
         {
           "category": "service_room",
@@ -145,56 +134,55 @@
           "title": "Зеленая кухня",
           "id": "js4axzbd",
           "coordinates": { "x": 665, "y": 930 },
+          "width": 165,
+          "height": 270,
           "movable": false,
           "correctLocation": true,
-          "color": "#A3FFA0",
-          "width": 165,
-          "height": 270
+          "color": "#A3FFA0"
         },
         {
           "category": "service_room",
           "title": "Комната для газовой супрессии",
           "id": "js4ay3bu",
           "coordinates": { "x": 665, "y": 820 },
-          "movable": false,
-          "correctLocation": true,
-          "color": "#EDEADD",
           "width": 165,
           "height": 110,
-          "userId": ""
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD"
         },
         {
           "category": "public_place",
-          "id": "js4d01za",
           "title": "Раздевалка",
+          "id": "js4d01za",
           "coordinates": { "x": 385, "y": 1320 },
-          "movable": true,
-          "correctLocation": true,
-          "color": "#D5BD86",
           "width": 155,
-          "height": 230
+          "height": 230,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#D5BD86"
         },
         {
           "category": "service_room",
           "title": "Серверная",
           "id": "js4d0kqx",
           "coordinates": { "x": 665, "y": 620 },
-          "movable": true,
-          "correctLocation": true,
-          "color": "#EDEADD",
           "width": 285,
-          "height": 200
+          "height": 200,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD"
         },
         {
           "category": "meeting_room",
           "title": "Тверь",
           "id": "js4d1ijt",
           "coordinates": { "x": 0, "y": 1170 },
+          "width": 385,
+          "height": 380,
           "movable": false,
           "correctLocation": true,
-          "color": "#83DDE9",
-          "width": 385,
-          "height": 380
+          "color": "#83DDE9"
         },
         {
           "category": "column",
@@ -243,9 +231,8 @@
           "category": "table",
           "id": "4",
           "coordinates": { "x": 20, "y": 20 },
-          "width": 15,
-          "height": 30,
-          "userId": "t0018",
+          "width": 40,
+          "height": 70,
           "movable": true,
           "correctLocation": true,
           "color": "#DED9C3"
@@ -253,10 +240,9 @@
         {
           "category": "table",
           "id": "5",
-          "coordinates": { "x": 35, "y": 20 },
-          "width": 15,
-          "height": 30,
-          "userId": "t0019",
+          "coordinates": { "x": 20, "y": 90 },
+          "width": 40,
+          "height": 70,
           "movable": true,
           "correctLocation": true,
           "color": "#DED9C3"
@@ -264,10 +250,9 @@
         {
           "category": "table",
           "id": "6",
-          "coordinates": { "x": 50, "y": 20 },
-          "width": 15,
-          "height": 30,
-          "userId": "t0020",
+          "coordinates": { "x": 20, "y": 160 },
+          "width": 40,
+          "height": 70,
           "movable": true,
           "correctLocation": true,
           "color": "#DED9C3"
@@ -311,52 +296,138 @@
           "movable": true,
           "correctLocation": true,
           "color": "#DDDDDD"
+        },
+        {
+          "category": "meeting_room",
+          "title": "Осташков",
+          "id": "js4flxd9",
+          "coordinates": { "x": 385, "y": 855 },
+          "width": 180,
+          "height": 210,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#83DDE9"
+        },
+        {
+          "category": "meeting_room",
+          "title": "Старица",
+          "id": "js4frm5l",
+          "coordinates": { "x": 385, "y": 555 },
+          "width": 180,
+          "height": 300,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#83DDE9"
+        },
+        {
+          "category": "service_room",
+          "title": "Storage",
+          "id": "js4fu3eo",
+          "coordinates": { "x": 385, "y": 405 },
+          "width": 180,
+          "height": 150,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD"
+        },
+        {
+          "category": "public_place",
+          "title": "Желтая кухня",
+          "id": "js4fvr5m",
+          "coordinates": { "x": 1900, "y": 820 },
+          "width": 280,
+          "height": 320,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#FFFC95"
+        },
+        {
+          "category": "public_place",
+          "title": "Спортзал",
+          "id": "js4gcekn",
+          "coordinates": { "x": 2310, "y": 620 },
+          "width": 320,
+          "height": 200,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#FEE471"
+        },
+        {
+          "category": "meeting_room",
+          "title": "Кашин",
+          "id": "js4gelnr",
+          "coordinates": { "x": 2630, "y": 620 },
+          "width": 310,
+          "height": 200,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#83DDE9"
+        },
+        {
+          "category": "meeting_room",
+          "title": "Торжок",
+          "id": "js4gh356",
+          "coordinates": { "x": 2940, "y": 620 },
+          "width": 310,
+          "height": 200,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#83DDE9"
+        },
+        {
+          "category": "public_place",
+          "title": "Раздевалка",
+          "id": "js4gjmsv",
+          "coordinates": { "x": 3250, "y": 620 },
+          "width": 190,
+          "height": 200,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#E0B14D"
+        },
+        {
+          "category": "table",
+          "id": "js4iqoly",
+          "coordinates": { "x": 1390, "y": 350 },
+          "width": 40,
+          "height": 70,
+          "movable": true,
+          "correctLocation": true,
+          "color": "#DED9C3"
         }
       ]
-      
     },
-
     {
       "id": "third_floor",
       "sortId": 2,
       "title": "Третий этаж",
-
       "levelMapWidth": 800,
       "levelMapHeight": 800,
       "levelCellSize": 5,
       "boundaries": "20,20 20,320 320,320 320,220 260,220 260,180 620,180 620,20",
       "covering": [
         "0 0 20 800",
-
         "20 0 260 20",
         "20 320 260 800",
-        
         "260 0 320 20",
         "260 180 320 220",
         "260 320 320 800",
-        
         "320 0 620 20",
         "320 180 620 800",
-
         "620 0 800 800"
-
       ],
-
       "objects": [
         {
           "category": "table",
           "id": "11",
           "coordinates": { "x": 20, "y": 20 },
-          "width": 15,
-          "height": 30,
-          "userId": "t0023",
+          "width": 40,
+          "height": 70,
           "movable": true,
           "correctLocation": true,
           "color": "#DED9C3"
         }
-
       ]
-      
     }
   ]
 }

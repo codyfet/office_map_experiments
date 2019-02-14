@@ -57,6 +57,30 @@ export default function createMapObject(type, id, coords, userId) {
             newObject.height = 15;
             newObject.color = SHREDDER_COLOR;
             break;
+        
+        case "column":
+            newObject.width = 15;
+            newObject.height = 15;
+            newObject.color = COLUMN_COLOR;
+            break;
+            
+        case "public_place":
+            newObject.width = 100;
+            newObject.height = 100;
+            newObject.color = PUBLIC_PLACE_COLOR;
+            break;
+        
+        case "meeting_room":
+            newObject.width = 100;
+            newObject.height = 100;
+            newObject.color =  MEETING_ROOM_COLOR;
+            break;
+        
+        case "service_room":
+            newObject.width = 50;
+            newObject.height = 50;
+            newObject.color =  SERVICE_ROOM_COLOR;
+            break;
 
         default:
             break; 

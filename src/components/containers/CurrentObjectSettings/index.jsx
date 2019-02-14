@@ -81,16 +81,18 @@ class CurrentObjectSettings extends React.Component {
           } else { // если некорректно
             throw new Error("Неправильно введены координаты");
           }
-        } else if ( key !== "title" ) {
+        } else if ( key !== "title" && key !== "color" ) {
           // остался только тип "номер":
           if ( /^\d*$/.test(this.state.objectSettings[key]) ) {
             objectData[key] = Number(this.state.objectSettings[key]);
           } else {
             throw new Error("Исправьте ввод числовых значений");
           }
-          
+        } else {
+          // заметим, что title и color преобразовывать не нужно - это строки
+          objectData[key] = this.state.objectSettings[key];
         }
-        // заметим, что key === title преобразовывать не нужно - это строка
+        
       }
     } 
     catch(e) {
@@ -118,10 +120,6 @@ class CurrentObjectSettings extends React.Component {
       "movable"
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
-      if ( object[prop] === undefined ) {
-        return;
-      } 
-
       if (prop === "coordinates") {
         return (
           <EditField
@@ -138,7 +136,7 @@ class CurrentObjectSettings extends React.Component {
             key={i}
             label={prop}
             placeholder={String(object[prop])}
-            disabled={ prop === "id" }
+            disabled={ prop === "id" || (prop === "title" && object.category === "table") }
             onInputChange={this.onInputChange}
           />
         );

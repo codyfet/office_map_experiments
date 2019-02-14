@@ -108,6 +108,62 @@
 
       "objects": [
         {
+          "category": "service_room",
+          "title": "Storage",
+          "id": "js39thqx",
+          "coordinates": { "x": 740, "y": 1550 },
+          "width": 90,
+          "height": 120,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD"
+        },
+        {
+          "category": "public_place",
+          "title": "Женский туалет",
+          "id": "js3a13ws",
+          "coordinates": { "x": 665, "y": 1300 },
+          "width": 165,
+          "height": 250,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD"
+        },
+        {
+          "category": "public_place",
+          "title": "Мужской туалет",
+          "id": "js4aonjx",
+          "coordinates": { "x": 830, "y": 1200 },
+          "width": 270,
+          "height": 350,
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD"
+        },
+        {
+          "category": "public_place",
+          "title": "Зеленая кухня",
+          "id": "js4axzbd",
+          "coordinates": { "x": 665, "y": 930 },
+          "movable": false,
+          "correctLocation": true,
+          "color": "#A3FFA0",
+          "width": 165,
+          "height": 270
+        },
+        {
+          "category": "service_room",
+          "title": "Комната для газовой супрессии",
+          "id": "js4ay3bu",
+          "coordinates": { "x": 665, "y": 820 },
+          "movable": false,
+          "correctLocation": true,
+          "color": "#EDEADD",
+          "width": 165,
+          "height": 110,
+          "userId": ""
+        },
+        {
           "category": "column",
           "id": "0",
           "coordinates": { "x": 100, "y": 100 },

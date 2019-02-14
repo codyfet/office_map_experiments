@@ -4,26 +4,6 @@
       "title": "Сотрудники",
       "color": "#b7a6bd"
     },
-    {
-      "id": "column",
-      "title": "Колонна",
-      "color": "black"
-    },
-    {
-      "id": "meeting_room",
-      "title": "Переговорная комната",
-      "color": "black"
-    },
-    {
-      "id": "public_place",
-      "title": "Общественное место",
-      "color": "black"
-    },
-    {
-      "id": "service_room",
-      "title": "Закрытое помещение",
-      "color": "black"
-    },
 
     {
       "id": "table",
@@ -48,6 +28,26 @@
     {
       "id": "shredder",
       "title": "Шреддер",
+      "color": "black"
+    },
+    {
+      "id": "column",
+      "title": "Колонна",
+      "color": "black"
+    },
+    {
+      "id": "meeting_room",
+      "title": "Переговорная комната",
+      "color": "black"
+    },
+    {
+      "id": "public_place",
+      "title": "Общественное место",
+      "color": "black"
+    },
+    {
+      "id": "service_room",
+      "title": "Закрытое помещение",
       "color": "black"
     }
 ]

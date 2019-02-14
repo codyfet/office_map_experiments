@@ -9,31 +9,9 @@ export default class ObjectItem extends React.Component {
     getSettingsForObject(object) {
         let rezult = { 
             text: object.title,
-            fill: ['black'] 
+            fill: ['black'],
+            content: iconPaths[object.id]
         };
-
-        switch(object.id) {
-            case "table":
-                rezult.content = iconPaths.table;
-                break;
-            case "cupboard":
-                rezult.content = iconPaths.cupboard;
-                break;
-            case "printer":
-                rezult.content = iconPaths.printer;
-                break;
-    
-            case "scaner":
-                rezult.content = iconPaths.scaner;
-                break;
-            
-            case "shredder":
-                rezult.content = iconPaths.shredder;
-                break;
-    
-            default:
-                break;
-        }
 
         return rezult;
     }

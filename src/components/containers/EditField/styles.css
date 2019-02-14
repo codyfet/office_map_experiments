@@ -9,6 +9,7 @@
 
 .editFieldInput {
   width: 70%;
+  padding-left: 8px;
 }
 
 .editFieldInput:focus{

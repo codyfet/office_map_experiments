@@ -185,16 +185,6 @@
           "correctLocation": true
         },
         {
-          "category": "column",
-          "id": "0",
-          "coordinates": { "x": 100, "y": 100 },
-          "width": 15,
-          "height": 15,
-          "color": "#CCCAC2",
-          "movable": false,
-          "correctLocation": true
-        },
-        {
           "category": "public_place",
           "title": "Кухня",
           "id": "1",
@@ -241,7 +231,7 @@
         {
           "category": "table",
           "id": "5",
-          "coordinates": { "x": 580, "y": 250 },
+          "coordinates": { "x": 290, "y": 190 },
           "width": 40,
           "height": 70,
           "color": "#DED9C3",
@@ -348,9 +338,9 @@
           "category": "public_place",
           "title": "Спортзал",
           "id": "js4gcekn",
-          "coordinates": { "x": 2310, "y": 620 },
+          "coordinates": { "x": 2310, "y": 520 },
           "width": 320,
-          "height": 200,
+          "height": 300,
           "color": "#FEE471",
           "movable": false,
           "correctLocation": true
@@ -359,9 +349,9 @@
           "category": "meeting_room",
           "title": "Кашин",
           "id": "js4gelnr",
-          "coordinates": { "x": 2630, "y": 620 },
+          "coordinates": { "x": 2630, "y": 520 },
           "width": 310,
-          "height": 200,
+          "height": 300,
           "color": "#83DDE9",
           "movable": false,
           "correctLocation": true
@@ -370,9 +360,9 @@
           "category": "meeting_room",
           "title": "Торжок",
           "id": "js4gh356",
-          "coordinates": { "x": 2940, "y": 620 },
+          "coordinates": { "x": 2940, "y": 520 },
           "width": 310,
-          "height": 200,
+          "height": 300,
           "color": "#83DDE9",
           "movable": false,
           "correctLocation": true
@@ -381,23 +371,155 @@
           "category": "public_place",
           "title": "Раздевалка",
           "id": "js4gjmsv",
-          "coordinates": { "x": 3250, "y": 620 },
+          "coordinates": { "x": 3250, "y": 520 },
           "width": 190,
-          "height": 200,
+          "height": 300,
           "color": "#E0B14D",
           "movable": false,
           "correctLocation": true
         },
         {
-          "category": "table",
-          "id": "js4iqoly",
-          "coordinates": { "x": 1390, "y": 350 },
-          "width": 40,
-          "height": 70,
-          "color": "#DED9C3",
+          "category": "service_room",
+          "title": "Storage",
+          "id": "js4o2kcq",
+          "coordinates": { "x": 1985, "y": 520 },
+          "width": 220,
+          "height": 90,
+          "color": "#EDEADD",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "public_place",
+          "title": "Мужской туалет",
+          "id": "js4o46s8",
+          "coordinates": { "x": 2095, "y": 610 },
+          "width": 110,
+          "height": 210,
+          "color": "#FEE471",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "public_place",
+          "title": "Женский туалет",
+          "id": "js4o4to0",
+          "coordinates": { "x": 1985, "y": 610 },
+          "width": 110,
+          "height": 210,
+          "color": "#FEE471",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4o9t4v",
+          "coordinates": { "x": 810, "y": 405 },
+          "width": 45,
+          "height": 45,
+          "color": "#CCCAC2",
           "movable": true,
-          "correctLocation": true,
-          "userId": "t0021"
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4q0j36",
+          "coordinates": { "x": 1130, "y": 405 },
+          "width": 45,
+          "height": 45,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4q0xao",
+          "coordinates": { "x": 1445, "y": 405 },
+          "width": 45,
+          "height": 45,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4q2g3t",
+          "coordinates": { "x": 1750, "y": 405 },
+          "width": 45,
+          "height": 45,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4q6d28",
+          "coordinates": { "x": 2215, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4qa6pc",
+          "coordinates": { "x": 2450, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4qai3j",
+          "coordinates": { "x": 2920, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4qaljz",
+          "coordinates": { "x": 2685, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4qapo7",
+          "coordinates": { "x": 3155, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4qat6f",
+          "coordinates": { "x": 3625, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "column",
+          "id": "js4qazaf",
+          "coordinates": { "x": 3390, "y": 260 },
+          "width": 25,
+          "height": 25,
+          "color": "#CCCAC2",
+          "movable": true,
+          "correctLocation": true
         }
       ]
     },

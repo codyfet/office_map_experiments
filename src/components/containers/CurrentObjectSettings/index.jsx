@@ -1,6 +1,7 @@
 import * as React from "react";
 import EditField from "../../containers/EditField/index";
 import CheckboxField from "../../containers/CheckboxField/index";
+import DropdownField from './../DropdownField/index';
 
 import "./styles.css";
 
@@ -11,6 +12,7 @@ import { updateUser, changeCurrentUser, changeAnyObjectData } from "../../../act
 
 // статические данные карты:
 import objectCategories from '../../../res/objectCategories.json';
+
 
 class CurrentObjectSettings extends React.Component {
 
@@ -104,6 +106,16 @@ class CurrentObjectSettings extends React.Component {
       if (prop === "movable") {
         return (
           <CheckboxField
+            key={i}
+            label={prop}
+            placeholder={object[prop]}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
+      } else if (prop === "category") {
+        return (
+          <DropdownField
             key={i}
             label={prop}
             placeholder={object[prop]}

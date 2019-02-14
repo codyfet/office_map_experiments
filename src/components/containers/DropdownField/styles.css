@@ -3,15 +3,15 @@
   display: flex;
 }
 
-.editFieldLabel {
+.editFieldDropdownLabel {
   width: 30%;
+  padding-top: 5px;
 }
 
-.editFieldInput {
+.editFieldDropdown {
   width: 70%;
-  padding-left: 8px;
 }
 
-.editFieldInput:focus{
+.editFieldDropdown:focus{
   outline: 2px solid orange;     /* oranges! yey */
 }

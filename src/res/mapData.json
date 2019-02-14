@@ -261,8 +261,8 @@
           "category": "cupboard",
           "id": "7",
           "coordinates": { "x": 65, "y": 20 },
-          "width": 10,
-          "height": 20,
+          "width": 30,
+          "height": 50,
           "movable": true,
           "correctLocation": true,
           "color": "#DED9C3"
@@ -270,9 +270,9 @@
         {
           "category": "printer",
           "id": "8",
-          "coordinates": { "x": 75, "y": 20 },
-          "width": 15,
-          "height": 15,
+          "coordinates": { "x": 120, "y": 15 },
+          "width": 40,
+          "height": 40,
           "movable": true,
           "correctLocation": true,
           "color": "#DDDDDD"
@@ -280,9 +280,9 @@
         {
           "category": "scaner",
           "id": "9",
-          "coordinates": { "x": 90, "y": 20 },
-          "width": 15,
-          "height": 15,
+          "coordinates": { "x": 175, "y": 20 },
+          "width": 40,
+          "height": 40,
           "movable": true,
           "correctLocation": true,
           "color": "#DDDDDD"
@@ -290,9 +290,9 @@
         {
           "category": "shredder",
           "id": "10",
-          "coordinates": { "x": 105, "y": 20 },
-          "width": 15,
-          "height": 15,
+          "coordinates": { "x": 240, "y": 40 },
+          "width": 40,
+          "height": 30,
           "movable": true,
           "correctLocation": true,
           "color": "#DDDDDD"

@@ -36,31 +36,31 @@ export default function createMapObject(type, id, coords, userId) {
             newObject.color = TABLE_COLOR;
             break;
         case "cupboard":
-            newObject.width = 10;
-            newObject.height = 20;
+            newObject.width = 30;
+            newObject.height = 50;
             newObject.color = CUPBOARD_COLOR;
             break;
         case "printer":
-            newObject.width = 15;
-            newObject.height = 15;
+            newObject.width = 40;
+            newObject.height = 40;
             newObject.color = PRINTER_COLOR;
             break;
 
         case "scaner":
-            newObject.width = 15;
-            newObject.height = 15;
+            newObject.width = 40;
+            newObject.height = 40;
             newObject.color = SCANER_COLOR;
             break;
         
         case "shredder":
-            newObject.width = 15;
-            newObject.height = 15;
+            newObject.width = 40;
+            newObject.height = 30;
             newObject.color = SHREDDER_COLOR;
             break;
         
         case "column":
-            newObject.width = 15;
-            newObject.height = 15;
+            newObject.width = 45;
+            newObject.height = 45;
             newObject.color = COLUMN_COLOR;
             break;
             

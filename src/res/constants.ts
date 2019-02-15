@@ -19,6 +19,8 @@ const ADD_USER = 'ADD_USER';
 const EDIT_USER = 'EDIT_USER';
 const DELETE_USER = 'DELETE_USER';
 
+const CHANGE_WORK_MODE = 'CHANGE_WORK_MODE';
+
 export { 
     CREATE_OBJECT, 
     DELETE_OBJECT, 
@@ -39,5 +41,7 @@ export {
     
     ADD_USER,
     EDIT_USER, 
-    DELETE_USER
+    DELETE_USER,
+
+    CHANGE_WORK_MODE
 };

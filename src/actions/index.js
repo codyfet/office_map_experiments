@@ -17,7 +17,9 @@ import {
 
   CHANGE_CURRENT_OBJECT,
   CHANGE_CURRENT_USER,
-  CHANGE_CURRENT_OBJECT_STATE
+  CHANGE_CURRENT_OBJECT_STATE,
+
+  CHANGE_WORK_MODE
 } from '../res/constants';
 
 // actions wuth objects:
@@ -104,4 +106,10 @@ export const editUser = (userData) => ({
 export const deleteUser = (userId) => ({
   type: DELETE_USER,
   payload: userId
+});
+
+// WORK_MODE:
+export const changeWorkMode = (newWM) => ({
+  type: CHANGE_WORK_MODE,
+  payload: newWM
 });

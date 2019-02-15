@@ -4,10 +4,16 @@ import './style.css';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeBoardState } from '../../../actions/index';
+import { changeBoardState, changeWorkMode } from '../../../actions/index';
+import {
+  SINGLE_EDIT,
+  MULTI_EDIT
+} from '../../../res/workModeConstants';
 
 
 class LeftPanel extends React.Component {
+
+
 
   autoAdjustStage = () => {
     // padding:
@@ -44,6 +50,13 @@ class LeftPanel extends React.Component {
 
   };
 
+  handleChange = (e) => {
+    const { actions } = this.props;
+    let newWM = e.target.checked === true ? MULTI_EDIT : SINGLE_EDIT;
+    actions.changeWorkMode(newWM);
+
+  }
+
   render() {
     // размеры доски:
     const { panelWidth, panelHeight } = this.props;
@@ -66,6 +79,7 @@ class LeftPanel extends React.Component {
           <input 
             className="buttonLeftPanel"
             type="checkbox"
+            onChange={this.handleChange} 
           />
           <div className="labelLeftPanel">Групповое выделение</div> 
         </div>
@@ -83,7 +97,8 @@ const mapStateToProps = (state) => ({
   
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ 
-      changeBoardState 
+      changeBoardState,
+      changeWorkMode 
   }, dispatch)
 });
   

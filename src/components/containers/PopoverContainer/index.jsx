@@ -1,10 +1,16 @@
 import React from 'react';
 import PopoverView from '../../presentational/PopoverView/index';
+import createMapObject from '../../../utils/objectsFactory';
 
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { deleteObject, turnObject, changeCurrentObjectState } from '../../../actions/index';
+import { createObject, deleteObject, turnObject, changeCurrentObjectState } from '../../../actions/index';
+
+var _ = require('lodash');
+// для генерирования уникальных id:
+var genUniqId = require('uniqid');
+
 
 class PopoverContainer extends React.Component {
 
@@ -39,6 +45,34 @@ class PopoverContainer extends React.Component {
    
     }
 
+    copyObject = () => {
+      const { actions, objects, currentObject } = this.props;
+      
+      const thisLevelObjects = objects.levels[objects.mapLevel];
+      const requiredObject = thisLevelObjects.find( val => val.id === currentObject.objectId );
+      // сделаем копию:
+      let newObject = _.cloneDeep(requiredObject);
+
+      // никаких проверок не нужно - мы знаем точно, что объект существует
+      // новые координаты получим сдвигом вправо вниз на:
+      const shift = 30;
+      newObject.coordinates = { 
+        x: requiredObject.coordinates.x + shift, 
+        y: requiredObject.coordinates.y + shift
+      };
+      // если есть информация про пользователя - занулим:
+      if (newObject.userId !== undefined) {
+        newObject.userId = '';
+      }
+      // сгенерим новый id:
+      newObject.id = genUniqId();
+
+      
+      // console.log('newObject', newObject);
+      actions.createObject(newObject);
+
+    }
+
     render() {
         const { x, y, readyHandler} = this.props;
 
@@ -47,6 +81,7 @@ class PopoverContainer extends React.Component {
                 x={x}
                 y={y}
                 readyHandler={readyHandler}
+                copyHandler={this.copyObject}
                 turnHandler={this.rotateObject}
                 editHandler={this.editObject}
                 deleteHandler={this.deleteObject}
@@ -69,6 +104,7 @@ const mapStateToProps = (state) => ({
     
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators({ 
+        createObject,
         deleteObject, 
         turnObject,
         changeCurrentObjectState 

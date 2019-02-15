@@ -36,7 +36,7 @@ function getBoundariesLikeRectangles(borders, step, globalAreaSize) {
 
 }
 
-export default class MapShape extends React.Component {
+export default class MapShape extends React.PureComponent {
 
     // ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ВИУЗАЛЬНЫХ ГРАНИЦ КАРТЫ:
     drawMapVisualBorders = (context, shape) => {
@@ -69,7 +69,7 @@ export default class MapShape extends React.Component {
 
     render() {
         // getting settings for drawing grid:
-        const { borderlands, onMouseEnter, onMouseLeave, onMouseOver } = this.props;
+        const { borderlands } = this.props;
         
         // предположим, мы получили ограничивающие области:
         const borderAreas = borderlands.slice(0).map( (val, i) => {

@@ -3,7 +3,7 @@ import { Accordion, AccordionItem } from 'react-sanfona';
 import ChooseUserList from '../ListsComponents/ChooseUserList/index';
 import ObjectsList from '../ListsComponents/ObjectsList/index';
 import './styles.css';
-import createMapObject from './objectsFactory';
+import createMapObject from '../../../utils/objectsFactory';
 
 // redux:
 import { connect } from 'react-redux';

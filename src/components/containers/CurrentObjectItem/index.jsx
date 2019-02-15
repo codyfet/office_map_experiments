@@ -42,6 +42,8 @@ export default class CurrentObjectItem extends React.Component {
         const { object } = this.props;
         const { content, text, fill } = this.getSettingsForObject(object);
 
+        console.log('CurrentObjectItem object:', object);
+
         return (
             <div 
                 className="currentObjectItemSelected"

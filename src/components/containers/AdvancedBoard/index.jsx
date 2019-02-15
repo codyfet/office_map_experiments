@@ -341,8 +341,8 @@ class AdvancedBoard extends React.Component {
     actions.changeCurrentObject(objectId);
     actions.changeCurrentUser(userId);
 
-    // при каждом изменении пользователя мы закрываем меню редактирования:
-    actions.changeCurrentObjectState('none');
+    // // при каждом изменении пользователя мы закрываем меню редактирования:
+    // actions.changeCurrentObjectState('none');
 
   }
 
@@ -372,8 +372,19 @@ class AdvancedBoard extends React.Component {
     this.hideContextMenu();
     this.setCurrentObjectData('', '');
 
+    const { actions } = this.props;
+    // при каждом сбросе текущего объекта мы закрываем меню редактирования:
+    actions.changeCurrentObjectState('none');
+
   }
 
+  // 5.3.4. Открыть вкладку "Редактировать"
+  openCurrentObjectTab = () => {
+    const { actions } = this.props;
+    actions.changeCurrentObjectState('edit');
+
+  }
+  
 
   
 
@@ -415,6 +426,7 @@ class AdvancedBoard extends React.Component {
           
             shareObjectData={this.setCurrentObjectData}
             checkObjectLocation={this.checkObjectLocation}
+            openCurrentObjectTab={this.openCurrentObjectTab}
   
           />
         );
@@ -429,6 +441,7 @@ class AdvancedBoard extends React.Component {
             hideContextMenu={this.hideContextMenu}
           
             shareObjectData={this.setCurrentObjectData}
+            openCurrentObjectTab={this.openCurrentObjectTab}
           />
         );
       }

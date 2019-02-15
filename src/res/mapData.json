@@ -263,9 +263,9 @@
         {
           "category": "printer",
           "id": "8",
-          "coordinates": { "x": 120, "y": 15 },
-          "width": 40,
-          "height": 40,
+          "coordinates": { "x": 680, "y": 590 },
+          "width": 30,
+          "height": 30,
           "color": "#DDDDDD",
           "movable": true,
           "correctLocation": true
@@ -273,7 +273,7 @@
         {
           "category": "scaner",
           "id": "9",
-          "coordinates": { "x": 175, "y": 20 },
+          "coordinates": { "x": 830, "y": 580 },
           "width": 40,
           "height": 40,
           "color": "#DDDDDD",
@@ -283,7 +283,7 @@
         {
           "category": "shredder",
           "id": "10",
-          "coordinates": { "x": 240, "y": 40 },
+          "coordinates": { "x": 765, "y": 405 },
           "width": 40,
           "height": 30,
           "color": "#DDDDDD",
@@ -610,6 +610,156 @@
           "height": 460,
           "color": "#CCCAC2",
           "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "table",
+          "id": "js5utzep",
+          "coordinates": { "x": 780, "y": 285 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uuzdj",
+          "coordinates": { "x": 780, "y": 215 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uv632",
+          "coordinates": { "x": 780, "y": 145 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uva9i",
+          "coordinates": { "x": 780, "y": 75 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uvh1b",
+          "coordinates": { "x": 780, "y": 5 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uwvx3",
+          "coordinates": { "x": 740, "y": 5 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5ux127",
+          "coordinates": { "x": 740, "y": 75 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5ux5sv",
+          "coordinates": { "x": 740, "y": 145 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uxahj",
+          "coordinates": { "x": 740, "y": 215 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "table",
+          "id": "js5uxesv",
+          "coordinates": { "x": 740, "y": 285 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "printer",
+          "id": "js5v0qt4",
+          "coordinates": { "x": 780, "y": 580 },
+          "width": 40,
+          "height": 40,
+          "color": "#DDDDDD",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "printer",
+          "id": "js5v1mvx",
+          "coordinates": { "x": 680, "y": 560 },
+          "width": 30,
+          "height": 30,
+          "color": "#DDDDDD",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "cupboard",
+          "id": "js5v2f2n",
+          "coordinates": { "x": 880, "y": 590 },
+          "width": 50,
+          "height": 30,
+          "color": "#DED9C3",
+          "movable": true,
+          "correctLocation": true
+        },
+        {
+          "category": "scaner",
+          "id": "js5v3c8v",
+          "coordinates": { "x": 385, "y": 1065 },
+          "width": 40,
+          "height": 40,
+          "color": "#DDDDDD",
+          "movable": true,
           "correctLocation": true
         }
       ]

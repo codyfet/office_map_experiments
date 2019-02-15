@@ -89,6 +89,8 @@ class CurrentObjectSettings extends React.Component {
   render() {
     const { object } = this.props;
 
+    console.log('CurrentObjectSettings object:', object);
+
     // определим свойства, которые можно редактировать:
     const allowedProperties = [
       "id",

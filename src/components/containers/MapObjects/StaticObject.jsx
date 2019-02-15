@@ -73,9 +73,13 @@ export default class StaticObject extends React.Component {
   }
 
   onObjectContextMenu = (e) => {
-    const { showContextMenu } = this.props;
+    const { showContextMenu, openCurrentObjectTab } = this.props;
     e.evt.preventDefault();
+
     showContextMenu(e.evt.clientX, e.evt.clientY);
+    // открыть окно редактирования:
+    openCurrentObjectTab();
+    
   }
 
   onObjectMouseMove = (e) => {

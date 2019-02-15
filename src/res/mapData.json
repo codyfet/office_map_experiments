@@ -155,9 +155,9 @@
           "category": "public_place",
           "title": "Раздевалка",
           "id": "js4d01za",
-          "coordinates": { "x": 385, "y": 1320 },
+          "coordinates": { "x": 385, "y": 1290 },
           "width": 155,
-          "height": 230,
+          "height": 260,
           "color": "#D5BD86",
           "movable": false,
           "correctLocation": true
@@ -231,9 +231,9 @@
         {
           "category": "table",
           "id": "5",
-          "coordinates": { "x": 290, "y": 190 },
-          "width": 40,
-          "height": 70,
+          "coordinates": { "x": 210, "y": 105 },
+          "width": 70,
+          "height": 40,
           "color": "#DED9C3",
           "movable": true,
           "correctLocation": true,
@@ -395,7 +395,7 @@
           "id": "js4o46s8",
           "coordinates": { "x": 2095, "y": 610 },
           "width": 110,
-          "height": 210,
+          "height": 190,
           "color": "#FEE471",
           "movable": false,
           "correctLocation": true
@@ -406,7 +406,7 @@
           "id": "js4o4to0",
           "coordinates": { "x": 1985, "y": 610 },
           "width": 110,
-          "height": 210,
+          "height": 190,
           "color": "#FEE471",
           "movable": false,
           "correctLocation": true
@@ -418,7 +418,7 @@
           "width": 45,
           "height": 45,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -428,7 +428,7 @@
           "width": 45,
           "height": 45,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -438,7 +438,7 @@
           "width": 45,
           "height": 45,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -448,7 +448,7 @@
           "width": 45,
           "height": 45,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -458,7 +458,7 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -468,7 +468,7 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -478,7 +478,7 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -488,7 +488,7 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -498,7 +498,7 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -508,7 +508,7 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
-          "movable": true,
+          "movable": false,
           "correctLocation": true
         },
         {
@@ -518,7 +518,98 @@
           "width": 25,
           "height": 25,
           "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5td07j",
+          "coordinates": { "x": 945, "y": 560 },
+          "width": 5,
+          "height": 60,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5te2bh",
+          "coordinates": { "x": 665, "y": 560 },
+          "width": 5,
+          "height": 60,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5tlk11",
+          "coordinates": { "x": 385, "y": 1170 },
+          "width": 45,
+          "height": 45,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5tmbrw",
+          "coordinates": { "x": 535, "y": 1170 },
+          "width": 5,
+          "height": 120,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5tr05w",
+          "coordinates": { "x": 1865, "y": 530 },
+          "width": 35,
+          "height": 290,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "table",
+          "id": "js5ttaq5",
+          "coordinates": { "x": 1825, "y": 370 },
+          "width": 40,
+          "height": 70,
+          "color": "#DED9C3",
           "movable": true,
+          "correctLocation": true,
+          "userId": ""
+        },
+        {
+          "category": "construction",
+          "id": "js5tv0bv",
+          "coordinates": { "x": 1985, "y": 800 },
+          "width": 220,
+          "height": 20,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5twp62",
+          "coordinates": { "x": 1900, "y": 800 },
+          "width": 20,
+          "height": 20,
+          "color": "#CCCAC2",
+          "movable": false,
+          "correctLocation": true
+        },
+        {
+          "category": "construction",
+          "id": "js5ugi7z",
+          "coordinates": { "x": 1865, "y": 0 },
+          "width": 35,
+          "height": 460,
+          "color": "#CCCAC2",
+          "movable": false,
           "correctLocation": true
         }
       ]

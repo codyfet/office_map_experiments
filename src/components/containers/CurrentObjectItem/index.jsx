@@ -31,59 +31,49 @@ export default class CurrentObjectItem extends React.Component {
         // иначе:
         let rezult = { 
             text: objectCategories.find((cat) => cat.id === object.category).title,
-            fill: ['black'] 
+            fill: ['black'],
+            content: iconPaths[object.category]
         };
 
-        switch(object.category) {
-            case "table":
-                rezult.content = iconPaths.table;
-                break;
-            case "cupboard":
-                rezult.content = iconPaths.cupboard;
-                break;
-            case "printer":
-                rezult.content = iconPaths.printer;
-                break;
+        // switch(object.category) {
+        //     case "table":
+        //         rezult.content = iconPaths.table;
+        //         break;
+        //     case "cupboard":
+        //         rezult.content = iconPaths.cupboard;
+        //         break;
+        //     case "printer":
+        //         rezult.content = iconPaths.printer;
+        //         break;
     
-            case "scaner":
-                rezult.content = iconPaths.scaner;
-                break;
+        //     case "scaner":
+        //         rezult.content = iconPaths.scaner;
+        //         break;
             
-            case "shredder":
-                rezult.content = iconPaths.shredder;
-                break;
+        //     case "shredder":
+        //         rezult.content = iconPaths.shredder;
+        //         break;
 
-            case "column":
-                rezult.content = iconPaths.column;
-                break;
+        //     case "column":
+        //         rezult.content = iconPaths.column;
+        //         break;
 
-            case "meeting_room":
-                rezult.content = iconPaths.meeting_room;
-                break;
+        //     case "meeting_room":
+        //         rezult.content = iconPaths.meeting_room;
+        //         break;
             
-            case "public_place":
-                rezult.content = iconPaths.public_place;
-                break;
+        //     case "public_place":
+        //         rezult.content = iconPaths.public_place;
+        //         break;
             
-            case "service_room":
-                rezult.content = iconPaths.service_room;
+        //     case "service_room":
+        //         rezult.content = iconPaths.service_room;
     
-            default:
-                break;
-        }
+        //     default:
+        //         break;
+        // }
 
         return rezult;
-    }
-
-    onObjectClick = () => {
-        const { object, onClick } = this.props;
-        if ( !this.state.isSelected ) {
-            onClick( object.category );
-            this.setState({ isSelected: true });
-        } else {
-            onClick('');
-            this.setState({ isSelected: false });
-        }
     }
 
     render() {
@@ -92,8 +82,7 @@ export default class CurrentObjectItem extends React.Component {
 
         return (
             <div 
-                className={ this.state.isSelected ? "currentObjectItemSelected " : "currentObjectItem" } 
-                onClick={this.onObjectClick}
+                className="currentObjectItemSelected"
             >
                 <AdvancedSVG
                     width="30px"

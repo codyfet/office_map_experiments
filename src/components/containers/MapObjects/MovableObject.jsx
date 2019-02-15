@@ -161,6 +161,7 @@ export default class MovableObject extends React.Component {
   onObjectContextMenu = (e) => {
     const { showContextMenu } = this.props;
     e.evt.preventDefault();
+
     showContextMenu(e.evt.clientX, e.evt.clientY);
   }
 

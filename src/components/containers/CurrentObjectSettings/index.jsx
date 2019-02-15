@@ -55,12 +55,9 @@ class CurrentObjectSettings extends React.Component {
     try {
       for ( let key in this.state.objectSettings ) {
         if ( key === "category" ) {
-          // есть ли такая категория:
-          if ( objectCategories.find( cat => cat.id === this.state.objectSettings[key]) ) {
-            objectData[key] = this.state.objectSettings[key];
-          } else {
-            throw new Error('Неправильная категория');
-          }
+          // c DropdownField категорию оюъекта невозможно ввести неверно:
+          objectData[key] = this.state.objectSettings[key];
+          
         } else if ( key === "movable" ) {
           // с checkbox булевское значение невозможно ввести неверно:
           objectData[key] = this.state.objectSettings[key];
@@ -95,8 +92,9 @@ class CurrentObjectSettings extends React.Component {
     // определим свойства, которые можно редактировать:
     const allowedProperties = [
       "id",
-      "category",
+      "coordinates",
       "title",
+      "category",
       "width",
       "height",
       "color",
@@ -120,6 +118,16 @@ class CurrentObjectSettings extends React.Component {
             label={prop}
             placeholder={object[prop]}
             disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
+      } else if (prop === "coordinates") {
+        return (
+          <EditField
+            key={i}
+            label={"coordinates (x,y)"}
+            placeholder={String(object[prop].x) + ',' + String(object[prop].y)}
+            disabled={true}
             onInputChange={this.onInputChange}
           />
         );

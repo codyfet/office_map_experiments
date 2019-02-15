@@ -11,6 +11,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateUser, changeCurrentUser } from "../../../actions/index";
 
+// для создания копий:
+var _ = require('lodash');
+
 class CurrentObjectTab extends React.Component {
   constructor(props) {
     super(props);
@@ -111,7 +114,7 @@ class CurrentObjectTab extends React.Component {
     // вынуть объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
 
-    const requiredObject = thisLevelObjects.find(val => val.id === currentObject.objectId);
+    var requiredObject = thisLevelObjects.find(val => val.id === currentObject.objectId);
     var requiredUser = {
       title: "Not assigned",
       capability: ""
@@ -125,6 +128,10 @@ class CurrentObjectTab extends React.Component {
       }
     } // иначе - либо объект не определен, либо к нему не привязан пользователь
 
+    // нам нужны только immutable: делаем копии:
+    requiredObject = _.cloneDeep(requiredObject);
+    requiredUser = _.cloneDeep(requiredUser);
+
     return (
       <div> 
         <div className="currentObjectContainer">
@@ -133,10 +140,10 @@ class CurrentObjectTab extends React.Component {
           </div>
           <CurrentObjectItem
             object={requiredObject}
-            onClick={this.openCloseObjectSettings}
+            // onClick={this.openCloseObjectSettings}
           />
           { 
-            requiredObject !== undefined && this.state.showObjectSettings && 
+            requiredObject !== undefined && 
             <CurrentObjectSettings 
               object={requiredObject}
               closeSettings={this.closeObjectSettings}

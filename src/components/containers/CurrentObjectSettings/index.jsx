@@ -101,6 +101,10 @@ class CurrentObjectSettings extends React.Component {
       "movable"
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
+      if (object === undefined) {
+        return;
+      }
+
       if (prop === "movable") {
         return (
           <CheckboxField
@@ -151,20 +155,24 @@ class CurrentObjectSettings extends React.Component {
     return (
       <div className="currentObjectSettingsContainer">
         {editFieldsPanel}
-        <div className="buttonsSet">
-          <button 
-            className="buttonAccept"
-            onClick={this.onBtnAcceptClick}
-          >
-            Применить
-          </button>
-          <button
-            className="buttonClose"
-            onClick={this.onBtnCloseClick}
-          >
-            Закрыть
-          </button>
-        </div>
+        {
+          object !== undefined &&
+          <div className="buttonsSet">
+            <button 
+              className="buttonAccept"
+              onClick={this.onBtnAcceptClick}
+            >
+              Применить
+            </button>
+            <button
+              className="buttonClose"
+              onClick={this.onBtnCloseClick}
+            >
+              Закрыть
+            </button>
+          </div>
+        }
+        
       </div>
     );
   }

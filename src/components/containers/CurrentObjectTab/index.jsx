@@ -142,13 +142,10 @@ class CurrentObjectTab extends React.Component {
             object={requiredObject}
             // onClick={this.openCloseObjectSettings}
           />
-          { 
-            requiredObject !== undefined && 
-            <CurrentObjectSettings 
-              object={requiredObject}
-              closeSettings={this.closeObjectSettings}
-            />
-          }
+          <CurrentObjectSettings 
+            object={requiredObject}
+            closeSettings={this.closeObjectSettings}
+          />
         </div>
         { /*Пользователь показывается, только если текущий объект - стол: */
           requiredObject !== undefined  && requiredObject.category === "table" &&

@@ -8,8 +8,8 @@ export default class GlobalArea extends React.Component {
 
   render() {
     // размеры доски:
-    const width = 800;
-    const height = 800;
+    const width = 900;
+    const height = 900;
 
     return (
        <div className="globalArea"> 

@@ -12,6 +12,14 @@ class CheckboxField extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if ( prevProps.placeholder !== this.props.placeholder ) {
+      this.setState({
+        isChecked: this.props.placeholder
+      });
+    }
+  }
+
   handleChange = (e) => {
     const { label, onInputChange } = this.props;
     this.setState({
@@ -27,8 +35,10 @@ class CheckboxField extends React.Component {
   }
 
   render() {
-    const { label, disabled } = this.props;
+    const { label, placeholder, disabled } = this.props;
     
+    console.log('checkbox', placeholder);
+
     return (
       <div className="editField">
         <div className="editFieldLabel">{label}</div>

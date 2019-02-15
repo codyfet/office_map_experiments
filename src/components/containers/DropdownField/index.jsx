@@ -16,6 +16,14 @@ class DropdownField extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if ( prevProps.placeholder !== this.props.placeholder ) {
+      this.setState({
+        currCategory: this.props.placeholder
+      });
+    }
+  }
+
   _onSelect = (option) => {
     const { label, onInputChange } = this.props;
     this.setState({

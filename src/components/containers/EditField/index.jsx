@@ -13,6 +13,14 @@ class EditField extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if ( prevProps.placeholder !== this.props.placeholder ) {
+      this.setState({
+        inputText: this.props.placeholder
+      });
+    }
+  }
+
   onTextChange = (e) => {
     const { label, onInputChange } = this.props;
     this.setState({

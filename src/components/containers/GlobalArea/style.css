@@ -2,7 +2,7 @@
   margin: auto;
   width: 95%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   font:.7em/1.5 "lucida grande", arial, sans-serif;

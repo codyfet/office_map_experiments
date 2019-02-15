@@ -131,10 +131,16 @@ class SidePanel extends React.Component {
 
   render() {
 
-    const { currentObject } = this.props;
+    const { currentObject, panelWidth, panelHeight } = this.props;
 
     return (
-      <div className="sidePanelContainer">
+      <div 
+        className="sidePanelContainer"
+        style={{
+          width: (panelWidth + 'px'), 
+          height: (panelHeight + 'px')
+        }}  
+      >
         {/* handle map level change: */}
         <MapLevelItem 
           currentLevel={this.props.mapState.mapLevel}

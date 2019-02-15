@@ -1,0 +1,25 @@
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  font: 12 "lucida grande", arial, sans-serif;
+
+}
+
+.buttonLeftPanel {
+  height: 40px;
+
+}
+
+.checkboxLeftPanel {
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.labelLeftPanel {
+  vertical-align: middle;
+  margin: 0;
+
+}

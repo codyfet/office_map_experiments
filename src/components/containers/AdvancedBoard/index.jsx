@@ -74,42 +74,6 @@ class AdvancedBoard extends React.Component {
 
   }
 
-  // 1.3. Авто-подстройка масштаба и сдвига под границы stage:
-  autoAdjustStage = () => {
-    // padding:
-    const padding = 20;
-
-    // получаем границы карты:
-    const { mapWidth, mapHeight } = this.props.mapState;
-
-    // получаем границы окна :
-    const { boardWidth, boardHeight } = this.props;
-
-    // настраиваем масштаб:
-    // считаем используя отступ с 2-х сторон (поэтому * 2)
-    let scaleX = boardWidth / (mapWidth + padding*2);
-    let scaleY = boardHeight / (mapHeight + padding*2);
-
-    // если реальная карта больше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY < 1),
-    // то выберем наибольший масштаб:
-    let newScale;
-    if ( scaleX < 1 || scaleY < 1) {
-      newScale = scaleX > scaleY ? scaleY : scaleX;
-    } else { // иначе:
-      newScale = scaleX > scaleY ? scaleX : scaleY;
-    }
-
-    // сразу в redux:
-    const { actions } = this.props;
-    const newState = { 
-      shift: [padding*newScale, padding*newScale], 
-      scale: newScale            
-    };
-
-    actions.changeBoardState(newState);
-
-  };
-
   // 2. ОБРАБОТКА ПЕРЕСЕЧЕНИЙ---------------------------------------------------------------:
   // 2.1. Простая функция обработки пересечений двух прямоугольников вида:
   // { x: number, y: number, width: number, height: number }
@@ -253,11 +217,6 @@ class AdvancedBoard extends React.Component {
     const newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
     
     this.handleStageScaleChange(newScale);
-
-  }
- 
-  onStageDblClick = (e) => {
-    this.autoAdjustStage();
 
   }
 
@@ -542,6 +501,7 @@ class AdvancedBoard extends React.Component {
             checkObjectLocation={this.checkObjectLocation}
           />
         )}
+        
       </div>
     );
   }

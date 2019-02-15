@@ -31,11 +31,6 @@
       "color": "black"
     },
     {
-      "id": "column",
-      "title": "Колонна",
-      "color": "black"
-    },
-    {
       "id": "meeting_room",
       "title": "Переговорная комната",
       "color": "black"

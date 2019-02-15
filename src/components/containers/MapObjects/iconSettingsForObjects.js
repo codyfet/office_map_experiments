@@ -34,11 +34,6 @@ export default function getIconSettings(objCategory) {
             settings.shiftY = 5;
             break;
         // static object categories:
-        case "column":
-            settings.scale = 0.010;
-            settings.shiftX = 2.5;
-            settings.shiftY = 2.5;
-            break;
         case "meeting_room":
             settings.scale = 0.02;
             settings.shiftX = 5;

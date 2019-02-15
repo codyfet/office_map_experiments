@@ -14,7 +14,6 @@ import {
     PUBLIC_PLACE_COLOR,
     MEETING_ROOM_COLOR,
     SERVICE_ROOM_COLOR,
-    COLUMN_COLOR,
     CONSTRUCTION_COLOR
         
 } from '../../../res/constantsObjectsColors';
@@ -59,12 +58,6 @@ export default function createMapObject(type, id, coords, userId) {
             newObject.color = SHREDDER_COLOR;
             break;
         
-        case "column":
-            newObject.width = 45;
-            newObject.height = 45;
-            newObject.color = COLUMN_COLOR;
-            break;
-            
         case "public_place":
             newObject.width = 100;
             newObject.height = 100;

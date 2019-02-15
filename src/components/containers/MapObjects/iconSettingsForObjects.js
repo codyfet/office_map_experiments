@@ -53,7 +53,12 @@ export default function getIconSettings(objCategory) {
             settings.scale = 0.2;
             settings.shiftX = 5.5;
             settings.shiftY = 5.5;
-            break;  
+            break; 
+        case "construction":
+            settings.scale = 0;
+            settings.shiftX = 0;
+            settings.shiftY = 0;
+            break; 
         default:
             break;
     }

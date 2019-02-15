@@ -35,44 +35,6 @@ export default class CurrentObjectItem extends React.Component {
             content: iconPaths[object.category]
         };
 
-        // switch(object.category) {
-        //     case "table":
-        //         rezult.content = iconPaths.table;
-        //         break;
-        //     case "cupboard":
-        //         rezult.content = iconPaths.cupboard;
-        //         break;
-        //     case "printer":
-        //         rezult.content = iconPaths.printer;
-        //         break;
-    
-        //     case "scaner":
-        //         rezult.content = iconPaths.scaner;
-        //         break;
-            
-        //     case "shredder":
-        //         rezult.content = iconPaths.shredder;
-        //         break;
-
-        //     case "column":
-        //         rezult.content = iconPaths.column;
-        //         break;
-
-        //     case "meeting_room":
-        //         rezult.content = iconPaths.meeting_room;
-        //         break;
-            
-        //     case "public_place":
-        //         rezult.content = iconPaths.public_place;
-        //         break;
-            
-        //     case "service_room":
-        //         rezult.content = iconPaths.service_room;
-    
-        //     default:
-        //         break;
-        // }
-
         return rezult;
     }
 

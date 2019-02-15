@@ -49,6 +49,11 @@
       "id": "service_room",
       "title": "Закрытое помещение",
       "color": "black"
+    },
+    {
+      "id": "construction",
+      "title": "Конструкция (колонна, стена)",
+      "color": "black"
     }
 ]
 

@@ -412,7 +412,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4o9t4v",
           "coordinates": { "x": 810, "y": 405 },
           "width": 45,
@@ -422,7 +422,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4q0j36",
           "coordinates": { "x": 1130, "y": 405 },
           "width": 45,
@@ -432,7 +432,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4q0xao",
           "coordinates": { "x": 1445, "y": 405 },
           "width": 45,
@@ -442,7 +442,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4q2g3t",
           "coordinates": { "x": 1750, "y": 405 },
           "width": 45,
@@ -452,7 +452,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4q6d28",
           "coordinates": { "x": 2215, "y": 260 },
           "width": 25,
@@ -462,7 +462,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4qa6pc",
           "coordinates": { "x": 2450, "y": 260 },
           "width": 25,
@@ -472,7 +472,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4qai3j",
           "coordinates": { "x": 2920, "y": 260 },
           "width": 25,
@@ -482,7 +482,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4qaljz",
           "coordinates": { "x": 2685, "y": 260 },
           "width": 25,
@@ -492,7 +492,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4qapo7",
           "coordinates": { "x": 3155, "y": 260 },
           "width": 25,
@@ -502,7 +502,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4qat6f",
           "coordinates": { "x": 3625, "y": 260 },
           "width": 25,
@@ -512,7 +512,7 @@
           "correctLocation": true
         },
         {
-          "category": "column",
+          "category": "construction",
           "id": "js4qazaf",
           "coordinates": { "x": 3390, "y": 260 },
           "width": 25,

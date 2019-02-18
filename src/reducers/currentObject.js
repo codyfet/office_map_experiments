@@ -11,15 +11,18 @@ const initialState = { objectId: '',
 export default function currentObject(state = initialState, action) {
   switch ( action.type ) {
     case CHANGE_CURRENT_OBJECT: {
-      state.objectId = action.payload;
-      return state;
+      return {
+        objectId: action.payload, 
+        userId: state.userId,
+        state: state.state
+      };
       
     }
     case CHANGE_CURRENT_USER: { 
       return {
         objectId: state.objectId, 
         userId: action.payload,
-        state: action.payload
+        state: state.state
       };
 
     }

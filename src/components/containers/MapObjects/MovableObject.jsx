@@ -15,15 +15,23 @@ export default class MovableObject extends React.Component {
     this.state = {
       isPointed: false
     }
+    
   }
 
+  componentDidMount() {
+    const { checkObjectLocation, object } = this.props;
+    checkObjectLocation(object);
+    
+  }
 
   componentDidUpdate(prevProps){
     const { checkObjectLocation, object } = this.props;
 
     // проверим границы для измененного объекта:
     // будем проверять границы при каждом изменении размеров объекта:
-    if ( prevProps.object.width !== object.width ) {
+    if ( prevProps.object.width !== object.width ||
+         prevProps.object.coordinates.x !== object.coordinates.x || 
+         prevProps.object.coordinates.y !== object.coordinates.y ) {
       console.log('check loaction for object: ', object);
       checkObjectLocation(object);
     }

@@ -6,7 +6,8 @@ import {
   UPDATE_USER,
   CHANGE_OBJECTS_LEVEL,
   CHANGE_CORRECT_LOCATION,
-  CHANGE_ANY_OBJECT_DATA
+  CHANGE_ANY_OBJECT_DATA,
+  SHIFT_OBJECTS
 } from "../res/constants";
 import mapData from "../res/mapData.json";
 // загрузить lodash:
@@ -137,6 +138,26 @@ export default function objects(state = initialState, action) {
           object[key] = objectData[key];
         }
       }
+
+      return {
+        mapLevel: lvl,
+        levels: newLevels
+      };
+    }
+    case SHIFT_OBJECTS: {
+      const lvl = state.mapLevel;
+      const newLevels = state.levels.slice(0);
+      
+      const objectIds = action.payload.ids.split(' ');
+      const shift = action.payload.shift;
+      newLevels[lvl].forEach(elem => {
+        if ( objectIds.includes(elem.id) ) {
+          elem.coordinates = {
+            x: elem.coordinates.x + shift.x,
+            y: elem.coordinates.y + shift.y,
+          }; 
+        }
+      });
 
       return {
         mapLevel: lvl,

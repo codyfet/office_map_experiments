@@ -17,12 +17,14 @@ import {
   changeCurrentObject,
   changeCurrentUser,
   changeCurrentObjectState,
-  changeCorrectLocation 
+  changeCorrectLocation,
+  shiftObjects 
 
 } from "../../../actions/index";
 
 //popup:
 import PopoverContainer from "../PopoverContainer/index";
+import { MULTI_EDIT } from '../../../res/workModeConstants';
 
 // загрузить lodash:
 var _ = require('lodash');
@@ -104,12 +106,14 @@ class AdvancedBoard extends React.Component {
 
     // console.log('checkObjectLocation stage', stage);
     // console.log('checkObjectLocation object', object);
+    const { objects } = this.props;
+    const thisLevelObjects = objects.levels[objects.mapLevel];
 
     // проверяем, есть ли хотя бы 1 пересечение с объектами (nodes) карты:
-    let intersectedWithMapObjects = stage.children[1].children.some((node, i) => {
-      // если узел - не группа, индекс меньше 2 или равен текущему объекту 
+    let intersectedWithMapObjects = thisLevelObjects.some((obj, i) => {
+      // если id равен id текущего объекта, 
       // то пересечения с этим узлом нет
-      if ( node.nodeType !== "Group" || node.attrs.nameID === object.id || i < 2 ) {
+      if ( obj.id === object.id ) {
         return false;
       }
 
@@ -117,10 +121,10 @@ class AdvancedBoard extends React.Component {
       // реализовано отдельно специально, ведь при масштабировании
       // координаты становятся нецелыми и при проверках возникают ошибки 
       let currNode = {
-        x: node.attrs.x,
-        y: node.attrs.y,
-        width: node.children[0].attrs.width,
-        height: node.children[0].attrs.height
+        x: obj.coordinates.x,
+        y: obj.coordinates.y,
+        width: obj.width,
+        height: obj.height
       };
 
       if ( this.haveIntersection(currNode, currObject) ) {
@@ -171,9 +175,12 @@ class AdvancedBoard extends React.Component {
   checkCurrentObjectLocation = () => {
     const { currentObject, objects } = this.props;
     const thisLevelObjects = objects.levels[objects.mapLevel];
-    const obj = thisLevelObjects.find(val => val.id === currentObject.objectId);
-      
-    this.checkObjectLocation(obj);
+    const objectIds = currentObject.objectId.split(' ');
+    thisLevelObjects.forEach(elem => {
+      if ( objectIds.includes(elem.id) ) {
+        this.checkObjectLocation(elem);
+      }
+    });
   }
 
   // 3. ОБРАБОТКА СОБЫТИЙ STAGE---------------------------------------------------------------:
@@ -203,8 +210,9 @@ class AdvancedBoard extends React.Component {
       this.handleStageShiftChange( [currentStage.x(), currentStage.y()] );
     
     } else { 
-      // если свдинулся объект:
-      this.checkCurrentObjectLocation();
+      // если сдвинулся объект:
+      // уже проверяется в MovableObject!
+      // this.checkCurrentObjectLocation();
     }
   
   };
@@ -237,16 +245,44 @@ class AdvancedBoard extends React.Component {
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
-    const { actions } = this.props;
-    let newObjectData = {
-      id: this.props.currentObject.objectId,
-      pos: {
-        x: this.state.selectedObjectPos[0],
-        y: this.state.selectedObjectPos[1]
-      }
-    };
+    const { actions, workMode, currentObject, objects } = this.props;
 
-    actions.moveObject(newObjectData);
+    if ( workMode === MULTI_EDIT ) {
+      // в этом случае нам нужно сделать массовый сдвиг:
+      // делать его будем по последнему элементу:
+      let mainId = currentObject.objectId.split(' ').slice(-1)[0];
+      
+      // найдём координаты элемента:
+      const thisLevelObjects = objects.levels[objects.mapLevel];
+      const obj = thisLevelObjects.find(val => val.id === mainId);
+      
+      // найдём сдвиг:
+      let shift = {
+        x: this.state.selectedObjectPos[0] - obj.coordinates.x,
+        y: this.state.selectedObjectPos[1] - obj.coordinates.y
+      };
+
+      // и теперь обновим данные в redux:
+      let newObjectData = {
+        ids: currentObject.objectId,
+        shift: shift
+      };
+      // новым действием МАССОВЫЙ СДВИГ:
+      actions.shiftObjects(newObjectData);
+      
+
+    } else {
+      let newObjectData = {
+      id: this.props.currentObject.objectId,
+        pos: {
+          x: this.state.selectedObjectPos[0],
+          y: this.state.selectedObjectPos[1]
+        }
+      };
+
+      actions.moveObject(newObjectData);
+    }
+    
   };
 
   // 5. РАБОТА С УКРАШЕНИЕМ ТЕКУЩЕГО ОБЪЕКТА:: ------------------------------------------------
@@ -296,13 +332,44 @@ class AdvancedBoard extends React.Component {
   // 5.3.1. Выбор текущего объекта и пользователя (если есть):
   setCurrentObjectData = (objectId, userId) => {
     // изменим текущий объект для redux:
-    const { actions } = this.props;
-    actions.changeCurrentObject(objectId);
-    actions.changeCurrentUser(userId);
+    const { actions, workMode, currentObject } = this.props;
+    
+    if ( workMode === MULTI_EDIT ) {
+      let newObjectId = '';
+      if (objectId === '') { // зануляем текущий объект:
+        newObjectId = '';
+      } else { // дополняем объект:
+        if ( currentObject.objectId === '' ) {
+          // если текущий объект - пуст, то просто добавляем данные:
+          newObjectId = objectId;
 
-    // // при каждом изменении пользователя мы закрываем меню редактирования:
-    // actions.changeCurrentObjectState('none');
+        } else {
+          // иначе посмотрим, есть ли этот объект уже в данных:
+          if ( currentObject.objectId.split(' ').includes(objectId) ) {
+            // если он есть: 
+            // (для перемещения объектов нам необходимо выделять основной элемент
+            // по которому будет проходить перемещение (он должен быть в конце)):
+            let ids = currentObject.objectId.split(' ');
+            let indOfObjectId = ids.indexOf(objectId);
+            let idsWithDeletedObjectId = ids.slice(0, indOfObjectId).concat(ids.slice(indOfObjectId+1));
+            // теперь добавим в конец:
+            newObjectId = idsWithDeletedObjectId.join(' ') + ' ' + objectId;
 
+          } else { // объекта нет - просто добавляем в конец:
+            newObjectId = currentObject.objectId + ' ' + objectId;
+          }
+        }
+
+      }
+
+      actions.changeCurrentObject(newObjectId);
+  
+    } else {
+      actions.changeCurrentObject(objectId);
+      actions.changeCurrentUser(userId);
+
+    }
+    
   }
 
   // 5.3.2. Выделение объекта цветом:
@@ -316,11 +383,11 @@ class AdvancedBoard extends React.Component {
       chosenColor = EMPTY_TABLE_COLOR;
     }
 
-    if ( isLocationCorrect ) {
-      chosenColor = (currentObject.objectId === id) ? SELECTED_COLOR : chosenColor;
-    } else  {
+    if ( isLocationCorrect === false ) {
       chosenColor = WARNING_COLOR;
-    } 
+    }
+
+    chosenColor = (currentObject.objectId.split(' ').includes(id)) ? SELECTED_COLOR : chosenColor; 
 
     return chosenColor;
     
@@ -339,8 +406,10 @@ class AdvancedBoard extends React.Component {
 
   // 5.3.4. Открыть вкладку "Редактировать"
   openCurrentObjectTab = () => {
-    const { actions } = this.props;
-    actions.changeCurrentObjectState('edit');
+    const { actions, workMode } = this.props;
+    if ( workMode !== MULTI_EDIT) {
+      actions.changeCurrentObjectState('edit');
+    }
 
   }
   
@@ -498,7 +567,6 @@ class AdvancedBoard extends React.Component {
             x={this.state.contextMenuPos[0]}
             y={this.state.contextMenuPos[1]}
             readyHandler={this.flushAll}
-            checkObjectLocation={this.checkObjectLocation}
           />
         )}
         
@@ -509,12 +577,12 @@ class AdvancedBoard extends React.Component {
 
 // for redux:
 const mapStateToProps = state => ({
-  objects: { mapLevel: state.objects.mapLevel,
-             levels: state.objects.levels.slice(0) },
+  objects: state.objects,
   users: state.users,
   boardState: state.boardState,
   mapState: state.mapState,
-  currentObject: state.currentObject
+  currentObject: state.currentObject,
+  workMode: state.workMode
   
 });
 
@@ -527,7 +595,8 @@ const mapDispatchToProps = dispatch => ({
     changeCurrentObject,
     changeCurrentUser,
     changeCurrentObjectState,
-    changeCorrectLocation    
+    changeCorrectLocation,
+    shiftObjects    
   }, dispatch)
 });
 

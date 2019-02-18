@@ -6,6 +6,7 @@ import createMapObject from '../../../utils/objectsFactory';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createObject, deleteObject, turnObject, changeCurrentObjectState } from '../../../actions/index';
+import workMode from './../../../reducers/workMode';
 
 var _ = require('lodash');
 // для генерирования уникальных id:
@@ -13,15 +14,43 @@ var genUniqId = require('uniqid');
 
 
 class PopoverContainer extends React.Component {
+    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
+    copy = (object) => {
+      const { actions } = this.props;
+    
+      // сделаем копию:
+      let newObject = _.cloneDeep(object);
 
+      // никаких проверок не нужно - мы знаем точно, что объект существует
+      // новые координаты получим сдвигом вправо вниз на:
+      const shift = 30;
+      newObject.coordinates = { 
+        x: object.coordinates.x + shift, 
+        y: object.coordinates.y + shift
+      };
+      // если есть информация про пользователя - занулим:
+      if (newObject.userId !== undefined) {
+        newObject.userId = '';
+      }
+      // сгенерим новый id:
+      newObject.id = genUniqId();
+      actions.createObject(newObject);
+
+
+    }
+
+    // ОБРАБОТЧИКИ КНОПОК:
     deleteObject = () => {
-      const { 
-        actions, 
+      const {
+        actions,
         currentObject,
         readyHandler 
       } = this.props;
 
-      actions.deleteObject(currentObject.objectId);
+      currentObject.objectId.split(' ').forEach( id => {
+        actions.deleteObject(id);
+      });
+      
       readyHandler(); // close popover
       
     }
@@ -33,7 +62,9 @@ class PopoverContainer extends React.Component {
         readyHandler 
       } = this.props;
 
-      actions.turnObject(currentObject.objectId);
+      currentObject.objectId.split(' ').forEach( id => {
+        actions.turnObject(id);
+      });
 
     }
 
@@ -46,30 +77,15 @@ class PopoverContainer extends React.Component {
     }
 
     copyObject = () => {
-      const { actions, objects, currentObject } = this.props;
+      const { objects, currentObject } = this.props;
       
       const thisLevelObjects = objects.levels[objects.mapLevel];
-      const requiredObject = thisLevelObjects.find( val => val.id === currentObject.objectId );
-      // сделаем копию:
-      let newObject = _.cloneDeep(requiredObject);
-
-      // никаких проверок не нужно - мы знаем точно, что объект существует
-      // новые координаты получим сдвигом вправо вниз на:
-      const shift = 30;
-      newObject.coordinates = { 
-        x: requiredObject.coordinates.x + shift, 
-        y: requiredObject.coordinates.y + shift
-      };
-      // если есть информация про пользователя - занулим:
-      if (newObject.userId !== undefined) {
-        newObject.userId = '';
-      }
-      // сгенерим новый id:
-      newObject.id = genUniqId();
-
+      thisLevelObjects.forEach( elem => {
+        if ( currentObject.objectId.split(' ').includes(elem.id) ) {
+          this.copy(elem);
+        }
+      });
       
-      // console.log('newObject', newObject);
-      actions.createObject(newObject);
 
     }
 
@@ -99,7 +115,8 @@ class PopoverContainer extends React.Component {
 const mapStateToProps = (state) => ({
     objects: state.objects,
     boardState: state.boardState,
-    currentObject: state.currentObject
+    currentObject: state.currentObject,
+    workMode: state.workMode
 });
     
 const mapDispatchToProps = (dispatch) => ({

@@ -8,6 +8,7 @@ import {
   CHANGE_OBJECTS_LEVEL,
   CHANGE_CORRECT_LOCATION,
   CHANGE_ANY_OBJECT_DATA,
+  SHIFT_OBJECTS,
 
   CHANGE_MAP_LEVEL,
 
@@ -60,6 +61,11 @@ export const changeCorrectLocation = (objData) => ({
 
 export const changeAnyObjectData = (objData) => ({
   type: CHANGE_ANY_OBJECT_DATA,
+  payload: objData
+});
+
+export const shiftObjects = (objData) => ({
+  type: SHIFT_OBJECTS,
   payload: objData
 });
 

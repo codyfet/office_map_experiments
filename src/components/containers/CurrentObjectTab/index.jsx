@@ -10,6 +10,7 @@ import "./styles.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateUser, changeCurrentUser } from "../../../actions/index";
+import { SINGLE_EDIT, MULTI_EDIT } from "../../../res/workModeConstants";
 
 // для создания копий:
 var _ = require('lodash');
@@ -109,28 +110,33 @@ class CurrentObjectTab extends React.Component {
   }
 
   render() {
-    const { currentObject, objects, users } = this.props;
-
-    // вынуть объекты текущего уровня:
-    const thisLevelObjects = objects.levels[objects.mapLevel];
-
-    var requiredObject = thisLevelObjects.find(val => val.id === currentObject.objectId);
+    const { currentObject, workMode, objects, users } = this.props;
+    var requiredObject;
     var requiredUser = {
       title: "Not assigned",
       capability: ""
     };
-    if (requiredObject !== undefined) {
-      // объект определен
 
-      if (currentObject.userId !== undefined && currentObject.userId !== '') {
-        // к объекту привязан пользователь
-        requiredUser = users.find(val => val.id === currentObject.userId);
-      }
-    } // иначе - либо объект не определен, либо к нему не привязан пользователь
+    if ( workMode === SINGLE_EDIT ) { 
+      // вынуть объекты текущего уровня:
+      const thisLevelObjects = objects.levels[objects.mapLevel];
 
-    // нам нужны только immutable: делаем копии:
-    requiredObject = _.cloneDeep(requiredObject);
-    requiredUser = _.cloneDeep(requiredUser);
+      requiredObject = thisLevelObjects.find(val => val.id === currentObject.objectId);
+      if (requiredObject !== undefined) {
+        // объект определен
+
+        if (currentObject.userId !== undefined && currentObject.userId !== '') {
+          // к объекту привязан пользователь
+          requiredUser = users.find(val => val.id === currentObject.userId);
+        }
+      } // иначе - либо объект не определен, либо к нему не привязан пользователь
+
+      console.log('cuurObjUserId, requiredUser', currentObject.userId, requiredUser);
+
+      // нам нужны только immutable: делаем копии:
+      requiredObject = _.cloneDeep(requiredObject);
+      requiredUser = _.cloneDeep(requiredUser);
+    }
 
     return (
       <div> 
@@ -177,7 +183,8 @@ class CurrentObjectTab extends React.Component {
 const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,
-  currentObject: state.currentObject
+  currentObject: state.currentObject,
+  workMode: state.workMode
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -169,7 +169,7 @@ class CurrentObjectSettings extends React.Component {
           object !== undefined &&
           <div className="buttonsSet">
             <button 
-              className="buttonAccept"
+              className="buttonCurrentObjectSettingsAccept"
               onClick={this.onBtnAcceptClick}
             >
               Применить

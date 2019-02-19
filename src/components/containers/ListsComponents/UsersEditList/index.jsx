@@ -161,7 +161,7 @@ class UsersEditList extends React.Component {
             onChange={this.onChangeInput}
         />
         <button 
-          className="stretchedButton"
+          className="buttonAddUser"
           onClick={this.onBtnAddUser}
         >
           Добавить пользователя

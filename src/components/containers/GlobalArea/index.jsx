@@ -18,7 +18,7 @@ export default class GlobalArea extends React.Component {
        <div className="globalArea">
           <LeftPanel
             panelWidth={width / 8}
-            panelHeight={height}
+            panelHeight={height / 2}
             boardWidth={width}
             boardHeight={height}
 

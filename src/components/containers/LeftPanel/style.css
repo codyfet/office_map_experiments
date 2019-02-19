@@ -1,13 +1,28 @@
 .leftPanel {
   display: flex;
   flex-direction: column;
-  font: 12 "lucida grande", arial, sans-serif;
-
+  font-family: 'lucida grande', arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid black;
+  
 }
 
 .buttonLeftPanel {
   height: 40px;
+  font-size: 12px;
+  background-color: rgb(230, 228, 235);
+  padding: 0px;
+  border: 1px solid white;
 
+
+}
+
+.buttonLeftPanel:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonLeftPanel:focus {
+  outline: 1px solid black;
 }
 
 .checkboxLeftPanel {
@@ -15,6 +30,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  border: 0px;
 
 }
 

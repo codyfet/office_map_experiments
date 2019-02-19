@@ -8,7 +8,8 @@ export default class Main extends React.Component {
   render() {
     return (
       <div className="myContainer">
-        <MainHeader />
+        {/* <MainHeader /> */}
+        <h1>Office map</h1>
         <GlobalArea />
       </div>
     );

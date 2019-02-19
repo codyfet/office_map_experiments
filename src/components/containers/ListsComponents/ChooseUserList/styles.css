@@ -30,13 +30,3 @@ ul {
   margin-bottom: 0;
 }
 
-/* .userSpecialList::-webkit-scrollbar {
-  width: 0px;
-  background: transparent; /* make scrollbar transparent */
-/*} */
-
-
-.stretchedButton {
-  width: 100%;
-}
-

@@ -55,22 +55,12 @@ class CurrentObjectSettings extends React.Component {
   }
 
   onBtnAcceptClick = () => {
-    // сначала нужно преобразовать всё к соответствующим типам данных:
-    // category - string
-    // coordinates, width, height - numbers
-    // movable - boolean
+  
     let objectData = {};
     try {
       for ( let key in this.state.objectSettings ) {
-        if ( key === "category" ) {
-          // c DropdownObjectField категорию оюъекта невозможно ввести неверно:
-          objectData[key] = this.state.objectSettings[key];
+        if ( key === "width" || key === "height" ) {
           
-        } else if ( key === "movable" ) {
-          // с checkbox булевское значение невозможно ввести неверно:
-          objectData[key] = this.state.objectSettings[key];
-      
-        } else if ( key !== "title" && key !== "color" ) {
           // остался только тип "номер":
           if ( /^\d*$/.test(this.state.objectSettings[key]) ) {
             objectData[key] = Number(this.state.objectSettings[key]);
@@ -79,23 +69,28 @@ class CurrentObjectSettings extends React.Component {
           }
         } else {
           // заметим, что title и color преобразовывать не нужно - это строки
+          // также:
+          // c DropdownObjectField категорию оюъекта невозможно ввести неверно
+          // с checkbox булевское значение невозможно ввести неверно
           objectData[key] = this.state.objectSettings[key];
         }
         
       }
+      
+      // console.log('objDat', objectData);
+      this.sendChangedDataToRedux(objectData);
+
+      // сбросить данные:
+      this.setState({
+        objectSettings: {}
+      });
+
     } 
     catch(e) {
       alert("ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: " + e.message);
       return;
     }
-
-    // console.log('objDat', objectData);
-    this.sendChangedDataToRedux(objectData);
-
-    // сбросить данные:
-    this.setState({
-      objectSettings: {}
-    });
+    
     
   }
 
@@ -148,6 +143,8 @@ class CurrentObjectSettings extends React.Component {
             onInputChange={this.onInputChange}
           />
         );
+      } else if (prop === "title" && object.category === "table") {
+        return; 
       } else {
         return (
           <EditField

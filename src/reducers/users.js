@@ -10,7 +10,7 @@ const initialState = usersCloned;
 export default function users(state = initialState, action) {
   switch ( action.type ) {
     case ADD_USER: {
-      return [...state, action.payload];
+      return [action.payload, ...state];
     }
     
     case EDIT_USER: {

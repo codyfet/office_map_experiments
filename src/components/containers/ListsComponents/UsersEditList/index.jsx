@@ -6,7 +6,9 @@ import { bindActionCreators } from "redux";
 import { addUser, deleteUser, editUser, updateUser } from "../../../../actions/index";
 import UserButtonedItem from "../UserButtonedItem/index";
 import UserSettings from "../../UserSettings/index";
+import UserCreate from "../../UserCreate/index";
 import "./styles.css";
+
 
 
 class UsersEditList extends React.Component {
@@ -15,8 +17,46 @@ class UsersEditList extends React.Component {
 
     this.state = {
       searchPhrase: '',
-      userId: ''
+      userId: '',
+      showUserCreatePanel: false
     }
+  }
+
+  getNewDefaultUser = () => {
+    // получить текущую дату:
+    let newStartDate = new Date().toLocaleDateString();
+    newStartDate = newStartDate.split('/');
+    newStartDate = newStartDate.slice(2).concat(newStartDate.slice(0,2));
+    newStartDate = newStartDate.join('-');
+
+    // получить новый id для пользователя:
+    const { users } = this.props;
+    let lastId = users.reduce( (prevVal, nextVal, i) => {
+      console.log('reduce', i, prevVal, nextVal);
+      let prevId, nextId;
+      if (i === 1) {
+        prevId = Number(prevVal.id.slice(1));
+        nextId = Number(nextVal.id.slice(1));  
+      } else {
+        prevId = prevVal;
+        nextId = Number(nextVal.id.slice(1));
+      }
+      console.log('reduce', prevId, nextId);
+      return nextId > prevId ? nextId : prevId; 
+    });
+    let newId = "t" + String(lastId + 1).padStart(4, "0");
+
+    return {
+      id: newId,
+      category: "people",
+      userId: "name.surname",
+      title: "Имя Фамилия",
+      about: "навыки",
+      capability: "квалификация",
+      phone: "88005553535",
+      level: 13,
+      startdate: newStartDate
+    };
   }
 
   onChangeInput = (e) => {
@@ -36,7 +76,15 @@ class UsersEditList extends React.Component {
 
   onBtnAddUser = () => {
     // добавить нового пользователя:
+    this.setState({
+      showUserCreatePanel: true
+    });
+  }
 
+  onCloseUserCreatePanel = () => {
+    this.setState({
+      showUserCreatePanel: false
+    });
   }
 
   onDeleteUserClick = (userId) => {
@@ -118,11 +166,21 @@ class UsersEditList extends React.Component {
         >
           Добавить пользователя
         </button>
-        <ul 
+        {
+          this.state.showUserCreatePanel === true && 
+          <UserCreate 
+              user={this.getNewDefaultUser()}
+              onClose={this.onCloseUserCreatePanel}    
+          />
+        }
+        {
+          this.state.showUserCreatePanel === false &&
+          <ul 
             className={ userId === '' ? "usersEditListList" : "usersEditListChosen" }
-        >
+          >   
             {loadUsers}
-        </ul>
+          </ul>  
+        }
         
       </div>
     );

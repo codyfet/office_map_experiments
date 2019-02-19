@@ -6,7 +6,7 @@ import './styles.css';
 
 export default function UserButtonedItem(props) {
     
-    const { user, onEditClick, isSelected, onDeleteClick } = props;
+    const { user, onClick, onEditClick, isSelected, onDeleteClick } = props;
     
     function onUserSpecialItemClick() {
         if ( !isSelected ) {
@@ -19,6 +19,7 @@ export default function UserButtonedItem(props) {
     return (
         <div 
             className={ isSelected ? "selectedUserButtonedItem" : "userButtonedItem" } 
+            onClick={onClick}
         >
             <AdvancedSVG
                 width="30px"

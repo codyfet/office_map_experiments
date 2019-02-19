@@ -4,8 +4,8 @@ import mapData from "../res/mapData.json";
 var _ = require('lodash');
 
 // загрузка объектов всех уровней:
-const mapDataCloned = _.cloneDeep(mapData);
-const initialState = mapDataCloned.users;
+const usersCloned = _.cloneDeep(mapData.users);
+const initialState = usersCloned;
 
 export default function users(state = initialState, action) {
   switch ( action.type ) {
@@ -14,10 +14,28 @@ export default function users(state = initialState, action) {
     }
     
     case EDIT_USER: {
-      return state;
+      const id = action.payload.id;
+      const newUserData = action.payload;
+      const newUsers = state.slice(0);
+      
+      let user = newUsers.find(user => user.id !== id);
+      if (user !== undefined) {
+        for ( let key in newUserData ) {
+          if (key !== "id" && key !== "category") {
+            user[key] = newUserData[key];
+          }
+        }
+      }
+
+      return newUsers;
     }
     case DELETE_USER: {
-      return state;
+      const id = action.payload;
+      const newUsers = state.slice(0);
+
+      newUsers  = newUsers.filter(user => user.id !== id);
+      return newUsers;
+
     }
     default: {
       return state;

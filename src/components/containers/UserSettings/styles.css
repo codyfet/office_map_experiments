@@ -1,0 +1,22 @@
+.userSettingsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.buttonsSet {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonAccept {
+  width: 35%;
+}
+
+.buttonClose {
+  width: 35%;
+}

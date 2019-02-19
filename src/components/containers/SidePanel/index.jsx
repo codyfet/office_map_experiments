@@ -7,7 +7,7 @@ import { changeBoardState, changeCurrentObject, changeCurrentUser, changeMapLeve
 import CreateTab from '../../containers/CreateTab/index';
 import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
 import MapLevelItem from '../../containers/MapLevelItem/index';
-import UsersList from '../ListsComponents/UsersList/index';
+import UsersEditList from '../ListsComponents/UsersEditList/index';
 import mapData from '../../../res/mapData.json';
 
 import './styles.css';
@@ -177,7 +177,7 @@ class SidePanel extends React.Component {
 
             title="Пользователи"
           >
-            <UsersList />
+            <UsersEditList />
           </AccordionItem>
 
           <AccordionItem 

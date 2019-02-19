@@ -17,8 +17,11 @@ export default function users(state = initialState, action) {
       const id = action.payload.id;
       const newUserData = action.payload;
       const newUsers = state.slice(0);
+
+      console.log("edit user", id, newUserData);
       
-      let user = newUsers.find(user => user.id !== id);
+      let user = newUsers.find(user => user.id === id);
+      
       if (user !== undefined) {
         for ( let key in newUserData ) {
           if (key !== "id" && key !== "category") {

@@ -20,6 +20,14 @@ class CurrentObjectSettings extends React.Component {
     objectSettings: {}
   }
 
+  componentWillUnmount() {
+    // сбросить данные:
+    this.setState({
+      objectSettings: {}
+    });
+
+  }
+
   onInputChange = (settings) => {
     let newObjectSettings = Object.assign({}, this.state.objectSettings);
     newObjectSettings = Object.assign(newObjectSettings, settings);
@@ -83,6 +91,11 @@ class CurrentObjectSettings extends React.Component {
 
     // console.log('objDat', objectData);
     this.sendChangedDataToRedux(objectData);
+
+    // сбросить данные:
+    this.setState({
+      objectSettings: {}
+    });
     
   }
 
@@ -163,12 +176,6 @@ class CurrentObjectSettings extends React.Component {
               onClick={this.onBtnAcceptClick}
             >
               Применить
-            </button>
-            <button
-              className="buttonClose"
-              onClick={this.onBtnCloseClick}
-            >
-              Закрыть
             </button>
           </div>
         }

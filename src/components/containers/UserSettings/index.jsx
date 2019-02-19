@@ -41,8 +41,9 @@ class UserSettings extends React.Component {
   sendChangedDataToRedux = (userData) => {
     const { actions, user } = this.props;
     let newUserData = Object.assign({}, userData);
+    newUserData.id = user.id;
     console.log(newUserData);
-    
+
     actions.editUser(newUserData);
 
   }
@@ -55,15 +56,10 @@ class UserSettings extends React.Component {
   }
 
   onBtnAcceptClick = () => {
-    // сначала нужно преобразовать всё к соответствующим типам данных:
-    // category - string
-    // coordinates, width, height - numbers
-    // movable - boolean
     let userData = {};
     try {
       for ( let key in this.state.userSettings ) {
         userData[key] = this.state.userSettings[key];
-        
       }
     } 
     catch(e) {
@@ -72,7 +68,18 @@ class UserSettings extends React.Component {
     }
         
     this.sendChangedDataToRedux(userData);
+
+    // и очистить данные в state:
+    this.setState({
+      userSettings: {}
+    });
     
+  }
+
+  onBtnCloseClick = () => {
+    const { onClose } = this.props;
+    onClose('');
+
   }
 
   render() {

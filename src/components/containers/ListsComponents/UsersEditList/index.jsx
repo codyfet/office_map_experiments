@@ -64,7 +64,8 @@ class UsersEditList extends React.Component {
               onEditClick={this.onUserClick}
             />
             <UserSettings 
-              user={user}    
+              user={user}
+              onClose={this.onUserClick}    
             />
           </li>
         );

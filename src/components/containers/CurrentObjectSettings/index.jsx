@@ -1,7 +1,7 @@
 import * as React from "react";
 import EditField from "../../containers/EditField/index";
 import CheckboxField from "../../containers/CheckboxField/index";
-import DropdownField from './../DropdownField/index';
+import DropdownObjectField from './../DropdownObjectField/index';
 
 import "./styles.css";
 
@@ -63,7 +63,7 @@ class CurrentObjectSettings extends React.Component {
     try {
       for ( let key in this.state.objectSettings ) {
         if ( key === "category" ) {
-          // c DropdownField категорию оюъекта невозможно ввести неверно:
+          // c DropdownObjectField категорию оюъекта невозможно ввести неверно:
           objectData[key] = this.state.objectSettings[key];
           
         } else if ( key === "movable" ) {
@@ -130,7 +130,7 @@ class CurrentObjectSettings extends React.Component {
         );
       } else if (prop === "category") {
         return (
-          <DropdownField
+          <DropdownObjectField
             key={i}
             label={prop}
             placeholder={object[prop]}

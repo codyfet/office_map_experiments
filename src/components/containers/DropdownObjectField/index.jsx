@@ -6,7 +6,7 @@ import 'react-dropdown/style.css';
 
 import objectCategories from '../../../res/objectCategories.json';
 
-class DropdownField extends React.Component {
+class DropdownObjectField extends React.Component {
   constructor(props) {
     super(props);
 
@@ -70,4 +70,4 @@ class DropdownField extends React.Component {
   
 }
 
-export default DropdownField;
+export default DropdownObjectField;

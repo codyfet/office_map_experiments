@@ -86,10 +86,6 @@ class UsersSpecialList extends React.Component {
             onChange={this.onChangeInput}
           /> 
         }
-        {
-          this.state.selectedUserId === '' &&
-          <button className="stretchedButton">Добавить пользователя</button>
-        }
         <ul className="userSpecialList">{loadUsers}</ul>
         
       </div>

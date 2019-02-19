@@ -34,6 +34,18 @@ class UsersEditList extends React.Component {
 
   }
 
+  onBtnAddUser = () => {
+    // добавить нового пользователя:
+
+  }
+
+  onDeleteUserClick = (userId) => {
+    // удалить пользователя
+    const { actions } = this.props;
+    actions.deleteUser(userId);
+
+  }
+
   render() {
     const { userId } = this.state;
 
@@ -52,6 +64,7 @@ class UsersEditList extends React.Component {
               user={user}
               isSelected={false} 
               onEditClick={this.onUserClick}
+              onDeleteClick={this.onDeleteUserClick}
             />
           </li>
         );
@@ -62,6 +75,7 @@ class UsersEditList extends React.Component {
               user={user} 
               isSelected={true}
               onEditClick={this.onUserClick}
+              onDeleteUserClick={this.onDeleteUserClick}
             />
             <UserSettings 
               user={user}
@@ -84,7 +98,12 @@ class UsersEditList extends React.Component {
             debounceTimeout={300}
             onChange={this.onChangeInput}
         />
-        <button className="stretchedButton">Добавить пользователя</button>
+        <button 
+          className="stretchedButton"
+          onClick={this.onBtnAddUser}
+        >
+          Добавить пользователя
+        </button>
         <ul 
             className={ userId === '' ? "usersEditListList" : "usersEditListChosen" }
         >

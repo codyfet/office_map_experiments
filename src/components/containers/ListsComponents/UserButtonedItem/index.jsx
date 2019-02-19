@@ -16,6 +16,10 @@ export default function UserButtonedItem(props) {
         }
     }
 
+    function onUserDeleteClick() {
+        onDeleteClick(user.id);
+    }
+
     return (
         <div 
             className={ isSelected ? "selectedUserButtonedItem" : "userButtonedItem" } 
@@ -38,7 +42,7 @@ export default function UserButtonedItem(props) {
             <AdvancedSVG 
                 width="20px" 
                 content={iconPaths.delete} 
-                onClick={onDeleteClick}
+                onClick={onUserDeleteClick}
             />
 
         </div>         

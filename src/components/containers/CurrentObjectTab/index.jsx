@@ -93,15 +93,15 @@ class CurrentObjectTab extends React.Component {
     });
   };
 
-  onDeleteUser = () => {
+  onDeleteUser = (userId) => {
     const { actions, currentObject } = this.props;
-    const newUserId = "";
+    const emptyUserId = "";
     const newObjData = {
       id: currentObject.objectId,
-      userId: newUserId
+      userId: emptyUserId
     };
     actions.updateUser(newObjData);
-    actions.changeCurrentUser(newUserId);
+    actions.changeCurrentUser(emptyUserId);
   
 
     this.setState({

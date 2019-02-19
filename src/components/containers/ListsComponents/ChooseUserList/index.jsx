@@ -87,10 +87,6 @@ class ChooseUserList extends React.Component {
             onChange={this.onChangeInput}
           /> 
         }
-        {
-          userId  === '' &&
-          <button className="stretchedButton">Добавить пользователя</button>
-        }
         <ul 
             className={ userId === '' ? "chooseUserList" : "chooseUserListChosen" }
         >

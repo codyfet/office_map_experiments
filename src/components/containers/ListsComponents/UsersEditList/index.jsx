@@ -3,7 +3,7 @@ import { DebounceInput } from 'react-debounce-input';
 // redux:
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addUser, deleteUser, editUser } from "../../../../actions/index";
+import { addUser, deleteUser, editUser, updateUser } from "../../../../actions/index";
 import UserButtonedItem from "../UserButtonedItem/index";
 import UserSettings from "../../UserSettings/index";
 import "./styles.css";
@@ -40,8 +40,22 @@ class UsersEditList extends React.Component {
   }
 
   onDeleteUserClick = (userId) => {
-    // удалить пользователя
-    const { actions } = this.props;
+    // сначала отвяжем пользователя от стола, чтобы не было проблем:
+    const { actions, objects } = this.props;
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    const loadObject = thisLevelObjects.find((elem) => (elem.userId === userId));
+
+    if (loadObject !== undefined) { // если нашли стол, к которому привязан пользователь
+      const emptyUserId = "";
+      const newObjData = {
+        id: loadObject.id,
+        userId: emptyUserId
+      };
+      actions.updateUser(newObjData);
+      
+    } // иначе - все в порядке, ничего не делаем
+   
+    // удалим пользователя:
     actions.deleteUser(userId);
 
   }
@@ -117,11 +131,13 @@ class UsersEditList extends React.Component {
 
 // for redux:
 const mapStateToProps = state => ({
-  users: state.users
+  users: state.users,
+  objects: state.objects
+
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ addUser, editUser, deleteUser }, dispatch)
+  actions: bindActionCreators({ addUser, editUser, deleteUser, updateUser }, dispatch)
 });
 
 export default connect(

@@ -29,8 +29,7 @@ class EditField extends React.Component {
 
     let newSetting = {};
     newSetting[label] = e.target.value;
-    // console.log(newSetting);
-
+    
     onInputChange(newSetting);
   };
 

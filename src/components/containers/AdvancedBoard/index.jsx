@@ -104,8 +104,6 @@ class AdvancedBoard extends React.Component {
       height: object.height,
     };
 
-    // console.log('checkObjectLocation stage', stage);
-    // console.log('checkObjectLocation object', object);
     const { objects } = this.props;
     const thisLevelObjects = objects.levels[objects.mapLevel];
 
@@ -189,11 +187,6 @@ class AdvancedBoard extends React.Component {
   };
 
   onStageDragEnd = e => {
-    // for debugging:
-    // console.log( "coords for the moved stage:", e.currentTarget.x(), e.currentTarget.y() );
-    // console.log( "coords for the moved object:", e.target.x(), e.target.y() );
-    // console.log( "interesting:", e);
-
     // получим текущие координаты сцены и текущего объекта:
     let currObj = e.target;
     let currentStage = e.currentTarget;

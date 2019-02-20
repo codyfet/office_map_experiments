@@ -38,7 +38,6 @@ class UserSettings extends React.Component {
     const { actions, user } = this.props;
     let newUserData = Object.assign({}, userData);
     newUserData.id = user.id;
-    console.log(newUserData);
 
     actions.editUser(newUserData);
   };

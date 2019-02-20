@@ -32,7 +32,6 @@ export default class MovableObject extends React.Component {
       prevProps.object.coordinates.x !== object.coordinates.x ||
       prevProps.object.coordinates.y !== object.coordinates.y
     ) {
-      console.log('check loaction for object: ', object);
       checkObjectLocation(object);
     }
   }
@@ -43,7 +42,6 @@ export default class MovableObject extends React.Component {
     const { mapWidth, mapHeight, object } = this.props;
     let checkedX = x <= 0 ? 0 : x >= mapWidth - object.width ? mapWidth - object.width : x;
     let checkedY = y <= 0 ? 0 : y >= mapHeight - object.height ? mapHeight - object.height : y;
-    console.log('checked:', checkedX, checkedY);
     return { checkedX, checkedY };
   }
 

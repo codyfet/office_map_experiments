@@ -32,8 +32,7 @@ class DropdownObjectField extends React.Component {
 
     let newSetting = {};
     newSetting[label] = option.value;
-    console.log(newSetting);
-
+    
     onInputChange(newSetting);
   };
 

@@ -10,8 +10,6 @@ const GlobalArea = () => {
   const width = window.innerWidth / 1.7;
   const height = window.innerHeight - 50;
 
-  // console.log('global window sizes: ', window.innerWidth, window.innerHeight);
-
   return (
     <div className="globalArea">
       <LeftPanel

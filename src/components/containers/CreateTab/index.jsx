@@ -66,16 +66,13 @@ class CreateTab extends React.Component {
       }
     }
 
-    // console.log('convertCoords', this.getConvertedCoordsFrom(750, 20));
-
     const newObject = createMapObject(
       selectedObjectId,
       genUniqId(),
       this.getConvertedCoordsFrom(750, 20),
       selectedUserId,
     );
-
-    // console.log('newObject', newObject);
+    
     actions.createObject(newObject);
 
     // сбросить выбор:
@@ -86,15 +83,13 @@ class CreateTab extends React.Component {
   selectObjectId = id => {
     this.setState({
       selectedObjectId: id,
-    });
-    // console.log('selectedObjectId', id);
+    }); 
   };
 
   selectUserId = id => {
     this.setState({
       selectedUserId: id,
     });
-    // console.log('selectedUserId', id);
   };
 
   fullResetIDs = () => {

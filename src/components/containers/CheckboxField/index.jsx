@@ -28,15 +28,14 @@ class CheckboxField extends React.Component {
 
     let newSetting = {};
     newSetting[label] = e.target.checked;
-    // console.log(newSetting);
-
+    
     onInputChange(newSetting);
   };
 
   render() {
     const { label, placeholder, disabled } = this.props;
 
-    console.log('checkbox', placeholder);
+    
 
     return (
       <div className="editField">

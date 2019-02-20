@@ -40,13 +40,12 @@ class SidePanel extends React.Component {
 
     // получаем границы окна :
     const { boardWidth, boardHeight } = this.props;
-    console.log('wh', boardWidth, boardHeight);
-
+    
     // настраиваем масштаб:
     // считаем используя отступ с 2-х сторон (поэтому * 2)
     let scaleX = boardWidth / (mapWidth + padding * 2);
     let scaleY = boardHeight / (mapHeight + padding * 2);
-    console.log('scales', scaleX, scaleY);
+    
     // если реальная карта меньше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY > 1),
     // то выберем наибольший масштаб:
     let newScale;
@@ -91,10 +90,8 @@ class SidePanel extends React.Component {
       let levelData = Object.assign({}, mapDataFile.levels[i]);
       levelData.objects = objects.map((obj, j) => {
         // запишем поля в алфавитном порядке:
-        // console.log('fields obj:', obj);
         let formattedObject = {};
         objectOrder.forEach(property => {
-          // console.log('fields obj:', obj);
           if (obj[property] !== undefined) {
             formattedObject[property] = obj[property];
           }
@@ -105,7 +102,7 @@ class SidePanel extends React.Component {
     });
 
     mapDataFile.users = users;
-    console.log('changedMapData', mapDataFile);
+    
 
     // предлагаем загрузку пользователю:
     var file = new File([JSON.stringify(mapDataFile)], 'newMapData.json', {
@@ -119,18 +116,14 @@ class SidePanel extends React.Component {
   cleanCurrentObjectState = () => {
     const { actions } = this.props;
     actions.changeCurrentObject('');
-    actions.changeCurrentUser('');
-
-    // console.log('current state cleaned');
+    actions.changeCurrentUser(''); 
   };
 
   // изменить уровень (этаж здания)
   onSelectLevel = levelNumber => {
     this.cleanCurrentObjectState();
 
-    const { actions } = this.props;
-    console.log('levelNumber', levelNumber);
-    console.log('actionsBefore', actions);
+    const { actions } = this.props; 
     actions.changeMapLevel(levelNumber);
     actions.changeObjectsLevel(levelNumber);
   };

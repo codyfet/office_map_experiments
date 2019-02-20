@@ -30,7 +30,7 @@ class UsersEditList extends React.Component {
     // получить новый id для пользователя:
     const { users } = this.props;
     let lastId = users.reduce((prevVal, nextVal, i) => {
-      console.log('reduce', i, prevVal, nextVal);
+      
       let prevId, nextId;
       if (i === 1) {
         prevId = Number(prevVal.id.slice(1));
@@ -39,7 +39,7 @@ class UsersEditList extends React.Component {
         prevId = prevVal;
         nextId = Number(nextVal.id.slice(1));
       }
-      console.log('reduce', prevId, nextId);
+      
       return nextId > prevId ? nextId : prevId;
     });
     let newId = 't' + String(lastId + 1).padStart(4, '0');

@@ -68,7 +68,6 @@ class CurrentObjectSettings extends React.Component {
         }
       }
 
-      // console.log('objDat', objectData);
       this.sendChangedDataToRedux(objectData);
 
       // сбросить данные:

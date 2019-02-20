@@ -129,8 +129,6 @@ class CurrentObjectTab extends React.Component {
         }
       } // иначе - либо объект не определен, либо к нему не привязан пользователь
 
-      console.log('cuurObjUserId, requiredUser', currentObject.userId, requiredUser);
-
       // нам нужны только immutable: делаем копии:
       requiredObject = _.cloneDeep(requiredObject);
       requiredUser = _.cloneDeep(requiredUser);

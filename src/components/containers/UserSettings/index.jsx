@@ -1,108 +1,100 @@
-import * as React from "react";
-import EditField from "../../containers/EditField/index";
-import CheckboxField from "../../containers/CheckboxField/index";
+import * as React from 'react';
+import EditField from '../../containers/EditField/index';
+import CheckboxField from '../../containers/CheckboxField/index';
 import DropdownLevelField from './../DropdownLevelField/index';
 
-import "./styles.css";
+import './styles.css';
 
 // redux:
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { editUser } from "../../../actions/index";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { editUser } from '../../../actions/index';
 
 // статические данные карты:
 import objectCategories from '../../../res/objectCategories.json';
 
-
 class UserSettings extends React.Component {
-
   state = {
-    userSettings: {}
-  }
+    userSettings: {},
+  };
 
   componentWillUnmount() {
     // чтобы сбросить данные:
     this.setState({
-      userSettings: {}
+      userSettings: {},
     });
-
   }
 
-  onInputChange = (settings) => {
+  onInputChange = settings => {
     let newUserSettings = Object.assign({}, this.state.userSettings);
     newUserSettings = Object.assign(newUserSettings, settings);
 
     this.setState({
-      userSettings: newUserSettings
+      userSettings: newUserSettings,
     });
+  };
 
-  }
-
-  sendChangedDataToRedux = (userData) => {
+  sendChangedDataToRedux = userData => {
     const { actions, user } = this.props;
     let newUserData = Object.assign({}, userData);
     newUserData.id = user.id;
     console.log(newUserData);
 
     actions.editUser(newUserData);
-
-  }
+  };
 
   // ОБРАБОТЧИКИ КНОПОК:
   onBtnCloseClick = () => {
     // const { closeSettings } = this.props;
     // closeSettings();
-
-  }
+  };
 
   onBtnAcceptClick = () => {
     let userData = {};
     try {
-      for ( let key in this.state.userSettings ) {
+      for (let key in this.state.userSettings) {
         userData[key] = this.state.userSettings[key];
       }
-    } 
-    catch(e) {
-      alert("ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: " + e.message);
+    } catch (e) {
+      alert('ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: ' + e.message);
       return;
     }
-        
+
     this.sendChangedDataToRedux(userData);
 
     // и очистить данные в state:
     this.setState({
-      userSettings: {}
+      userSettings: {},
     });
-    
-  }
+  };
 
   onBtnCloseClick = () => {
     const { onClose } = this.props;
     onClose('');
-
-  }
+  };
 
   render() {
     const { user } = this.props;
 
     // определим свойства, которые можно редактировать:
     const allowedProperties = [
-      "id",
-      "category",
-      "userId",
-      "title",
-      "about",
-      "capability",
-      "phone",
-      "level",
-      "startdate"
+      'id',
+      'category',
+      'userId',
+      'title',
+      'about',
+      'capability',
+      'phone',
+      'level',
+      'startdate',
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
       if (user === undefined) {
         return;
       }
 
-      if (prop === "level") { // сделаем список выбора уровней
+      if (prop === 'level') {
+        // сделаем список выбора уровней
         return (
           <DropdownLevelField
             key={i}
@@ -118,38 +110,26 @@ class UserSettings extends React.Component {
             key={i}
             label={prop}
             placeholder={String(user[prop])}
-            disabled={ prop === "id" || (prop === "category") }
+            disabled={prop === 'id' || prop === 'category'}
             onInputChange={this.onInputChange}
           />
         );
-
-      } 
-     
+      }
     });
-
-    
 
     return (
       <div className="userSettingsContainer">
         {editFieldsPanel}
-        {
-          user !== undefined &&
+        {user !== undefined && (
           <div className="buttonsSet">
-            <button 
-              className="buttonAccept"
-              onClick={this.onBtnAcceptClick}
-            >
+            <button className="buttonAccept" onClick={this.onBtnAcceptClick}>
               Применить
             </button>
-            <button
-              className="buttonClose"
-              onClick={this.onBtnCloseClick}
-            >
+            <button className="buttonClose" onClick={this.onBtnCloseClick}>
               Закрыть
             </button>
           </div>
-        }
-        
+        )}
       </div>
     );
   }
@@ -157,14 +137,14 @@ class UserSettings extends React.Component {
 
 //for redux:
 const mapStateToProps = state => ({
-  objects: state.objects
+  objects: state.objects,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ editUser }, dispatch)
+  actions: bindActionCreators({ editUser }, dispatch),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(UserSettings);

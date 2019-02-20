@@ -9,113 +9,107 @@ import {
   CHANGE_CORRECT_LOCATION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
-
   CHANGE_MAP_LEVEL,
-
-  ADD_USER, 
-  EDIT_USER, 
+  ADD_USER,
+  EDIT_USER,
   DELETE_USER,
-
   CHANGE_CURRENT_OBJECT,
   CHANGE_CURRENT_USER,
   CHANGE_CURRENT_OBJECT_STATE,
-
-  CHANGE_WORK_MODE
+  CHANGE_WORK_MODE,
 } from '../res/constants';
 
 // actions wuth objects:
-export const createObject = (newObj) => ({
+export const createObject = newObj => ({
   type: CREATE_OBJECT,
-  payload: newObj
+  payload: newObj,
 });
 
-export const moveObject = (objData) => ({
+export const moveObject = objData => ({
   type: MOVE_OBJECT,
-  payload: objData
-}); 
+  payload: objData,
+});
 
-export const turnObject = (objectId) => ({
+export const turnObject = objectId => ({
   type: TURN_OBJECT,
-  payload: objectId
+  payload: objectId,
 });
 
-export const deleteObject = (objectId) => ({
+export const deleteObject = objectId => ({
   type: DELETE_OBJECT,
-  payload: objectId
+  payload: objectId,
 });
 
-export const updateUser = (objData) => ({
+export const updateUser = objData => ({
   type: UPDATE_USER,
-  payload: objData
+  payload: objData,
 });
 
-export const changeObjectsLevel = (level) => ({
+export const changeObjectsLevel = level => ({
   type: CHANGE_OBJECTS_LEVEL,
-  payload: level
+  payload: level,
 });
 
-export const changeCorrectLocation = (objData) => ({
+export const changeCorrectLocation = objData => ({
   type: CHANGE_CORRECT_LOCATION,
-  payload: objData
+  payload: objData,
 });
 
-export const changeAnyObjectData = (objData) => ({
+export const changeAnyObjectData = objData => ({
   type: CHANGE_ANY_OBJECT_DATA,
-  payload: objData
+  payload: objData,
 });
 
-export const shiftObjects = (objData) => ({
+export const shiftObjects = objData => ({
   type: SHIFT_OBJECTS,
-  payload: objData
+  payload: objData,
 });
-
 
 // actions with map:
-export const changeMapLevel = (level) => ({
+export const changeMapLevel = level => ({
   type: CHANGE_MAP_LEVEL,
-  payload: level
+  payload: level,
 });
-
 
 // actions with board and panel:
-export const changeBoardState = (newState) => ({
+export const changeBoardState = newState => ({
   type: CHANGE_BOARD_STATE,
-  payload: newState
+  payload: newState,
 });
 
-export const changeCurrentObject = (objectId) => ({
+export const changeCurrentObject = objectId => ({
   type: CHANGE_CURRENT_OBJECT,
-  payload: objectId
+  payload: objectId,
 });
 
-export const changeCurrentUser = (userId) => ({
+export const changeCurrentUser = userId => ({
   type: CHANGE_CURRENT_USER,
-  payload: userId
+  payload: userId,
 });
 
-export const changeCurrentObjectState = (newState) => ({
+export const changeCurrentObjectState = newState => ({
   type: CHANGE_CURRENT_OBJECT_STATE,
-  payload: newState
+  payload: newState,
 });
 
 // actions with users:
-export const addUser = (newUser) => ({
+export const addUser = newUser => ({
   type: ADD_USER,
-  payload: newUser
+  payload: newUser,
 });
 
-export const editUser = (userData) => ({
+export const editUser = userData => ({
   type: EDIT_USER,
-  payload: userData
-}); 
+  payload: userData,
+});
 
-export const deleteUser = (userId) => ({
+export const deleteUser = userId => ({
   type: DELETE_USER,
-  payload: userId
+  payload: userId,
 });
 
 // WORK_MODE:
-export const changeWorkMode = (newWM) => ({
+export const changeWorkMode = newWM => ({
   type: CHANGE_WORK_MODE,
-  payload: newWM
+  payload: newWM,
 });

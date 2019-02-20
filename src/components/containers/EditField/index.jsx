@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import "./styles.css";
-import ReactDropdown from "react-dropdown";
+import './styles.css';
+import ReactDropdown from 'react-dropdown';
 
 class EditField extends React.Component {
   constructor(props) {
@@ -9,35 +9,34 @@ class EditField extends React.Component {
 
     const { placeholder } = this.props;
     this.state = {
-      inputText: placeholder
-    }
+      inputText: placeholder,
+    };
   }
 
   componentDidUpdate(prevProps) {
-    if ( prevProps.placeholder !== this.props.placeholder ) {
+    if (prevProps.placeholder !== this.props.placeholder) {
       this.setState({
-        inputText: this.props.placeholder
+        inputText: this.props.placeholder,
       });
     }
   }
 
-  onTextChange = (e) => {
+  onTextChange = e => {
     const { label, onInputChange } = this.props;
     this.setState({
-      inputText: e.target.value 
+      inputText: e.target.value,
     });
 
     let newSetting = {};
     newSetting[label] = e.target.value;
     // console.log(newSetting);
-    
-    onInputChange(newSetting);
 
-  }
+    onInputChange(newSetting);
+  };
 
   render() {
     const { label, disabled } = this.props;
-    
+
     return (
       <div className="editField">
         <div className="editFieldLabel">{label}</div>
@@ -51,7 +50,6 @@ class EditField extends React.Component {
       </div>
     );
   }
-  
 }
 
 export default EditField;

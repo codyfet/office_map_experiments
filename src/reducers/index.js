@@ -12,5 +12,5 @@ export default combineReducers({
   mapState,
   currentObject,
   users,
-  objects
+  objects,
 });

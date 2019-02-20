@@ -1,7 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
-import "./styles.css";
-import Dropdown from "react-dropdown";
+import './styles.css';
+import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 import objectCategories from '../../../res/objectCategories.json';
@@ -12,62 +12,60 @@ class DropdownObjectField extends React.Component {
 
     const { placeholder } = this.props;
     this.state = {
-      currCategory: placeholder
-    }
+      currCategory: placeholder,
+    };
   }
 
   componentDidUpdate(prevProps) {
-    if ( prevProps.placeholder !== this.props.placeholder ) {
+    if (prevProps.placeholder !== this.props.placeholder) {
       this.setState({
-        currCategory: this.props.placeholder
+        currCategory: this.props.placeholder,
       });
     }
   }
 
-  _onSelect = (option) => {
+  _onSelect = option => {
     const { label, onInputChange } = this.props;
     this.setState({
-      currCategory: option.value
+      currCategory: option.value,
     });
 
     let newSetting = {};
     newSetting[label] = option.value;
     console.log(newSetting);
-    
+
     onInputChange(newSetting);
-  }
+  };
 
   render() {
     const { label } = this.props;
 
-    const options = objectCategories.slice(1).map((cat) => {
+    const options = objectCategories.slice(1).map(cat => {
       return {
-          value: cat.id,
-          label: cat.id
+        value: cat.id,
+        label: cat.id,
       };
-    })
+    });
 
-    var defaultOption = objectCategories.slice(1).find((cat) => cat.id === this.state.currCategory);
+    var defaultOption = objectCategories.slice(1).find(cat => cat.id === this.state.currCategory);
     defaultOption = {
-        value: defaultOption.id,
-        label: defaultOption.id
+      value: defaultOption.id,
+      label: defaultOption.id,
     };
-    
+
     return (
       <div className="editField">
         <div className="editFieldDropdownLabel">{label}</div>
-        <Dropdown 
+        <Dropdown
           className="editFieldDropdown"
-          options={options} 
-          onChange={this._onSelect} 
-          value={defaultOption} 
-          placeholder={defaultOption}  
+          options={options}
+          onChange={this._onSelect}
+          value={defaultOption}
+          placeholder={defaultOption}
         />
-        
       </div>
     );
   }
-  
 }
 
 export default DropdownObjectField;

@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-import "./styles.css";
+import './styles.css';
 
 class CheckboxField extends React.Component {
   constructor(props) {
@@ -8,50 +8,43 @@ class CheckboxField extends React.Component {
 
     const { placeholder } = this.props;
     this.state = {
-      isChecked: placeholder
-    }
+      isChecked: placeholder,
+    };
   }
 
   componentDidUpdate(prevProps) {
-    if ( prevProps.placeholder !== this.props.placeholder ) {
+    if (prevProps.placeholder !== this.props.placeholder) {
       this.setState({
-        isChecked: this.props.placeholder
+        isChecked: this.props.placeholder,
       });
     }
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { label, onInputChange } = this.props;
     this.setState({
-      isChecked: !this.state.isChecked
+      isChecked: !this.state.isChecked,
     });
 
     let newSetting = {};
     newSetting[label] = e.target.checked;
     // console.log(newSetting);
-    
-    onInputChange(newSetting);
 
-  }
+    onInputChange(newSetting);
+  };
 
   render() {
     const { label, placeholder, disabled } = this.props;
-    
+
     console.log('checkbox', placeholder);
 
     return (
       <div className="editField">
         <div className="editFieldLabel">{label}</div>
-        <input 
-          type="checkbox"
-          onChange={this.handleChange} 
-          checked={this.state.isChecked} 
-        />
-        
+        <input type="checkbox" onChange={this.handleChange} checked={this.state.isChecked} />
       </div>
     );
   }
-  
 }
 
 export default CheckboxField;

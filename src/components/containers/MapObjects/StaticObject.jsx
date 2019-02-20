@@ -10,27 +10,27 @@ export default class StaticObject extends React.Component {
     super(props);
 
     this.state = {
-      isPointed: false
-    }
+      isPointed: false,
+    };
   }
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
   // 1. Показать tooltip-информацию:
-  showTooltipObjectInfo = (e) => {
+  showTooltipObjectInfo = e => {
     const { object } = this.props;
 
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
-    
+
     tooltip.position({
-      x : e.currentTarget.x(),
-      y : e.currentTarget.y()
+      x: e.currentTarget.x(),
+      y: e.currentTarget.y(),
     });
 
     // добавить текст:
-    let text = objectCategories.find((cat) => cat.id === object.category).title;
-    if ( object.title !== undefined ) {
-      text += (" :\n" + object.title);
+    let text = objectCategories.find(cat => cat.id === object.category).title;
+    if (object.title !== undefined) {
+      text += ' :\n' + object.title;
     }
     tooltip.getText().setText(text);
     tooltip.show();
@@ -38,12 +38,12 @@ export default class StaticObject extends React.Component {
 
     // позаботимся о выделении объекта:
     this.setState({
-      isPointed: true
+      isPointed: true,
     });
-  }
+  };
 
   //2. Скрыть tooltip-информацию:
-  hideTooltipObjectInfo = (e) => {
+  hideTooltipObjectInfo = e => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
 
@@ -52,52 +52,41 @@ export default class StaticObject extends React.Component {
 
     // позаботимся о выделении объекта:
     this.setState({
-      isPointed: false
+      isPointed: false,
     });
-    
-  }
+  };
 
   // ОБРАБОТКА СОБЫТИЙ:
   //---------------------------------------------------------
-  onObjectClick = (e) => {
+  onObjectClick = e => {
     // всегда сообщаем id объекта:
-    const { 
-      shareObjectData,
-      object
-    } = this.props;
+    const { shareObjectData, object } = this.props;
 
     shareObjectData(object.id, object.userId);
 
     // выведем объект на передний план:
     e.currentTarget.moveToTop();
-  }
+  };
 
-  onObjectContextMenu = (e) => {
+  onObjectContextMenu = e => {
     const { showContextMenu, openCurrentObjectTab } = this.props;
     e.evt.preventDefault();
 
     showContextMenu(e.evt.clientX, e.evt.clientY);
     // открыть окно редактирования:
     openCurrentObjectTab();
-    
-  }
+  };
 
-  onObjectMouseMove = (e) => {
+  onObjectMouseMove = e => {
     this.showTooltipObjectInfo(e);
+  };
 
-  }
-
-  onObjectMouseOut = (e) => {
+  onObjectMouseOut = e => {
     this.hideTooltipObjectInfo(e);
-  
-  }
-  
+  };
 
   render() {
-    const {
-      object,
-      setColor
-    } = this.props;
+    const { object, setColor } = this.props;
 
     // draw a picture:
     let { shiftX, shiftY, scale } = getIconSettings(object.category);
@@ -105,45 +94,39 @@ export default class StaticObject extends React.Component {
     // отредактируем размер иконки по размеру объекта:
     let minSizeObjectValue = object.width < object.height ? object.width : object.height;
     let minSizeValue = 15;
-    let scaleIncrease = (minSizeObjectValue/2) / minSizeValue;
+    let scaleIncrease = minSizeObjectValue / 2 / minSizeValue;
 
     shiftX *= scaleIncrease;
     shiftY *= scaleIncrease;
     scale *= scaleIncrease;
-    
 
-    const drawIcon = iconPaths[object.category].path.map( (path, i) => {
+    const drawIcon = iconPaths[object.category].path.map((path, i) => {
       return (
         <Path
           key={i}
-          x={object.width/2-shiftX}
-          y={object.height/2-shiftY}
+          x={object.width / 2 - shiftX}
+          y={object.height / 2 - shiftY}
           data={path}
-          fill='black'
+          fill="black"
           scale={{
             x: scale, //* scaleIncrease,
-            y: scale //* scaleIncrease
+            y: scale, //* scaleIncrease
           }}
-
         />
       );
-
     });
-    
-    
+
     return (
       <Group
         x={object.coordinates.x}
         y={object.coordinates.y}
         draggable={false}
-        
         onClick={this.onObjectClick}
         onContextMenu={this.onObjectContextMenu}
         onMouseEnter={this.onObjectMouseMove}
         onMouseLeave={this.onObjectMouseOut}
         name="object"
         nameID={object.id}
-
       >
         <Rect
           width={object.width}
@@ -155,12 +138,10 @@ export default class StaticObject extends React.Component {
           // shadowColor={'black'}
           // shadowBlur={2}
           // shadowOffset={{x : 1, y : 1}}
-          // shadowOpacity={0.4}  
-            
+          // shadowOpacity={0.4}
         />
         {drawIcon}
-      </Group> 
+      </Group>
     );
   }
 }
-

@@ -1,71 +1,63 @@
-import * as React from "react";
-import EditField from "../../containers/EditField/index";
-import CheckboxField from "../../containers/CheckboxField/index";
+import * as React from 'react';
+import EditField from '../../containers/EditField/index';
+import CheckboxField from '../../containers/CheckboxField/index';
 import DropdownObjectField from './../DropdownObjectField/index';
 
-import "./styles.css";
+import './styles.css';
 
 // redux:
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { updateUser, changeCurrentUser, changeAnyObjectData } from "../../../actions/index";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateUser, changeCurrentUser, changeAnyObjectData } from '../../../actions/index';
 
 // статические данные карты:
 import objectCategories from '../../../res/objectCategories.json';
 
-
 class CurrentObjectSettings extends React.Component {
-
   state = {
-    objectSettings: {}
-  }
+    objectSettings: {},
+  };
 
   componentWillUnmount() {
     // сбросить данные:
     this.setState({
-      objectSettings: {}
+      objectSettings: {},
     });
-
   }
 
-  onInputChange = (settings) => {
+  onInputChange = settings => {
     let newObjectSettings = Object.assign({}, this.state.objectSettings);
     newObjectSettings = Object.assign(newObjectSettings, settings);
 
     this.setState({
-      objectSettings: newObjectSettings
+      objectSettings: newObjectSettings,
     });
+  };
 
-  }
-
-  sendChangedDataToRedux = (objectData) => {
+  sendChangedDataToRedux = objectData => {
     const { currentObject, actions } = this.props;
     let newObjectData = Object.assign({}, objectData);
     newObjectData.id = currentObject.objectId;
 
     actions.changeAnyObjectData(newObjectData);
-
-  }
+  };
 
   // ОБРАБОТЧИКИ КНОПОК:
   onBtnCloseClick = () => {
     const { closeSettings } = this.props;
     closeSettings();
-
-  }
+  };
 
   onBtnAcceptClick = () => {
-  
     let objectData = {};
     try {
-      for ( let key in this.state.objectSettings ) {
-        if ( key === "width" || key === "height" ) {
-          
+      for (let key in this.state.objectSettings) {
+        if (key === 'width' || key === 'height') {
           // остался только тип "номер":
-          if ( /^\d*$/.test(this.state.objectSettings[key]) ) {
+          if (/^\d*$/.test(this.state.objectSettings[key])) {
             objectData[key] = Number(this.state.objectSettings[key]);
           } else {
-            throw new Error("Исправьте ввод числовых значений");
+            throw new Error('Исправьте ввод числовых значений');
           }
         } else {
           // заметим, что title и color преобразовывать не нужно - это строки
@@ -74,46 +66,41 @@ class CurrentObjectSettings extends React.Component {
           // с checkbox булевское значение невозможно ввести неверно
           objectData[key] = this.state.objectSettings[key];
         }
-        
       }
-      
+
       // console.log('objDat', objectData);
       this.sendChangedDataToRedux(objectData);
 
       // сбросить данные:
       this.setState({
-        objectSettings: {}
+        objectSettings: {},
       });
-
-    } 
-    catch(e) {
-      alert("ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: " + e.message);
+    } catch (e) {
+      alert('ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: ' + e.message);
       return;
     }
-    
-    
-  }
+  };
 
   render() {
     const { object } = this.props;
 
     // определим свойства, которые можно редактировать:
     const allowedProperties = [
-      "id",
-      "coordinates",
-      "title",
-      "category",
-      "width",
-      "height",
-      "color",
-      "movable"
+      'id',
+      'coordinates',
+      'title',
+      'category',
+      'width',
+      'height',
+      'color',
+      'movable',
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
       if (object === undefined) {
         return;
       }
 
-      if (prop === "movable") {
+      if (prop === 'movable') {
         return (
           <CheckboxField
             key={i}
@@ -123,7 +110,7 @@ class CurrentObjectSettings extends React.Component {
             onInputChange={this.onInputChange}
           />
         );
-      } else if (prop === "category") {
+      } else if (prop === 'category') {
         return (
           <DropdownObjectField
             key={i}
@@ -133,50 +120,41 @@ class CurrentObjectSettings extends React.Component {
             onInputChange={this.onInputChange}
           />
         );
-      } else if (prop === "coordinates") {
+      } else if (prop === 'coordinates') {
         return (
           <EditField
             key={i}
-            label={"coordinates (x,y)"}
+            label={'coordinates (x,y)'}
             placeholder={String(object[prop].x) + ',' + String(object[prop].y)}
             disabled={true}
             onInputChange={this.onInputChange}
           />
         );
-      } else if (prop === "title" && object.category === "table") {
-        return; 
+      } else if (prop === 'title' && object.category === 'table') {
+        return;
       } else {
         return (
           <EditField
             key={i}
             label={prop}
             placeholder={String(object[prop])}
-            disabled={ prop === "id" || (prop === "title" && object.category === "table") }
+            disabled={prop === 'id' || (prop === 'title' && object.category === 'table')}
             onInputChange={this.onInputChange}
           />
         );
-
-      } 
-     
+      }
     });
-
-    
 
     return (
       <div className="currentObjectSettingsContainer">
         {editFieldsPanel}
-        {
-          object !== undefined &&
+        {object !== undefined && (
           <div className="buttonsSet">
-            <button 
-              className="buttonCurrentObjectSettingsAccept"
-              onClick={this.onBtnAcceptClick}
-            >
+            <button className="buttonCurrentObjectSettingsAccept" onClick={this.onBtnAcceptClick}>
               Применить
             </button>
           </div>
-        }
-        
+        )}
       </div>
     );
   }
@@ -185,14 +163,14 @@ class CurrentObjectSettings extends React.Component {
 //for redux:
 const mapStateToProps = state => ({
   objects: state.objects,
-  currentObject: state.currentObject
+  currentObject: state.currentObject,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateUser, changeCurrentUser, changeAnyObjectData }, dispatch)
+  actions: bindActionCreators({ updateUser, changeCurrentUser, changeAnyObjectData }, dispatch),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CurrentObjectSettings);

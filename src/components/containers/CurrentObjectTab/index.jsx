@@ -1,16 +1,16 @@
-import * as React from "react";
-import UserButtonedItem from "../../containers/ListsComponents/UserButtonedItem/index";
-import UsersSpecialList from "../../containers/ListsComponents/UsersSpecialList/index";
-import CurrentObjectItem from "../../containers/CurrentObjectItem/index";
-import CurrentObjectSettings from "../../containers/CurrentObjectSettings/index";
+import * as React from 'react';
+import UserButtonedItem from '../../containers/ListsComponents/UserButtonedItem/index';
+import UsersSpecialList from '../../containers/ListsComponents/UsersSpecialList/index';
+import CurrentObjectItem from '../../containers/CurrentObjectItem/index';
+import CurrentObjectSettings from '../../containers/CurrentObjectSettings/index';
 
-import "./styles.css";
+import './styles.css';
 
 // redux:
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { updateUser, changeCurrentUser } from "../../../actions/index";
-import { SINGLE_EDIT, MULTI_EDIT } from "../../../res/workModeConstants";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateUser, changeCurrentUser } from '../../../actions/index';
+import { SINGLE_EDIT, MULTI_EDIT } from '../../../res/workModeConstants';
 
 // для создания копий:
 var _ = require('lodash');
@@ -21,25 +21,24 @@ class CurrentObjectTab extends React.Component {
 
     this.state = {
       showObjectSettings: false,
-      showChangeUserPanel: false
+      showChangeUserPanel: false,
     };
   }
 
   checkUserAssignedToTable(userId) {
     // если пользователя нет, то проверять ничего не надо:
-    if ( userId === '' ) {
-      return false
+    if (userId === '') {
+      return false;
     }
 
     // иначе ищем пользователя по объектам всех уровней:
     const { objects } = this.props;
-    for ( let lvl of objects.levels) {
-      for ( let obj of lvl) {
-        if ( obj.userId === userId ) {
+    for (let lvl of objects.levels) {
+      for (let obj of lvl) {
+        if (obj.userId === userId) {
           return true;
         }
       }
-
     }
     return false;
   }
@@ -47,77 +46,76 @@ class CurrentObjectTab extends React.Component {
   // select object:
   openCloseObjectSettings = () => {
     this.setState({
-      showObjectSettings: !this.state.showObjectSettings
+      showObjectSettings: !this.state.showObjectSettings,
     });
   };
 
   // open object settings panel:
   closeObjectSettings = () => {
     this.setState({
-      showObjectSettings: false
+      showObjectSettings: false,
     });
-  }
+  };
 
   // open changing user panel:
-  openChangeUserPanel = (id) => {
+  openChangeUserPanel = id => {
     const { currentObject } = this.props;
-    if ( currentObject.objectId === '' ) {
-        alert("ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Щелкните на одном из объектов!");
+    if (currentObject.objectId === '') {
+      alert('ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Щелкните на одном из объектов!');
     } else {
-        this.setState({
-            showChangeUserPanel: !this.state.showChangeUserPanel
-        });
+      this.setState({
+        showChangeUserPanel: !this.state.showChangeUserPanel,
+      });
     }
-    
   };
 
   // select user:
-  selectUser = (newUserId) => {
+  selectUser = newUserId => {
     const { actions, currentObject } = this.props;
 
-    if ( currentObject.userId === newUserId) { // если выбрали того же пользователя
-      alert("ПРЕДУПРЕЖДЕНИЕ: ВЫ ВЫБРАЛИ ТОГО ЖЕ ПОЛЬЗОВАТЕЛЯ. LOL=) А зачем?)");
-    } else if ( this.checkUserAssignedToTable(newUserId) ) {
-      alert("ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!");
+    if (currentObject.userId === newUserId) {
+      // если выбрали того же пользователя
+      alert('ПРЕДУПРЕЖДЕНИЕ: ВЫ ВЫБРАЛИ ТОГО ЖЕ ПОЛЬЗОВАТЕЛЯ. LOL=) А зачем?)');
+    } else if (this.checkUserAssignedToTable(newUserId)) {
+      alert('ОШИБКА: ПОЛЬЗОВАТЕЛЬ УЖЕ ПРИВЯЗАН К СТОЛУ! Выберите другого пользователя!');
     } else {
       const newObjData = {
         id: currentObject.objectId,
-        userId: newUserId
+        userId: newUserId,
       };
       actions.updateUser(newObjData);
       actions.changeCurrentUser(newUserId);
     }
 
     this.setState({
-        showChangeUserPanel: !this.state.showChangeUserPanel
+      showChangeUserPanel: !this.state.showChangeUserPanel,
     });
   };
 
-  onDeleteUser = (userId) => {
+  onDeleteUser = userId => {
     const { actions, currentObject } = this.props;
-    const emptyUserId = "";
+    const emptyUserId = '';
     const newObjData = {
       id: currentObject.objectId,
-      userId: emptyUserId
+      userId: emptyUserId,
     };
     actions.updateUser(newObjData);
     actions.changeCurrentUser(emptyUserId);
-  
 
     this.setState({
-        showChangeUserPanel: false
+      showChangeUserPanel: false,
     });
-  }
+  };
 
   render() {
     const { currentObject, workMode, objects, users } = this.props;
     var requiredObject;
     var requiredUser = {
-      title: "Not assigned",
-      capability: ""
+      title: 'Not assigned',
+      capability: '',
     };
 
-    if ( workMode === SINGLE_EDIT ) { 
+    if (workMode === SINGLE_EDIT) {
       // вынуть объекты текущего уровня:
       const thisLevelObjects = objects.levels[objects.mapLevel];
 
@@ -139,7 +137,7 @@ class CurrentObjectTab extends React.Component {
     }
 
     return (
-      <div> 
+      <div>
         <div className="currentObjectContainer">
           <div className="labelCurrObj">
             Изменить выбранный объект #ID: {currentObject.objectId}
@@ -148,32 +146,21 @@ class CurrentObjectTab extends React.Component {
             object={requiredObject}
             // onClick={this.openCloseObjectSettings}
           />
-          <CurrentObjectSettings 
-            object={requiredObject}
-            closeSettings={this.closeObjectSettings}
-          />
+          <CurrentObjectSettings object={requiredObject} closeSettings={this.closeObjectSettings} />
         </div>
-        { /*Пользователь показывается, только если текущий объект - стол: */
-          requiredObject !== undefined  && requiredObject.category === "table" &&
+        {/*Пользователь показывается, только если текущий объект - стол: */
+        requiredObject !== undefined && requiredObject.category === 'table' && (
           <div className="currentObjectContainer">
             <div className="labelCurrObj">Изменить пользователя:</div>
             <UserButtonedItem
-                user={requiredUser}
-                isSelected={false}
-                onEditClick={this.openChangeUserPanel}
-                onDeleteClick={this.onDeleteUser}
+              user={requiredUser}
+              isSelected={false}
+              onEditClick={this.openChangeUserPanel}
+              onDeleteClick={this.onDeleteUser}
             />
           </div>
-          
-        }
-        {
-          this.state.showChangeUserPanel && (
-            <UsersSpecialList 
-              onUserClick={this.selectUser} 
-            />
-          )
-        }
-        
+        )}
+        {this.state.showChangeUserPanel && <UsersSpecialList onUserClick={this.selectUser} />}
       </div>
     );
   }
@@ -184,14 +171,14 @@ const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,
   currentObject: state.currentObject,
-  workMode: state.workMode
+  workMode: state.workMode,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateUser, changeCurrentUser }, dispatch)
+  actions: bindActionCreators({ updateUser, changeCurrentUser }, dispatch),
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CurrentObjectTab);

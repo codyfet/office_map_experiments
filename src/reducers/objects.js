@@ -11,18 +11,18 @@ import {
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 // загрузить lodash:
-var _ = require('lodash');
+const _ = require('lodash');
 
 // загрузка объектов всех уровней:
 const mapDataCloned = _.cloneDeep(mapData);
 const allLevelsObjects = mapDataCloned.levels.map(elem => elem.objects);
 
 const initialState = {
-  mapLevel: 1, //по умолчанию мы загружаем 1 уровень
+  mapLevel: 1, // по умолчанию мы загружаем 1 уровень
   levels: allLevelsObjects,
 };
 
-//Изменим:
+// Изменим:
 export default function objects(state = initialState, action) {
   switch (action.type) {
     case CREATE_OBJECT: {
@@ -85,7 +85,7 @@ export default function objects(state = initialState, action) {
       const objectId = action.payload;
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
-        let tempW = object.width;
+        const tempW = object.width;
         object.width = object.height;
         object.height = tempW;
       }
@@ -124,9 +124,9 @@ export default function objects(state = initialState, action) {
       const objectData = action.payload;
       const object = newLevels[lvl].find(val => val.id === objectData.id);
       if (object !== undefined) {
-        for (let key in objectData) {
+        Object.keys(objectData).forEach(key => {
           object[key] = objectData[key];
-        }
+        });
       }
 
       return {

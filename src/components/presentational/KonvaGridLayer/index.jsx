@@ -47,7 +47,7 @@ export default class KonvaGridLayer extends React.PureComponent {
             // отрисуем границы:
             context.beginPath();
             borders.forEach((value, i) => {
-              if (i == 0) {
+              if (i === 0) {
                 context.moveTo(value.x, value.y);
               } else {
                 context.lineTo(value.x, value.y);

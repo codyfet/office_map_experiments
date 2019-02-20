@@ -1,7 +1,7 @@
 import { ADD_USER, EDIT_USER, DELETE_USER } from '../res/constants';
 import mapData from '../res/mapData.json';
 // загрузить lodash:
-var _ = require('lodash');
+const _ = require('lodash');
 
 // загрузка объектов всех уровней:
 const usersCloned = _.cloneDeep(mapData.users);
@@ -20,14 +20,14 @@ export default function users(state = initialState, action) {
 
       console.log('edit user', id, newUserData);
 
-      let user = newUsers.find(user => user.id === id);
+      const user = newUsers.find(userObj => userObj.id === id);
 
       if (user !== undefined) {
-        for (let key in newUserData) {
+        Object.keys(newUserData).forEach(key => {
           if (key !== 'id' && key !== 'category') {
             user[key] = newUserData[key];
           }
-        }
+        });
       }
 
       return newUsers;
@@ -36,7 +36,7 @@ export default function users(state = initialState, action) {
       const id = action.payload;
       let newUsers = state.slice(0);
 
-      newUsers = newUsers.filter(user => user.id !== id);
+      newUsers = newUsers.filter(userObj => userObj.id !== id);
       return newUsers;
     }
     default: {

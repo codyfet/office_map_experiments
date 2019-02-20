@@ -1,8 +1,4 @@
 import {
-  DEFAULT_COLOR,
-  EMPTY_TABLE_COLOR,
-  WARNING_COLOR,
-  SELECTED_COLOR,
   TABLE_COLOR,
   CUPBOARD_COLOR,
   PRINTER_COLOR,
@@ -15,7 +11,7 @@ import {
 } from '../res/constantsObjectsColors';
 
 export default function createMapObject(type, id, coords, userId) {
-  var newObject = {
+  const newObject = {
     category: type,
     id: id,
     coordinates: coords,

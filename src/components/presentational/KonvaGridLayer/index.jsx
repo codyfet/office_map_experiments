@@ -4,26 +4,26 @@ import { Layer, Line, Group } from 'react-konva';
 export default class KonvaGridLayer extends React.PureComponent {
   render() {
     // getting settings for drawing grid:
-    const { width, height, blockSnapSize, boundaries, flushAll } = this.props;
+    const { width, height, blockSnapSize, boundaries } = this.props;
 
     // распарсим строку с границами:
     const borders = boundaries.split(' ').map(point => {
-      let coords = point.split(',', 2);
+      const coords = point.split(',', 2);
       return {
         x: Number(coords[0]),
         y: Number(coords[1]),
       };
     });
 
-    let padding = blockSnapSize;
-    let blocksCount = (width / blockSnapSize) ^ 0;
+    const padding = blockSnapSize;
+    const blocksCount = (width / blockSnapSize) ^ 0;
 
     const makeVerticalGrid = [...Array(blocksCount + 1)].map((elem, i) => {
       return (
         <Line
           key={Number(`1${i}`)}
           points={[Math.round(i * padding) + 0.5, 0, Math.round(i * padding) + 0.5, height]}
-          stroke={'#ddd'}
+          stroke="#ddd"
           strokeWidth={0.5}
         />
       );
@@ -34,7 +34,7 @@ export default class KonvaGridLayer extends React.PureComponent {
         <Line
           key={Number(`2${j}`)}
           points={[0, Math.round(j * padding), width, Math.round(j * padding)]}
-          stroke={'#ddd'}
+          stroke="#ddd"
           strokeWidth={0.5}
         />
       );

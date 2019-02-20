@@ -1,6 +1,6 @@
 import React from 'react';
-import { Popover, Button } from 'react-bootstrap';
-import AdvancedSVG from '../../presentational/AdvancedSVG/index';
+import { Popover } from 'react-bootstrap';
+import AdvancedSVG from '../AdvancedSVG/index';
 import iconPaths from '../../../res/iconPaths';
 import './styles.css';
 

@@ -49,6 +49,9 @@ module.exports = {
     // свои исправления:
     'import/no-unresolved': 'off',
     'object-shorthand': [0, 'never'],
+    'react/prop-types': 'off',
+    'react/jsx-filename-extension': [0, { extensions: ['.jsx'] }],
+    'no-bitwise': 'off',
 
   },
 };

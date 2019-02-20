@@ -1,5 +1,5 @@
 export default function getIconSettings(objCategory) {
-  let settings = {
+  const settings = {
     scale: 1,
     shiftX: 0,
     shiftY: 0,

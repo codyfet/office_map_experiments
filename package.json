@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "watch": {
+    
+  },
   "scripts": {
     "prettier-js": "prettier --write src/**/*.js",
     "prettier-jsx": "prettier --write src/**/*.jsx",
-    "lint": "eslint --debug src/",
+    "lint": "eslint --debug src/ --ext .jsx --ext .js",
     "lint:write": "eslint --debug src/ --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
@@ -36,6 +39,7 @@
     "css-loader": "^2.1.0",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.2",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",

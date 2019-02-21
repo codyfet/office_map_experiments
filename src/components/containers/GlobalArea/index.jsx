@@ -2,7 +2,6 @@ import * as React from 'react';
 import AdvancedBoard from '../AdvancedBoard/index';
 import SidePanel from '../SidePanel/index';
 import LeftPanel from '../LeftPanel/index';
-import 'react-contexify/dist/ReactContexify.min.css';
 import './style.css';
 
 const GlobalArea = () => {

@@ -59,7 +59,6 @@
     "bootstrap": "^4.2.1",
     "debounce-input-react": "^1.1.1",
     "file-saver": "^2.0.0",
-    "gsap": "^2.0.2",
     "lodash": "^4.17.11",
     "react": "^16.8.1",
     "react-bootstrap": "^0.32.4",

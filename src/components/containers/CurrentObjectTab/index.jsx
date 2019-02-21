@@ -158,6 +158,7 @@ class CurrentObjectTab extends React.Component {
             <UserButtonedItem
               user={requiredUser}
               isSelected={false}
+              onItemClick={this.openChangeUserPanel}
               onEditClick={this.openChangeUserPanel}
               onDeleteClick={this.onDeleteUser}
             />

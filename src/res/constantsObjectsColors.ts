@@ -4,7 +4,7 @@ const WARNING_COLOR = 'red';
 const SELECTED_COLOR = 'orange';
 
 // default colors for objects categories:
-const TABLE_COLOR = '#DED9C3';
+const TABLE_COLOR = '#F3F681';
 const CUPBOARD_COLOR = '#DED9C3';
 const PRINTER_COLOR = '#DDDDDD';
 const SCANER_COLOR = '#DDDDDD';

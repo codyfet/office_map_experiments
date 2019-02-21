@@ -3,11 +3,21 @@ import { DebounceInput } from 'react-debounce-input';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addUser, deleteUser, editUser, updateUser } from '../../../../actions/index';
+import {
+  addUser,
+  deleteUser,
+  editUser,
+  updateUser,
+  changeCurrentObject,
+  changeCurrentUser,
+} from '../../../../actions/index';
 import UserButtonedItem from '../UserButtonedItem/index';
 import UserSettings from '../../UserSettings/index';
 import UserCreate from '../../UserCreate/index';
 import './styles.css';
+
+// статические данные карты:
+import mapData from '../../../../res/mapData.json';
 
 class UsersEditList extends React.Component {
   constructor(props) {
@@ -39,7 +49,7 @@ class UsersEditList extends React.Component {
         prevId = prevVal;
         nextId = Number(nextVal.id.slice(1));
       }
-      
+
       return nextId > prevId ? nextId : prevId;
     });
     const newId = `t${String(lastId + 1).padStart(4, '0')}`;
@@ -63,9 +73,29 @@ class UsersEditList extends React.Component {
     });
   };
 
-  onUserClick = newId => {
+  onItemClick = (newId) => {
+    const { actions, objects } = this.props;
+    // ищем объект с пользователем по объектам всех уровней:
+    for (let lvl = 0; lvl < objects.levels.length; lvl += 1) {
+      for (let obj of objects.levels[lvl]) {
+        if (obj.userId === newId) { // если мы нашли объект:
+          if (lvl === objects.mapLevel) { // он с нашего уровня:
+            actions.changeCurrentObject(obj.id);
+            actions.changeCurrentUser(obj.userId);
+          } else {
+            alert(`ПРЕДУПРЕЖДЕНИЕ: ПОЛЬЗОВАТЕЛЬ НА ДРУГОЙ КАРТЕ: ${mapData.levels[lvl].title}`);
+          }
+          return;
+        }
+      }
+    }
+
+    alert('ПРЕДУПРЕЖДЕНИЕ: Пользователь не привязан к столу');
+  }
+
+  onUserClick = (newId) => {
     const { userId } = this.state;
-    // если пользователь выбран, то мы ещё и обнуляем фразу для поиска:
+    
     this.setState({
       userId: userId === '' ? newId : '',
       searchPhrase: '',
@@ -124,6 +154,7 @@ class UsersEditList extends React.Component {
             <UserButtonedItem
               user={user}
               isSelected={false}
+              onItemClick={this.onItemClick}
               onEditClick={this.onUserClick}
               onDeleteClick={this.onDeleteUserClick}
             />
@@ -136,6 +167,7 @@ class UsersEditList extends React.Component {
             <UserButtonedItem
               user={user}
               isSelected={true}
+              onItemClick={this.onItemClick}
               onEditClick={this.onUserClick}
               onDeleteUserClick={this.onDeleteUserClick}
             />
@@ -168,12 +200,16 @@ class UsersEditList extends React.Component {
 
 // for redux:
 const mapStateToProps = state => ({
+  currentObject: state.currentObject,
   users: state.users,
   objects: state.objects,
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ addUser, editUser, deleteUser, updateUser }, dispatch),
+  actions: bindActionCreators(
+    { addUser, editUser, deleteUser, updateUser, changeCurrentObject, changeCurrentUser },
+    dispatch,
+  ),
 });
 
 export default connect(

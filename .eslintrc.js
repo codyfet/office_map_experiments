@@ -42,7 +42,7 @@ module.exports = {
 
     'react/no-find-dom-node': 'off', // Я этого не знаю
     'react/no-did-mount-set-state': 'off',
-    'react/no-unused-prop-types': 'off', // Это всё ещё работает нестабильно
+    'react/no-unused-prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
 
     // свои исправления:

@@ -4,7 +4,7 @@ import AdvancedSVG from '../../../presentational/AdvancedSVG/index';
 import './styles.css';
 
 export default function UserButtonedItem(props) {
-  const { user, onClick, onEditClick, isSelected, onDeleteClick } = props;
+  const { user, onItemClick, onEditClick, isSelected, onDeleteClick } = props;
 
   function onUserSpecialItemClick() {
     if (!isSelected) {
@@ -18,12 +18,17 @@ export default function UserButtonedItem(props) {
     onDeleteClick(user.id);
   }
 
+  function handleItemClick() {
+    onItemClick(user.id);
+  }
+
   return (
-    <div className={isSelected ? 'selectedUserButtonedItem' : 'userButtonedItem'} onClick={onClick}>
+    <div className={isSelected ? 'selectedUserButtonedItem' : 'userButtonedItem'}>
       <AdvancedSVG
         width="30px"
         fill={['#E7ECED', /* '#556080' */ '#F9BF05']}
         content={iconPaths.user}
+        onClick={handleItemClick}
       />
       <div className="userInfo">
         <div>{user.title}</div>

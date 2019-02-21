@@ -1,12 +1,9 @@
 import React from 'react';
-import { Rect, Text, Group, Path } from 'react-konva';
+import { Rect, Group, Path } from 'react-konva';
 
 import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
-
-// загрузить lodash:
-var _ = require('lodash');
 
 export default class MovableObject extends React.Component {
   constructor(props) {
@@ -27,11 +24,9 @@ export default class MovableObject extends React.Component {
 
     // проверим границы для измененного объекта:
     // будем проверять границы при каждом изменении размеров объекта:
-    if (
-      prevProps.object.width !== object.width ||
-      prevProps.object.coordinates.x !== object.coordinates.x ||
-      prevProps.object.coordinates.y !== object.coordinates.y
-    ) {
+    if (prevProps.object.width !== object.width 
+        || prevProps.object.coordinates.x !== object.coordinates.x 
+        || prevProps.object.coordinates.y !== object.coordinates.y) {
       checkObjectLocation(object);
     }
   }
@@ -40,8 +35,21 @@ export default class MovableObject extends React.Component {
   // 1. Держать координаты в границах глобальной области:
   checkBoundaries(x, y) {
     const { mapWidth, mapHeight, object } = this.props;
-    let checkedX = x <= 0 ? 0 : x >= mapWidth - object.width ? mapWidth - object.width : x;
-    let checkedY = y <= 0 ? 0 : y >= mapHeight - object.height ? mapHeight - object.height : y;
+    // проверяем границы для X:
+    let checkedX = x;
+    if (checkedX <= 0) {
+      checkedX = 0;
+    } else if (checkedX >= (mapWidth - object.width)) {
+      checkedX = mapWidth - object.width;
+    }
+    // проверяем границы для Y:
+    let checkedY = y;
+    if (checkedY <= 0) {
+      checkedY = 0;
+    } else if (checkedY >= (mapHeight - object.height)) {
+      checkedX = mapHeight - object.height;
+    }
+     
     return { checkedX, checkedY };
   }
 
@@ -49,8 +57,8 @@ export default class MovableObject extends React.Component {
   showTooltipObjectInfo = e => {
     const { object, user } = this.props;
 
-    let tooltipLayer = e.target.getStage().children[2];
-    let tooltip = tooltipLayer.children[0];
+    const tooltipLayer = e.target.getStage().children[2];
+    const tooltip = tooltipLayer.children[0];
 
     tooltip.position({
       x: e.currentTarget.x(),
@@ -63,7 +71,7 @@ export default class MovableObject extends React.Component {
       text += ' :\n';
       text += user !== undefined ? user.title : 'пустой';
     } else if (object.title !== undefined) {
-      text += ' :\n' + object.title;
+      text += ` :\n${object.title}`;
     }
 
     tooltip.getText().setText(text);
@@ -78,8 +86,8 @@ export default class MovableObject extends React.Component {
 
   // 3. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = e => {
-    let tooltipLayer = e.target.getStage().children[2];
-    let tooltip = tooltipLayer.children[0];
+    const tooltipLayer = e.target.getStage().children[2];
+    const tooltip = tooltipLayer.children[0];
 
     tooltip.hide();
     tooltipLayer.draw();
@@ -99,7 +107,7 @@ export default class MovableObject extends React.Component {
     e.currentTarget.moveToTop();
 
     // обработка информации о пользователе:
-    let userId = object.userId === undefined ? '' : object.userId;
+    const userId = object.userId === undefined ? '' : object.userId;
     shareObjectData(object.id, userId);
     hideContextMenu();
   };
@@ -107,7 +115,7 @@ export default class MovableObject extends React.Component {
   onObjectDragEnd = e => {
     const { showShadow, stopShadow, shareObjectData, blockSnapSize, object } = this.props;
 
-    let { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
+    const { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
     e.currentTarget.position({
       x: Math.round(checkedX / blockSnapSize) * blockSnapSize,
       y: Math.round(checkedY / blockSnapSize) * blockSnapSize,
@@ -115,7 +123,7 @@ export default class MovableObject extends React.Component {
 
     showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
     // обработка информации о пользователе:
-    let userId = object.userId === undefined ? '' : object.userId;
+    const userId = object.userId === undefined ? '' : object.userId;
     shareObjectData(object.id, userId);
 
     stopShadow();
@@ -133,7 +141,7 @@ export default class MovableObject extends React.Component {
     const { shareObjectData, object } = this.props;
 
     // обработка информации о пользователе:
-    let userId = object.userId === undefined ? '' : object.userId;
+    const userId = object.userId === undefined ? '' : object.userId;
     shareObjectData(object.id, userId);
 
     // выведем объект на передний план:
@@ -159,16 +167,16 @@ export default class MovableObject extends React.Component {
 
   render() {
     const { object, setColor } = this.props;
-
+    const { isPointed } = this.state;
     const userId = object.userId;
 
     // draw a picture:
     let { shiftX, shiftY, scale } = getIconSettings(object.category);
 
     // отредактируем размер иконки по размеру объекта:
-    let minSizeObjectValue = object.width < object.height ? object.width : object.height;
-    let minSizeValue = 15;
-    let scaleIncrease = minSizeObjectValue / minSizeValue;
+    const minSizeObjectValue = object.width < object.height ? object.width : object.height;
+    const minSizeValue = 15;
+    const scaleIncrease = minSizeObjectValue / minSizeValue;
 
     shiftX *= scaleIncrease;
     shiftY *= scaleIncrease;
@@ -209,10 +217,10 @@ export default class MovableObject extends React.Component {
           width={object.width}
           height={object.height}
           fill={setColor(object.id, object.correctLocation, object.color, userId)}
-          opacity={this.state.isPointed ? 0.5 : 1}
-          // stroke={'black'}
+          opacity={isPointed ? 0.5 : 1}
+          // stroke="black"
           // strokeWidth={0.5}
-          shadowColor={'black'}
+          shadowColor="black"
           shadowBlur={2}
           shadowOffset={{ x: 1, y: 1 }}
           shadowOpacity={0.4}

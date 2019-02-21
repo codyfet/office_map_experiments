@@ -17,26 +17,28 @@ class DropdownObjectField extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.placeholder !== this.props.placeholder) {
+    const { placeholder } = this.props;
+    if (prevProps.placeholder !== placeholder) {
       this.setState({
-        currCategory: this.props.placeholder,
+        currCategory: placeholder,
       });
     }
   }
 
-  _onSelect = option => {
+  handleSelect = (option) => {
     const { label, onInputChange } = this.props;
     this.setState({
       currCategory: option.value,
     });
 
-    let newSetting = {};
+    const newSetting = {};
     newSetting[label] = option.value;
     
     onInputChange(newSetting);
   };
 
   render() {
+    const { currCategory } = this.state;
     const { label } = this.props;
 
     const options = objectCategories.slice(1).map(cat => {
@@ -46,7 +48,7 @@ class DropdownObjectField extends React.Component {
       };
     });
 
-    var defaultOption = objectCategories.slice(1).find(cat => cat.id === this.state.currCategory);
+    let defaultOption = objectCategories.slice(1).find(cat => cat.id === currCategory);
     defaultOption = {
       value: defaultOption.id,
       label: defaultOption.id,
@@ -58,7 +60,7 @@ class DropdownObjectField extends React.Component {
         <Dropdown
           className="editFieldDropdown"
           options={options}
-          onChange={this._onSelect}
+          onChange={this.handleSelect}
           value={defaultOption}
           placeholder={defaultOption}
         />

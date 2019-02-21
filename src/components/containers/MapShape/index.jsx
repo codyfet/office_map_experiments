@@ -1,33 +1,5 @@
 import * as React from 'react';
-import { Shape, Group, Rect, Layer, Line } from 'react-konva';
-
-// раздел внешней области на прямоугольники:
-// на вход подаётся:
-//  - массив точек, вида { x: , y: }
-//  - step - размер минимального шага (blockSnapSize)
-//  - globalAreaSize - размер всего слоя KonvaGridLayer: { width: , height: }
-function getBoundariesLikeRectangles(borders, step, globalAreaSize) {
-  // результат - массив объектов:
-  let result = [{}];
-
-  // определим начальную точку/точки, от которой/которых будем строить области:
-  let starPoints = [[0, 0]];
-
-  // идём вдоль оси oX:
-  for (let x = 0; x < globalAreaSize.width; x += step) {
-    // смотрим все точки вдоль оси oY:
-    for (let y = 0; y < globalAreaSize.height; y += step) {
-      // идём по нашему массиву:
-      for (let p = 0; p < borders.length; p++) {
-        // попалась точка:
-        if (borders[p].x == x && borders[p].y) {
-          // это первая точка, тогда у нас точно будет область сверху
-          starPoints;
-        }
-      }
-    }
-  }
-}
+import { Shape, Group, Rect } from 'react-konva';
 
 export default class MapShape extends React.PureComponent {
   // ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ВИУЗАЛЬНЫХ ГРАНИЦ КАРТЫ:
@@ -36,7 +8,7 @@ export default class MapShape extends React.PureComponent {
 
     // распарсим строку с границами:
     const borders = boundaries.split(' ').map(point => {
-      let coords = point.split(',', 2);
+      const coords = point.split(',', 2);
       return {
         x: Number(coords[0]),
         y: Number(coords[1]),
@@ -46,7 +18,7 @@ export default class MapShape extends React.PureComponent {
     // рисовка границ:
     context.beginPath();
     borders.forEach((value, i) => {
-      if (i == 0) {
+      if (i === 0) {
         context.moveTo(value.x, value.y);
       } else {
         context.lineTo(value.x, value.y);
@@ -64,7 +36,7 @@ export default class MapShape extends React.PureComponent {
 
     // предположим, мы получили ограничивающие области:
     const borderAreas = borderlands.slice(0).map((val, i) => {
-      let coords = val.split(' ', 4).map(v => Number(v));
+      const coords = val.split(' ', 4).map(v => Number(v));
 
       return (
         <Rect
@@ -73,8 +45,8 @@ export default class MapShape extends React.PureComponent {
           y={coords[1]}
           width={coords[2] - coords[0]}
           height={coords[3] - coords[1]}
-          fill={'white'}
-          // stroke={'red'}
+          fill="white"
+          // stroke="red"
           // strokeWidth={1}
         />
       );

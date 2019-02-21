@@ -1,7 +1,5 @@
 import * as React from 'react';
-
 import './styles.css';
-import ReactDropdown from 'react-dropdown';
 
 class EditField extends React.Component {
   constructor(props) {
@@ -14,9 +12,10 @@ class EditField extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.placeholder !== this.props.placeholder) {
+    const { placeholder } = this.props;
+    if (prevProps.placeholder !== placeholder) {
       this.setState({
-        inputText: this.props.placeholder,
+        inputText: placeholder,
       });
     }
   }
@@ -27,13 +26,14 @@ class EditField extends React.Component {
       inputText: e.target.value,
     });
 
-    let newSetting = {};
+    const newSetting = {};
     newSetting[label] = e.target.value;
     
     onInputChange(newSetting);
   };
 
   render() {
+    const { inputText } = this.state;
     const { label, disabled } = this.props;
 
     return (
@@ -42,7 +42,7 @@ class EditField extends React.Component {
         <input
           className="editFieldInput"
           type="text"
-          value={this.state.inputText}
+          value={inputText}
           disabled={disabled}
           onChange={this.onTextChange}
         />

@@ -3,7 +3,8 @@ import * as React from 'react';
 import './styles.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-var _ = require('lodash');
+
+const _ = require('lodash');
 
 class DropdownLevelField extends React.Component {
   constructor(props) {
@@ -16,26 +17,28 @@ class DropdownLevelField extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.placeholder !== this.props.placeholder) {
+    const { placeholder } = this.props;
+    if (prevProps.placeholder !== placeholder) {
       this.setState({
-        currCategory: this.props.placeholder,
+        currCategory: placeholder,
       });
     }
   }
 
-  _onSelect = option => {
+  handleSelect = (option) => {
     const { label, onInputChange } = this.props;
     this.setState({
       currCategory: option.value,
     });
 
-    let newSetting = {};
+    const newSetting = {};
     newSetting[label] = option.value;
     
     onInputChange(newSetting);
   };
 
   render() {
+    const { currCategory } = this.state;
     const { label } = this.props;
 
     const options = _.range(1, 14).map(elem => {
@@ -45,7 +48,7 @@ class DropdownLevelField extends React.Component {
       };
     });
 
-    var defaultOption = options.find(elem => elem.value === Number(this.state.currCategory));
+    const defaultOption = options.find(elem => elem.value === Number(currCategory));
 
     return (
       <div className="editField">
@@ -53,7 +56,7 @@ class DropdownLevelField extends React.Component {
         <Dropdown
           className="editFieldDropdown"
           options={options}
-          onChange={this._onSelect}
+          onChange={this.handleSelect}
           value={defaultOption}
           placeholder={defaultOption}
         />

@@ -11,24 +11,25 @@ import {
   changeObjectsLevel,
   createObject,
 } from '../../../actions/index';
-import CreateTab from '../../containers/CreateTab/index';
-import CurrentObjectTab from '../../containers/CurrentObjectTab/index';
-import MapLevelItem from '../../containers/MapLevelItem/index';
+
+import CreateTab from '../CreateTab/index';
+import CurrentObjectTab from '../CurrentObjectTab/index';
+import MapLevelItem from '../MapLevelItem/index';
 import UsersEditList from '../ListsComponents/UsersEditList/index';
 import mapData from '../../../res/mapData.json';
-
 import './styles.css';
 
 // для сохранения файлов:
-var FileSaver = require('file-saver');
+const FileSaver = require('file-saver');
 // загрузить lodash:
-var _ = require('lodash');
+const _ = require('lodash');
 
 class SidePanel extends React.Component {
   componentDidUpdate(prevProps) {
+    const { mapState } = this.props;
     // для центрирования сцены при изменении level:
-    if (prevProps.mapState !== this.props.mapState) {
-      const { mapWidth, mapHeight } = this.props.mapState;
+    if (prevProps.mapState !== mapState) {
+      const { mapWidth, mapHeight } = mapState;
       this.autoAdjustStage(mapWidth, mapHeight);
     }
   }
@@ -43,8 +44,8 @@ class SidePanel extends React.Component {
     
     // настраиваем масштаб:
     // считаем используя отступ с 2-х сторон (поэтому * 2)
-    let scaleX = boardWidth / (mapWidth + padding * 2);
-    let scaleY = boardHeight / (mapHeight + padding * 2);
+    const scaleX = boardWidth / (mapWidth + padding * 2);
+    const scaleY = boardHeight / (mapHeight + padding * 2);
     
     // если реальная карта меньше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY > 1),
     // то выберем наибольший масштаб:
@@ -83,14 +84,14 @@ class SidePanel extends React.Component {
 
     // сохранение карты со всеми объектами и пользователями:
     // сначала подггрузим весь файл mapData:
-    let mapDataFile = _.cloneDeep(mapData);
+    const mapDataFile = _.cloneDeep(mapData);
 
     // дополним его изменившимися данными:
-    mapDataFile.levels = objects.levels.map((objects, i) => {
-      let levelData = Object.assign({}, mapDataFile.levels[i]);
-      levelData.objects = objects.map((obj, j) => {
+    mapDataFile.levels = objects.levels.map((objs, i) => {
+      const levelData = Object.assign({}, mapDataFile.levels[i]);
+      levelData.objects = objs.map((obj) => {
         // запишем поля в алфавитном порядке:
-        let formattedObject = {};
+        const formattedObject = {};
         objectOrder.forEach(property => {
           if (obj[property] !== undefined) {
             formattedObject[property] = obj[property];
@@ -105,7 +106,7 @@ class SidePanel extends React.Component {
     
 
     // предлагаем загрузку пользователю:
-    var file = new File([JSON.stringify(mapDataFile)], 'newMapData.json', {
+    const file = new File([JSON.stringify(mapDataFile)], 'newMapData.json', {
       type: 'text/plain;charset=utf-8',
     });
     FileSaver.saveAs(file);
@@ -129,19 +130,19 @@ class SidePanel extends React.Component {
   };
 
   render() {
-    const { currentObject, panelWidth, panelHeight } = this.props;
+    const { currentObject, panelWidth, panelHeight, mapState } = this.props;
 
     return (
       <div
         className="sidePanelContainer"
         style={{
-          width: panelWidth + 'px',
-          height: panelHeight + 'px',
+          width: `${panelWidth}px`,
+          height: `${panelHeight}px`,
         }}
       >
         {/* handle map level change: */}
         <MapLevelItem
-          currentLevel={this.props.mapState.mapLevel}
+          currentLevel={mapState.mapLevel}
           onSelectLevel={this.onSelectLevel}
         />
         {/* accordeon: */}
@@ -180,7 +181,7 @@ class SidePanel extends React.Component {
             titleClassName="mainAccordion-item-title"
             title="Карта"
           >
-            <button style={{ width: '100%' }} onClick={this.onSaveMapClick}>
+            <button type="submit" style={{ width: '100%' }} onClick={this.onSaveMapClick}>
               Сохранить карту
             </button>
           </AccordionItem>

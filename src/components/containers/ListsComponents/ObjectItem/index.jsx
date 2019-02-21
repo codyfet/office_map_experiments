@@ -5,7 +5,7 @@ import './styles.css';
 
 export default class ObjectItem extends React.Component {
   getSettingsForObject(object) {
-    let rezult = {
+    const rezult = {
       text: object.title,
       fill: ['black'],
       content: iconPaths[object.id],

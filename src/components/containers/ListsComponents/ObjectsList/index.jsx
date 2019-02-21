@@ -1,10 +1,10 @@
 import React from 'react';
-import objectCategories from './../../../../res/objectCategories.json';
-import ObjectItem from './../ObjectItem/index';
+import objectCategories from '../../../../res/objectCategories.json';
+import ObjectItem from '../ObjectItem';
 import './styles.css';
 
 export default class ObjectsList extends React.Component {
-  onObjectClick = id => {
+  onObjectClick = (id) => {
     const { objectId, onObjectClick } = this.props;
 
     // если объект не выбран:
@@ -17,6 +17,7 @@ export default class ObjectsList extends React.Component {
   };
 
   render() {
+    const { objectId } = this.props;
     // до 4-ой позиции идут категории статичных объектов и пользователей:
     const searchList = objectCategories.slice(1);
 
@@ -30,7 +31,7 @@ export default class ObjectsList extends React.Component {
 
     // если выбрали элемент:
     let isSelected = false;
-    const foundObject = searchList.find(elem => elem.id === this.props.objectId);
+    const foundObject = searchList.find(elem => elem.id === objectId);
     if (foundObject !== undefined) {
       isSelected = true;
       loadObjects = (

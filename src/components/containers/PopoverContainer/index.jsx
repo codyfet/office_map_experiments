@@ -1,7 +1,4 @@
 import React from 'react';
-import PopoverView from '../../presentational/PopoverView/index';
-import createMapObject from '../../../utils/objectsFactory';
-
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,11 +8,12 @@ import {
   turnObject,
   changeCurrentObjectState,
 } from '../../../actions/index';
-import workMode from './../../../reducers/workMode';
 
-var _ = require('lodash');
+import PopoverView from '../../presentational/PopoverView/index';
+
+const _ = require('lodash');
 // для генерирования уникальных id:
-var genUniqId = require('uniqid');
+const genUniqId = require('uniqid');
 
 class PopoverContainer extends React.Component {
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
@@ -23,7 +21,7 @@ class PopoverContainer extends React.Component {
     const { actions } = this.props;
 
     // сделаем копию:
-    let newObject = _.cloneDeep(object);
+    const newObject = _.cloneDeep(object);
 
     // никаких проверок не нужно - мы знаем точно, что объект существует
     // новые координаты получим сдвигом вправо вниз на:
@@ -53,7 +51,7 @@ class PopoverContainer extends React.Component {
   };
 
   rotateObject = () => {
-    const { actions, currentObject, readyHandler } = this.props;
+    const { actions, currentObject } = this.props;
 
     currentObject.objectId.split(' ').forEach(id => {
       actions.turnObject(id);

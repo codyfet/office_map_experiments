@@ -11,7 +11,7 @@ import { changeMapLevel, changeObjectsLevel } from '../../../actions/index';
 import mapData from '../../../res/mapData.json';
 
 class MapLevelItem extends React.Component {
-  _onSelect = option => {
+  handleSelect = (option) => {
     const { onSelectLevel } = this.props;
     onSelectLevel(option.value);
   };
@@ -25,7 +25,7 @@ class MapLevelItem extends React.Component {
     });
 
     const { currentLevel } = this.props;
-    var defaultOption = mapData.levels.find(lvl => lvl.sortId === currentLevel);
+    let defaultOption = mapData.levels.find(lvl => lvl.sortId === currentLevel);
     defaultOption = {
       value: defaultOption.sortId,
       label: defaultOption.title,
@@ -36,7 +36,7 @@ class MapLevelItem extends React.Component {
         <div style={{ textAlign: 'center' }}>Текущая карта:</div>
         <Dropdown
           options={options}
-          onChange={this._onSelect}
+          onChange={this.handleSelect}
           value={defaultOption}
           placeholder={defaultOption}
         />

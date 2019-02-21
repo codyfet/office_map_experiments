@@ -21,7 +21,7 @@ export default function UserSimpleItem(props) {
     >
       <AdvancedSVG
         width="30px"
-        fill={['#E7ECED', /*'#556080'*/ '#F9BF05']}
+        fill={['#E7ECED', /* '#556080' */ '#F9BF05']}
         content={iconPaths.user}
       />
       <div className="userInfo">

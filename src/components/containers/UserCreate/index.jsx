@@ -1,15 +1,14 @@
 import * as React from 'react';
-import EditField from '../../containers/EditField/index';
-import CheckboxField from '../../containers/CheckboxField/index';
-import DropdownLevelField from './../DropdownLevelField/index';
-
-import './styles.css';
-
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addUser } from '../../../actions/index';
-var _ = require('lodash');
+
+import EditField from '../EditField/index';
+import DropdownLevelField from '../DropdownLevelField/index';
+import './styles.css';
+
+const _ = require('lodash');
 
 class UserCreate extends React.Component {
   state = {
@@ -24,7 +23,8 @@ class UserCreate extends React.Component {
   }
 
   onInputChange = settings => {
-    let newUserSettings = Object.assign({}, this.state.userSettings);
+    const { userSettings } = this.state;
+    let newUserSettings = Object.assign({}, userSettings);
     newUserSettings = Object.assign(newUserSettings, settings);
 
     this.setState({
@@ -35,14 +35,15 @@ class UserCreate extends React.Component {
   // ОБРАБОТЧИКИ КНОПОК:
   onBtnCreateClick = () => {
     const { actions, user, onClose } = this.props;
+    const { userSettings } = this.state;
 
-    let userData = _.clone(user);
+    const userData = _.clone(user);
     try {
-      for (let key in this.state.userSettings) {
-        userData[key] = this.state.userSettings[key];
-      }
+      Object.keys(userSettings).forEach(key => {
+        userData[key] = userSettings[key];
+      });
     } catch (e) {
-      alert('ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: ' + e.message);
+      alert(`ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: ${e.message}`);
       return;
     }
 
@@ -68,7 +69,7 @@ class UserCreate extends React.Component {
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
       if (user === undefined) {
-        return;
+        return undefined;
       }
 
       if (prop === 'level') {
@@ -100,7 +101,7 @@ class UserCreate extends React.Component {
         {editFieldsPanel}
         {user !== undefined && (
           <div className="buttonsSet">
-            <button className="buttonAccept" onClick={this.onBtnCreateClick}>
+            <button type="submit" className="buttonAccept" onClick={this.onBtnCreateClick}>
               Создать
             </button>
           </div>

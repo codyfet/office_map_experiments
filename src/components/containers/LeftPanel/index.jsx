@@ -13,15 +13,15 @@ class LeftPanel extends React.Component {
     const padding = 20;
 
     // получаем границы карты:
-    const { mapWidth, mapHeight } = this.props.mapState;
+    const { mapState } = this.props;
 
     // получаем границы окна :
     const { boardWidth, boardHeight } = this.props;
 
     // настраиваем масштаб:
     // считаем используя отступ с 2-х сторон (поэтому * 2)
-    let scaleX = boardWidth / (mapWidth + padding * 2);
-    let scaleY = boardHeight / (mapHeight + padding * 2);
+    const scaleX = boardWidth / (mapState.mapWidth + padding * 2);
+    const scaleY = boardHeight / (mapState.mapHeight + padding * 2);
 
     // если реальная карта больше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY < 1),
     // то выберем наибольший масштаб:
@@ -45,7 +45,7 @@ class LeftPanel extends React.Component {
 
   handleChange = e => {
     const { actions } = this.props;
-    let newWM = e.target.checked === true ? MULTI_EDIT : SINGLE_EDIT;
+    const newWM = e.target.checked === true ? MULTI_EDIT : SINGLE_EDIT;
     actions.changeWorkMode(newWM);
   };
 
@@ -57,11 +57,11 @@ class LeftPanel extends React.Component {
       <div
         className="leftPanel"
         style={{
-          width: panelWidth + 'px',
-          height: panelHeight + 'px',
+          width: `${panelWidth}px`,
+          height: `${panelHeight}px`,
         }}
       >
-        <button className="buttonLeftPanel" onClick={this.autoAdjustStage}>
+        <button type="submit" className="buttonLeftPanel" onClick={this.autoAdjustStage}>
           Авто-масштаб
         </button>
         <div className="checkboxLeftPanel">

@@ -1,15 +1,5 @@
 import * as React from 'react';
-import { Stage, Layer, Group, Rect, Text, Label, Tag } from 'react-konva';
-import MovableObject from '../MapObjects/MovableObject';
-import StaticObject from '../MapObjects/StaticObject';
-import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
-import MapShape from '../MapShape/index';
-import {
-  DEFAULT_COLOR,
-  EMPTY_TABLE_COLOR,
-  WARNING_COLOR,
-  SELECTED_COLOR,
-} from '../../../res/constantsObjectsColors';
+import { Stage, Layer, Rect, Text, Label, Tag } from 'react-konva';
 
 // redux:
 import { connect } from 'react-redux';
@@ -26,12 +16,22 @@ import {
   shiftObjects,
 } from '../../../actions/index';
 
-//popup:
+import MovableObject from '../MapObjects/MovableObject';
+import StaticObject from '../MapObjects/StaticObject';
+import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
+import MapShape from '../MapShape/index';
+import {
+  EMPTY_TABLE_COLOR,
+  WARNING_COLOR,
+  SELECTED_COLOR,
+} from '../../../res/constantsObjectsColors';
+
+// popup:
 import PopoverContainer from '../PopoverContainer/index';
 import { MULTI_EDIT } from '../../../res/workModeConstants';
 
 // загрузить lodash:
-var _ = require('lodash');
+const _ = require('lodash');
 
 class AdvancedBoard extends React.Component {
   constructor(props) {
@@ -40,11 +40,9 @@ class AdvancedBoard extends React.Component {
     this.state = {
       selectedObjectPos: [10, 10],
       selectedObjectSizes: [10, 10],
-
-      contextMenuPos: [10, 10],
-
       shadowOpacity: 0,
 
+      contextMenuPos: [10, 10],
       contextMenuShow: false,
     };
   }
@@ -53,13 +51,12 @@ class AdvancedBoard extends React.Component {
   // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
   // 1.1. Фиксируем данные по сдвигу в redux:
   handleStageShiftChange = newShift => {
-    if (
-      this.props.boardState.shift[0] !== newShift[0] ||
-      this.props.boardState.shift[1] !== newShift[1]
-    ) {
+    const { boardState } = this.props;
+    if (boardState.shift[0] !== newShift[0] 
+         || boardState.shift[1] !== newShift[1]) { 
       // заносим данные в redux:
       const { actions } = this.props;
-      const newState = Object.assign({}, this.props.boardState);
+      const newState = Object.assign({}, boardState);
       newState.shift = newShift;
 
       actions.changeBoardState(newState);
@@ -69,8 +66,8 @@ class AdvancedBoard extends React.Component {
   // 1.2. Масштабируем сцену и фиксируем данные в redux:
   handleStageScaleChange = newScale => {
     // заносим данные в redux:
-    const { actions } = this.props;
-    const newState = Object.assign({}, this.props.boardState);
+    const { actions, boardState } = this.props;
+    const newState = Object.assign({}, boardState);
     newState.scale = newScale;
 
     actions.changeBoardState(newState);
@@ -82,22 +79,22 @@ class AdvancedBoard extends React.Component {
   // возвращает true - если пересекаются, false - иначе
   haveIntersection(r1, r2) {
     return !(
-      r2.x >= r1.x + r1.width ||
-      r2.x + r2.width <= r1.x ||
-      r2.y >= r1.y + r1.height ||
-      r2.y + r2.height <= r1.y
+      r2.x >= r1.x + r1.width 
+      || r2.x + r2.width <= r1.x 
+      || r2.y >= r1.y + r1.height
+      || r2.y + r2.height <= r1.y
     );
   }
 
   // 2.2. Функция проверяет текущий объект сцены:
   // если пересекается с границами карты или объектами, то correctLocation = false
   // иначе  - correctLocation = true
-  checkObjectLocation = object => {
+  checkObjectLocation = (object) => {
     // получить координаты сцены:
-    let stage = this.stageRef.getStage();
+    const stage = this.stageRef.getStage();
 
     // получить координаты текущего объекта:
-    let currObject = {
+    const currObject = {
       x: object.coordinates.x,
       y: object.coordinates.y,
       width: object.width,
@@ -108,7 +105,7 @@ class AdvancedBoard extends React.Component {
     const thisLevelObjects = objects.levels[objects.mapLevel];
 
     // проверяем, есть ли хотя бы 1 пересечение с объектами (nodes) карты:
-    let intersectedWithMapObjects = thisLevelObjects.some((obj, i) => {
+    const intersectedWithMapObjects = thisLevelObjects.some((obj) => {
       // если id равен id текущего объекта,
       // то пересечения с этим узлом нет
       if (obj.id === object.id) {
@@ -118,7 +115,7 @@ class AdvancedBoard extends React.Component {
       // получить координаты и размеры текущего узла:
       // реализовано отдельно специально, ведь при масштабировании
       // координаты становятся нецелыми и при проверках возникают ошибки
-      let currNode = {
+      const currNode = {
         x: obj.coordinates.x,
         y: obj.coordinates.y,
         width: obj.width,
@@ -133,12 +130,12 @@ class AdvancedBoard extends React.Component {
     });
 
     // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borders) карты:
-    let boundariesOverstepped = stage.children[1].children[1].children.some((border, i) => {
+    const boundariesOverstepped = stage.children[1].children[1].children.some((border, i) => {
       // индекс первого элемента - это изображение карты
       if (i < 1) return false;
 
       // получить координаты и размеры текущей области-границы:
-      let currBorder = {
+      const currBorder = {
         x: border.attrs.x,
         y: border.attrs.y,
         width: border.attrs.width,
@@ -154,9 +151,7 @@ class AdvancedBoard extends React.Component {
 
     // Поменять цвет текущего объекта:
     const { actions } = this.props;
-    let newLocData = {
-      id: object.id,
-    };
+    const newLocData = { id: object.id };
     if (intersectedWithMapObjects || boundariesOverstepped) {
       newLocData.corrLoc = false;
     } else {
@@ -177,41 +172,34 @@ class AdvancedBoard extends React.Component {
   };
 
   // 3. ОБРАБОТКА СОБЫТИЙ STAGE---------------------------------------------------------------:
-  onStageDragStart = e => {
+  handleStageDragStart = () => {
     this.hideContextMenu();
   };
 
-  onStageDragMove = e => {
-    // если потребуется проверка пересечений при передвижении объекта:
-    // this.checkCurrentObjectLocation();
-  };
-
-  onStageDragEnd = e => {
+  handleStageDragEnd = (e) => {
     // получим текущие координаты сцены и текущего объекта:
-    let currObj = e.target;
-    let currentStage = e.currentTarget;
+    const currObj = e.target;
+    const currentStage = e.currentTarget;
 
     // если сдвинулась сцена:
     if (currentStage.x() === currObj.x() && currentStage.y() === currObj.y()) {
       this.handleStageShiftChange([currentStage.x(), currentStage.y()]);
-    } else {
-      // если сдвинулся объект:
-      // уже проверяется в MovableObject!
-      // this.checkCurrentObjectLocation();
-    }
+    } 
   };
 
-  onStageWheel = e => {
+  handleStageWheel = (e) => {
     e.evt.preventDefault();
 
+    const { boardState } = this.props;
     const scaleBy = 1.05;
-    const oldScale = this.props.boardState.scale;
-    const newScale = e.evt.deltaY > 0 ? oldScale * scaleBy : oldScale / scaleBy;
+    const newScale = e.evt.deltaY > 0 
+      ? boardState.scale * scaleBy 
+      : boardState.scale / scaleBy;
 
     this.handleStageScaleChange(newScale);
   };
 
-  onStageClick = e => {
+  handleStageClick = e => {
     // т.к. для каждый объект - группа,
     // каждая группа имеет имя "object"
     // stage ловит объект низкого уровня - rect, line, text
@@ -228,35 +216,36 @@ class AdvancedBoard extends React.Component {
   // 4.1. Изменить положение объекта (данные объекта)
   objectDataToRedux = () => {
     const { actions, workMode, currentObject, objects } = this.props;
+    const { selectedObjectPos } = this.state;
 
     if (workMode === MULTI_EDIT) {
       // в этом случае нам нужно сделать массовый сдвиг:
       // делать его будем по последнему элементу:
-      let mainId = currentObject.objectId.split(' ').slice(-1)[0];
+      const mainId = currentObject.objectId.split(' ').slice(-1)[0];
 
       // найдём координаты элемента:
       const thisLevelObjects = objects.levels[objects.mapLevel];
       const obj = thisLevelObjects.find(val => val.id === mainId);
 
       // найдём сдвиг:
-      let shift = {
-        x: this.state.selectedObjectPos[0] - obj.coordinates.x,
-        y: this.state.selectedObjectPos[1] - obj.coordinates.y,
+      const shift = {
+        x: selectedObjectPos[0] - obj.coordinates.x,
+        y: selectedObjectPos[1] - obj.coordinates.y,
       };
 
       // и теперь обновим данные в redux:
-      let newObjectData = {
+      const newObjectData = {
         ids: currentObject.objectId,
         shift: shift,
       };
       // новым действием МАССОВЫЙ СДВИГ:
       actions.shiftObjects(newObjectData);
     } else {
-      let newObjectData = {
-        id: this.props.currentObject.objectId,
+      const newObjectData = {
+        id: currentObject.objectId,
         pos: {
-          x: this.state.selectedObjectPos[0],
-          y: this.state.selectedObjectPos[1],
+          x: selectedObjectPos[0],
+          y: selectedObjectPos[1],
         },
       };
 
@@ -268,11 +257,11 @@ class AdvancedBoard extends React.Component {
   // 5.1. ТЕНЬ ТЕКУЩЕГО ОБЪЕКТА:: -------------------------------------------------------------
   // 5.1.1. Показать тень (при движении объекта):
   showCurrentObjectShadow = (posX, posY, size) => {
-    const blockSnapSize = this.props.mapState.blockSnapSize;
+    const { mapState } = this.props;
     this.setState({
       selectedObjectPos: [
-        Math.round(posX / blockSnapSize) * blockSnapSize,
-        Math.round(posY / blockSnapSize) * blockSnapSize,
+        Math.round(posX / mapState.blockSnapSize) * mapState.blockSnapSize,
+        Math.round(posY / mapState.blockSnapSize) * mapState.blockSnapSize,
       ],
       selectedObjectSizes: size,
       shadowOpacity: 1,
@@ -288,7 +277,7 @@ class AdvancedBoard extends React.Component {
     });
   };
 
-  // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------------------------
+  // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------
   // 5.2.1. Показать контекстное меню
   showContextMenu = (x, y) => {
     this.setState({
@@ -312,7 +301,7 @@ class AdvancedBoard extends React.Component {
 
     if (workMode === MULTI_EDIT) {
       let newObjectId = '';
-      if (objectId === '') {
+      if (objectId === '') { // если текущий id пустой:
         // зануляем текущий объект:
         newObjectId = '';
       } else {
@@ -326,16 +315,16 @@ class AdvancedBoard extends React.Component {
             // если он есть:
             // (для перемещения объектов нам необходимо выделять основной элемент
             // по которому будет проходить перемещение (он должен быть в конце)):
-            let ids = currentObject.objectId.split(' ');
-            let indOfObjectId = ids.indexOf(objectId);
-            let idsWithDeletedObjectId = ids
+            const ids = currentObject.objectId.split(' ');
+            const indOfObjectId = ids.indexOf(objectId);
+            const idsWithDeletedObjectId = ids
               .slice(0, indOfObjectId)
               .concat(ids.slice(indOfObjectId + 1));
             // теперь добавим в конец:
-            newObjectId = idsWithDeletedObjectId.join(' ') + ' ' + objectId;
+            newObjectId = `${idsWithDeletedObjectId.join(' ')} ${objectId}`;
           } else {
             // объекта нет - просто добавляем в конец:
-            newObjectId = currentObject.objectId + ' ' + objectId;
+            newObjectId = `${currentObject.objectId} ${objectId}`;
           }
         }
       }
@@ -386,14 +375,17 @@ class AdvancedBoard extends React.Component {
   };
 
   render() {
-    const { boardWidth, boardHeight, objects, users, currentObject } = this.props;
+    const { boardWidth, boardHeight, objects, users, mapState, boardState } = this.props;
 
-    // settings for map (KonvaGrid):
-    const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = this.props.mapState;
+    // данные для тени:
+    const { selectedObjectPos, selectedObjectSizes, shadowOpacity } = this.state;
+    // данные для контекстного меню:
+    const { contextMenuShow, contextMenuPos } = this.state;
+    // данные для сетки (KonvaGrid):
+    const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = mapState;
 
-    // вынуть объекты текущего уровня:
+    // загрузить объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
-
     const loadObject = thisLevelObjects.map((elem, i) => {
       // здесь нужно глубокое копирование:
       const object = _.cloneDeep(elem);
@@ -447,21 +439,20 @@ class AdvancedBoard extends React.Component {
           ref={ref => {
             this.stageRef = ref;
           }} // получим ссылку на stage
-          x={this.props.boardState.shift[0]}
-          y={this.props.boardState.shift[1]}
+          x={boardState.shift[0]}
+          y={boardState.shift[1]}
           width={boardWidth}
           height={boardHeight}
           draggable={true}
-          onWheel={this.onStageWheel}
+          onWheel={this.handleStageWheel}
           scale={{
-            x: this.props.boardState.scale,
-            y: this.props.boardState.scale,
+            x: boardState.scale,
+            y: boardState.scale,
           }}
-          onDragStart={this.onStageDragStart}
-          onDragEnd={this.onStageDragEnd}
-          onDragMove={this.onStageDragMove}
-          onDblClick={this.onStageDblClick}
-          onClick={this.onStageClick}
+          onDragStart={this.handleStageDragStart}
+          onDragEnd={this.handleStageDragEnd}
+          onDblClick={this.handleStageDblClick}
+          onClick={this.handleStageClick}
         >
           <KonvaGridLayer
             width={mapWidth}
@@ -471,15 +462,15 @@ class AdvancedBoard extends React.Component {
             flushAll={this.flushAll}
           />
           <Layer>
-            {/*Shadow is here:*/}
+            {/* Shadow is here: */}
             <Rect
-              x={this.state.selectedObjectPos[0]}
-              y={this.state.selectedObjectPos[1]}
-              width={this.state.selectedObjectSizes[0]}
-              height={this.state.selectedObjectSizes[1]}
-              fill={'#AE4C01'}
-              opacity={this.state.shadowOpacity}
-              stroke={'#823B04'}
+              x={selectedObjectPos[0]}
+              y={selectedObjectPos[1]}
+              width={selectedObjectSizes[0]}
+              height={selectedObjectSizes[1]}
+              fill="#AE4C01"
+              opacity={shadowOpacity}
+              stroke="#823B04"
               strokeWidth={1}
             />
             <MapShape boundaries={mapBoundaries} borderlands={mapCovering} />
@@ -502,7 +493,7 @@ class AdvancedBoard extends React.Component {
               <Text
                 text=""
                 fontFamily="Calibri"
-                fontSize={Math.floor(14 / this.props.boardState.scale)}
+                fontSize={Math.floor(14 / boardState.scale)}
                 padding={5}
                 fill="white"
                 name="objectTooltip"
@@ -510,11 +501,11 @@ class AdvancedBoard extends React.Component {
             </Label>
           </Layer>
         </Stage>
-        {/*Context menu for the current object is here:*/}
-        {this.state.contextMenuShow && (
+        {/* Context menu for the current object is here: */}
+        {contextMenuShow && (
           <PopoverContainer
-            x={this.state.contextMenuPos[0]}
-            y={this.state.contextMenuPos[1]}
+            x={contextMenuPos[0]}
+            y={contextMenuPos[1]}
             readyHandler={this.flushAll}
           />
         )}

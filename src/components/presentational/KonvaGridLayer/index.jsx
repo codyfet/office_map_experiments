@@ -4,7 +4,7 @@ import { Layer, Line, Group } from 'react-konva';
 export default class KonvaGridLayer extends React.PureComponent {
   render() {
     // getting settings for drawing grid:
-    const { width, height, blockSnapSize, boundaries } = this.props;
+    const { width, height, blockSnapSize, boundaries, children } = this.props;
 
     // распарсим строку с границами:
     const borders = boundaries.split(' ').map(point => {
@@ -61,7 +61,7 @@ export default class KonvaGridLayer extends React.PureComponent {
         >
           {makeVerticalGrid}
           {makeHorizontalGrid}
-          {this.props.children}
+          {children}
         </Group>
       </Layer>
     );

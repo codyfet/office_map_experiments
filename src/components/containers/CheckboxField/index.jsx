@@ -13,34 +13,35 @@ class CheckboxField extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.placeholder !== this.props.placeholder) {
+    const { placeholder } = this.props;
+    if (prevProps.placeholder !== placeholder) {
       this.setState({
-        isChecked: this.props.placeholder,
+        isChecked: placeholder,
       });
     }
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { label, onInputChange } = this.props;
+    const { isChecked } = this.state;
     this.setState({
-      isChecked: !this.state.isChecked,
+      isChecked: !isChecked,
     });
 
-    let newSetting = {};
+    const newSetting = {};
     newSetting[label] = e.target.checked;
     
     onInputChange(newSetting);
   };
 
   render() {
-    const { label, placeholder, disabled } = this.props;
-
-    
+    const { label } = this.props;
+    const { isChecked } = this.state;
 
     return (
       <div className="editField">
         <div className="editFieldLabel">{label}</div>
-        <input type="checkbox" onChange={this.handleChange} checked={this.state.isChecked} />
+        <input type="checkbox" onChange={this.handleChange} checked={isChecked} />
       </div>
     );
   }

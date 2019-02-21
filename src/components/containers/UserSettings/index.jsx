@@ -1,17 +1,12 @@
 import * as React from 'react';
-import EditField from '../../containers/EditField/index';
-import CheckboxField from '../../containers/CheckboxField/index';
-import DropdownLevelField from './../DropdownLevelField/index';
-
-import './styles.css';
-
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { editUser } from '../../../actions/index';
 
-// статические данные карты:
-import objectCategories from '../../../res/objectCategories.json';
+import EditField from '../EditField/index';
+import DropdownLevelField from '../DropdownLevelField/index';
+import './styles.css';
 
 class UserSettings extends React.Component {
   state = {
@@ -25,8 +20,9 @@ class UserSettings extends React.Component {
     });
   }
 
-  onInputChange = settings => {
-    let newUserSettings = Object.assign({}, this.state.userSettings);
+  onInputChange = (settings) => {
+    const { userSettings } = this.state;
+    let newUserSettings = Object.assign({}, userSettings);
     newUserSettings = Object.assign(newUserSettings, settings);
 
     this.setState({
@@ -36,7 +32,7 @@ class UserSettings extends React.Component {
 
   sendChangedDataToRedux = userData => {
     const { actions, user } = this.props;
-    let newUserData = Object.assign({}, userData);
+    const newUserData = Object.assign({}, userData);
     newUserData.id = user.id;
 
     actions.editUser(newUserData);
@@ -49,13 +45,14 @@ class UserSettings extends React.Component {
   };
 
   onBtnAcceptClick = () => {
-    let userData = {};
+    const { userSettings } = this.state;
+    const userData = {};
     try {
-      for (let key in this.state.userSettings) {
-        userData[key] = this.state.userSettings[key];
-      }
+      Object.keys(userSettings).forEach(key => {
+        userData[key] = userSettings[key];
+      });
     } catch (e) {
-      alert('ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: ' + e.message);
+      alert(`ОШИБКА: НЕПРАВИЛЬНЫЙ ВВОД ДАННЫХ: ${e.message}`);
       return;
     }
 
@@ -89,7 +86,7 @@ class UserSettings extends React.Component {
     ];
     const editFieldsPanel = allowedProperties.map((prop, i) => {
       if (user === undefined) {
-        return;
+        return undefined;
       }
 
       if (prop === 'level') {
@@ -121,10 +118,10 @@ class UserSettings extends React.Component {
         {editFieldsPanel}
         {user !== undefined && (
           <div className="buttonsSet">
-            <button className="buttonAccept" onClick={this.onBtnAcceptClick}>
+            <button type="submit" className="buttonAccept" onClick={this.onBtnAcceptClick}>
               Применить
             </button>
-            <button className="buttonClose" onClick={this.onBtnCloseClick}>
+            <button type="submit" className="buttonClose" onClick={this.onBtnCloseClick}>
               Закрыть
             </button>
           </div>
@@ -134,7 +131,7 @@ class UserSettings extends React.Component {
   }
 }
 
-//for redux:
+// for redux:
 const mapStateToProps = state => ({
   objects: state.objects,
 });

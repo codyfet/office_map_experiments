@@ -47,9 +47,6 @@
     "konva": "^2.6.0",
     "prettier": "^1.16.4",
     "react-dom": "^16.8.1",
-    "react-konva": "^16.8.1",
-    "react-redux": "^6.0.0",
-    "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.2",
@@ -74,9 +71,12 @@
     "react-dnd-html5-backend": "^7.0.2",
     "react-dropdown": "^1.6.4",
     "react-dropdown-select": "^1.6.0",
+    "react-konva": "^16.8.1",
     "react-portal": "^4.2.0",
+    "react-redux": "^6.0.1",
     "react-sanfona": "^1.4.0",
     "react-transition-group": "^1.2.1",
+    "redux": "^4.0.1",
     "svg-react-loader": "^0.4.6",
     "uniqid": "^5.0.3"
   }

@@ -37,7 +37,7 @@ export default class MovableObject extends React.Component {
   }
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
-  //1. Держать координаты в границах глобальной области:
+  // 1. Держать координаты в границах глобальной области:
   checkBoundaries(x, y) {
     const { mapWidth, mapHeight, object } = this.props;
     let checkedX = x <= 0 ? 0 : x >= mapWidth - object.width ? mapWidth - object.width : x;
@@ -45,7 +45,7 @@ export default class MovableObject extends React.Component {
     return { checkedX, checkedY };
   }
 
-  //2. Показать tooltip-информацию:
+  // 2. Показать tooltip-информацию:
   showTooltipObjectInfo = e => {
     const { object, user } = this.props;
 
@@ -76,7 +76,7 @@ export default class MovableObject extends React.Component {
     });
   };
 
-  //3. Скрыть tooltip-информацию:
+  // 3. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = e => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -91,7 +91,7 @@ export default class MovableObject extends React.Component {
   };
 
   // ОБРАБОТКА СОБЫТИЙ:
-  //---------------------------------------------------------
+  // ---------------------------------------------------------
   onObjectDragStart = e => {
     const { hideContextMenu, object, shareObjectData } = this.props;
 

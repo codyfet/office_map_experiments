@@ -1,4 +1,4 @@
-const DEFAULT_COLOR = "#E9DAA8"; //"#F9F2DC"
+const DEFAULT_COLOR = "#E9DAA8"; // "#F9F2DC"
 const EMPTY_TABLE_COLOR = "#C2BEAF";
 const WARNING_COLOR = "red";
 const SELECTED_COLOR = "orange";

@@ -27,10 +27,12 @@ class UsersSpecialList extends React.Component {
   };
 
   selectUserId = id => {
+    const { searchPhrase, selectedUserId } = this.state;
+
     // если пользователь выбран, то мы ещё и обнуляем фразу для поиска:
     this.setState({
-      selectedUserId: this.state.selectedUserId === '' ? id : '',
-      searchPhrase: this.state.selectedUserId === '' ? this.state.searchPhrase : '',
+      selectedUserId: selectedUserId === '' ? id : '',
+      searchPhrase: selectedUserId === '' ? searchPhrase : '',
     });
 
     // передаём информацию в SidePanel:
@@ -39,36 +41,39 @@ class UsersSpecialList extends React.Component {
   };
 
   render() {
-    const neededUsers = this.props.users.filter(user => {
-      let formattedUser = user.title.toLowerCase().split(' ', 2);
-      let formattedSPhrase = this.state.searchPhrase.toLowerCase();
+    const { users } = this.props;
+    const { searchPhrase, selectedUserId } = this.state;
+
+    const neededUsers = users.filter(user => {
+      const formattedUser = user.title.toLowerCase().split(' ', 2);
+      const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;
       else return formattedUser.some(val => val.startsWith(formattedSPhrase));
     });
 
     const loadUsers = neededUsers.map((user, i) => {
-      if (this.state.selectedUserId === '') {
-        //если пользователя не выбрали
+      if (selectedUserId === '') {
+        // если пользователя не выбрали
         return (
           <li key={i}>
             <UserSimpleItem user={user} isSelected={false} onClick={this.selectUserId} />
           </li>
         );
-      } else if (this.state.selectedUserId === user.id) {
-        //иначе
+      } else if (selectedUserId === user.id) {
+        // иначе
         return (
           <li key={i}>
             <UserSimpleItem user={user} isSelected={true} onClick={this.selectUserId} />
           </li>
         );
       } else {
-        return;
+        return undefined;
       }
     });
 
     return (
       <div className="userSpecialListWrapper">
-        {this.state.selectedUserId === '' && (
+        {selectedUserId === '' && (
           <DebounceInput minLength={1} debounceTimeout={300} onChange={this.onChangeInput} />
         )}
         <ul className="userSpecialList">{loadUsers}</ul>

@@ -57,11 +57,13 @@ module.exports = {
     'react/jsx-boolean-value': 'warn', // возможно, может потребоваться явное указание, поэтому предупреждние
     'react/no-array-index-key': 'warn', // это необязательно ошибка, оставим предупреждение
     'no-lonely-if': 'warn', // ?это необязательно ошибка, оставим предупреждение
+    'prefer-const': 'warn', // в цикле for (... of...) это сбивает с толку
     'no-alert': 'off', // пока что можно обойтись без модального окна
     'no-else-return': 'off',
     'react/sort-comp': 'off', // AdvancedBoard - очень сложный компонент, поэтому тут нельзя строго соблюдать порядок методов
     'class-methods-use-this': 'off', // не для react, а вообще под вопросом (AdvancedBoard!)
     'react/no-did-update-set-state': 'off', // ?в моем случае - это выход для обновления данных (либо это можно сделать по-другому)
+    'no-restricted-syntax': 'off', // возможно конструкции let a of array - тяжелые, но зато удобно читаемые, поэтому отмена
 
   },
 

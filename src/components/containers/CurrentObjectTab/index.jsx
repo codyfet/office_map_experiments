@@ -1,19 +1,19 @@
 import * as React from 'react';
-import UserButtonedItem from '../../containers/ListsComponents/UserButtonedItem/index';
-import UsersSpecialList from '../../containers/ListsComponents/UsersSpecialList/index';
-import CurrentObjectItem from '../../containers/CurrentObjectItem/index';
-import CurrentObjectSettings from '../../containers/CurrentObjectSettings/index';
-
-import './styles.css';
-
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateUser, changeCurrentUser } from '../../../actions/index';
-import { SINGLE_EDIT, MULTI_EDIT } from '../../../res/workModeConstants';
+import { SINGLE_EDIT } from '../../../res/workModeConstants';
+
+import UserButtonedItem from '../ListsComponents/UserButtonedItem/index';
+import UsersSpecialList from '../ListsComponents/UsersSpecialList/index';
+import CurrentObjectItem from '../CurrentObjectItem/index';
+import CurrentObjectSettings from '../CurrentObjectSettings/index';
+
+import './styles.css';
 
 // для создания копий:
-var _ = require('lodash');
+const _ = require('lodash');
 
 class CurrentObjectTab extends React.Component {
   constructor(props) {
@@ -45,8 +45,9 @@ class CurrentObjectTab extends React.Component {
 
   // select object:
   openCloseObjectSettings = () => {
+    const { showObjectSettings } = this.state;
     this.setState({
-      showObjectSettings: !this.state.showObjectSettings,
+      showObjectSettings: !showObjectSettings,
     });
   };
 
@@ -58,19 +59,20 @@ class CurrentObjectTab extends React.Component {
   };
 
   // open changing user panel:
-  openChangeUserPanel = id => {
+  openChangeUserPanel = (id) => {
     const { currentObject } = this.props;
     if (currentObject.objectId === '') {
       alert('ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Щелкните на одном из объектов!');
     } else {
+      const { showChangeUserPanel } = this.state;
       this.setState({
-        showChangeUserPanel: !this.state.showChangeUserPanel,
+        showChangeUserPanel: !showChangeUserPanel,
       });
     }
   };
 
   // select user:
-  selectUser = newUserId => {
+  selectUser = (newUserId) => {
     const { actions, currentObject } = this.props;
 
     if (currentObject.userId === newUserId) {
@@ -87,12 +89,13 @@ class CurrentObjectTab extends React.Component {
       actions.changeCurrentUser(newUserId);
     }
 
+    const { showChangeUserPanel } = this.state;
     this.setState({
-      showChangeUserPanel: !this.state.showChangeUserPanel,
+      showChangeUserPanel: !showChangeUserPanel,
     });
   };
 
-  onDeleteUser = userId => {
+  onDeleteUser = (userId) => {
     const { actions, currentObject } = this.props;
     const emptyUserId = '';
     const newObjData = {
@@ -109,8 +112,10 @@ class CurrentObjectTab extends React.Component {
 
   render() {
     const { currentObject, workMode, objects, users } = this.props;
-    var requiredObject;
-    var requiredUser = {
+    const { showChangeUserPanel } = this.state;
+    
+    let requiredObject;
+    let requiredUser = {
       title: 'Not assigned',
       capability: '',
     };
@@ -146,7 +151,7 @@ class CurrentObjectTab extends React.Component {
           />
           <CurrentObjectSettings object={requiredObject} closeSettings={this.closeObjectSettings} />
         </div>
-        {/*Пользователь показывается, только если текущий объект - стол: */
+        {/* Пользователь показывается только если текущий объект - стол: */
         requiredObject !== undefined && requiredObject.category === 'table' && (
           <div className="currentObjectContainer">
             <div className="labelCurrObj">Изменить пользователя:</div>
@@ -158,13 +163,13 @@ class CurrentObjectTab extends React.Component {
             />
           </div>
         )}
-        {this.state.showChangeUserPanel && <UsersSpecialList onUserClick={this.selectUser} />}
+        {showChangeUserPanel && <UsersSpecialList onUserClick={this.selectUser} />}
       </div>
     );
   }
 }
 
-//for redux:
+// for redux:
 const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,

@@ -29,9 +29,9 @@ class UsersEditList extends React.Component {
 
     // получить новый id для пользователя:
     const { users } = this.props;
-    let lastId = users.reduce((prevVal, nextVal, i) => {
-      
-      let prevId, nextId;
+    const lastId = users.reduce((prevVal, nextVal, i) => {
+      let prevId;
+      let nextId;
       if (i === 1) {
         prevId = Number(prevVal.id.slice(1));
         nextId = Number(nextVal.id.slice(1));
@@ -42,7 +42,7 @@ class UsersEditList extends React.Component {
       
       return nextId > prevId ? nextId : prevId;
     });
-    let newId = 't' + String(lastId + 1).padStart(4, '0');
+    const newId = `t${String(lastId + 1).padStart(4, '0')}`;
 
     return {
       id: newId,
@@ -64,9 +64,10 @@ class UsersEditList extends React.Component {
   };
 
   onUserClick = newId => {
+    const { userId } = this.state;
     // если пользователь выбран, то мы ещё и обнуляем фразу для поиска:
     this.setState({
-      userId: this.state.userId === '' ? newId : '',
+      userId: userId === '' ? newId : '',
       searchPhrase: '',
     });
   };
@@ -105,18 +106,19 @@ class UsersEditList extends React.Component {
   };
 
   render() {
-    const { userId } = this.state;
+    const { users } = this.props;
+    const { userId, searchPhrase, showUserCreatePanel } = this.state;
 
-    const neededUsers = this.props.users.filter(user => {
-      let formattedUser = user.title.toLowerCase().split(' ', 2);
-      let formattedSPhrase = this.state.searchPhrase.toLowerCase();
+    const neededUsers = users.filter(user => {
+      const formattedUser = user.title.toLowerCase().split(' ', 2);
+      const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;
       else return formattedUser.some(val => val.startsWith(formattedSPhrase));
     });
 
     const loadUsers = neededUsers.map((user, i) => {
       if (userId === '') {
-        //если пользователя не выбрали
+        // если пользователя не выбрали
         return (
           <li key={i}>
             <UserButtonedItem
@@ -128,7 +130,7 @@ class UsersEditList extends React.Component {
           </li>
         );
       } else if (userId === user.id) {
-        //иначе
+        // иначе
         return (
           <li key={i}>
             <UserButtonedItem
@@ -141,20 +143,20 @@ class UsersEditList extends React.Component {
           </li>
         );
       } else {
-        return;
+        return undefined;
       }
     });
 
     return (
       <div className="usersEditListWrapper">
         <DebounceInput minLength={1} debounceTimeout={300} onChange={this.onChangeInput} />
-        <button className="buttonAddUser" onClick={this.onBtnAddUser}>
+        <button type="submit" className="buttonAddUser" onClick={this.onBtnAddUser}>
           Добавить пользователя
         </button>
-        {this.state.showUserCreatePanel === true && (
+        {showUserCreatePanel === true && (
           <UserCreate user={this.getNewDefaultUser()} onClose={this.onCloseUserCreatePanel} />
         )}
-        {this.state.showUserCreatePanel === false && (
+        {showUserCreatePanel === false && (
           <ul className={userId === '' ? 'usersEditListList' : 'usersEditListChosen'}>
             {loadUsers}
           </ul>

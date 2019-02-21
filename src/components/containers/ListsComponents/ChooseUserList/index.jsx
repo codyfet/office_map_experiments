@@ -37,32 +37,33 @@ class ChooseUserList extends React.Component {
   };
 
   render() {
-    const { userId } = this.props;
+    const { userId, users } = this.props;
+    const { searchPhrase } = this.state;
 
-    const neededUsers = this.props.users.filter(user => {
-      let formattedUser = user.title.toLowerCase().split(' ', 2);
-      let formattedSPhrase = this.state.searchPhrase.toLowerCase();
+    const neededUsers = users.filter(user => {
+      const formattedUser = user.title.toLowerCase().split(' ', 2);
+      const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;
       else return formattedUser.some(val => val.startsWith(formattedSPhrase));
     });
 
     const loadUsers = neededUsers.map((user, i) => {
       if (userId === '') {
-        //если пользователя не выбрали
+        // если пользователя не выбрали
         return (
           <li key={i}>
             <UserSimpleItem user={user} isSelected={false} onClick={this.onUserClick} />
           </li>
         );
       } else if (userId === user.id) {
-        //иначе
+        // иначе
         return (
           <li key={i}>
             <UserSimpleItem user={user} isSelected={true} onClick={this.onUserClick} />
           </li>
         );
       } else {
-        return;
+        return undefined;
       }
     });
 

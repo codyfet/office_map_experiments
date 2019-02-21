@@ -2,7 +2,7 @@ import React from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-//redux:
+// redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeMapLevel, changeObjectsLevel } from '../../../actions/index';

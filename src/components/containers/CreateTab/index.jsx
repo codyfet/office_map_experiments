@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { Accordion, AccordionItem } from 'react-sanfona';
-import ChooseUserList from '../ListsComponents/ChooseUserList/index';
-import ObjectsList from '../ListsComponents/ObjectsList/index';
-import './styles.css';
-import createMapObject from '../../../utils/objectsFactory';
-
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createObject } from '../../../actions/index';
 
+import ChooseUserList from '../ListsComponents/ChooseUserList/index';
+import ObjectsList from '../ListsComponents/ObjectsList/index';
+import './styles.css';
+import createMapObject from '../../../utils/objectsFactory';
 // для генерирования уникальных id:
-var genUniqId = require('uniqid');
+const genUniqId = require('uniqid');
 
 class CreateTab extends React.Component {
   constructor(props) {
@@ -24,11 +23,11 @@ class CreateTab extends React.Component {
   }
 
   getConvertedCoordsFrom(x, y) {
-    const { shift, scale } = this.props.boardState;
+    const { boardState } = this.props;
 
     return {
-      x: (x - shift[0]) / scale,
-      y: (y - shift[1]) / scale,
+      x: (x - boardState.shift[0]) / boardState.scale,
+      y: (y - boardState.shift[1]) / boardState.scale,
     };
   }
 
@@ -100,7 +99,7 @@ class CreateTab extends React.Component {
   };
 
   render() {
-    const { selectedObjectId } = this.state;
+    const { selectedObjectId, selectedUserId } = this.state;
 
     return (
       <React.Fragment>
@@ -114,7 +113,7 @@ class CreateTab extends React.Component {
             duration={400}
           >
             <ObjectsList
-              objectId={this.state.selectedObjectId}
+              objectId={selectedObjectId}
               onObjectClick={this.selectObjectId}
             />
           </AccordionItem>
@@ -128,7 +127,7 @@ class CreateTab extends React.Component {
             duration={400}
           >
             {selectedObjectId === 'table' && (
-              <ChooseUserList userId={this.state.selectedUserId} onUserClick={this.selectUserId} />
+              <ChooseUserList userId={selectedUserId} onUserClick={this.selectUserId} />
             )}
             {selectedObjectId !== 'table' && selectedObjectId !== '' && (
               <div>
@@ -142,7 +141,7 @@ class CreateTab extends React.Component {
             )}
           </AccordionItem>
         </Accordion>
-        <button style={{ width: '100%' }} onClick={this.onSubmitClick}>
+        <button type="submit" style={{ width: '100%' }} onClick={this.onSubmitClick}>
           Создать
         </button>
       </React.Fragment>

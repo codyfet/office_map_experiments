@@ -21,7 +21,7 @@ function getBoundariesLikeRectangles(borders, step, globalAreaSize) {
       for (let p = 0; p < borders.length; p++) {
         // попалась точка:
         if (borders[p].x == x && borders[p].y) {
-          //это первая точка, тогда у нас точно будет область сверху
+          // это первая точка, тогда у нас точно будет область сверху
           starPoints;
         }
       }

@@ -110,7 +110,7 @@ class UserCreate extends React.Component {
   }
 }
 
-//for redux:
+// for redux:
 const mapStateToProps = state => ({
   objects: state.objects,
 });

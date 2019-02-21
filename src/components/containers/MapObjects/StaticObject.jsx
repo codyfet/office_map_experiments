@@ -42,7 +42,7 @@ export default class StaticObject extends React.Component {
     });
   };
 
-  //2. Скрыть tooltip-информацию:
+  // 2. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = e => {
     let tooltipLayer = e.target.getStage().children[2];
     let tooltip = tooltipLayer.children[0];
@@ -57,7 +57,7 @@ export default class StaticObject extends React.Component {
   };
 
   // ОБРАБОТКА СОБЫТИЙ:
-  //---------------------------------------------------------
+  // ---------------------------------------------------------
   onObjectClick = e => {
     // всегда сообщаем id объекта:
     const { shareObjectData, object } = this.props;
@@ -109,8 +109,8 @@ export default class StaticObject extends React.Component {
           data={path}
           fill="black"
           scale={{
-            x: scale, //* scaleIncrease,
-            y: scale, //* scaleIncrease
+            x: scale, // * scaleIncrease,
+            y: scale, // * scaleIncrease
           }}
         />
       );

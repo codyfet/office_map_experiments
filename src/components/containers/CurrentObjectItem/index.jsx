@@ -3,19 +3,10 @@ import AdvancedSVG from '../../presentational/AdvancedSVG/index';
 import iconPaths from '../../../res/iconPaths';
 import './styles.css';
 
-// redux:
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { changeCurrentObject, changeCurrentUser } from '../../../actions/index';
-
 // статические данные карты:
 import objectCategories from '../../../res/objectCategories.json';
 
 export default class CurrentObjectItem extends React.Component {
-  state = {
-    isSelected: false,
-  };
-
   getSettingsForObject(object) {
     // на случай, если объект пустой:
     if (object === undefined) {
@@ -27,7 +18,7 @@ export default class CurrentObjectItem extends React.Component {
     }
 
     // иначе:
-    let rezult = {
+    const rezult = {
       text: objectCategories.find(cat => cat.id === object.category).title,
       fill: ['black'],
       content: iconPaths[object.category],

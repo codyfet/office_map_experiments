@@ -386,7 +386,7 @@ class AdvancedBoard extends React.Component {
 
     // загрузить объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
-    const loadObject = thisLevelObjects.map((elem, i) => {
+    const loadObject = thisLevelObjects.map((elem) => {
       // здесь нужно глубокое копирование:
       const object = _.cloneDeep(elem);
       if (object.movable === true) {

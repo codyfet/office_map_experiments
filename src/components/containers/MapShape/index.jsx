@@ -35,12 +35,12 @@ export default class MapShape extends React.PureComponent {
     const { borderlands } = this.props;
 
     // предположим, мы получили ограничивающие области:
-    const borderAreas = borderlands.slice(0).map((val, i) => {
+    const borderAreas = borderlands.slice(0).map((val) => {
       const coords = val.split(' ', 4).map(v => Number(v));
 
       return (
         <Rect
-          key={i}
+          key={`${coords[0]}_${coords[1]}`}
           x={coords[0]}
           y={coords[1]}
           width={coords[2] - coords[0]}

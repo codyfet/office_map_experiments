@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-const AdvancedSVG = props => { 
+const AdvancedSVG = (props) => { 
   let { width, fill, content } = props;
   const { onClick } = props;
 

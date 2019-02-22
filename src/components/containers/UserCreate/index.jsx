@@ -67,7 +67,7 @@ class UserCreate extends React.Component {
       'level',
       'startdate',
     ];
-    const editFieldsPanel = allowedProperties.map((prop, i) => {
+    const editFieldsPanel = allowedProperties.map((prop) => {
       if (user === undefined) {
         return undefined;
       }
@@ -76,7 +76,7 @@ class UserCreate extends React.Component {
         // сделаем список выбора уровней
         return (
           <DropdownLevelField
-            key={i}
+            key={prop}
             label={prop}
             placeholder={user[prop]}
             disabled={false}
@@ -86,7 +86,7 @@ class UserCreate extends React.Component {
       } else {
         return (
           <EditField
-            key={i}
+            key={prop}
             label={prop}
             placeholder={String(user[prop])}
             disabled={prop === 'id' || prop === 'category'}

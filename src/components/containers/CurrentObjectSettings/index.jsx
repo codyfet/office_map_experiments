@@ -91,7 +91,7 @@ class CurrentObjectSettings extends React.Component {
       'color',
       'movable',
     ];
-    const editFieldsPanel = allowedProperties.map((prop, i) => {
+    const editFieldsPanel = allowedProperties.map((prop) => {
       if (object === undefined) {
         return undefined;
       }
@@ -99,7 +99,7 @@ class CurrentObjectSettings extends React.Component {
       if (prop === 'movable') {
         return (
           <CheckboxField
-            key={i}
+            key={prop}
             label={prop}
             placeholder={object[prop]}
             disabled={false}
@@ -109,7 +109,7 @@ class CurrentObjectSettings extends React.Component {
       } else if (prop === 'category') {
         return (
           <DropdownObjectField
-            key={i}
+            key={prop}
             label={prop}
             placeholder={object[prop]}
             disabled={false}
@@ -119,7 +119,7 @@ class CurrentObjectSettings extends React.Component {
       } else if (prop === 'coordinates') {
         return (
           <EditField
-            key={i}
+            key={prop}
             label="coordinates (x,y)"
             placeholder={`${object[prop].x},${object[prop].y}`}
             disabled
@@ -131,7 +131,7 @@ class CurrentObjectSettings extends React.Component {
       } else {
         return (
           <EditField
-            key={i}
+            key={prop}
             label={prop}
             placeholder={String(object[prop])}
             disabled={prop === 'id' || (prop === 'title' && object.category === 'table')}

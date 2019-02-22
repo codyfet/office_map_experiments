@@ -59,7 +59,7 @@ class CurrentObjectTab extends React.Component {
   };
 
   // open changing user panel:
-  openChangeUserPanel = (id) => {
+  openChangeUserPanel = () => {
     const { currentObject } = this.props;
     if (currentObject.objectId === '') {
       alert('ОШИБКА: ОБЪЕКТ НЕ ВЫБРАН! Щелкните на одном из объектов!');

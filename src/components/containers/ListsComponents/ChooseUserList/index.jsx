@@ -59,7 +59,7 @@ class ChooseUserList extends React.Component {
         // иначе
         return (
           <li key={i}>
-            <UserSimpleItem user={user} isSelected={true} onClick={this.onUserClick} />
+            <UserSimpleItem user={user} isSelected onClick={this.onUserClick} />
           </li>
         );
       } else {

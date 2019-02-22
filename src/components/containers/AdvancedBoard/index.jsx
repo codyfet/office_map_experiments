@@ -398,7 +398,7 @@ class AdvancedBoard extends React.Component {
 
         return (
           <MovableObject
-            key={i}
+            key={object.id}
             object={object}
             user={currUser}
             setColor={this.setColor}
@@ -417,7 +417,7 @@ class AdvancedBoard extends React.Component {
       } else {
         return (
           <StaticObject
-            key={i}
+            key={object.id}
             object={object}
             setColor={this.setColor}
             showContextMenu={this.showContextMenu}
@@ -443,7 +443,7 @@ class AdvancedBoard extends React.Component {
           y={boardState.shift[1]}
           width={boardWidth}
           height={boardHeight}
-          draggable={true}
+          draggable
           onWheel={this.handleStageWheel}
           scale={{
             x: boardState.scale,

@@ -36,7 +36,7 @@ export default class ObjectsList extends React.Component {
       isSelected = true;
       loadObjects = (
         <li key={0}>
-          <ObjectItem object={foundObject} isSelected={true} onClick={this.onObjectClick} />
+          <ObjectItem object={foundObject} isSelected onClick={this.onObjectClick} />
         </li>
       );
     }

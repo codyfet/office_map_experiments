@@ -202,7 +202,7 @@ export default class MovableObject extends React.Component {
       <Group
         x={object.coordinates.x}
         y={object.coordinates.y}
-        draggable={true}
+        draggable
         onDragStart={this.onObjectDragStart}
         onDragEnd={this.onObjectDragEnd}
         onDragMove={this.onObjectDragMove}

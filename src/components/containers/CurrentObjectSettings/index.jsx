@@ -122,7 +122,7 @@ class CurrentObjectSettings extends React.Component {
             key={i}
             label="coordinates (x,y)"
             placeholder={`${object[prop].x},${object[prop].y}`}
-            disabled={true}
+            disabled
             onInputChange={this.onInputChange}
           />
         );

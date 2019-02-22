@@ -166,7 +166,7 @@ class UsersEditList extends React.Component {
           <li key={i}>
             <UserButtonedItem
               user={user}
-              isSelected={true}
+              isSelected
               onItemClick={this.onItemClick}
               onEditClick={this.onUserClick}
               onDeleteUserClick={this.onDeleteUserClick}

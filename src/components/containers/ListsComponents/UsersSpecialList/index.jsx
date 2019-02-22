@@ -63,7 +63,7 @@ class UsersSpecialList extends React.Component {
         // иначе
         return (
           <li key={i}>
-            <UserSimpleItem user={user} isSelected={true} onClick={this.selectUserId} />
+            <UserSimpleItem user={user} isSelected onClick={this.selectUserId} />
           </li>
         );
       } else {

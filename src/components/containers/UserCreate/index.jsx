@@ -52,8 +52,13 @@ class UserCreate extends React.Component {
     onClose();
   };
 
+  onBtnCancelClick = () => {
+    const { onClose } = this.props;
+    onClose();
+  }
+
   render() {
-    const { user } = this.props;
+    const { user, onClose } = this.props;
 
     // определим свойства, которые можно редактировать:
     const allowedProperties = [
@@ -103,6 +108,9 @@ class UserCreate extends React.Component {
           <div className="buttonsSet">
             <button type="submit" className="buttonAccept" onClick={this.onBtnCreateClick}>
               Создать
+            </button>
+            <button type="submit" className="buttonCancel" onClick={this.onBtnCancelClick}>
+              Отменить
             </button>
           </div>
         )}

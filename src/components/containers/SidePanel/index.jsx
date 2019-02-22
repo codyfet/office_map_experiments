@@ -181,7 +181,7 @@ class SidePanel extends React.Component {
             titleClassName="mainAccordion-item-title"
             title="Карта"
           >
-            <button type="submit" style={{ width: '100%' }} onClick={this.onSaveMapClick}>
+            <button type="submit" className="buttonSaveMap" onClick={this.onSaveMapClick}>
               Сохранить карту
             </button>
           </AccordionItem>

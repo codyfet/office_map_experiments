@@ -5,32 +5,47 @@
 }
 
 .mainAccordion {
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 .mainAccordion-item-title {
-    height: 100%;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-align: center;
-    background: rgb(230, 228, 235);
-    border: 1px solid white;
-    color:black;
-    padding: 10px;
-    text-transform: uppercase;
-    -webkit-transition: background-color 2s;
-    transition: background-color 2s;
+  height: 100%;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  background: rgb(230, 228, 235);
+  border: 1px solid white;
+  color: black;
+  padding: 10px;
+  text-transform: uppercase;
+  -webkit-transition: background-color 2s;
+  transition: background-color 2s;
 }
 
 .mainAccordion-item-expanded .mainAccordion-item-title {
-    background-color: rgb(80, 89, 221);
-    color: #fff;
-    border: 1px solid black;
+  background-color: rgb(80, 89, 221);
+  color: #fff;
+  border: 1px solid black;
 }
 
 .mainAccordion-item-body-wrapper {
-    color: #666;
-    position: relative;
+  color: #666;
+  position: relative;
 }
 
+.buttonSaveMap {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+}
 
+.buttonSaveMap:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonSaveMap:focus {
+  outline: 1px solid black;
+}

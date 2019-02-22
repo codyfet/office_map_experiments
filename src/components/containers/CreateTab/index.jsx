@@ -141,7 +141,7 @@ class CreateTab extends React.Component {
             )}
           </AccordionItem>
         </Accordion>
-        <button type="submit" style={{ width: '100%' }} onClick={this.onSubmitClick}>
+        <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
           Создать
         </button>
       </React.Fragment>

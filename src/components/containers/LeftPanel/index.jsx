@@ -43,10 +43,36 @@ class LeftPanel extends React.Component {
     actions.changeBoardState(newState);
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { actions } = this.props;
     const newWM = e.target.checked === true ? MULTI_EDIT : SINGLE_EDIT;
     actions.changeWorkMode(newWM);
+  };
+
+  handleZoomIn = () => {
+    const { actions, boardState } = this.props;
+    const scaleBy = 1.5;
+    const newScale = boardState.scale * scaleBy; 
+
+    const newState = {
+      shift: boardState.shift,
+      scale: newScale
+    };
+
+    actions.changeBoardState(newState);
+  };
+  
+  handleZoomOut = () => {
+    const { actions, boardState } = this.props;
+    const scaleBy = 1.5;
+    const newScale = boardState.scale / scaleBy; 
+
+    const newState = {
+      shift: boardState.shift,
+      scale: newScale
+    };
+
+    actions.changeBoardState(newState);
   };
 
   render() {
@@ -61,6 +87,16 @@ class LeftPanel extends React.Component {
           height: `${panelHeight}px`,
         }}
       >
+       
+        <div className="labelLeftPanel">Масштаб карты</div>
+        <div className="buttonsSet">
+          <button type="submit" className="buttonZoomIn" onClick={this.handleZoomIn}>
+            +
+          </button>
+          <button type="submit" className="buttonZoomOut" onClick={this.handleZoomOut}>
+            -
+          </button>
+        </div> 
         <button type="submit" className="buttonLeftPanel" onClick={this.autoAdjustStage}>
           Авто-масштаб
         </button>
@@ -77,6 +113,7 @@ class LeftPanel extends React.Component {
 const mapStateToProps = state => ({
   mapState: state.mapState,
   currentObject: state.currentObject,
+  boardState: state.boardState
 });
 
 const mapDispatchToProps = dispatch => ({

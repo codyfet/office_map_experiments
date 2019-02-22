@@ -41,3 +41,43 @@
   margin: 0;
 
 }
+
+.buttonsSet {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonZoomIn {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+}
+
+.buttonZoomIn:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonZoomIn:focus {
+  outline: 0px;
+}
+
+.buttonZoomOut {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+}
+
+.buttonZoomOut:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonZoomOut:focus {
+  outline: 0px;
+}

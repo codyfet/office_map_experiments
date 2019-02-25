@@ -2,7 +2,7 @@ import * as React from 'react';
 import iconPaths from '../../../../res/iconPaths';
 import AdvancedSVG from '../../../presentational/AdvancedSVG/index';
 import './styles.css';
-import DeleteUserModal from '../../DeleteUserModal/index';
+import DeleteUserModal from '../../Modals/DeleteUserModal/index';
 
 class UserButtonedItem extends React.Component {
   // работа с модальным окном:

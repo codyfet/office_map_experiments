@@ -10,7 +10,7 @@ import {
 } from '../../../actions/index';
 
 import PopoverView from '../../presentational/PopoverView/index';
-import DeleteObjectModal from '../DeleteObjectModal';
+import DeleteObjectModal from '../Modals/DeleteObjectModal/index';
 
 const _ = require('lodash');
 // для генерирования уникальных id:

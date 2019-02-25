@@ -16,13 +16,8 @@ import CreateTab from '../CreateTab/index';
 import CurrentObjectTab from '../CurrentObjectTab/index';
 import MapLevelItem from '../MapLevelItem/index';
 import UsersEditList from '../ListsComponents/UsersEditList/index';
-import mapData from '../../../res/mapData.json';
+import SaveMapTab from '../SaveMapTab/index';
 import './styles.css';
-
-// для сохранения файлов:
-const FileSaver = require('file-saver');
-// загрузить lodash:
-const _ = require('lodash');
 
 class SidePanel extends React.Component {
   componentDidUpdate(prevProps) {
@@ -64,52 +59,6 @@ class SidePanel extends React.Component {
     };
 
     actions.changeBoardState(newState);
-  };
-
-  onSaveMapClick = () => {
-    const { objects, users } = this.props;
-    // order for objects:
-    const objectOrder = [
-      'category',
-      'title',
-      'id',
-      'coordinates',
-      'width',
-      'height',
-      'color',
-      'movable',
-      'correctLocation',
-      'userId',
-    ];
-
-    // сохранение карты со всеми объектами и пользователями:
-    // сначала подггрузим весь файл mapData:
-    const mapDataFile = _.cloneDeep(mapData);
-
-    // дополним его изменившимися данными:
-    mapDataFile.levels = objects.levels.map((objs, i) => {
-      const levelData = Object.assign({}, mapDataFile.levels[i]);
-      levelData.objects = objs.map((obj) => {
-        // запишем поля в алфавитном порядке:
-        const formattedObject = {};
-        objectOrder.forEach(property => {
-          if (obj[property] !== undefined) {
-            formattedObject[property] = obj[property];
-          }
-        });
-        return formattedObject;
-      });
-      return levelData;
-    });
-
-    mapDataFile.users = users;
-    
-
-    // предлагаем загрузку пользователю:
-    const file = new File([JSON.stringify(mapDataFile)], 'newMapData.json', {
-      type: 'text/plain;charset=utf-8',
-    });
-    FileSaver.saveAs(file);
   };
 
   // FOR REDUX:
@@ -181,10 +130,9 @@ class SidePanel extends React.Component {
             titleClassName="mainAccordion-item-title"
             title="Карта"
           >
-            <button type="submit" className="buttonSaveMap" onClick={this.onSaveMapClick}>
-              Сохранить карту
-            </button>
+            <SaveMapTab />
           </AccordionItem>
+
         </Accordion>
       </div>
     );

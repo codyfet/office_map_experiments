@@ -1,0 +1,64 @@
+.yesNoModalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.yesNoModalLabel {
+  text-align: center;
+  font: 14px "lucida grande", arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background-color: rgb(80, 89, 221);
+  width: 100%;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+}
+
+.yesNoModalMessage {
+  text-align: center;
+  font: 14px "lucida grande", arial, sans-serif;
+}
+
+.buttonsSet {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonAccept {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+}
+
+.buttonAccept:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonAccept:focus {
+  outline: 1px solid black;
+}
+
+.buttonClose {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+}
+
+.buttonClose:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonClose:focus {
+  outline: 1px solid black;
+}
+

@@ -67,7 +67,10 @@ module.exports = {
     'react/no-array-index-key': 'warn', // это необязательно ошибка, оставим предупреждение
     'no-unused-vars': 'warn', // неиспользуемые переменные необязательно - ошибка, лучше выводить предупреждение
     'comma-dangle': 'off', // что это?
-    'eol-last': 'off' // на eslint пожаловался
+    'eol-last': 'off', // на eslint пожаловался
+    
+    'react/prefer-stateless-function': 'warn',
+    'no-script-url': 'warn'
   },
 
 };

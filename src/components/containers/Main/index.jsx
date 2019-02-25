@@ -6,7 +6,7 @@ import './styles.css';
 const Main = () => (
   <div className="myContainer">
     {/* <MainHeader /> */}
-    <h1>Office map</h1>
+    <div className="labelMainHeader">Office map</div>
     <GlobalArea />
   </div>
 );

@@ -10,12 +10,46 @@ import {
 } from '../../../actions/index';
 
 import PopoverView from '../../presentational/PopoverView/index';
+import YesNoModal from '../YesNoModal';
 
 const _ = require('lodash');
 // для генерирования уникальных id:
 const genUniqId = require('uniqid');
 
 class PopoverContainer extends React.Component {
+  // работа с модальным окном да/нет
+  state = {
+    showModal: false
+  }
+
+  openModal = () => {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  closeModal = () => {
+    this.setState({
+      showModal: false
+    });
+  }
+
+  handleYesClickModal = () => {
+    // если щелкнули - да, то удаляем объект(ы)
+    const { actions, currentObject, readyHandler } = this.props;
+
+    currentObject.objectId.split(' ').forEach(id => {
+      actions.deleteObject(id);
+    });
+
+    this.closeModal();
+    readyHandler(); // close popover
+  };
+  
+  handleCloseModal = () => {
+    this.closeModal();
+  };
+
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
   copy = object => {
     const { actions } = this.props;
@@ -41,13 +75,7 @@ class PopoverContainer extends React.Component {
 
   // ОБРАБОТЧИКИ КНОПОК:
   deleteObject = () => {
-    const { actions, currentObject, readyHandler } = this.props;
-
-    currentObject.objectId.split(' ').forEach(id => {
-      actions.deleteObject(id);
-    });
-
-    readyHandler(); // close popover
+    this.openModal();
   };
 
   rotateObject = () => {
@@ -77,18 +105,28 @@ class PopoverContainer extends React.Component {
   };
 
   render() {
-    const { x, y, readyHandler } = this.props;
+    const { x, y, readyHandler, currentObject } = this.props;
+    const { showModal } = this.state;
 
     return (
-      <PopoverView
-        x={x}
-        y={y}
-        readyHandler={readyHandler}
-        copyHandler={this.copyObject}
-        turnHandler={this.rotateObject}
-        editHandler={this.editObject}
-        deleteHandler={this.deleteObject}
-      />
+      <React.Fragment>
+        <PopoverView
+          x={x}
+          y={y}
+          readyHandler={readyHandler}
+          copyHandler={this.copyObject}
+          turnHandler={this.rotateObject}
+          editHandler={this.editObject}
+          deleteHandler={this.deleteObject}
+        />
+        <YesNoModal
+          visible={showModal}
+          objectIds={currentObject.objectId}
+          onYesClick={this.handleYesClickModal}
+          onHide={this.handleCloseModal}
+
+        />
+      </React.Fragment>
     );
   }
 }

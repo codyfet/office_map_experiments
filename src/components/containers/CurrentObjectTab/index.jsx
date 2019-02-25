@@ -156,6 +156,7 @@ class CurrentObjectTab extends React.Component {
           <div className="currentObjectContainer">
             <div className="labelCurrObj">Изменить пользователя:</div>
             <UserButtonedItem
+              itemPlace="CurrentObjectTab"
               user={requiredUser}
               isSelected={false}
               onItemClick={this.openChangeUserPanel}

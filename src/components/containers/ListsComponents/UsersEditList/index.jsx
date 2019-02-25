@@ -152,6 +152,7 @@ class UsersEditList extends React.Component {
         return (
           <li key={i}>
             <UserButtonedItem
+              itemPlace="UsersEditList"
               user={user}
               isSelected={false}
               onItemClick={this.onItemClick}
@@ -165,6 +166,7 @@ class UsersEditList extends React.Component {
         return (
           <li key={i}>
             <UserButtonedItem
+              itemPlace="UsersEditList"
               user={user}
               isSelected
               onItemClick={this.onItemClick}

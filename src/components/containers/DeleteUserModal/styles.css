@@ -1,0 +1,67 @@
+.deleteUserModalContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteUserModalLabel {
+  text-align: center;
+  font: 14px "lucida grande", arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background-color: rgb(80, 89, 221);
+  width: 100%;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+}
+
+.deleteUserModalMessage {
+  text-align: center;
+  font: 14px "lucida grande", arial, sans-serif;
+}
+
+.modalButtonsSet {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalButtonAccept {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.modalButtonAccept:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.modalButtonAccept:focus {
+  outline: 1px solid black;
+}
+
+.modalButtonClose {
+  width: 50%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.modalButtonClose:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.modalButtonClose:focus {
+  outline: 1px solid black;
+}
+

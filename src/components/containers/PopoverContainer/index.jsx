@@ -10,14 +10,14 @@ import {
 } from '../../../actions/index';
 
 import PopoverView from '../../presentational/PopoverView/index';
-import YesNoModal from '../YesNoModal';
+import DeleteObjectModal from '../DeleteObjectModal';
 
 const _ = require('lodash');
 // для генерирования уникальных id:
 const genUniqId = require('uniqid');
 
 class PopoverContainer extends React.Component {
-  // работа с модальным окном да/нет
+  // работа с модальным окном:
   state = {
     showModal: false
   }
@@ -119,12 +119,11 @@ class PopoverContainer extends React.Component {
           editHandler={this.editObject}
           deleteHandler={this.deleteObject}
         />
-        <YesNoModal
+        <DeleteObjectModal
           visible={showModal}
           objectIds={currentObject.objectId}
           onYesClick={this.handleYesClickModal}
           onHide={this.handleCloseModal}
-
         />
       </React.Fragment>
     );

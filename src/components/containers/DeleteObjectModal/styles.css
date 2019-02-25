@@ -1,11 +1,12 @@
-.yesNoModalContainer {
+.deleteObjectModalContainer {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.yesNoModalLabel {
+.deleteObjectModalLabel {
   text-align: center;
   font: 14px "lucida grande", arial, sans-serif;
   letter-spacing: 3px;
@@ -17,48 +18,50 @@
   padding: 5px;
 }
 
-.yesNoModalMessage {
+.deleteObjectModalMessage {
   text-align: center;
   font: 14px "lucida grande", arial, sans-serif;
 }
 
-.buttonsSet {
+.modalButtonsSet {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
 
-.buttonAccept {
+.modalButtonAccept {
   width: 50%;
   height: 100%;
   font-size: 12px;
   padding: 5px;
   background-color: rgb(230, 228, 235);
   border: 1px solid white;
+  border-radius: 4px;
 }
 
-.buttonAccept:active {
+.modalButtonAccept:active {
   background-color: rgb(80, 89, 221);
 }
 
-.buttonAccept:focus {
+.modalButtonAccept:focus {
   outline: 1px solid black;
 }
 
-.buttonClose {
+.modalButtonClose {
   width: 50%;
   height: 100%;
   font-size: 12px;
   padding: 5px;
   background-color: rgb(230, 228, 235);
   border: 1px solid white;
+  border-radius: 4px;
 }
 
-.buttonClose:active {
+.modalButtonClose:active {
   background-color: rgb(80, 89, 221);
 }
 
-.buttonClose:focus {
+.modalButtonClose:focus {
   outline: 1px solid black;
 }
 

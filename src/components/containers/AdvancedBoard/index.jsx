@@ -312,9 +312,8 @@ class AdvancedBoard extends React.Component {
             currentSelectedObjects.push(objectId);
             newObjectId = currentSelectedObjects.join(' ');
           } else { // если id объекта есть среди выделенных
-            // то удалим его:
-            currentSelectedObjects.splice(indOfObjectId, 1);
-            newObjectId = currentSelectedObjects.join(' ');
+            // то ничего не делаем:
+            newObjectId = currentObject.objectId; 
           }
         }
       }

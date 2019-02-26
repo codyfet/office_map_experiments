@@ -2,6 +2,35 @@ import * as React from 'react';
 import { Shape, Group, Rect } from 'react-konva';
 
 export default class MapShape extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    
+    // getting settings for drawing grid:
+    const { borderlands } = props;
+
+    // получим ограничивающие области:
+    const borderAreas = borderlands.slice(0).map((val) => {
+      const coords = val.split(' ', 4).map(v => Number(v));
+
+      return (
+        <Rect
+          key={`${coords[0]}_${coords[1]}`}
+          x={coords[0]}
+          y={coords[1]}
+          width={coords[2] - coords[0]}
+          height={coords[3] - coords[1]}
+          fill="white"
+          // stroke="red"
+          // strokeWidth={1}
+        />
+      );
+    });
+
+    this.state = {
+      borderAreas: borderAreas
+    };
+  }
+
   // ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ВИУЗАЛЬНЫХ ГРАНИЦ КАРТЫ:
   drawMapVisualBorders = (context, shape) => {
     const { boundaries } = this.props;
@@ -31,26 +60,7 @@ export default class MapShape extends React.PureComponent {
   };
 
   render() {
-    // getting settings for drawing grid:
-    const { borderlands } = this.props;
-
-    // предположим, мы получили ограничивающие области:
-    const borderAreas = borderlands.slice(0).map((val) => {
-      const coords = val.split(' ', 4).map(v => Number(v));
-
-      return (
-        <Rect
-          key={`${coords[0]}_${coords[1]}`}
-          x={coords[0]}
-          y={coords[1]}
-          width={coords[2] - coords[0]}
-          height={coords[3] - coords[1]}
-          fill="white"
-          // stroke="red"
-          // strokeWidth={1}
-        />
-      );
-    });
+    const { borderAreas } = this.state;
 
     return (
       <Group name="borderAreas">
@@ -58,7 +68,7 @@ export default class MapShape extends React.PureComponent {
           sceneFunc={this.drawMapVisualBorders}
           // fill="#00D2FF"
           stroke="black"
-          strokeWidth={1}
+          strokeWidth={2}
         />
         {borderAreas}
       </Group>

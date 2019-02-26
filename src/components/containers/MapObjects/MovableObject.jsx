@@ -11,6 +11,7 @@ export default class MovableObject extends React.Component {
 
     this.state = {
       isPointed: false,
+      isDragging: false
     };
   }
 
@@ -78,9 +79,10 @@ export default class MovableObject extends React.Component {
     tooltip.show();
     tooltipLayer.draw();
 
-    // позаботимся о выделении объекта:
+    // если объект перетаскивают, то isPointed - неактивен
+    const { isDragging } = this.state; 
     this.setState({
-      isPointed: true,
+      isPointed: !isDragging,
     });
   };
 
@@ -102,6 +104,11 @@ export default class MovableObject extends React.Component {
   // ---------------------------------------------------------
   onObjectDragStart = e => {
     const { hideContextMenu, object, shareObjectData } = this.props;
+
+    // объект в состоянии перетаскивания:
+    this.setState({
+      isDragging: true
+    });
 
     // выведем объект на передний план:
     e.currentTarget.moveToTop();
@@ -127,6 +134,11 @@ export default class MovableObject extends React.Component {
     shareObjectData(object.id, userId);
 
     stopShadow();
+
+    // объект не перетаскивают:
+    this.setState({
+      isDragging: false
+    });
   };
 
   onObjectDragMove = e => {

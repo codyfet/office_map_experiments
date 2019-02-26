@@ -101,7 +101,7 @@ class AdvancedBoard extends React.Component {
       height: object.height,
     };
 
-    const { objects } = this.props;
+    const { objects, mapState } = this.props;
     const thisLevelObjects = objects.levels[objects.mapLevel];
 
     // проверяем, есть ли хотя бы 1 пересечение с объектами (nodes) карты:
@@ -129,17 +129,15 @@ class AdvancedBoard extends React.Component {
       }
     });
 
-    // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borders) карты:
-    const boundariesOverstepped = stage.children[1].children[1].children.some((border, i) => {
-      // индекс первого элемента - это изображение карты
-      if (i < 1) return false;
-
+    // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borderArea) карты:
+    const boundariesOverstepped = mapState.mapCovering.some((borderArea, i) => {
+      const borderAreaCoords = borderArea.split(' ', 4).map(v => Number(v));
       // получить координаты и размеры текущей области-границы:
       const currBorder = {
-        x: border.attrs.x,
-        y: border.attrs.y,
-        width: border.attrs.width,
-        height: border.attrs.height,
+        x: borderAreaCoords[0],
+        y: borderAreaCoords[1],
+        width: borderAreaCoords[2] - borderAreaCoords[0],
+        height: borderAreaCoords[3] - borderAreaCoords[1]
       };
 
       if (this.haveIntersection(currBorder, currObject)) {
@@ -148,6 +146,24 @@ class AdvancedBoard extends React.Component {
         return false;
       }
     });
+    // const boundariesOverstepped = stage.children[1].children[1].children.some((border, i) => {
+    //   // индекс первого элемента - это изображение карты
+    //   if (i < 1) return false;
+
+    //   // получить координаты и размеры текущей области-границы:
+    //   const currBorder = {
+    //     x: border.attrs.x,
+    //     y: border.attrs.y,
+    //     width: border.attrs.width,
+    //     height: border.attrs.height,
+    //   };
+
+    //   if (this.haveIntersection(currBorder, currObject)) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // });
 
     // Поменять цвет текущего объекта:
     const { actions } = this.props;

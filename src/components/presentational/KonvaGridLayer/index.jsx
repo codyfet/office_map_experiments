@@ -5,24 +5,36 @@ export default class KonvaGridLayer extends React.PureComponent {
   constructor(props) {
     super(props);
     
-    // загружаем данные для 
-    // getting settings for drawing grid:
-    const { width, height, blockSnapSize, boundaries } = props;
+    // загружаем данные для сетки:
+    const { width, height, blockSnapSize } = props;
 
-    // распарсим строку с границами:
-    // const borders = boundaries.split(' ').map(point => {
-    //   const coords = point.split(',', 2);
-    //   return {
-    //     x: Number(coords[0]),
-    //     y: Number(coords[1]),
-    //   };
-    // });
+    this.state = {
+      // borders: borders,
+      verticalLines: this.drawVerticalLines(width, height, blockSnapSize),
+      horizontalLines: this.drawHorizontalLines(width, height, blockSnapSize)
+    };
+  }
 
+  componentDidUpdate(prevProps) {
+    // если изменились данные по размерам карты:
+    const { width, height, blockSnapSize } = this.props;
+    if (prevProps.width !== width 
+        || prevProps.height !== height 
+        || prevProps.blockSnapSize !== blockSnapSize) {
+      // перерисуем сетку:
+      this.setState({
+        verticalLines: this.drawVerticalLines(width, height, blockSnapSize),
+        horizontalLines: this.drawHorizontalLines(width, height, blockSnapSize)
+      });
+    }
+  }
+
+  // ФУНКЦИИ ДЛЯ ОТРИСОВКИ СЕТКИ:
+  drawVerticalLines(width, height, blockSnapSize) {
     const padding = blockSnapSize;
     const verticalBlocksCount = (width / blockSnapSize) ^ 0;
-    const horizontalBlocksCount = (height / blockSnapSize) ^ 0;
 
-    const makeVerticalGrid = [...Array(verticalBlocksCount)].map((elem, i) => {
+    return [...Array(verticalBlocksCount)].map((elem, i) => {
       return (
         <Line
           key={Number(`1${i}`)}
@@ -32,8 +44,13 @@ export default class KonvaGridLayer extends React.PureComponent {
         />
       );
     });
+  }
 
-    const makeHorizontalGrid = [...Array(horizontalBlocksCount)].map((elem, j) => {
+  drawHorizontalLines(width, height, blockSnapSize) {
+    const padding = blockSnapSize;
+    const horizontalBlocksCount = (height / blockSnapSize) ^ 0;
+
+    return [...Array(horizontalBlocksCount)].map((elem, j) => {
       return (
         <Line
           key={Number(`2${j}`)}
@@ -43,40 +60,17 @@ export default class KonvaGridLayer extends React.PureComponent {
         />
       );
     });
-
-    this.state = {
-      // borders: borders,
-      makeVerticalGrid: makeVerticalGrid,
-      makeHorizontalGrid: makeHorizontalGrid
-    };
   }
 
   render() {
-    const { makeVerticalGrid, makeHorizontalGrid } = this.state;
+    const { verticalLines, horizontalLines } = this.state;
     const { children } = this.props;
 
     return (
       <Layer>
-        <Group
-          name="borders"
-          // clipFunc={context => {
-          //   // отрисуем границы:
-          //   context.beginPath();
-          //   borders.forEach((value, i) => {
-          //     if (i === 0) {
-          //       context.moveTo(value.x, value.y);
-          //     } else {
-          //       context.lineTo(value.x, value.y);
-          //     }
-          //   });
-          //   context.closePath();
-
-            // // (!) Konva specific method, it is very important
-            // context.fillStrokeShape(shape);
-          // }}
-        >
-          {makeVerticalGrid}
-          {makeHorizontalGrid}
+        <Group>
+          {verticalLines}
+          {horizontalLines}
           {children}
         </Group>
       </Layer>

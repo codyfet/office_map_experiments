@@ -1,15 +1,33 @@
 import * as React from 'react';
 import { Shape, Group, Rect } from 'react-konva';
-
+// загрузить lodash: 
+const _ = require('lodash');
+ 
 export default class MapShape extends React.PureComponent {
   constructor(props) {
     super(props);
     
-    // getting settings for drawing grid:
     const { borderlands } = props;
+    this.state = {
+      borderAreas: this.drawBorderAreas(borderlands)
+    };
+  }
 
+  componentDidUpdate(prevProps) {
+    // если изменились данные по граничащим областям карты:
+    const { borderlands } = this.props;
+    if (!_.isEqual(prevProps.borderlands, borderlands)) {
+      // перерисуем области:
+      this.setState({
+        borderAreas: this.drawBorderAreas(borderlands)
+      });
+    }
+  }
+
+  // ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ГРАНИЧАЩИХ ОБЛАСТЕЙ КАРТЫ:
+  drawBorderAreas(borderlands) {
     // получим ограничивающие области:
-    const borderAreas = borderlands.slice(0).map((val) => {
+    return borderlands.slice(0).map((val) => {
       const coords = val.split(' ', 4).map(v => Number(v));
 
       return (
@@ -25,10 +43,6 @@ export default class MapShape extends React.PureComponent {
         />
       );
     });
-
-    this.state = {
-      borderAreas: borderAreas
-    };
   }
 
   // ФУНКЦИЯ ДЛЯ ОТРИСОВКИ ВИУЗАЛЬНЫХ ГРАНИЦ КАРТЫ:

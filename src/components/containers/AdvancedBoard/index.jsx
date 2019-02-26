@@ -123,7 +123,7 @@ class AdvancedBoard extends React.Component {
     });
 
     // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borderArea) карты:
-    const boundariesOverstepped = mapState.mapCovering.some((borderArea, i) => {
+    const boundariesOverstepped = mapState.mapCovering.some((borderArea) => {
       const borderAreaCoords = borderArea.split(' ', 4).map(v => Number(v));
       // получить координаты и размеры текущей области-границы:
       const currBorder = {

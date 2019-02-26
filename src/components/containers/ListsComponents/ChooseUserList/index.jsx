@@ -47,18 +47,18 @@ class ChooseUserList extends React.Component {
       else return formattedUser.some(val => val.startsWith(formattedSPhrase));
     });
 
-    const loadUsers = neededUsers.map((user, i) => {
+    const loadUsers = neededUsers.map((user) => {
       if (userId === '') {
         // если пользователя не выбрали
         return (
-          <li key={i}>
+          <li key={user.id}>
             <UserSimpleItem user={user} isSelected={false} onClick={this.onUserClick} />
           </li>
         );
       } else if (userId === user.id) {
         // иначе
         return (
-          <li key={i}>
+          <li key={user.id}>
             <UserSimpleItem user={user} isSelected onClick={this.onUserClick} />
           </li>
         );

@@ -58,7 +58,7 @@ class UserCreate extends React.Component {
   }
 
   render() {
-    const { user, onClose } = this.props;
+    const { user } = this.props;
 
     // определим свойства, которые можно редактировать:
     const allowedProperties = [

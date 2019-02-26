@@ -51,18 +51,18 @@ class UsersSpecialList extends React.Component {
       else return formattedUser.some(val => val.startsWith(formattedSPhrase));
     });
 
-    const loadUsers = neededUsers.map((user, i) => {
+    const loadUsers = neededUsers.map((user) => {
       if (selectedUserId === '') {
         // если пользователя не выбрали
         return (
-          <li key={i}>
+          <li key={user.id}>
             <UserSimpleItem user={user} isSelected={false} onClick={this.selectUserId} />
           </li>
         );
       } else if (selectedUserId === user.id) {
         // иначе
         return (
-          <li key={i}>
+          <li key={user.id}>
             <UserSimpleItem user={user} isSelected onClick={this.selectUserId} />
           </li>
         );

@@ -1,11 +1,31 @@
-export default function getIconSettings(objCategory) {
+function setupIconSizeAccordingToObjectSizes(settings, object) {
+  const minSizeObjectValue = object.width < object.height ? object.width : object.height;
+  const minSizeValue = 15;
+  let scaleIncrease = 1;
+  
+  if (['table', 'cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)) {
+    scaleIncrease = minSizeObjectValue / minSizeValue;
+  }
+
+  if (['meeting_room', 'public_place', 'service_room', 'construction'].includes(object.category)) {
+    scaleIncrease = minSizeObjectValue / 2 / minSizeValue;
+  }
+
+  return {
+    scale: settings.scale * scaleIncrease,
+    shiftX: settings.shiftX * scaleIncrease,
+    shiftY: settings.shiftY * scaleIncrease
+  };
+}
+
+export default function getIconSettings(object) {
   const settings = {
     scale: 1,
     shiftX: 0,
     shiftY: 0,
   };
 
-  switch (objCategory) {
+  switch (object.category) {
     // movable object categories:
     case 'table':
       settings.scale = 0.025;
@@ -57,5 +77,5 @@ export default function getIconSettings(objCategory) {
       break;
   }
 
-  return settings;
+  return setupIconSizeAccordingToObjectSizes(settings, object);
 }

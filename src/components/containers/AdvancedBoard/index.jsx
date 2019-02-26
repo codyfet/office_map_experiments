@@ -28,7 +28,7 @@ import {
 
 // popup:
 import PopoverContainer from '../PopoverContainer/index';
-import { MULTI_EDIT } from '../../../res/workModeConstants';
+import { MULTI_EDIT, SINGLE_EDIT } from '../../../res/workModeConstants';
 
 // загрузить lodash:
 const _ = require('lodash');
@@ -90,9 +90,6 @@ class AdvancedBoard extends React.Component {
   // если пересекается с границами карты или объектами, то correctLocation = false
   // иначе  - correctLocation = true
   checkObjectLocation = (object) => {
-    // получить координаты сцены:
-    const stage = this.stageRef.getStage();
-
     // получить координаты текущего объекта:
     const currObject = {
       x: object.coordinates.x,
@@ -122,11 +119,7 @@ class AdvancedBoard extends React.Component {
         height: obj.height,
       };
 
-      if (this.haveIntersection(currNode, currObject)) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.haveIntersection(currNode, currObject);
     });
 
     // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borderArea) карты:
@@ -140,30 +133,8 @@ class AdvancedBoard extends React.Component {
         height: borderAreaCoords[3] - borderAreaCoords[1]
       };
 
-      if (this.haveIntersection(currBorder, currObject)) {
-        return true;
-      } else {
-        return false;
-      }
+      return this.haveIntersection(currBorder, currObject);
     });
-    // const boundariesOverstepped = stage.children[1].children[1].children.some((border, i) => {
-    //   // индекс первого элемента - это изображение карты
-    //   if (i < 1) return false;
-
-    //   // получить координаты и размеры текущей области-границы:
-    //   const currBorder = {
-    //     x: border.attrs.x,
-    //     y: border.attrs.y,
-    //     width: border.attrs.width,
-    //     height: border.attrs.height,
-    //   };
-
-    //   if (this.haveIntersection(currBorder, currObject)) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // });
 
     // Поменять цвет текущего объекта:
     const { actions } = this.props;
@@ -315,38 +286,41 @@ class AdvancedBoard extends React.Component {
     // изменим текущий объект для redux:
     const { actions, workMode, currentObject } = this.props;
 
-    if (workMode === MULTI_EDIT) {
-      let newObjectId = '';
-      if (objectId === '') { // если текущий id пустой:
-        // зануляем текущий объект:
-        newObjectId = '';
-      } else {
-        // дополняем объект:
+    if (workMode === MULTI_EDIT) { // если приложение в режиме группового редактирования:
+      let newObjectId = ''; 
+      
+      // передаваемый параметр id объекта не пустой (т.е. мы не хотим сбросить текущий объект):
+      if (objectId !== '') { 
+        // то в режиме группового ред. мы приписываем к нему еще один объект:
+        // если других объектов не было выделено: 
         if (currentObject.objectId === '') {
-          // если текущий объект - пуст, то просто добавляем данные:
+          // просто добавим данные:
           newObjectId = objectId;
-        } else {
-          // иначе посмотрим, есть ли этот объект уже в данных:
-          if (currentObject.objectId.split(' ').includes(objectId)) {
-            // если он есть:
-            // (для перемещения объектов нам необходимо выделять основной элемент
-            // по которому будет проходить перемещение (он должен быть в конце)):
-            const ids = currentObject.objectId.split(' ');
-            const indOfObjectId = ids.indexOf(objectId);
-            const idsWithDeletedObjectId = ids
-              .slice(0, indOfObjectId)
-              .concat(ids.slice(indOfObjectId + 1));
-            // теперь добавим в конец:
-            newObjectId = `${idsWithDeletedObjectId.join(' ')} ${objectId}`;
-          } else {
-            // объекта нет - просто добавляем в конец:
-            newObjectId = `${currentObject.objectId} ${objectId}`;
+        }
+        // если уже выделен(ы) объект(ы):
+        if (currentObject.objectId !== '') {
+          // получим список id выделенных объектов:
+          let currentSelectedObjects = currentObject.objectId.split(' ');
+          // нужно добавить новый объект в конец списка
+          // проверим, есть переданный objectId уже в данных:
+          const indOfObjectId = currentSelectedObjects.indexOf(objectId);
+          
+          if (indOfObjectId === -1) { // если id объекта нет среди выделенных
+            // то добавим его в конец:
+            currentSelectedObjects.push(objectId);
+            newObjectId = currentSelectedObjects.join(' ');
+          } else { // если id объекта есть среди выделенных
+            // то удалим его:
+            currentSelectedObjects = currentSelectedObjects.splice(indOfObjectId, 1);
+            newObjectId = currentSelectedObjects.join(' ');
           }
         }
       }
-
+      // отправляем в redux новый objectId:   
       actions.changeCurrentObject(newObjectId);
-    } else {
+    } 
+    
+    if (workMode === SINGLE_EDIT) { // если приложение в режиме одиночного редактирования:
       actions.changeCurrentObject(objectId);
       actions.changeCurrentUser(userId);
     }
@@ -375,9 +349,10 @@ class AdvancedBoard extends React.Component {
   // 5.3.3. Сброс объекта и контекстного меню (для popover и konvaGrid):
   flushAll = () => {
     this.hideContextMenu();
-    this.setCurrentObjectData('', '');
 
     const { actions } = this.props;
+    actions.changeCurrentObject('');
+    actions.changeCurrentUser('');
     // при каждом сбросе текущего объекта мы закрываем меню редактирования:
     actions.changeCurrentObjectState('none');
   };
@@ -452,9 +427,6 @@ class AdvancedBoard extends React.Component {
         }}
       >
         <Stage
-          ref={ref => {
-            this.stageRef = ref;
-          }} // получим ссылку на stage
           x={boardState.shift[0]}
           y={boardState.shift[1]}
           width={boardWidth}

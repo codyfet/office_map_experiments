@@ -5,16 +5,53 @@ import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 
-export default class StaticObject extends React.Component {
+export default class StaticObject extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    const { object } = props;
+
     this.state = {
+      objectIcon: this.drawIcon(object),
       isPointed: false,
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const { object } = this.props;
+
+    // проверим границы для измененного объекта:
+    // будем проверять границы при каждом изменении размеров и координат объекта:
+    if (prevProps.object.width !== object.width 
+        || prevProps.object.height !== object.height) {
+      this.setState({
+        objectIcon: this.drawIcon(object)
+      });
+    }
+  }
+
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
+  // 0. Нарисовать иконку на объекте:
+  drawIcon(object) {
+    let { shiftX, shiftY, scale } = getIconSettings(object);
+
+    return iconPaths[object.category].path.map((path, i) => {
+      return (
+        <Path
+          key={i}
+          x={object.width / 2 - shiftX}
+          y={object.height / 2 - shiftY}
+          data={path}
+          fill="black"
+          scale={{
+            x: scale,
+            y: scale,
+          }}
+        />
+      );
+    });
+  }
+
   // 1. Показать tooltip-информацию:
   showTooltipObjectInfo = (e) => {
     const { object } = this.props;
@@ -58,7 +95,7 @@ export default class StaticObject extends React.Component {
 
   // ОБРАБОТКА СОБЫТИЙ:
   // ---------------------------------------------------------
-  onObjectClick = e => {
+  handleObjectClick = (e) => {
     // всегда сообщаем id объекта:
     const { shareObjectData, object } = this.props;
 
@@ -68,7 +105,7 @@ export default class StaticObject extends React.Component {
     e.currentTarget.moveToTop();
   };
 
-  onObjectContextMenu = e => {
+  handleObjectContextMenu = (e) => {
     const { showContextMenu, openCurrentObjectTab } = this.props;
     e.evt.preventDefault();
 
@@ -77,45 +114,27 @@ export default class StaticObject extends React.Component {
     openCurrentObjectTab();
   };
 
-  onObjectMouseMove = e => {
+  handleObjectMouseMove = (e) => {
     this.showTooltipObjectInfo(e);
   };
 
-  onObjectMouseOut = e => {
+  handleObjectMouseOut = (e) => {
     this.hideTooltipObjectInfo(e);
   };
 
   render() {
     const { object, setColor } = this.props;
-    const { isPointed } = this.state;
-    // draw a picture:
-    let { shiftX, shiftY, scale } = getIconSettings(object);
-
-    const drawIcon = iconPaths[object.category].path.map((path, i) => {
-      return (
-        <Path
-          key={i}
-          x={object.width / 2 - shiftX}
-          y={object.height / 2 - shiftY}
-          data={path}
-          fill="black"
-          scale={{
-            x: scale, // * scaleIncrease,
-            y: scale, // * scaleIncrease
-          }}
-        />
-      );
-    });
-
+    const { isPointed, objectIcon } = this.state;
+    
     return (
       <Group
         x={object.coordinates.x}
         y={object.coordinates.y}
         draggable={false}
-        onClick={this.onObjectClick}
-        onContextMenu={this.onObjectContextMenu}
-        onMouseEnter={this.onObjectMouseMove}
-        onMouseLeave={this.onObjectMouseOut}
+        onClick={this.handleObjectClick}
+        onContextMenu={this.handleObjectContextMenu}
+        onMouseEnter={this.handleObjectMouseMove}
+        onMouseLeave={this.handleObjectMouseOut}
         name="object"
         nameID={object.id}
       >
@@ -131,7 +150,7 @@ export default class StaticObject extends React.Component {
           // shadowOffset={{x : 1, y : 1}}
           // shadowOpacity={0.4}
         />
-        {drawIcon}
+        {objectIcon}
       </Group>
     );
   }

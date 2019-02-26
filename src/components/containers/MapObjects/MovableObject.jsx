@@ -5,11 +5,14 @@ import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 
-export default class MovableObject extends React.Component {
+export default class MovableObject extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    const { object } = props;
+
     this.state = {
+      objectIcon: this.drawIcon(object),
       isPointed: false,
       isDragging: false
     };
@@ -24,15 +27,40 @@ export default class MovableObject extends React.Component {
     const { checkObjectLocation, object } = this.props;
 
     // проверим границы для измененного объекта:
-    // будем проверять границы при каждом изменении размеров объекта:
+    // будем проверять границы при каждом изменении размеров и координат объекта:
     if (prevProps.object.width !== object.width 
+        || prevProps.object.height !== object.height 
         || prevProps.object.coordinates.x !== object.coordinates.x 
         || prevProps.object.coordinates.y !== object.coordinates.y) {
       checkObjectLocation(object);
+      this.setState({
+        objectIcon: this.drawIcon(object)
+      });
     }
   }
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
+  // 0. Нарисовать иконку на объекте:
+  drawIcon(object) {
+    let { shiftX, shiftY, scale } = getIconSettings(object);
+
+    return iconPaths[object.category].path.map((path, i) => {
+      return (
+        <Path
+          key={i}
+          x={object.width / 2 - shiftX}
+          y={object.height / 2 - shiftY}
+          data={path}
+          fill="black"
+          scale={{
+            x: scale,
+            y: scale,
+          }}
+        />
+      );
+    });
+  }
+
   // 1. Держать координаты в границах глобальной области:
   checkBoundaries(x, y) {
     const { mapWidth, mapHeight, object } = this.props;
@@ -102,7 +130,7 @@ export default class MovableObject extends React.Component {
 
   // ОБРАБОТКА СОБЫТИЙ:
   // ---------------------------------------------------------
-  onObjectDragStart = e => {
+  handleObjectDragStart = (e) => {
     const { hideContextMenu, object, shareObjectData } = this.props;
 
     // объект в состоянии перетаскивания:
@@ -119,7 +147,7 @@ export default class MovableObject extends React.Component {
     hideContextMenu();
   };
 
-  onObjectDragEnd = e => {
+  handleObjectDragEnd = (e) => {
     const { showShadow, stopShadow, shareObjectData, blockSnapSize, object } = this.props;
 
     const { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
@@ -141,14 +169,14 @@ export default class MovableObject extends React.Component {
     });
   };
 
-  onObjectDragMove = e => {
+  handleObjectDragMove = (e) => {
     const { showShadow, object } = this.props;
 
     showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
     this.showTooltipObjectInfo(e);
   };
 
-  onObjectClick = e => {
+  handleObjectClick = (e) => {
     // всегда сообщаем id объекта:
     const { shareObjectData, object } = this.props;
 
@@ -160,7 +188,7 @@ export default class MovableObject extends React.Component {
     e.currentTarget.moveToTop();
   };
 
-  onObjectContextMenu = e => {
+  handleObjectContextMenu = (e) => {
     const { showContextMenu, openCurrentObjectTab } = this.props;
     e.evt.preventDefault();
 
@@ -169,50 +197,31 @@ export default class MovableObject extends React.Component {
     openCurrentObjectTab();
   };
 
-  onObjectMouseMove = e => {
+  handleObjectMouseMove = (e) => {
     this.showTooltipObjectInfo(e);
   };
 
-  onObjectMouseOut = e => {
+  handleObjectMouseOut = (e) => {
     this.hideTooltipObjectInfo(e);
   };
 
   render() {
     const { object, setColor } = this.props;
-    const { isPointed } = this.state;
+    const { isPointed, objectIcon } = this.state;
     const userId = object.userId;
-
-    // draw a picture:
-    let { shiftX, shiftY, scale } = getIconSettings(object);
-
-    const drawIcon = iconPaths[object.category].path.map((path, i) => {
-      return (
-        <Path
-          key={i}
-          x={object.width / 2 - shiftX}
-          y={object.height / 2 - shiftY}
-          data={path}
-          fill="black"
-          scale={{
-            x: scale,
-            y: scale,
-          }}
-        />
-      );
-    });
 
     return (
       <Group
         x={object.coordinates.x}
         y={object.coordinates.y}
         draggable
-        onDragStart={this.onObjectDragStart}
-        onDragEnd={this.onObjectDragEnd}
-        onDragMove={this.onObjectDragMove}
-        onClick={this.onObjectClick}
-        onContextMenu={this.onObjectContextMenu}
-        onMouseEnter={this.onObjectMouseMove}
-        onMouseLeave={this.onObjectMouseOut}
+        onDragStart={this.handleObjectDragStart}
+        onDragEnd={this.handleObjectDragEnd}
+        onDragMove={this.handleObjectDragMove}
+        onClick={this.handleObjectClick}
+        onContextMenu={this.handleObjectContextMenu}
+        onMouseEnter={this.handleObjectMouseMove}
+        onMouseLeave={this.handleObjectMouseOut}
         name="object"
         nameID={object.id}
       >
@@ -228,7 +237,7 @@ export default class MovableObject extends React.Component {
           shadowOffset={{ x: 1, y: 1 }}
           shadowOpacity={0.4}
         />
-        {drawIcon}
+        {objectIcon}
       </Group>
     );
   }

@@ -292,11 +292,13 @@ class AdvancedBoard extends React.Component {
       // передаваемый параметр id объекта не пустой (т.е. мы не хотим сбросить текущий объект):
       if (objectId !== '') { 
         // то в режиме группового ред. мы приписываем к нему еще один объект:
+        
         // если других объектов не было выделено: 
         if (currentObject.objectId === '') {
           // просто добавим данные:
           newObjectId = objectId;
         }
+        
         // если уже выделен(ы) объект(ы):
         if (currentObject.objectId !== '') {
           // получим список id выделенных объектов:
@@ -311,7 +313,7 @@ class AdvancedBoard extends React.Component {
             newObjectId = currentSelectedObjects.join(' ');
           } else { // если id объекта есть среди выделенных
             // то удалим его:
-            currentSelectedObjects = currentSelectedObjects.splice(indOfObjectId, 1);
+            currentSelectedObjects.splice(indOfObjectId, 1);
             newObjectId = currentSelectedObjects.join(' ');
           }
         }

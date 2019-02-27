@@ -52,18 +52,32 @@ class ProjectsList extends React.Component {
 
   selectObjectsOnMap = (projectId) => {
     const { actions, objects, users } = this.props;
+    // если projectId нет - просто сбросим выделение:
+    if (projectId === '') { 
+      actions.changeCurrentObject('');
+      return;
+    } 
+
     // ищем столы (объекты) на карте, где сидит пользователь, 
     // который работает над указаннным проектом
 
     // загрузить объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
     const requiredObjectIds = thisLevelObjects.map((elem) => {
-      const requiredUser = users.find(user => user.id === elem.userId);
-      if (!!requiredUser && requiredUser.projectId === projectId) return elem.id;
-      else return undefined;
-    }).join(' ');
+      // нам нужны только столы:
+      if (elem.category === 'table') {
+        const requiredUser = users.find(user => user.id === elem.userId);
+        if (!!requiredUser && requiredUser.projectId === projectId) return elem.id;
+        else return '';
+      }
+      return '';
+    }).join(' ').trim();
 
-    actions.changeCurrentObject(requiredObjectIds); 
+    if (requiredObjectIds === '') {
+      alert('ПРЕДУПРЕЖДЕНИЕ: на этой карте нет членов данного проекта');
+    } else {
+      actions.changeCurrentObject(requiredObjectIds);  
+    }
   }
 
   render() {

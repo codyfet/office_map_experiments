@@ -1,9 +1,12 @@
 import React from 'react';
+import { DebounceInput } from 'react-debounce-input';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {
+  changeCurrentObject
+} from '../../../../actions/index';
 
-import { DebounceInput } from 'react-debounce-input';
 import ProjectItem from '../ProjectItem/index';
 import mapData from '../../../../res/mapData.json';
 import './styles.css';
@@ -41,9 +44,19 @@ class ProjectsList extends React.Component {
   }
 
   selectObjectsOnMap = (projectId) => {
-    const { objects, users } = this.props;
+    const { actions, objects, users } = this.props;
     // ищем столы (объекты) на карте, где сидит пользователь, 
     // который работает над указаннным проектом
+
+    // загрузить объекты текущего уровня:
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    const requiredObjectIds = thisLevelObjects.map((elem) => {
+      const requiredUser = users.find(user => user.id === elem.userId);
+      if (!!requiredUser && requiredUser.projectId === projectId) return elem.id;
+      else return undefined;
+    }).join(' ');
+
+    actions.changeCurrentObject(requiredObjectIds); 
   }
 
   render() {
@@ -61,9 +74,9 @@ class ProjectsList extends React.Component {
         <li>
           <ProjectItem
             key={project.id}
-            projectId={project.id}
+            projectId={project.projectId}
             projectTitle={project.title}
-            isSelected={selectedProjectId === project.id}  
+            isSelected={selectedProjectId === project.projectId}  
             onClick={this.handleProjectItemClick}  
           /> 
         </li>
@@ -93,10 +106,11 @@ class ProjectsList extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   objects: state.objects,
+  currentObject: state.currentObject
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ }, dispatch),
+  actions: bindActionCreators({ changeCurrentObject }, dispatch),
 });
 
 export default connect(

@@ -70,7 +70,8 @@ module.exports = {
     'eol-last': 'off', // на eslint пожаловался
     
     'react/prefer-stateless-function': 'warn',
-    'no-script-url': 'warn'
+    'no-script-url': 'warn',
+    'no-extra-boolean-cast': 'off' // !!object - это нормально
   },
 
 };

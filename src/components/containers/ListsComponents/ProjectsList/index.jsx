@@ -8,6 +8,7 @@ import {
 } from '../../../../actions/index';
 
 import ProjectItem from '../ProjectItem/index';
+import ProjectCreate from '../../ProjectCreate/index';
 import mapData from '../../../../res/mapData.json';
 import './styles.css';
 
@@ -40,6 +41,12 @@ class ProjectsList extends React.Component {
   handleBtnAddProject = () => {
     this.setState({
       showCreateProjectPanel: true,
+    });
+  }
+
+  handleCreateProjectPanelClose = () => {
+    this.setState({
+      showCreateProjectPanel: false
     });
   }
 
@@ -83,6 +90,30 @@ class ProjectsList extends React.Component {
       );
     });
 
+    // получить новый id для проекта:
+    // const { users } = this.props;
+    // const lastId = users.reduce((prevVal, nextVal, i) => {
+    //   let prevId;
+    //   let nextId;
+    //   if (i === 1) {
+    //     prevId = Number(prevVal.id.slice(1));
+    //     nextId = Number(nextVal.id.slice(1));
+    //   } else {
+    //     prevId = prevVal;
+    //     nextId = Number(nextVal.id.slice(1));
+    //   }
+
+    //   return nextId > prevId ? nextId : prevId;
+    // });
+
+    // const newId = `t${String(lastId + 1).padStart(4, '0')}`;
+    const newDefaultProject = {
+      id: '',
+      projectId: 'name',
+      title: 'Название',
+      about: 'Информация о проекте'
+    };
+
     return (
       <div className="projectsListWrapper">
         <DebounceInput minLength={1} debounceTimeout={300} onChange={this.handleChangeInput} />
@@ -90,7 +121,10 @@ class ProjectsList extends React.Component {
           Добавить проект
         </button>
         {showCreateProjectPanel && (
-          <div>Панель ProjectCreate в разработке</div>
+          <ProjectCreate 
+            project={newDefaultProject} 
+            onClose={this.handleCreateProjectPanelClose}
+          />
         )}
         {!showCreateProjectPanel && (
           <ul className="projectsList">

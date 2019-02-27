@@ -1,4 +1,30 @@
 {
+  "projects": [
+    {
+      "id": "p0",
+      "projectId": "sberbank",
+      "title": "Сбербанк",
+      "about": "еще один проект"
+    },
+    {
+      "id": "p1",
+      "projectId": "gpbl",
+      "title": "ГПБЛ (Газпром)",
+      "about": "еще один проект"
+    },
+    {
+      "id": "p2",
+      "projectId": "x5.retail.group",
+      "title": "X5 Retail Group",
+      "about": "еще один проект"
+    },
+    {
+      "id": "p3",
+      "projectId": "bank.intesa",
+      "title": "Банк Интеза",
+      "about": "еще один проект"
+    }
+  ],
   "users": [
     {
       "id": "t0018",
@@ -9,7 +35,8 @@
       "phone": "",
       "level": 8,
       "category": "people",
-      "startdate": "2012-04-18"
+      "startdate": "2012-04-18",
+      "projectId": "sberbank"
     },
     {
       "id": "t0019",
@@ -20,7 +47,8 @@
       "phone": "",
       "level": 12,
       "category": "people",
-      "startdate": "2017-04-18"
+      "startdate": "2017-04-18",
+      "projectId": "gpbl"
     },
     {
       "id": "t0020",
@@ -31,7 +59,8 @@
       "phone": "",
       "level": 11,
       "category": "people",
-      "startdate": "2016-04-18"
+      "startdate": "2016-04-18",
+      "projectId": "sberbank"
     },
     {
       "id": "t0021",
@@ -42,7 +71,8 @@
       "phone": "",
       "level": 1,
       "category": "people",
-      "startdate": "2003-04-18"
+      "startdate": "2003-04-18",
+      "projectId": "gpbl"
     },
     {
       "id": "t0022",
@@ -53,7 +83,8 @@
       "phone": "",
       "level": 12,
       "category": "people",
-      "startdate": "2003-04-18"
+      "startdate": "2003-04-18",
+      "projectId": "gpbl"
     },
     {
       "id": "t0023",
@@ -64,7 +95,8 @@
       "phone": "",
       "level": 11,
       "category": "people",
-      "startdate": "2010-04-18"
+      "startdate": "2010-04-18",
+      "projectId": "sberbank"
     }
   ],
   "levels": [

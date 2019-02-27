@@ -26,12 +26,10 @@ class ProjectsList extends React.Component {
     });
   };
 
-  handleProjectItemClick = (id) => {
-    // в этой функции по project id надо будет выделять объекты на сцене:
-    const { objects, users } = this.props;
-    // to-do
+  handleProjectItemClick = (projectId) => {
+    this.selectObjectsOnMap(projectId);
     this.setState({
-      selectedProjectId: id,
+      selectedProjectId: projectId,
       searchPhrase: ''
     });
   };
@@ -42,17 +40,30 @@ class ProjectsList extends React.Component {
     });
   }
 
+  selectObjectsOnMap = (projectId) => {
+    const { objects, users } = this.props;
+    // ищем столы (объекты) на карте, где сидит пользователь, 
+    // который работает над указаннным проектом
+  }
+
   render() {
     const { selectedProjectId, showCreateProjectPanel, searchPhrase } = this.state;
 
-    const loadProjects = [...Array(20)].map((elem, i) => {
+    const requiredProjects = mapData.projects.filter((project) => {
+      const projetTitle = project.title.toLowerCase();
+      const formattedSPhrase = searchPhrase.toLowerCase();
+      if (formattedSPhrase === '') return true;
+      else return projetTitle.startsWith(formattedSPhrase);
+    });
+
+    const loadProjects = requiredProjects.map((project) => {
       return (
         <li>
           <ProjectItem
-            key={i}
-            projectId={i}
-            projectTitle={`Проект # ${i}`}
-            isSelected={selectedProjectId === i}  
+            key={project.id}
+            projectId={project.id}
+            projectTitle={project.title}
+            isSelected={selectedProjectId === project.id}  
             onClick={this.handleProjectItemClick}  
           /> 
         </li>

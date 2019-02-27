@@ -71,6 +71,7 @@ class UserCreate extends React.Component {
       'phone',
       'level',
       'startdate',
+      'projectId'
     ];
     const editFieldsPanel = allowedProperties.map((prop) => {
       if (user === undefined) {

@@ -64,6 +64,7 @@ class UsersEditList extends React.Component {
       phone: '88005553535',
       level: 13,
       startdate: newStartDate,
+      projectId: ''
     };
   };
 

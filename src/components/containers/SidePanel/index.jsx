@@ -18,6 +18,7 @@ import MapLevelItem from '../MapLevelItem/index';
 import UsersEditList from '../ListsComponents/UsersEditList/index';
 import SaveMapTab from '../SaveMapTab/index';
 import './styles.css';
+import ProjectsList from '../ListsComponents/ProjectsList/index';
 
 class SidePanel extends React.Component {
   componentDidUpdate(prevProps) {
@@ -122,6 +123,15 @@ class SidePanel extends React.Component {
             title="Пользователи"
           >
             <UsersEditList />
+          </AccordionItem>
+
+          <AccordionItem
+            bodyClassName="mainAccordion-item-body-wrapper"
+            expandedClassName="mainAccordion-item-expanded"
+            titleClassName="mainAccordion-item-title"
+            title="Проекты"
+          >
+            <ProjectsList />
           </AccordionItem>
 
           <AccordionItem

@@ -140,10 +140,17 @@ class CreateTab extends React.Component {
               </div>
             )}
           </AccordionItem>
+          
+          <div className="buttonsCreateTabSet">
+            <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
+              Создать
+            </button>
+          </div>
+          
         </Accordion>
-        <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
+        {/* <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
           Создать
-        </button>
+        </button> */}
       </React.Fragment>
     );
   }

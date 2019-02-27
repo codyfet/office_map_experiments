@@ -9,7 +9,6 @@ import {
 
 import ProjectItem from '../ProjectItem/index';
 import ProjectCreate from '../../ProjectCreate/index';
-import mapData from '../../../../res/mapData.json';
 import './styles.css';
 
 
@@ -93,9 +92,8 @@ class ProjectsList extends React.Component {
 
     const loadProjects = requiredProjects.map((project) => {
       return (
-        <li>
+        <li key={project.id}>
           <ProjectItem
-            key={project.id}
             projectId={project.projectId}
             projectTitle={project.title}
             isSelected={selectedProjectId === project.projectId}  

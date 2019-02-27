@@ -103,13 +103,13 @@ class CreateTab extends React.Component {
 
     return (
       <React.Fragment>
-        <Accordion className="create-tab-accordion" allowMultiple="true">
+        <Accordion className="create-tab-accordion" allowMultiple>
           <AccordionItem
             bodyClassName="create-tab-accordion-item-body-wrapper"
             expandedClassName="create-tab-accordion-item-expanded"
             titleClassName="create-tab-accordion-item-title"
             title="Выберите объект"
-            expanded="true"
+            expanded
             duration={400}
           >
             <ObjectsList
@@ -141,16 +141,12 @@ class CreateTab extends React.Component {
             )}
           </AccordionItem>
           
-          <div className="buttonsCreateTabSet">
-            <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
-              Создать
-            </button>
-          </div>
-          
         </Accordion>
-        {/* <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
-          Создать
-        </button> */}
+        <div className="buttonsCreateTabSet">
+          <button type="submit" className="buttonCreateObject" onClick={this.onSubmitClick}>
+            Создать
+          </button>
+        </div>
       </React.Fragment>
     );
   }

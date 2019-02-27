@@ -18,6 +18,8 @@ import {
 
 import MovableObject from '../MapObjects/MovableObject';
 import StaticObject from '../MapObjects/StaticObject';
+import SimpleMapObject from '../MapObjects/SimpleMapObject';
+import withContextMenu from '../MapObjects/withContextMenu';
 import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
 import MapShape from '../MapShape/index';
 import {
@@ -408,7 +410,24 @@ class AdvancedBoard extends React.Component {
           />
         );
       } else {
+        // const staticObject = withContextMenu(
+        //   <StaticObject
+        //     key={object.id}
+        //     object={object}
+        //     setColor={this.setColor}
+        //     shareObjectData={this.setCurrentObjectData}
+        //     openCurrentObjectTab={this.openCurrentObjectTab}
+        //   />,
+        //   (e) => {
+        //     e.evt.preventDefault();
+        //     this.showContextMenu(e.evt.clientX, e.evt.clientY);
+        //     // открыть окно редактирования:
+        //     this.openCurrentObjectTab();
+        //   }
+        // );
+
         return (
+          // <staticObject /> 
           <StaticObject
             key={object.id}
             object={object}

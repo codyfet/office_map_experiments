@@ -71,7 +71,8 @@ module.exports = {
     
     'react/prefer-stateless-function': 'warn',
     'no-script-url': 'warn',
-    'no-extra-boolean-cast': 'off' // !!object - это нормально
+    'no-extra-boolean-cast': 'off', // !!object - это нормально
+    'react/prefer-stateless-function': 'off'
   },
 
 };

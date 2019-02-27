@@ -1,6 +1,5 @@
 
 .create-tab-accordion {
-  border: 1px solid #ccc;
   padding: 5px;
 }
 
@@ -34,7 +33,7 @@
 }
 
 .buttonsCreateTabSet {
-  margin-top: 2px;
+  padding: 5px;
   width: 100%;
   display: flex;
   align-items: center;

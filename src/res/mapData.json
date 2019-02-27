@@ -23,6 +23,12 @@
       "projectId": "bank.intesa",
       "title": "Банк Интеза",
       "about": "еще один проект"
+    },
+    {
+      "id": "p4",
+      "projectId": "888.ru",
+      "title": "Онлайн-букмекер 888.ru",
+      "about": "Еще один проект"
     }
   ],
   "users": [
@@ -223,7 +229,7 @@
           "coordinates": { "x": 0, "y": 1170 },
           "width": 385,
           "height": 380,
-          "color": "#83DDE9",
+          "color": "#B3ECEE",
           "movable": false,
           "correctLocation": true
         },
@@ -275,7 +281,7 @@
           "coordinates": { "x": 385, "y": 855 },
           "width": 180,
           "height": 210,
-          "color": "#83DDE9",
+          "color": "#B3ECEE",
           "movable": false,
           "correctLocation": true
         },
@@ -286,7 +292,7 @@
           "coordinates": { "x": 385, "y": 555 },
           "width": 180,
           "height": 300,
-          "color": "#83DDE9",
+          "color": "#B3ECEE",
           "movable": false,
           "correctLocation": true
         },
@@ -308,7 +314,7 @@
           "coordinates": { "x": 1900, "y": 820 },
           "width": 280,
           "height": 320,
-          "color": "#FFFC95",
+          "color": "#FEE471",
           "movable": false,
           "correctLocation": true
         },
@@ -319,7 +325,7 @@
           "coordinates": { "x": 2310, "y": 520 },
           "width": 320,
           "height": 300,
-          "color": "#FEE471",
+          "color": "#EDEADD",
           "movable": false,
           "correctLocation": true
         },
@@ -330,7 +336,7 @@
           "coordinates": { "x": 2630, "y": 520 },
           "width": 310,
           "height": 300,
-          "color": "#83DDE9",
+          "color": "#B3ECEE",
           "movable": false,
           "correctLocation": true
         },
@@ -341,7 +347,7 @@
           "coordinates": { "x": 2940, "y": 520 },
           "width": 310,
           "height": 300,
-          "color": "#83DDE9",
+          "color": "#B3ECEE",
           "movable": false,
           "correctLocation": true
         },
@@ -352,7 +358,7 @@
           "coordinates": { "x": 3250, "y": 520 },
           "width": 190,
           "height": 300,
-          "color": "#E0B14D",
+          "color": "#D5BD86",
           "movable": false,
           "correctLocation": true
         },
@@ -374,7 +380,7 @@
           "coordinates": { "x": 2095, "y": 610 },
           "width": 110,
           "height": 190,
-          "color": "#FEE471",
+          "color": "#EDEADD",
           "movable": false,
           "correctLocation": true
         },
@@ -385,7 +391,7 @@
           "coordinates": { "x": 1985, "y": 610 },
           "width": 110,
           "height": 190,
-          "color": "#FEE471",
+          "color": "#EDEADD",
           "movable": false,
           "correctLocation": true
         },

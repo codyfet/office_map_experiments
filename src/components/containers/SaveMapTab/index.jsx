@@ -41,7 +41,7 @@ class SaveMapTab extends React.Component {
   };
 
   saveCurrentMap = () => {
-    const { objects, users } = this.props;
+    const { objects, users, projects } = this.props;
     // order for objects:
     const objectOrder = [
       'category',
@@ -64,7 +64,7 @@ class SaveMapTab extends React.Component {
     mapDataFile.levels = objects.levels.map((objs, i) => {
       const levelData = Object.assign({}, mapDataFile.levels[i]);
       levelData.objects = objs.map((obj) => {
-        // запишем поля в алфавитном порядке:
+        // запишем поля в определенном порядке:
         const formattedObject = {};
         objectOrder.forEach(property => {
           if (obj[property] !== undefined) {
@@ -77,7 +77,7 @@ class SaveMapTab extends React.Component {
     });
 
     mapDataFile.users = users;
-    
+    mapDataFile.projects = projects;
 
     // предлагаем загрузку пользователю:
     const file = new File([JSON.stringify(mapDataFile)], 'newMapData.json', {
@@ -116,6 +116,7 @@ class SaveMapTab extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   objects: state.objects,
+  projects: state.projects
 });
 
 const mapDispatchToProps = dispatch => ({

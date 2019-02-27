@@ -73,7 +73,7 @@ class ProjectsList extends React.Component {
     }).join(' ').trim();
 
     if (requiredObjectIds === '') {
-      alert('ПРЕДУПРЕЖДЕНИЕ: на этой карте нет членов данного проекта');
+      alert('ПРЕДУПРЕЖДЕНИЕ: На этой карте нет столов с пользователями на выбранном проекте');
     } else {
       actions.changeCurrentObject(requiredObjectIds);  
     }

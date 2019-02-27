@@ -50,14 +50,13 @@ class AdvancedBoard extends React.Component {
   // УПРАВЛЕНИЕ СОБЫТИЯМИ НА KONVA STAGE: --------------------------------------
   // 1. СДВИГ И МАСШТАБ---------------------------------------------------------------:
   // 1.1. Фиксируем данные по сдвигу в redux:
-  handleStageShiftChange = newShift => {
+  handleStageShiftChange = (shift) => {
     const { boardState } = this.props;
-    if (boardState.shift[0] !== newShift[0] 
-         || boardState.shift[1] !== newShift[1]) { 
+    if (boardState.shift[0] !== shift[0] 
+         || boardState.shift[1] !== shift[1]) { 
       // заносим данные в redux:
       const { actions } = this.props;
-      const newState = Object.assign({}, boardState);
-      newState.shift = newShift;
+      const newState = { ...boardState, shift };
 
       actions.changeBoardState(newState);
     }
@@ -136,14 +135,13 @@ class AdvancedBoard extends React.Component {
       return this.haveIntersection(currBorder, currObject);
     });
 
-    // Поменять цвет текущего объекта:
+    const hasIntersection = !(intersectedWithMapObjects || boundariesOverstepped);
     const { actions } = this.props;
-    const newLocData = { id: object.id };
-    if (intersectedWithMapObjects || boundariesOverstepped) {
-      newLocData.corrLoc = false;
-    } else {
-      newLocData.corrLoc = true;
-    }
+    const newLocData = { 
+      id: object.id, 
+      corrLoc: hasIntersection
+    };
+    
     actions.changeCorrectLocation(newLocData);
   };
 
@@ -267,8 +265,9 @@ class AdvancedBoard extends React.Component {
   // 5.2. КОНТЕКСТНОЕ МЕНЮ ТЕКУЩЕГО ОБЪЕКТА (СЦЕНЫ):-------------------------------------------
   // 5.2.1. Показать контекстное меню
   showContextMenu = (x, y) => {
+    const offset = 5;
     this.setState({
-      contextMenuPos: [x + 5, y + 5],
+      contextMenuPos: [x + offset, y + offset],
       contextMenuShow: true,
     });
   };

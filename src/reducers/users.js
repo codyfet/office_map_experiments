@@ -32,11 +32,9 @@ export default function users(state = initialState, action) {
     }
     case DELETE_USER: {
       const id = action.payload;
-      let newUsers = state.slice(0);
-
-      newUsers = newUsers.filter(userObj => userObj.id !== id);
-      return newUsers;
+      return state.filter(userObj => userObj.id !== id);
     }
+    
     default: {
       return state;
     }

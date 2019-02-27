@@ -68,12 +68,13 @@ class ProjectsList extends React.Component {
 
   render() {
     const { selectedProjectId, showCreateProjectPanel, searchPhrase } = this.state;
+    const { projects } = this.props;
 
-    const requiredProjects = mapData.projects.filter((project) => {
-      const projetTitle = project.title.toLowerCase();
+    const requiredProjects = projects.filter((p) => {
+      const pTitle = p.title.toLowerCase();
       const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;
-      else return projetTitle.startsWith(formattedSPhrase);
+      else return pTitle.startsWith(formattedSPhrase);
     });
 
     const loadProjects = requiredProjects.map((project) => {
@@ -91,24 +92,24 @@ class ProjectsList extends React.Component {
     });
 
     // получить новый id для проекта:
-    // const { users } = this.props;
-    // const lastId = users.reduce((prevVal, nextVal, i) => {
-    //   let prevId;
-    //   let nextId;
-    //   if (i === 1) {
-    //     prevId = Number(prevVal.id.slice(1));
-    //     nextId = Number(nextVal.id.slice(1));
-    //   } else {
-    //     prevId = prevVal;
-    //     nextId = Number(nextVal.id.slice(1));
-    //   }
+    const lastId = projects.reduce((prevVal, nextVal, i) => {
+      let prevId;
+      let nextId;
+      if (i === 1) {
+        prevId = Number(prevVal.id.slice(1));
+        nextId = Number(nextVal.id.slice(1));
+      } else {
+        prevId = prevVal;
+        nextId = Number(nextVal.id.slice(1));
+      }
 
-    //   return nextId > prevId ? nextId : prevId;
-    // });
+      return nextId > prevId ? nextId : prevId;
+    });
 
-    // const newId = `t${String(lastId + 1).padStart(4, '0')}`;
+    const newId = `p${lastId + 1}`;
+
     const newDefaultProject = {
-      id: '',
+      id: newId,
       projectId: 'name',
       title: 'Название',
       about: 'Информация о проекте'
@@ -140,7 +141,8 @@ class ProjectsList extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   objects: state.objects,
-  currentObject: state.currentObject
+  currentObject: state.currentObject,
+  projects: state.projects
 });
 
 const mapDispatchToProps = dispatch => ({

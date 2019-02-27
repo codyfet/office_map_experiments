@@ -2,7 +2,7 @@ import * as React from 'react';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addUser } from '../../../actions/index';
+import { createProject } from '../../../actions/index';
 
 import EditField from '../EditField/index';
 import './styles.css';
@@ -46,7 +46,7 @@ class UserCreate extends React.Component {
       return;
     }
 
-    // actions.addUser(projectData);
+    actions.createProject(projectData);
 
     onClose();
   };
@@ -106,7 +106,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ addUser }, dispatch),
+  actions: bindActionCreators({ createProject }, dispatch),
 });
 
 export default connect(

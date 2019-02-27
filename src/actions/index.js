@@ -17,6 +17,7 @@ import {
   CHANGE_CURRENT_USER,
   CHANGE_CURRENT_OBJECT_STATE,
   CHANGE_WORK_MODE,
+  CREATE_PROJECT
 } from '../res/constants';
 
 // actions wuth objects:
@@ -112,4 +113,10 @@ export const deleteUser = userId => ({
 export const changeWorkMode = newWM => ({
   type: CHANGE_WORK_MODE,
   payload: newWM,
+});
+
+// actions with projects:
+export const createProject = (newProject) => ({
+  type: CREATE_PROJECT,
+  payload: newProject,
 });

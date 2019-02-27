@@ -5,6 +5,7 @@ import users from './users';
 import currentObject from './currentObject';
 import mapState from './mapState';
 import workMode from './workMode';
+import projects from './projects';
 
 export default combineReducers({
   workMode,
@@ -13,4 +14,5 @@ export default combineReducers({
   currentObject,
   users,
   objects,
+  projects
 });

@@ -47,11 +47,10 @@ export default function objects(state = initialState, action) {
     }
     case MOVE_OBJECT: {
       const lvl = state.mapLevel;
-      const newLevels = state.levels.slice(0);
-
       const objectId = action.payload.id;
       const newPosition = action.payload.pos;
-
+      
+      const newLevels = state.levels.slice(0);
       const movedObject = newLevels[lvl].find(val => val.id === objectId);
       if (movedObject !== undefined) {
         movedObject.coordinates = newPosition;
@@ -64,10 +63,10 @@ export default function objects(state = initialState, action) {
     }
     case CHANGE_CORRECT_LOCATION: {
       const lvl = state.mapLevel;
-      const newLevels = state.levels.slice(0);
-
       const objectId = action.payload.id;
       const corrLoc = action.payload.corrLoc;
+      
+      const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
         object.correctLocation = corrLoc;
@@ -80,9 +79,9 @@ export default function objects(state = initialState, action) {
     }
     case TURN_OBJECT: {
       const lvl = state.mapLevel;
-      const newLevels = state.levels.slice(0);
-
       const objectId = action.payload;
+      
+      const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
         const tempW = object.width;
@@ -103,10 +102,10 @@ export default function objects(state = initialState, action) {
     }
     case UPDATE_USER: {
       const lvl = state.mapLevel;
-      const newLevels = state.levels.slice(0);
-
       const objectId = action.payload.id;
       const newUserId = action.payload.userId;
+      
+      const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
         object.userId = newUserId;
@@ -119,9 +118,9 @@ export default function objects(state = initialState, action) {
     }
     case CHANGE_ANY_OBJECT_DATA: {
       const lvl = state.mapLevel;
-      const newLevels = state.levels.slice(0);
-
       const objectData = action.payload;
+      
+      const newLevels = state.levels.slice(0);   
       const object = newLevels[lvl].find(val => val.id === objectData.id);
       if (object !== undefined) {
         Object.keys(objectData).forEach(key => {
@@ -136,10 +135,10 @@ export default function objects(state = initialState, action) {
     }
     case SHIFT_OBJECTS: {
       const lvl = state.mapLevel;
-      const newLevels = state.levels.slice(0);
-
-      const objectIds = action.payload.ids.split(' ');
       const shift = action.payload.shift;
+      const objectIds = action.payload.ids.split(' ');
+     
+      const newLevels = state.levels.slice(0);
       newLevels[lvl].forEach(elem => {
         if (objectIds.includes(elem.id)) {
           elem.coordinates = {

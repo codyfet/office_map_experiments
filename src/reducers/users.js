@@ -14,19 +14,18 @@ export default function users(state = initialState, action) {
     }
 
     case EDIT_USER: {
-      const id = action.payload.id;
       const newUserData = action.payload;
-      const newUsers = state.slice(0);
-
-      const user = newUsers.find(userObj => userObj.id === id);
-
-      if (user !== undefined) {
-        Object.keys(newUserData).forEach(key => {
-          if (key !== 'id' && key !== 'category') {
-            user[key] = newUserData[key];
-          }
-        });
-      }
+    
+      const newUsers = state.map((user) => {
+        if (user.id === newUserData.id) {
+          Object.keys(newUserData).forEach((key) => {
+            if (key !== 'id' && key !== 'category') {
+              user[key] = newUserData[key];
+            }
+          });
+        }
+        return user; 
+      }); 
 
       return newUsers;
     }

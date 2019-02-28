@@ -330,24 +330,24 @@ class AdvancedBoard extends React.Component {
   };
 
   // 5.3.2. Выделение объекта цветом:
-  setColor = (id, objectHasIntersection, originalColor, userId) => {
-    const { currentObject } = this.props;
+  // setColor = (id, objectHasIntersection, originalColor, userId) => {
+  //   const { currentObject } = this.props;
 
-    let chosenColor = originalColor;
+  //   let chosenColor = originalColor;
 
-    // если userId определено и пусто, то это стол без пользователя:
-    if (userId !== undefined && userId === '') {
-      chosenColor = EMPTY_TABLE_COLOR;
-    }
+  //   // если userId определено и пусто, то это стол без пользователя:
+  //   if (userId !== undefined && userId === '') {
+  //     chosenColor = EMPTY_TABLE_COLOR;
+  //   }
 
-    if (objectHasIntersection) {
-      chosenColor = WARNING_COLOR;
-    }
+  //   if (objectHasIntersection) {
+  //     chosenColor = WARNING_COLOR;
+  //   }
 
-    chosenColor = currentObject.objectId.split(' ').includes(id) ? SELECTED_COLOR : chosenColor;
+  //   chosenColor = currentObject.objectId.split(' ').includes(id) ? SELECTED_COLOR : chosenColor;
 
-    return chosenColor;
-  };
+  //   return chosenColor;
+  // };
 
   // 5.3.3. Сброс объекта и контекстного меню (для popover и konvaGrid):
   flushAll = () => {
@@ -398,7 +398,8 @@ class AdvancedBoard extends React.Component {
             key={object.id}
             object={object}
             user={currUser}
-            setColor={this.setColor}
+            isSelected={selectedObjects.includes(object.id)}
+            // setColor={this.setColor}
             mapWidth={mapWidth}
             mapHeight={mapHeight}
             blockSnapSize={blockSnapSize}
@@ -412,40 +413,17 @@ class AdvancedBoard extends React.Component {
           />
         );
       } else {
-        // const staticObject = withContextMenu(
-        //   <SimpleMapObject
-        //     key={object.id}
-        //     object={object}
-        //     setColor={this.setColor}
-        //     setCurrentObject={this.setCurrentObject}
-        //     openCurrentObjectTab={this.openCurrentObjectTab}
-        //   />,
-        //   (e) => {
-        //     e.evt.preventDefault();
-        //     this.showContextMenu(e.evt.clientX, e.evt.clientY);
-        //     // открыть окно редактирования:
-        //     this.openCurrentObjectTab();
-        //   }
-        // );
-
         return (
-          <SimpleMapObject
+          <StaticObject
             key={object.id}
             object={object}
             isSelected={selectedObjects.includes(object.id)}
             // setColor={this.setColor}
+            showContextMenu={this.showContextMenu}
+            hideContextMenu={this.hideContextMenu}
             setCurrentObject={this.setCurrentObject}
             openCurrentObjectTab={this.openCurrentObjectTab}
           />
-          // <StaticObject
-          //   key={object.id}
-          //   object={object}
-          //   setColor={this.setColor}
-          //   showContextMenu={this.showContextMenu}
-          //   hideContextMenu={this.hideContextMenu}
-          //   setCurrentObject={this.setCurrentObject}
-          //   openCurrentObjectTab={this.openCurrentObjectTab}
-          // />
         );
       }
     });
@@ -498,21 +476,21 @@ class AdvancedBoard extends React.Component {
           <Layer>
             <Label opacity={0.75} visible={false} listening={false}>
               <Tag
-                fill="black"
+                fill="#5059DD"
                 pointerDirection="down"
-                pointerWidth={10}
-                pointerHeight={10}
+                pointerWidth={Math.floor(10 / boardState.scale)}
+                pointerHeight={Math.floor(10 / boardState.scale)}
                 lineJoin="round"
                 shadowColor="black"
                 shadowBlur={10}
                 shadowOffset={10}
-                shadowOpacity={0.2}
+                shadowOpacity={0.8}
               />
               <Text
                 text=""
-                fontFamily="Calibri"
-                fontSize={Math.floor(14 / boardState.scale)}
-                padding={5}
+                fontFamily="Arial"
+                fontSize={Math.floor(16 / boardState.scale)}
+                padding={Math.floor(5 / boardState.scale)}
                 fill="white"
                 name="objectTooltip"
               />

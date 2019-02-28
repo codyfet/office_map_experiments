@@ -124,9 +124,12 @@ export default class StaticObject extends React.PureComponent {
   };
 
   // цвет объекта и выделение:
-  // для статичного объекта
   setColor = () => {
     const { object } = this.props;
+    // если userId определено и пусто, то это стол без пользователя:
+    if (object.userId !== undefined && object.userId === '') {
+      return EMPTY_TABLE_COLOR;
+    }
     return object.hasIntersection ? WARNING_COLOR : object.color; 
   };
 
@@ -169,8 +172,6 @@ export default class StaticObject extends React.PureComponent {
           height={object.height - paddingSelection * 2}
           fill={this.setColor()}
           opacity={isPointed ? 0.5 : 1}
-          // stroke={strokeColor}
-          // strokeWidth={strokeWidth}
         />
         {objectIcon}
       </Group>

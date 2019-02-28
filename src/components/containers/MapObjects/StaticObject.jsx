@@ -4,6 +4,7 @@ import { Rect, Group, Path } from 'react-konva';
 import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
+import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
 
 export default class StaticObject extends React.PureComponent {
   constructor(props) {
@@ -115,16 +116,35 @@ export default class StaticObject extends React.PureComponent {
   };
 
   handleObjectMouseMove = (e) => {
+    e.target.getStage().container().style.cursor = 'pointer';
     this.showTooltipObjectInfo(e);
   };
 
   handleObjectMouseOut = (e) => {
+    e.target.getStage().container().style.cursor = 'default';
     this.hideTooltipObjectInfo(e);
   };
 
+  // цвет объекта и выделение:
+  setColor = () => {
+    const { object } = this.props;
+    // если userId определено и пусто, то это стол без пользователя:
+    if (object.userId !== undefined && object.userId === '') {
+      return EMPTY_TABLE_COLOR;
+    }
+    return object.hasIntersection ? WARNING_COLOR : object.color; 
+  };
+
+  setSelection = (isSelected) => {
+    return isSelected ? SELECTED_COLOR : this.setColor();
+  }
+
   render() {
-    const { object, setColor } = this.props;
+    const { object, isSelected } = this.props;
     const { isPointed, objectIcon } = this.state;
+    const selectionColor = this.setSelection(isSelected);
+
+    const paddingSelection = 5;
     
     return (
       <Group
@@ -138,17 +158,22 @@ export default class StaticObject extends React.PureComponent {
         name="object"
         nameID={object.id}
       >
+        {/* Область выделения объекта: */}
         <Rect
           width={object.width}
           height={object.height}
-          fill={setColor(object.id, object.hasIntersection, object.color)}
+          fill={selectionColor}
           opacity={isPointed ? 0.5 : 1}
           stroke="black"
           strokeWidth={0.5}
-          // shadowColor={'black'}
-          // shadowBlur={2}
-          // shadowOffset={{x : 1, y : 1}}
-          // shadowOpacity={0.4}
+        />
+        <Rect
+          x={paddingSelection}
+          y={paddingSelection}
+          width={object.width - paddingSelection * 2}
+          height={object.height - paddingSelection * 2}
+          fill={this.setColor()}
+          opacity={isPointed ? 0.5 : 1}
         />
         {objectIcon}
       </Group>

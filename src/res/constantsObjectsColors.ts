@@ -1,10 +1,10 @@
 const DEFAULT_COLOR = '#E9DAA8'; // '#F9F2DC'
-const EMPTY_TABLE_COLOR = '#C2BEAF';
+const EMPTY_TABLE_COLOR = '#DFDDD8'; // '#C2BEAF';
 const WARNING_COLOR = 'red';
 const SELECTED_COLOR = 'orange';
 
 // default colors for objects categories:
-const TABLE_COLOR = '#F3F681';
+const TABLE_COLOR = '#F5F79A'; // '#F3F681';
 const CUPBOARD_COLOR = '#DED9C3';
 const PRINTER_COLOR = '#DDDDDD';
 const SCANER_COLOR = '#DDDDDD';

@@ -18,15 +18,8 @@ import {
 
 import MovableObject from '../MapObjects/MovableObject';
 import StaticObject from '../MapObjects/StaticObject';
-import SimpleMapObject from '../MapObjects/SimpleMapObject';
-import withContextMenu from '../MapObjects/withContextMenu';
 import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
 import MapShape from '../MapShape/index';
-import {
-  EMPTY_TABLE_COLOR,
-  WARNING_COLOR,
-  SELECTED_COLOR,
-} from '../../../res/constantsObjectsColors';
 
 // popup:
 import PopoverContainer from '../PopoverContainer/index';
@@ -329,27 +322,7 @@ class AdvancedBoard extends React.Component {
     }
   };
 
-  // 5.3.2. Выделение объекта цветом:
-  // setColor = (id, objectHasIntersection, originalColor, userId) => {
-  //   const { currentObject } = this.props;
-
-  //   let chosenColor = originalColor;
-
-  //   // если userId определено и пусто, то это стол без пользователя:
-  //   if (userId !== undefined && userId === '') {
-  //     chosenColor = EMPTY_TABLE_COLOR;
-  //   }
-
-  //   if (objectHasIntersection) {
-  //     chosenColor = WARNING_COLOR;
-  //   }
-
-  //   chosenColor = currentObject.objectId.split(' ').includes(id) ? SELECTED_COLOR : chosenColor;
-
-  //   return chosenColor;
-  // };
-
-  // 5.3.3. Сброс объекта и контекстного меню (для popover и konvaGrid):
+  // 5.3.2. Сброс объекта и контекстного меню (для popover и konvaGrid):
   flushAll = () => {
     this.hideContextMenu();
 
@@ -360,7 +333,7 @@ class AdvancedBoard extends React.Component {
     actions.changeCurrentObjectState('none');
   };
 
-  // 5.3.4. Открыть вкладку "Редактировать"
+  // 5.3.3. Открыть вкладку "Редактировать"
   openCurrentObjectTab = () => {
     const { actions, workMode } = this.props;
     if (workMode !== MULTI_EDIT) {
@@ -399,7 +372,6 @@ class AdvancedBoard extends React.Component {
             object={object}
             user={currUser}
             isSelected={selectedObjects.includes(object.id)}
-            // setColor={this.setColor}
             mapWidth={mapWidth}
             mapHeight={mapHeight}
             blockSnapSize={blockSnapSize}
@@ -418,7 +390,6 @@ class AdvancedBoard extends React.Component {
             key={object.id}
             object={object}
             isSelected={selectedObjects.includes(object.id)}
-            // setColor={this.setColor}
             showContextMenu={this.showContextMenu}
             hideContextMenu={this.hideContextMenu}
             setCurrentObject={this.setCurrentObject}

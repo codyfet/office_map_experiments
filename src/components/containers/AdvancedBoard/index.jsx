@@ -89,7 +89,7 @@ class AdvancedBoard extends React.Component {
   // 2.2. Функция проверяет текущий объект сцены:
   // если пересекается с границами карты или объектами, то hasIntersection = true
   // иначе  - hasIntersection = false
-  checkObjectLocation = (object) => {
+  checkObjectHasIntersection = (object) => {
     // получить координаты текущего объекта:
     const currObject = {
       x: object.coordinates.x,
@@ -146,13 +146,13 @@ class AdvancedBoard extends React.Component {
     actions.setHasIntersection(newLocData);
   };
 
-  checkCurrentObjectLocation = () => {
+  checkCurrentObjectHasIntersection = () => {
     const { currentObject, objects } = this.props;
     const thisLevelObjects = objects.levels[objects.mapLevel];
     const objectIds = currentObject.objectId.split(' ');
     thisLevelObjects.forEach(elem => {
       if (objectIds.includes(elem.id)) {
-        this.checkObjectLocation(elem);
+        this.checkObjectHasIntersection(elem);
       }
     });
   };
@@ -282,7 +282,7 @@ class AdvancedBoard extends React.Component {
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
   // 5.3.1. Выбор текущего объекта и пользователя (если есть):
-  setCurrentObjectData = (objectId, userId) => {
+  setCurrentObject = (objectId, userId) => {
     // изменим текущий объект для redux:
     const { actions, workMode, currentObject } = this.props;
 
@@ -403,8 +403,8 @@ class AdvancedBoard extends React.Component {
             stopShadow={this.hideCurrentObjectShadow}
             showContextMenu={this.showContextMenu}
             hideContextMenu={this.hideContextMenu}
-            shareObjectData={this.setCurrentObjectData}
-            checkObjectLocation={this.checkObjectLocation}
+            setCurrentObject={this.setCurrentObject}
+            checkHasIntersection={this.checkObjectHasIntersection}
             openCurrentObjectTab={this.openCurrentObjectTab}
           />
         );
@@ -414,7 +414,7 @@ class AdvancedBoard extends React.Component {
         //     key={object.id}
         //     object={object}
         //     setColor={this.setColor}
-        //     shareObjectData={this.setCurrentObjectData}
+        //     setCurrentObject={this.setCurrentObject}
         //     openCurrentObjectTab={this.openCurrentObjectTab}
         //   />,
         //   (e) => {
@@ -433,7 +433,7 @@ class AdvancedBoard extends React.Component {
             setColor={this.setColor}
             showContextMenu={this.showContextMenu}
             hideContextMenu={this.hideContextMenu}
-            shareObjectData={this.setCurrentObjectData}
+            setCurrentObject={this.setCurrentObject}
             openCurrentObjectTab={this.openCurrentObjectTab}
           />
         );

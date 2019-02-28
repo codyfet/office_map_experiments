@@ -19,12 +19,12 @@ export default class MovableObject extends React.PureComponent {
   }
 
   componentDidMount() {
-    const { checkObjectLocation, object } = this.props;
-    checkObjectLocation(object);
+    const { checkHasIntersection, object } = this.props;
+    checkHasIntersection(object);
   }
 
   componentDidUpdate(prevProps) {
-    const { checkObjectLocation, object } = this.props;
+    const { checkHasIntersection, object } = this.props;
 
     // проверим границы для измененного объекта:
     // будем проверять границы при каждом изменении размеров и координат объекта:
@@ -32,7 +32,7 @@ export default class MovableObject extends React.PureComponent {
         || prevProps.object.height !== object.height 
         || prevProps.object.coordinates.x !== object.coordinates.x 
         || prevProps.object.coordinates.y !== object.coordinates.y) {
-      checkObjectLocation(object);
+      checkHasIntersection(object);
       this.setState({
         objectIcon: this.drawIcon(object)
       });
@@ -131,7 +131,7 @@ export default class MovableObject extends React.PureComponent {
   // ОБРАБОТКА СОБЫТИЙ:
   // ---------------------------------------------------------
   handleObjectDragStart = (e) => {
-    const { hideContextMenu, object, shareObjectData } = this.props;
+    const { hideContextMenu, object, setCurrentObject } = this.props;
 
     // объект в состоянии перетаскивания:
     this.setState({
@@ -143,12 +143,12 @@ export default class MovableObject extends React.PureComponent {
 
     // обработка информации о пользователе:
     const userId = object.userId === undefined ? '' : object.userId;
-    shareObjectData(object.id, userId);
+    setCurrentObject(object.id, userId);
     hideContextMenu();
   };
 
   handleObjectDragEnd = (e) => {
-    const { showShadow, stopShadow, shareObjectData, blockSnapSize, object } = this.props;
+    const { showShadow, stopShadow, setCurrentObject, blockSnapSize, object } = this.props;
 
     const { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
     e.currentTarget.position({
@@ -159,7 +159,7 @@ export default class MovableObject extends React.PureComponent {
     showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
     // обработка информации о пользователе:
     const userId = object.userId === undefined ? '' : object.userId;
-    shareObjectData(object.id, userId);
+    setCurrentObject(object.id, userId);
 
     stopShadow();
 
@@ -178,11 +178,11 @@ export default class MovableObject extends React.PureComponent {
 
   handleObjectClick = (e) => {
     // всегда сообщаем id объекта:
-    const { shareObjectData, object } = this.props;
+    const { setCurrentObject, object } = this.props;
 
     // обработка информации о пользователе:
     const userId = object.userId === undefined ? '' : object.userId;
-    shareObjectData(object.id, userId);
+    setCurrentObject(object.id, userId);
 
     // выведем объект на передний план:
     e.currentTarget.moveToTop();

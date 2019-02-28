@@ -97,9 +97,9 @@ export default class StaticObject extends React.PureComponent {
   // ---------------------------------------------------------
   handleObjectClick = (e) => {
     // всегда сообщаем id объекта:
-    const { shareObjectData, object } = this.props;
+    const { setCurrentObject, object } = this.props;
 
-    shareObjectData(object.id, object.userId);
+    setCurrentObject(object.id, object.userId);
 
     // выведем объект на передний план:
     e.currentTarget.moveToTop();

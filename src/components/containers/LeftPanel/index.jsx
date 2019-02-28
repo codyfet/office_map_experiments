@@ -45,7 +45,7 @@ class LeftPanel extends React.Component {
 
   handleChange = (e) => {
     const { actions } = this.props;
-    const newWM = e.target.checked === true ? MULTI_EDIT : SINGLE_EDIT;
+    const newWM = e.target.checked ? MULTI_EDIT : SINGLE_EDIT;
     actions.changeWorkMode(newWM);
   };
 

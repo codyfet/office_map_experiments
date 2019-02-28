@@ -200,7 +200,7 @@ class AdvancedBoard extends React.Component {
 
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
-  objectDataToRedux = () => {
+  changeObjectLocation = () => {
     const { actions, workMode, currentObject, objects } = this.props;
     const { selectedObjectPos } = this.state;
 
@@ -256,7 +256,7 @@ class AdvancedBoard extends React.Component {
 
   // 5.1.2. Скрыть тень (при остановке движения (drop) объекта):
   hideCurrentObjectShadow = () => {
-    this.objectDataToRedux();
+    this.changeObjectLocation();
 
     this.setState({
       shadowOpacity: 0,
@@ -383,7 +383,7 @@ class AdvancedBoard extends React.Component {
     const loadObject = thisLevelObjects.map((elem) => {
       // здесь нужно глубокое копирование:
       const object = _.cloneDeep(elem);
-      if (object.movable === true) {
+      if (object.movable) {
         // если у объекта нет свойства userId, то искать ничего не нужно:
         let currUser = {};
         if (object.userId !== undefined) {

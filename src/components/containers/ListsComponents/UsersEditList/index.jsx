@@ -188,10 +188,10 @@ class UsersEditList extends React.Component {
         <button type="submit" className="buttonAddUser" onClick={this.onBtnAddUser}>
           Добавить пользователя
         </button>
-        {showUserCreatePanel === true && (
+        {showUserCreatePanel && (
           <UserCreate user={this.getNewDefaultUser()} onClose={this.onCloseUserCreatePanel} />
         )}
-        {showUserCreatePanel === false && (
+        {!showUserCreatePanel && (
           <ul className={userId === '' ? 'usersEditListList' : 'usersEditListChosen'}>
             {loadUsers}
           </ul>

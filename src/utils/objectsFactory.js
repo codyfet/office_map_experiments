@@ -16,7 +16,7 @@ export default function createMapObject(type, id, coords, userId) {
     id: id,
     coordinates: coords,
     movable: true,
-    correctLocation: true,
+    hasIntersection: true,
     color: TABLE_COLOR,
   };
 

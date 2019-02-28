@@ -124,7 +124,7 @@
           "height": 50,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         }
       ]
     },
@@ -154,7 +154,7 @@
           "height": 120,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -165,7 +165,7 @@
           "height": 250,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -176,7 +176,7 @@
           "height": 350,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -187,7 +187,7 @@
           "height": 270,
           "color": "#A3FFA0",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "service_room",
@@ -198,7 +198,7 @@
           "height": 110,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -209,7 +209,7 @@
           "height": 260,
           "color": "#D5BD86",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "service_room",
@@ -220,7 +220,7 @@
           "height": 200,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "meeting_room",
@@ -231,7 +231,7 @@
           "height": 380,
           "color": "#B3ECEE",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "table",
@@ -241,7 +241,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": "t0020"
         },
         {
@@ -252,7 +252,7 @@
           "height": 30,
           "color": "#DDDDDD",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "scaner",
@@ -262,7 +262,7 @@
           "height": 40,
           "color": "#DDDDDD",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "shredder",
@@ -272,7 +272,7 @@
           "height": 30,
           "color": "#DDDDDD",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "meeting_room",
@@ -283,7 +283,7 @@
           "height": 210,
           "color": "#B3ECEE",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "meeting_room",
@@ -294,7 +294,7 @@
           "height": 300,
           "color": "#B3ECEE",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "service_room",
@@ -305,7 +305,7 @@
           "height": 150,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -316,7 +316,7 @@
           "height": 320,
           "color": "#FEE471",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -327,7 +327,7 @@
           "height": 300,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "meeting_room",
@@ -338,7 +338,7 @@
           "height": 300,
           "color": "#B3ECEE",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "meeting_room",
@@ -349,7 +349,7 @@
           "height": 300,
           "color": "#B3ECEE",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -360,7 +360,7 @@
           "height": 300,
           "color": "#D5BD86",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "service_room",
@@ -371,7 +371,7 @@
           "height": 90,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -382,7 +382,7 @@
           "height": 190,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "public_place",
@@ -393,7 +393,7 @@
           "height": 190,
           "color": "#EDEADD",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -403,7 +403,7 @@
           "height": 45,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -413,7 +413,7 @@
           "height": 45,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -423,7 +423,7 @@
           "height": 45,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -433,7 +433,7 @@
           "height": 45,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -443,7 +443,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -453,7 +453,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -463,7 +463,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -473,7 +473,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -483,7 +483,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -493,7 +493,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -503,7 +503,7 @@
           "height": 25,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -513,7 +513,7 @@
           "height": 60,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -523,7 +523,7 @@
           "height": 60,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -533,7 +533,7 @@
           "height": 45,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -543,7 +543,7 @@
           "height": 120,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -553,7 +553,7 @@
           "height": 290,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -563,7 +563,7 @@
           "height": 20,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -573,7 +573,7 @@
           "height": 20,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "construction",
@@ -583,7 +583,7 @@
           "height": 460,
           "color": "#CCCAC2",
           "movable": false,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "printer",
@@ -593,7 +593,7 @@
           "height": 40,
           "color": "#DDDDDD",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "printer",
@@ -603,7 +603,7 @@
           "height": 30,
           "color": "#DDDDDD",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "cupboard",
@@ -613,7 +613,7 @@
           "height": 30,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "scaner",
@@ -623,7 +623,7 @@
           "height": 40,
           "color": "#DDDDDD",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "table",
@@ -633,7 +633,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": "t0018"
         },
         {
@@ -644,7 +644,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": "t0023"
         },
         {
@@ -655,7 +655,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -666,7 +666,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -677,7 +677,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -688,7 +688,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -699,7 +699,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -710,7 +710,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -721,7 +721,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -732,7 +732,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -743,7 +743,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -754,7 +754,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -765,7 +765,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -776,7 +776,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -787,7 +787,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -798,7 +798,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -809,7 +809,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -820,7 +820,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -831,7 +831,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -842,7 +842,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -853,7 +853,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -864,7 +864,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -875,7 +875,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -886,7 +886,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -897,7 +897,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -908,7 +908,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -919,7 +919,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -930,7 +930,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -941,7 +941,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -952,7 +952,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -963,7 +963,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -974,7 +974,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -985,7 +985,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -996,7 +996,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1007,7 +1007,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1018,7 +1018,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1029,7 +1029,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1040,7 +1040,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1051,7 +1051,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1062,7 +1062,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1073,7 +1073,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1084,7 +1084,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1095,7 +1095,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1106,7 +1106,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1117,7 +1117,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1128,7 +1128,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1139,7 +1139,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1150,7 +1150,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1161,7 +1161,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1172,7 +1172,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1183,7 +1183,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1194,7 +1194,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1205,7 +1205,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1216,7 +1216,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1227,7 +1227,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1238,7 +1238,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1249,7 +1249,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1260,7 +1260,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1271,7 +1271,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1282,7 +1282,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1293,7 +1293,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1304,7 +1304,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1315,7 +1315,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1326,7 +1326,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1337,7 +1337,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1348,7 +1348,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1359,7 +1359,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1370,7 +1370,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1381,7 +1381,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1392,7 +1392,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1403,7 +1403,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1414,7 +1414,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1425,7 +1425,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1436,7 +1436,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1447,7 +1447,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1458,7 +1458,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1469,7 +1469,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1480,7 +1480,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1491,7 +1491,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1502,7 +1502,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1513,7 +1513,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1524,7 +1524,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1535,7 +1535,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1546,7 +1546,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1557,7 +1557,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1568,7 +1568,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1579,7 +1579,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1590,7 +1590,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1601,7 +1601,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1612,7 +1612,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1623,7 +1623,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1634,7 +1634,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1645,7 +1645,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1656,7 +1656,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1667,7 +1667,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1678,7 +1678,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1689,7 +1689,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1700,7 +1700,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1711,7 +1711,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1722,7 +1722,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1733,7 +1733,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1744,7 +1744,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1755,7 +1755,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1766,7 +1766,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1777,7 +1777,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1788,7 +1788,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1799,7 +1799,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1810,7 +1810,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1821,7 +1821,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1832,7 +1832,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1843,7 +1843,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1854,7 +1854,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1865,7 +1865,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1876,7 +1876,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1887,7 +1887,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1898,7 +1898,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1909,7 +1909,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1920,7 +1920,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1931,7 +1931,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1942,7 +1942,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1953,7 +1953,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1964,7 +1964,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1975,7 +1975,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1986,7 +1986,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -1997,7 +1997,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2008,7 +2008,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2019,7 +2019,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2030,7 +2030,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2041,7 +2041,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2052,7 +2052,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2063,7 +2063,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2074,7 +2074,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2085,7 +2085,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2096,7 +2096,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2107,7 +2107,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2118,7 +2118,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2129,7 +2129,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2140,7 +2140,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2151,7 +2151,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2163,7 +2163,7 @@
           "height": 65,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "cupboard",
@@ -2174,7 +2174,7 @@
           "height": 65,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "cupboard",
@@ -2184,7 +2184,7 @@
           "height": 30,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "cupboard",
@@ -2195,7 +2195,7 @@
           "height": 30,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "cupboard",
@@ -2206,7 +2206,7 @@
           "height": 30,
           "color": "#DED9C3",
           "movable": true,
-          "correctLocation": true
+          "hasIntersection": false
         },
         {
           "category": "table",
@@ -2216,7 +2216,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2227,7 +2227,7 @@
           "height": 40,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2238,7 +2238,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2249,7 +2249,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2260,7 +2260,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2271,7 +2271,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2282,7 +2282,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2293,7 +2293,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2304,7 +2304,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2315,7 +2315,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2326,7 +2326,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2337,7 +2337,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2348,7 +2348,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2359,7 +2359,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2370,7 +2370,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2381,7 +2381,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2392,7 +2392,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2403,7 +2403,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2414,7 +2414,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2425,7 +2425,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": "t0019"
         },
         {
@@ -2436,7 +2436,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2447,7 +2447,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": "t0021"
         },
         {
@@ -2458,7 +2458,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2469,7 +2469,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": "t0022"
         },
         {
@@ -2480,7 +2480,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2491,7 +2491,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2502,7 +2502,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2513,7 +2513,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2524,7 +2524,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2535,7 +2535,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2546,7 +2546,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2557,7 +2557,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2568,7 +2568,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2579,7 +2579,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2590,7 +2590,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2601,7 +2601,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2612,7 +2612,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2623,7 +2623,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2634,7 +2634,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2645,7 +2645,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2656,7 +2656,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2667,7 +2667,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2678,7 +2678,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2689,7 +2689,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2700,7 +2700,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2711,7 +2711,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2722,7 +2722,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2733,7 +2733,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2744,7 +2744,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2755,7 +2755,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2766,7 +2766,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2777,7 +2777,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2788,7 +2788,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2799,7 +2799,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2810,7 +2810,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2821,7 +2821,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2832,7 +2832,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2843,7 +2843,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2854,7 +2854,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2865,7 +2865,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2876,7 +2876,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2887,7 +2887,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2898,7 +2898,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2909,7 +2909,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2920,7 +2920,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2931,7 +2931,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2942,7 +2942,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2953,7 +2953,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2964,7 +2964,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2975,7 +2975,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2986,7 +2986,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -2997,7 +2997,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3008,7 +3008,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3019,7 +3019,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3030,7 +3030,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3041,7 +3041,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3052,7 +3052,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3063,7 +3063,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3074,7 +3074,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3085,7 +3085,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3096,7 +3096,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3107,7 +3107,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3118,7 +3118,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3129,7 +3129,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3140,7 +3140,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3151,7 +3151,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3162,7 +3162,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3173,7 +3173,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3184,7 +3184,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3195,7 +3195,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3206,7 +3206,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3217,7 +3217,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3228,7 +3228,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3239,7 +3239,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3250,7 +3250,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3261,7 +3261,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3272,7 +3272,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3283,7 +3283,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3294,7 +3294,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3305,7 +3305,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3316,7 +3316,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3327,7 +3327,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3338,7 +3338,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3349,7 +3349,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3360,7 +3360,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3371,7 +3371,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3382,7 +3382,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3393,7 +3393,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3404,7 +3404,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3415,7 +3415,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3426,7 +3426,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3437,7 +3437,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3448,7 +3448,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3459,7 +3459,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3470,7 +3470,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3481,7 +3481,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3492,7 +3492,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3503,7 +3503,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3514,7 +3514,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3525,7 +3525,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3536,7 +3536,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3547,7 +3547,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3558,7 +3558,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3569,7 +3569,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3580,7 +3580,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3591,7 +3591,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3602,7 +3602,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3613,7 +3613,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3624,7 +3624,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3635,7 +3635,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         },
         {
@@ -3646,7 +3646,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         }
       ]
@@ -3679,7 +3679,7 @@
           "height": 70,
           "color": "#F3F681",
           "movable": true,
-          "correctLocation": true,
+          "hasIntersection": false,
           "userId": ""
         }
       ]

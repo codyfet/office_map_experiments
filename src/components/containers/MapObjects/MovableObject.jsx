@@ -228,7 +228,7 @@ export default class MovableObject extends React.PureComponent {
         <Rect
           width={object.width}
           height={object.height}
-          fill={setColor(object.id, object.correctLocation, object.color, userId)}
+          fill={setColor(object.id, object.hasIntersection, object.color, userId)}
           opacity={isPointed ? 0.5 : 1}
           // stroke="black"
           // strokeWidth={0.5}

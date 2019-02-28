@@ -52,7 +52,7 @@ class SaveMapTab extends React.Component {
       'height',
       'color',
       'movable',
-      'correctLocation',
+      'hasIntersection',
       'userId',
     ];
 

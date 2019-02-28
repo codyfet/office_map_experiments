@@ -12,7 +12,7 @@ import {
   changeCurrentObject,
   changeCurrentUser,
   changeCurrentObjectState,
-  changeCorrectLocation,
+  setHasIntersection,
   shiftObjects,
 } from '../../../actions/index';
 
@@ -87,8 +87,8 @@ class AdvancedBoard extends React.Component {
   }
 
   // 2.2. Функция проверяет текущий объект сцены:
-  // если пересекается с границами карты или объектами, то correctLocation = false
-  // иначе  - correctLocation = true
+  // если пересекается с границами карты или объектами, то hasIntersection = true
+  // иначе  - hasIntersection = false
   checkObjectLocation = (object) => {
     // получить координаты текущего объекта:
     const currObject = {
@@ -136,14 +136,14 @@ class AdvancedBoard extends React.Component {
       return this.haveIntersection(currBorder, currObject);
     });
 
-    const hasIntersection = !(intersectedWithMapObjects || boundariesOverstepped);
+    const hasIntersection = intersectedWithMapObjects || boundariesOverstepped;
     const { actions } = this.props;
     const newLocData = { 
       id: object.id, 
-      corrLoc: hasIntersection
+      hasIntersection
     };
     
-    actions.changeCorrectLocation(newLocData);
+    actions.setHasIntersection(newLocData);
   };
 
   checkCurrentObjectLocation = () => {
@@ -330,7 +330,7 @@ class AdvancedBoard extends React.Component {
   };
 
   // 5.3.2. Выделение объекта цветом:
-  setColor = (id, isLocationCorrect, originalColor, userId) => {
+  setColor = (id, objectHasIntersection, originalColor, userId) => {
     const { currentObject } = this.props;
 
     let chosenColor = originalColor;
@@ -340,7 +340,7 @@ class AdvancedBoard extends React.Component {
       chosenColor = EMPTY_TABLE_COLOR;
     }
 
-    if (isLocationCorrect === false) {
+    if (objectHasIntersection) {
       chosenColor = WARNING_COLOR;
     }
 
@@ -542,7 +542,7 @@ const mapDispatchToProps = dispatch => ({
       changeCurrentObject,
       changeCurrentUser,
       changeCurrentObjectState,
-      changeCorrectLocation,
+      setHasIntersection,
       shiftObjects,
     },
     dispatch,

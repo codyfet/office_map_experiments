@@ -6,7 +6,7 @@ import {
   TURN_OBJECT,
   UPDATE_USER,
   CHANGE_OBJECTS_LEVEL,
-  CHANGE_CORRECT_LOCATION,
+  SET_HAS_INTERSECTION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
   CHANGE_MAP_LEVEL,
@@ -51,8 +51,8 @@ export const changeObjectsLevel = level => ({
   payload: level,
 });
 
-export const changeCorrectLocation = objData => ({
-  type: CHANGE_CORRECT_LOCATION,
+export const setHasIntersection = objData => ({
+  type: SET_HAS_INTERSECTION,
   payload: objData,
 });
 

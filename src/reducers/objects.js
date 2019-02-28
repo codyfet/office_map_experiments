@@ -5,7 +5,7 @@ import {
   DELETE_OBJECT,
   UPDATE_USER,
   CHANGE_OBJECTS_LEVEL,
-  CHANGE_CORRECT_LOCATION,
+  SET_HAS_INTERSECTION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
 } from '../res/constants';
@@ -61,15 +61,15 @@ export default function objects(state = initialState, action) {
         levels: newLevels,
       };
     }
-    case CHANGE_CORRECT_LOCATION: {
+    case SET_HAS_INTERSECTION: {
       const lvl = state.mapLevel;
       const objectId = action.payload.id;
-      const corrLoc = action.payload.corrLoc;
+      const hasIntersection = action.payload.hasIntersection;
       
       const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
-        object.correctLocation = corrLoc;
+        object.hasIntersection = hasIntersection;
       }
 
       return {

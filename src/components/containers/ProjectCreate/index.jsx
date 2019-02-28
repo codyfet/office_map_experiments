@@ -23,11 +23,10 @@ class UserCreate extends React.Component {
 
   handleInputChange = (settings) => {
     const { projectSettings } = this.state;
-    let newProjectSettings = Object.assign({}, projectSettings);
-    newProjectSettings = Object.assign(newProjectSettings, settings);
+    let newProjectSettings = { ...projectSettings, ...settings };
 
     this.setState({
-      projectSettings: newProjectSettings,
+      projectSettings: newProjectSettings
     });
   };
 

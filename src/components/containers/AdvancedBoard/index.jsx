@@ -65,11 +65,10 @@ class AdvancedBoard extends React.Component {
   };
 
   // 1.2. Масштабируем сцену и фиксируем данные в redux:
-  handleStageScaleChange = newScale => {
+  handleStageScaleChange = (scale) => {
     // заносим данные в redux:
     const { actions, boardState } = this.props;
-    const newState = Object.assign({}, boardState);
-    newState.scale = newScale;
+    const newState = { ...boardState, scale };
 
     actions.changeBoardState(newState);
   };

@@ -21,20 +21,19 @@ class CurrentObjectSettings extends React.Component {
     });
   }
 
-  onInputChange = settings => {
+  onInputChange = (settings) => {
     const { objectSettings } = this.state;
-    let newObjectSettings = Object.assign({}, objectSettings);
-    newObjectSettings = Object.assign(newObjectSettings, settings);
+    let newObjectSettings = { ...objectSettings, ...settings };
 
     this.setState({
       objectSettings: newObjectSettings,
     });
   };
 
-  sendChangedDataToRedux = objectData => {
+  sendChangedDataToRedux = (objectData) => {
     const { currentObject, actions } = this.props;
-    const newObjectData = Object.assign({}, objectData);
-    newObjectData.id = currentObject.objectId;
+    const id = currentObject.objectId;
+    const newObjectData = { ...objectData, id };
 
     actions.changeAnyObjectData(newObjectData);
   };

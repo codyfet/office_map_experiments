@@ -62,7 +62,7 @@ class SaveMapTab extends React.Component {
 
     // дополним его изменившимися данными:
     mapDataFile.levels = objects.levels.map((objs, i) => {
-      const levelData = Object.assign({}, mapDataFile.levels[i]);
+      const levelData = _.cloneDeep(mapDataFile.levels[i]);
       levelData.objects = objs.map((obj) => {
         // запишем поля в определенном порядке:
         const formattedObject = {};

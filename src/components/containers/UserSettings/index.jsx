@@ -22,18 +22,17 @@ class UserSettings extends React.Component {
 
   onInputChange = (settings) => {
     const { userSettings } = this.state;
-    let newUserSettings = Object.assign({}, userSettings);
-    newUserSettings = Object.assign(newUserSettings, settings);
-
+    const newUserSettings = { ...userSettings, ...settings };
+  
     this.setState({
-      userSettings: newUserSettings,
+      userSettings: newUserSettings
     });
   };
 
-  sendChangedDataToRedux = userData => {
+  sendChangedDataToRedux = (userData) => {
     const { actions, user } = this.props;
-    const newUserData = Object.assign({}, userData);
-    newUserData.id = user.id;
+    const id = user.id;
+    const newUserData = { ...userData, id };
 
     actions.editUser(newUserData);
   };

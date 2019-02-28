@@ -22,10 +22,9 @@ class UserCreate extends React.Component {
     });
   }
 
-  onInputChange = settings => {
+  onInputChange = (settings) => {
     const { userSettings } = this.state;
-    let newUserSettings = Object.assign({}, userSettings);
-    newUserSettings = Object.assign(newUserSettings, settings);
+    let newUserSettings = { ...userSettings, ...settings };
 
     this.setState({
       userSettings: newUserSettings,

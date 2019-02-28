@@ -377,6 +377,9 @@ class AdvancedBoard extends React.Component {
     const { contextMenuShow, contextMenuPos } = this.state;
     // данные для сетки (KonvaGrid):
     const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = mapState;
+    // данные по текущему объекту:
+    const { currentObject } = this.props;
+    const selectedObjects = currentObject.objectId.split(' ');
 
     // загрузить объекты текущего уровня:
     const thisLevelObjects = objects.levels[objects.mapLevel];
@@ -410,7 +413,7 @@ class AdvancedBoard extends React.Component {
         );
       } else {
         // const staticObject = withContextMenu(
-        //   <StaticObject
+        //   <SimpleMapObject
         //     key={object.id}
         //     object={object}
         //     setColor={this.setColor}
@@ -426,16 +429,23 @@ class AdvancedBoard extends React.Component {
         // );
 
         return (
-          // <staticObject /> 
-          <StaticObject
+          <SimpleMapObject
             key={object.id}
             object={object}
-            setColor={this.setColor}
-            showContextMenu={this.showContextMenu}
-            hideContextMenu={this.hideContextMenu}
+            isSelected={selectedObjects.includes(object.id)}
+            // setColor={this.setColor}
             setCurrentObject={this.setCurrentObject}
             openCurrentObjectTab={this.openCurrentObjectTab}
           />
+          // <StaticObject
+          //   key={object.id}
+          //   object={object}
+          //   setColor={this.setColor}
+          //   showContextMenu={this.showContextMenu}
+          //   hideContextMenu={this.hideContextMenu}
+          //   setCurrentObject={this.setCurrentObject}
+          //   openCurrentObjectTab={this.openCurrentObjectTab}
+          // />
         );
       }
     });

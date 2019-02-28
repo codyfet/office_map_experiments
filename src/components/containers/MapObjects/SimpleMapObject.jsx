@@ -4,6 +4,7 @@ import { Rect, Group, Path } from 'react-konva';
 import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
+import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
 
 export default class StaticObject extends React.PureComponent {
   constructor(props) {
@@ -97,9 +98,9 @@ export default class StaticObject extends React.PureComponent {
   // ---------------------------------------------------------
   handleObjectClick = (e) => {
     // всегда сообщаем id объекта:
-    const { shareObjectData, object } = this.props;
+    const { setCurrentObject, object } = this.props;
 
-    shareObjectData(object.id, object.userId);
+    setCurrentObject(object.id, object.userId);
 
     // выведем объект на передний план:
     e.currentTarget.moveToTop();
@@ -122,10 +123,24 @@ export default class StaticObject extends React.PureComponent {
     this.hideTooltipObjectInfo(e);
   };
 
+  // цвет объекта и выделение:
+  // для статичного объекта
+  setColor = () => {
+    const { object } = this.props;
+    return object.hasIntersection ? WARNING_COLOR : object.color; 
+  };
+
+  setSelection = (isSelected) => {
+    return isSelected ? SELECTED_COLOR : this.setColor();
+  }
+
   render() {
-    const { object, setColor } = this.props;
+    const { object, isSelected } = this.props;
     const { isPointed, objectIcon } = this.state;
-    
+    const selectionColor = this.setSelection(isSelected);
+
+    const paddingSelection = 5;
+
     return (
       <Group
         x={object.coordinates.x}
@@ -138,13 +153,24 @@ export default class StaticObject extends React.PureComponent {
         name="object"
         nameID={object.id}
       >
+        {/* Область выделения объекта: */}
         <Rect
           width={object.width}
           height={object.height}
-          fill={setColor(object.id, object.hasIntersection, object.color)}
+          fill={selectionColor}
           opacity={isPointed ? 0.5 : 1}
           stroke="black"
           strokeWidth={0.5}
+        />
+        <Rect
+          x={paddingSelection}
+          y={paddingSelection}
+          width={object.width - paddingSelection * 2}
+          height={object.height - paddingSelection * 2}
+          fill={this.setColor()}
+          opacity={isPointed ? 0.5 : 1}
+          // stroke={strokeColor}
+          // strokeWidth={strokeWidth}
         />
         {objectIcon}
       </Group>

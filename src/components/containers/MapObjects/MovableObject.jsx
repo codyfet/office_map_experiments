@@ -32,7 +32,8 @@ export default class MovableObject extends React.PureComponent {
     if (prevProps.object.width !== object.width 
         || prevProps.object.height !== object.height 
         || prevProps.object.coordinates.x !== object.coordinates.x 
-        || prevProps.object.coordinates.y !== object.coordinates.y) {
+        || prevProps.object.coordinates.y !== object.coordinates.y
+        || prevProps.object.category !== object.category) {
       checkHasIntersection(object);
       this.setState({
         objectIcon: this.drawIcon(object)
@@ -211,11 +212,13 @@ export default class MovableObject extends React.PureComponent {
   // цвет объекта и выделение:
   setColor = () => {
     const { object } = this.props;
+
+    let chosenColor = object.color;
     // если userId определено и пусто, то это стол без пользователя:
     if (object.userId !== undefined && object.userId === '') {
-      return EMPTY_TABLE_COLOR;
+      chosenColor = EMPTY_TABLE_COLOR;
     }
-    return object.hasIntersection ? WARNING_COLOR : object.color; 
+    return object.hasIntersection ? WARNING_COLOR : chosenColor; 
   };
 
   setSelection = (isSelected) => {

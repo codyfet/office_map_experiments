@@ -24,7 +24,8 @@ export default class StaticObject extends React.PureComponent {
     // проверим границы для измененного объекта:
     // будем проверять границы при каждом изменении размеров и координат объекта:
     if (prevProps.object.width !== object.width 
-        || prevProps.object.height !== object.height) {
+        || prevProps.object.height !== object.height
+        || prevProps.object.category !== object.category) {
       this.setState({
         objectIcon: this.drawIcon(object)
       });
@@ -126,11 +127,13 @@ export default class StaticObject extends React.PureComponent {
   // цвет объекта и выделение:
   setColor = () => {
     const { object } = this.props;
+
+    let chosenColor = object.color;
     // если userId определено и пусто, то это стол без пользователя:
     if (object.userId !== undefined && object.userId === '') {
-      return EMPTY_TABLE_COLOR;
+      chosenColor = EMPTY_TABLE_COLOR;
     }
-    return object.hasIntersection ? WARNING_COLOR : object.color; 
+    return object.hasIntersection ? WARNING_COLOR : chosenColor; 
   };
 
   setSelection = (isSelected) => {

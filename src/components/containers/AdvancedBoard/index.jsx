@@ -275,62 +275,87 @@ class AdvancedBoard extends React.Component {
 
   // 5.3. ДОПОЛНИТЕЛЬНО:
   // 5.3.1. Выбор текущего объекта и пользователя (если есть):
+  // доп методы для основной функции:
+  resetCurrentObject = () => {
+    const { actions } = this.props;   
+    actions.changeCurrentObject('');
+    actions.changeCurrentUser('');
+    // при каждом сбросе текущего объекта мы закрываем меню редактирования:
+    actions.changeCurrentObjectState('none');
+  }
+
+  isThereObjectsSelected = () => {
+    const { currentObject } = this.props;
+    return currentObject.objectId !== '';
+  }
+
+  addObjectToSelectedObjects = (objectId) => {
+    const { currentObject } = this.props;
+    // получим список id выделенных объектов:
+    let currentSelectedObjects = currentObject.objectId.split(' ');
+    // нужно добавить новый объект в конец списка
+    // проверим, есть переданный objectId уже в данных:
+    const indOfObjectId = currentSelectedObjects.indexOf(objectId);
+      
+    if (indOfObjectId === -1) { // если id объекта нет среди выделенных
+      // то добавим его в конец:
+      currentSelectedObjects.push(objectId);
+      return currentSelectedObjects.join(' ');
+    } else { // если id объекта есть среди выделенных
+      // то переносим его в конец (по последнему элементу считается сдвиг):
+      currentSelectedObjects.splice(indOfObjectId, 1);
+      currentSelectedObjects.push(objectId);
+      return currentSelectedObjects.join(' '); 
+    }
+  }
+
+  addObjectIdToCurrentObjectId = (objectId) => {
+    let newObjectId;  
+    // передаваемый параметр objectId !== '' (для этой функции - это 100%):
+    
+    if (this.isThereObjectsSelected()) { // если уже есть выделенные объекты: 
+      newObjectId = this.addObjectToSelectedObjects(objectId);
+    } else { // если других объектов не было выделено до этого:
+      newObjectId = objectId;
+    }
+  
+    return newObjectId;
+  }
+
+  changeCurrentObjectInSingleEditMode = (objectId, userId) => {
+    const { actions } = this.props;
+    actions.changeCurrentObject(objectId);
+    actions.changeCurrentUser(userId);
+  } 
+
+  changeCurrentObjectInMultiEditMode = (objectId) => {
+    const { actions } = this.props;
+
+    let newObjectId = this.addObjectIdToCurrentObjectId(objectId);     
+    actions.changeCurrentObject(newObjectId);
+    actions.changeCurrentUser('');
+  } 
+
   setCurrentObject = (objectId, userId) => {
     // изменим текущий объект для redux:
-    const { actions, workMode, currentObject } = this.props;
+    const { workMode } = this.props;
 
-    if (workMode === MULTI_EDIT) { // если приложение в режиме группового редактирования:
-      let newObjectId = ''; 
-      
-      // передаваемый параметр id объекта не пустой (т.е. мы не хотим сбросить текущий объект):
-      if (objectId !== '') { 
-        // то в режиме группового ред. мы приписываем к нему еще один объект:
-        
-        // если других объектов не было выделено: 
-        if (currentObject.objectId === '') {
-          // просто добавим данные:
-          newObjectId = objectId;
-        }
-        
-        // если уже выделен(ы) объект(ы):
-        if (currentObject.objectId !== '') {
-          // получим список id выделенных объектов:
-          let currentSelectedObjects = currentObject.objectId.split(' ');
-          // нужно добавить новый объект в конец списка
-          // проверим, есть переданный objectId уже в данных:
-          const indOfObjectId = currentSelectedObjects.indexOf(objectId);
-          
-          if (indOfObjectId === -1) { // если id объекта нет среди выделенных
-            // то добавим его в конец:
-            currentSelectedObjects.push(objectId);
-            newObjectId = currentSelectedObjects.join(' ');
-          } else { // если id объекта есть среди выделенных
-            // то переносим его в конец (по последнему элементу считается сдвиг):
-            currentSelectedObjects.splice(indOfObjectId, 1);
-            currentSelectedObjects.push(objectId);
-            newObjectId = currentSelectedObjects.join(' '); 
-          }
-        }
-      }
-      // отправляем в redux новый objectId:   
-      actions.changeCurrentObject(newObjectId);
-    } 
-    
-    if (workMode === SINGLE_EDIT) { // если приложение в режиме одиночного редактирования:
-      actions.changeCurrentObject(objectId);
-      actions.changeCurrentUser(userId);
+    switch (workMode) {
+      case SINGLE_EDIT:
+        this.changeCurrentObjectInSingleEditMode(objectId, userId);
+        break;
+      case MULTI_EDIT:
+        this.changeCurrentObjectInMultiEditMode(objectId);
+        break;
+      default:
+        break;
     }
   };
 
   // 5.3.2. Сброс объекта и контекстного меню (для popover и konvaGrid):
   flushAll = () => {
     this.hideContextMenu();
-
-    const { actions } = this.props;
-    actions.changeCurrentObject('');
-    actions.changeCurrentUser('');
-    // при каждом сбросе текущего объекта мы закрываем меню редактирования:
-    actions.changeCurrentObjectState('none');
+    this.resetCurrentObject();
   };
 
   // 5.3.3. Открыть вкладку "Редактировать"

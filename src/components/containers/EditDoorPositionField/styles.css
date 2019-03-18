@@ -1,0 +1,17 @@
+.editField {
+  width: 100%;
+  display: flex;
+}
+
+.editFieldLabel {
+  width: 30%;
+}
+
+.editFieldInput {
+  width: 70%;
+  padding-left: 8px;
+}
+
+.editFieldInput:focus{
+  outline: 2px solid orange;     /* oranges! yey */
+}

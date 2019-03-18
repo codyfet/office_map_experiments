@@ -1,0 +1,17 @@
+.editField {
+  width: 100%;
+  display: flex;
+}
+
+.editFieldDropdownLabel {
+  width: 30%;
+  padding-top: 5px;
+}
+
+.editFieldDropdown {
+  width: 70%;
+}
+
+.editFieldDropdown:focus{
+  outline: 2px solid orange;     /* oranges! yey */
+}

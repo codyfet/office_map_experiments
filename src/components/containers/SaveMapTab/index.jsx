@@ -46,6 +46,8 @@ class SaveMapTab extends React.Component {
     const objectOrder = [
       'category',
       'seatLocation',
+      'doorLocation',
+      'doorPosition',
       'title',
       'id',
       'coordinates',

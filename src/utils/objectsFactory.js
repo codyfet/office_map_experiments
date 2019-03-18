@@ -58,18 +58,33 @@ export default function createMapObject(type, id, coords, userId) {
       newObject.width = 100;
       newObject.height = 100;
       newObject.color = PUBLIC_PLACE_COLOR;
+      newObject.doorLocation = LEFT_SIDE;
+      newObject.doorPosition = {
+        x: 0,
+        y: newObject.height / 2,
+      };
       break;
 
     case 'meeting_room':
       newObject.width = 100;
       newObject.height = 100;
       newObject.color = MEETING_ROOM_COLOR;
+      newObject.doorLocation = LEFT_SIDE;
+      newObject.doorPosition = {
+        x: 0,
+        y: newObject.height / 2,
+      };
       break;
 
     case 'service_room':
       newObject.width = 50;
       newObject.height = 50;
       newObject.color = SERVICE_ROOM_COLOR;
+      newObject.doorLocation = LEFT_SIDE;
+      newObject.doorPosition = {
+        x: 0,
+        y: newObject.height / 2,
+      };
       break;
 
     case 'construction':

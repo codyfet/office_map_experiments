@@ -1,10 +1,11 @@
 import React from 'react';
-import { Rect, Group, Path } from 'react-konva';
+import { Rect, Group, Path, Wedge } from 'react-konva';
 
 import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
+import { LEFT_SIDE, BOTTOM_SIDE, RIGHT_SIDE, TOP_SIDE } from '../../../res/constantsTableSeat';
 
 export default class StaticObject extends React.PureComponent {
   constructor(props) {
@@ -142,13 +143,41 @@ export default class StaticObject extends React.PureComponent {
     return isSelected ? SELECTED_COLOR : this.setColor();
   }
 
+  setDoorForObject = () => {
+    const { object } = this.props;
+    let doorSettings = { ...object.doorPosition };
+
+    switch (object.doorLocation) {
+      case LEFT_SIDE:
+        doorSettings.rotDoor = -90; 
+        doorSettings.size = 25;
+        break;
+      case BOTTOM_SIDE:
+        doorSettings.rotDoor = 180; 
+        doorSettings.size = 25;
+        break;
+      case RIGHT_SIDE:
+        doorSettings.rotDoor = 90; 
+        doorSettings.size = 25;
+        break;
+      case TOP_SIDE:
+        doorSettings.rotDoor = 0; 
+        doorSettings.size = 25;
+        break;
+      default:
+        break;
+    }
+    return doorSettings;
+  }
+
   render() {
     const { object, isSelected } = this.props;
     const { isPointed, objectIcon } = this.state;
     const selectionColor = this.setSelection(isSelected);
 
     const paddingSelection = 5;
-    
+    const door = object.category !== 'construction' ? this.setDoorForObject() : undefined;
+
     return (
       <Group
         x={object.coordinates.x}
@@ -170,6 +199,20 @@ export default class StaticObject extends React.PureComponent {
           stroke="black"
           strokeWidth={0.5}
         />
+        {/* Вход */}
+        { object.category !== 'construction' && object.doorLocation !== undefined
+          && (
+          <Wedge
+            x={door.x}
+            y={door.y}
+            fill="white"
+            radius={door.size}
+            angle={180}
+            rotation={door.rotDoor}
+            // stroke="black"
+            // strokeWidth={0.5}
+          />)
+        }
         <Rect
           x={paddingSelection}
           y={paddingSelection}

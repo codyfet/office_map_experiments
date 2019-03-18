@@ -147,6 +147,8 @@
       "objects": [
         {
           "category": "service_room",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 60 },
           "title": "Storage",
           "id": "js39thqx",
           "coordinates": { "x": 740, "y": 1550 },
@@ -158,6 +160,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 200 },
           "title": "Женский туалет",
           "id": "js3a13ws",
           "coordinates": { "x": 665, "y": 1300 },
@@ -169,6 +173,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 50 },
           "title": "Мужской туалет",
           "id": "js4aonjx",
           "coordinates": { "x": 830, "y": 1200 },
@@ -180,6 +186,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 1,
+          "doorPosition": { "x": 40, "y": 270 },
           "title": "Зеленая кухня",
           "id": "js4axzbd",
           "coordinates": { "x": 665, "y": 930 },
@@ -191,6 +199,8 @@
         },
         {
           "category": "service_room",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 55 },
           "title": "Комната для газовой супрессии",
           "id": "js4ay3bu",
           "coordinates": { "x": 665, "y": 820 },
@@ -202,6 +212,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 2,
+          "doorPosition": { "x": 155, "y": 120 },
           "title": "Раздевалка",
           "id": "js4d01za",
           "coordinates": { "x": 385, "y": 1290 },
@@ -213,6 +225,8 @@
         },
         {
           "category": "service_room",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 150 },
           "title": "Серверная",
           "id": "js4d0kqx",
           "coordinates": { "x": 665, "y": 620 },
@@ -224,6 +238,8 @@
         },
         {
           "category": "meeting_room",
+          "doorLocation": 3,
+          "doorPosition": { "x": 340, "y": 0 },
           "title": "Тверь",
           "id": "js4d1ijt",
           "coordinates": { "x": 0, "y": 1170 },
@@ -277,6 +293,8 @@
         },
         {
           "category": "meeting_room",
+          "doorLocation": 2,
+          "doorPosition": { "x": 180, "y": 40 },
           "title": "Осташков",
           "id": "js4flxd9",
           "coordinates": { "x": 385, "y": 855 },
@@ -288,6 +306,8 @@
         },
         {
           "category": "meeting_room",
+          "doorLocation": 2,
+          "doorPosition": { "x": 180, "y": 260 },
           "title": "Старица",
           "id": "js4frm5l",
           "coordinates": { "x": 385, "y": 555 },
@@ -299,6 +319,8 @@
         },
         {
           "category": "service_room",
+          "doorLocation": 2,
+          "doorPosition": { "x": 180, "y": 75 },
           "title": "Storage",
           "id": "js4fu3eo",
           "coordinates": { "x": 385, "y": 405 },
@@ -310,6 +332,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 3,
+          "doorPosition": { "x": 52, "y": 0 },
           "title": "Желтая кухня",
           "id": "js4fvr5m",
           "coordinates": { "x": 1900, "y": 820 },
@@ -321,6 +345,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 180 },
           "title": "Спортзал",
           "id": "js4gcekn",
           "coordinates": { "x": 2310, "y": 520 },
@@ -332,6 +358,8 @@
         },
         {
           "category": "meeting_room",
+          "doorLocation": 3,
+          "doorPosition": { "x": 40, "y": 0 },
           "title": "Кашин",
           "id": "js4gelnr",
           "coordinates": { "x": 2630, "y": 520 },
@@ -343,6 +371,8 @@
         },
         {
           "category": "meeting_room",
+          "doorLocation": 3,
+          "doorPosition": { "x": 270, "y": 0 },
           "title": "Торжок",
           "id": "js4gh356",
           "coordinates": { "x": 2940, "y": 520 },
@@ -354,6 +384,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 2,
+          "doorPosition": { "x": 190, "y": 260 },
           "title": "Раздевалка",
           "id": "js4gjmsv",
           "coordinates": { "x": 3250, "y": 520 },
@@ -365,6 +397,8 @@
         },
         {
           "category": "service_room",
+          "doorLocation": 2,
+          "doorPosition": { "x": 220, "y": 45 },
           "title": "Storage",
           "id": "js4o2kcq",
           "coordinates": { "x": 1985, "y": 520 },
@@ -376,6 +410,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 2,
+          "doorPosition": { "x": 110, "y": 40 },
           "title": "Мужской туалет",
           "id": "js4o46s8",
           "coordinates": { "x": 2095, "y": 610 },
@@ -387,6 +423,8 @@
         },
         {
           "category": "public_place",
+          "doorLocation": 0,
+          "doorPosition": { "x": 0, "y": 40 },
           "title": "Женский туалет",
           "id": "js4o4to0",
           "coordinates": { "x": 1985, "y": 610 },
@@ -761,7 +799,7 @@
           "category": "cupboard",
           "title": "Гардероб",
           "id": "jsaegd25",
-          "coordinates": { "x": 540, "y": 1420 },
+          "coordinates": { "x": 540, "y": 1440 },
           "width": 35,
           "height": 65,
           "color": "#DED9C3",
@@ -772,7 +810,7 @@
           "category": "cupboard",
           "title": "Гардероб",
           "id": "jsaehpc7",
-          "coordinates": { "x": 540, "y": 1485 },
+          "coordinates": { "x": 540, "y": 1505 },
           "width": 35,
           "height": 65,
           "color": "#DED9C3",

@@ -8,6 +8,8 @@ import EditField from '../EditField/index';
 import CheckboxField from '../CheckboxField/index';
 import DropdownObjectField from '../DropdownObjectField/index';
 import DropdownSeatLocationField from '../DropdownSeatLocationField';
+import DropdownDoorLocationField from '../DropdownDoorLocationField';
+import EditDoorPositionField from '../EditDoorPositionField';
 import './styles.css';
 
 class CurrentObjectSettings extends React.Component {
@@ -87,6 +89,8 @@ class CurrentObjectSettings extends React.Component {
       'title',
       'category',
       'seatLocation',
+      'doorLocation',
+      'doorPosition',
       'width',
       'height',
       'color',
@@ -118,15 +122,48 @@ class CurrentObjectSettings extends React.Component {
           />
         );
       } else if (prop === 'seatLocation') {
-        return (
-          <DropdownSeatLocationField
-            key={prop}
-            label={prop}
-            placeholder={object[prop]}
-            disabled={false}
-            onInputChange={this.onInputChange}
-          />
-        );
+        if (object.category === 'table') {
+          return (
+            <DropdownSeatLocationField
+              key={prop}
+              label={prop}
+              placeholder={object[prop]}
+              disabled={false}
+              onInputChange={this.onInputChange}
+            />
+          );
+        } else {
+          return undefined;
+        }
+      } else if (prop === 'doorLocation') {
+        if (['meeting_room', 'public_place', 'service_room'].includes(object.category)) {
+          return (
+            <DropdownDoorLocationField
+              key={prop}
+              label={prop}
+              placeholder={object[prop] !== undefined ? object[prop] : object[prop]}
+              disabled={false}
+              onInputChange={this.onInputChange}
+            />
+          );
+        } else {
+          return undefined;
+        }
+      } else if (prop === 'doorPosition') {
+        if (['meeting_room', 'public_place', 'service_room'].includes(object.category)) {
+          let doorPos = object[prop] !== undefined ? object[prop] : { x: 0, y: 0 };
+          return (
+            <EditDoorPositionField
+              key={prop}
+              label={prop}
+              placeholder={`${doorPos.x},${doorPos.y}`}
+              disabled={false}
+              onInputChange={this.onInputChange}
+            />
+          );
+        } else {
+          return undefined;
+        }
       } else if (prop === 'coordinates') {
         return (
           <EditField

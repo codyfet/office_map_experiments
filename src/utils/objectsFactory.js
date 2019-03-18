@@ -9,6 +9,9 @@ import {
   SERVICE_ROOM_COLOR,
   CONSTRUCTION_COLOR,
 } from '../res/constantsObjectsColors';
+import {
+  LEFT_SIDE
+} from '../res/constantsTableSeat';
 
 export default function createMapObject(type, id, coords, userId) {
   const newObject = {
@@ -26,6 +29,7 @@ export default function createMapObject(type, id, coords, userId) {
       newObject.height = 70;
       newObject.userId = userId;
       newObject.color = TABLE_COLOR;
+      newObject.seatLocation = LEFT_SIDE;
       break;
     case 'cupboard':
       newObject.width = 30;

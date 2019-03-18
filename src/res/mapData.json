@@ -235,6 +235,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 3,
           "id": "5",
           "coordinates": { "x": 0, "y": 70 },
           "width": 70,
@@ -2408,6 +2409,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 0,
           "id": "jsn32qrq",
           "coordinates": { "x": 230, "y": 5 },
           "width": 40,
@@ -2419,6 +2421,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 2,
           "id": "jsn32qrr",
           "coordinates": { "x": 270, "y": 5 },
           "width": 40,
@@ -2430,6 +2433,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 0,
           "id": "jsn32qrs",
           "coordinates": { "x": 230, "y": 75 },
           "width": 40,
@@ -2441,6 +2445,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 2,
           "id": "jsn32qrt",
           "coordinates": { "x": 270, "y": 75 },
           "width": 40,
@@ -2452,6 +2457,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 0,
           "id": "jsn32qru",
           "coordinates": { "x": 230, "y": 145 },
           "width": 40,
@@ -2463,6 +2469,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 2,
           "id": "jsn32qrv",
           "coordinates": { "x": 270, "y": 145 },
           "width": 40,
@@ -2474,6 +2481,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 0,
           "id": "jsn32qrw",
           "coordinates": { "x": 230, "y": 215 },
           "width": 40,
@@ -2485,6 +2493,7 @@
         },
         {
           "category": "table",
+          "seatLocation": 2,
           "id": "jsn32qrx",
           "coordinates": { "x": 270, "y": 215 },
           "width": 40,

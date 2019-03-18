@@ -6,7 +6,7 @@ import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
 
-export default class StaticObject extends React.PureComponent {
+export default class SimpleMapObject extends React.PureComponent {
   constructor(props) {
     super(props);
 

@@ -1,7 +1,7 @@
 const DEFAULT_COLOR = '#E9DAA8';
 const EMPTY_TABLE_COLOR = '#DFDDD8';
 const WARNING_COLOR = 'red';
-const SELECTED_COLOR = 'orange'; // '#5059DD';
+const SELECTED_COLOR = 'blue'; // 'orange'; // '#5059DD';
 
 // default colors for objects categories:
 const TABLE_COLOR = '#F5F79A';

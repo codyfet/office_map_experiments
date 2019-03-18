@@ -1,10 +1,11 @@
 import React from 'react';
-import { Rect, Group, Path } from 'react-konva';
+import { Rect, Group, Path, Wedge } from 'react-konva';
 
 import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
+import { LEFT_SIDE, BOTTOM_SIDE, RIGHT_SIDE, TOP_SIDE } from '../../../res/constantsTableSeat';
 
 export default class MovableObject extends React.PureComponent {
   constructor(props) {
@@ -225,12 +226,47 @@ export default class MovableObject extends React.PureComponent {
     return isSelected ? SELECTED_COLOR : this.setColor();
   }
 
+  setSeatForTable = () => {
+    const { object } = this.props;
+    let seatTableSettings = {};
+    switch (object.seatLocation) {
+      case LEFT_SIDE:
+        seatTableSettings.xSeat = 0;
+        seatTableSettings.ySeat = object.height / 2;
+        seatTableSettings.rotSeat = -90; 
+        seatTableSettings.seatSize = object.height / 3;
+        break;
+      case BOTTOM_SIDE:
+        seatTableSettings.xSeat = object.width / 2;
+        seatTableSettings.ySeat = object.height;
+        seatTableSettings.rotSeat = 180; 
+        seatTableSettings.seatSize = object.width / 3;
+        break;
+      case RIGHT_SIDE:
+        seatTableSettings.xSeat = object.width;
+        seatTableSettings.ySeat = object.height / 2;
+        seatTableSettings.rotSeat = 90; 
+        seatTableSettings.seatSize = object.height / 3;
+        break;
+      case TOP_SIDE:
+        seatTableSettings.xSeat = object.width / 2;
+        seatTableSettings.ySeat = 0;
+        seatTableSettings.rotSeat = 0; 
+        seatTableSettings.seatSize = object.width / 3;
+        break;
+      default:
+        break;
+    }
+    return seatTableSettings;
+  }
+
   render() {
     const { object, isSelected } = this.props;
     const { isPointed, objectIcon } = this.state;
     const selectionColor = this.setSelection(isSelected);
 
     const paddingSelection = 5;
+    const seat = object.category === 'table' ? this.setSeatForTable() : undefined;
 
     return (
       <Group
@@ -247,6 +283,7 @@ export default class MovableObject extends React.PureComponent {
         name="object"
         nameID={object.id}
       >
+        
         {/* Область выделения объекта: */}
         <Rect
           width={object.width}
@@ -259,6 +296,18 @@ export default class MovableObject extends React.PureComponent {
           shadowOffset={{ x: 1, y: 1 }}
           shadowOpacity={0.4}
         />
+        {/* Место, где сидит работник */}
+        { object.category === 'table' 
+          && (
+          <Wedge
+            x={seat.xSeat}
+            y={seat.ySeat}
+            fill="white"
+            radius={seat.seatSize}
+            angle={180}
+            rotation={seat.rotSeat}
+          />)
+        }
         <Rect
           x={paddingSelection}
           y={paddingSelection}
@@ -267,7 +316,7 @@ export default class MovableObject extends React.PureComponent {
           fill={this.setColor()}
           opacity={isPointed ? 0.5 : 1}
         />
-        {objectIcon}
+        { object.category !== 'table' && objectIcon }    
       </Group>
     );
   }

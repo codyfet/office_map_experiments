@@ -84,9 +84,16 @@ export default function objects(state = initialState, action) {
       const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
+        // поворот самого объекта:
         const tempW = object.width;
         object.width = object.height;
         object.height = tempW;
+        if (object.category === 'table') {
+          // порочаиваем место против часовой стрелки:
+          // такой трюк работает, так как мы используем константы:
+          // LEFT(0) BOTTOM(1) RIGHT(2) TOP(3)
+          object.seatLocation = (object.seatLocation + 1) % 4;
+        }
       }
 
       return {

@@ -3930,6 +3930,18 @@
           "movable": true,
           "hasIntersection": false,
           "userId": ""
+        },
+        {
+          "category": "table",
+          "seatLocation": 0,
+          "id": "jte9xq6y",
+          "coordinates": { "x": 1825, "y": 355 },
+          "width": 40,
+          "height": 70,
+          "color": "#F3F681",
+          "movable": true,
+          "hasIntersection": false,
+          "userId": ""
         }
       ]
     },

@@ -7,6 +7,7 @@ import { updateUser, changeCurrentUser, changeAnyObjectData } from '../../../act
 import EditField from '../EditField/index';
 import CheckboxField from '../CheckboxField/index';
 import DropdownObjectField from '../DropdownObjectField/index';
+import DropdownSeatLocationField from '../DropdownSeatLocationField';
 import './styles.css';
 
 class CurrentObjectSettings extends React.Component {
@@ -85,6 +86,7 @@ class CurrentObjectSettings extends React.Component {
       'coordinates',
       'title',
       'category',
+      'seatLocation',
       'width',
       'height',
       'color',
@@ -108,6 +110,16 @@ class CurrentObjectSettings extends React.Component {
       } else if (prop === 'category') {
         return (
           <DropdownObjectField
+            key={prop}
+            label={prop}
+            placeholder={object[prop]}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
+      } else if (prop === 'seatLocation') {
+        return (
+          <DropdownSeatLocationField
             key={prop}
             label={prop}
             placeholder={object[prop]}

@@ -291,6 +291,9 @@ export default class MovableObject extends React.PureComponent {
           fill={selectionColor}
           opacity={isPointed ? 0.5 : 1}
           
+          stroke="black"
+          strokeWidth={0.2}
+          
           shadowColor="black"
           shadowBlur={2}
           shadowOffset={{ x: 1, y: 1 }}
@@ -306,6 +309,8 @@ export default class MovableObject extends React.PureComponent {
             radius={seat.seatSize}
             angle={180}
             rotation={seat.rotSeat}
+            // stroke="black"
+            // strokeWidth={0.5}
           />)
         }
         <Rect

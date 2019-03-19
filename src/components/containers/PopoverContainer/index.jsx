@@ -12,6 +12,8 @@ import {
 import PopoverView from '../../presentational/PopoverView/index';
 import DeleteObjectModal from '../Modals/DeleteObjectModal/index';
 import MergeObjectsModal from '../Modals/MergeObjectsModal';
+import mergeObjects from '../../../utils/mergeObjects';
+import { MULTI_EDIT } from '../../../res/workModeConstants';
 
 const _ = require('lodash');
 // для генерирования уникальных id:
@@ -66,15 +68,26 @@ class PopoverContainer extends React.Component {
     });
   }
 
-  handleChoiceMergeModal = (id) => {
-    const { actions, currentObject, readyHandler } = this.props;
+  handleChoiceMergeModal = (category) => {
+    const { objects, actions, currentObject, readyHandler } = this.props;
     // если объект не выбран:
-    if (id === '') {
+    if (category === '') {
       alert('ОШИБКА: ФИНАЛЬНЫЙ ТИП ОБЪЕКТА СЛИЯНИЯ НЕ БЫЛ ВЫБРАН! Попробуйте еще раз!');
       return;
+    } else {
+      let selectedObjects = [];
+      // найдём выделенные объекты:
+      const thisLevelObjects = objects.levels[objects.mapLevel];
+      thisLevelObjects.forEach((elem) => {
+        if (currentObject.objectId.split(' ').includes(elem.id)) {
+          selectedObjects.push(_.cloneDeep(elem));
+        }
+      });
+      // объединяем выделенные объекты:
+      const newComplexObject = mergeObjects(selectedObjects, category);
     }
     // если объект выбран - то выполняем действия:
-    
+
     // currentObject.objectId.split(' ').forEach(id => {
     //   actions.deleteObject(id);
     // });
@@ -123,9 +136,12 @@ class PopoverContainer extends React.Component {
   };
 
   connectObjects = () => {
+    const { workMode } = this.props;
     // работает только при групповом выделении:
-    // объединяет/разъединяет объекты
-    this.openMergeModal();
+    if (workMode === MULTI_EDIT) {
+      // объединяет/разъединяет объекты
+      this.openMergeModal();
+    }
   }
 
   copyObject = () => {

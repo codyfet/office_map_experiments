@@ -35,23 +35,27 @@ export default function createMapObject(type, id, coords, userId) {
       newObject.width = 30;
       newObject.height = 50;
       newObject.color = CUPBOARD_COLOR;
+      newObject.orientation = LEFT_SIDE;
       break;
     case 'printer':
       newObject.width = 40;
       newObject.height = 40;
       newObject.color = PRINTER_COLOR;
+      newObject.orientation = LEFT_SIDE;
       break;
 
     case 'scaner':
       newObject.width = 40;
       newObject.height = 40;
       newObject.color = SCANER_COLOR;
+      newObject.orientation = LEFT_SIDE;
       break;
 
     case 'shredder':
       newObject.width = 40;
       newObject.height = 30;
       newObject.color = SHREDDER_COLOR;
+      newObject.orientation = LEFT_SIDE;
       break;
 
     case 'public_place':

@@ -9,6 +9,7 @@ import CheckboxField from '../CheckboxField/index';
 import DropdownObjectField from '../DropdownObjectField/index';
 import DropdownSeatLocationField from '../DropdownSeatLocationField';
 import DropdownDoorLocationField from '../DropdownDoorLocationField';
+import DropdownOrientationField from '../DropdownOrientationField';
 import EditDoorPositionField from '../EditDoorPositionField';
 import './styles.css';
 
@@ -89,6 +90,7 @@ class CurrentObjectSettings extends React.Component {
       'title',
       'category',
       'seatLocation',
+      'orientation',
       'doorLocation',
       'doorPosition',
       'width',
@@ -128,6 +130,20 @@ class CurrentObjectSettings extends React.Component {
               key={prop}
               label={prop}
               placeholder={object[prop]}
+              disabled={false}
+              onInputChange={this.onInputChange}
+            />
+          );
+        } else {
+          return undefined;
+        }
+      } else if (prop === 'orientation') {
+        if (['cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)) {
+          return (
+            <DropdownOrientationField
+              key={prop}
+              label={prop}
+              placeholder={object[prop] !== undefined ? object[prop] : object[prop]}
               disabled={false}
               onInputChange={this.onInputChange}
             />

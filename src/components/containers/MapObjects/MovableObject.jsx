@@ -260,6 +260,77 @@ export default class MovableObject extends React.PureComponent {
     return seatTableSettings;
   }
 
+  setOrientationForMovables = () => {
+    const { object } = this.props;
+    let orientationSettings = {};
+
+    let highlightThikness = 5;
+
+    switch (object.orientation) {
+      case LEFT_SIDE:
+        orientationSettings.x = 0;
+        orientationSettings.y = object.height / 2;
+        orientationSettings.size = highlightThikness;
+        orientationSettings.rotCrack = -90;
+        orientationSettings.highlightRect = (
+          <Rect
+            width={highlightThikness}
+            height={object.height}
+            fill="black"
+            opacity={0.5}
+          />
+        );
+        break;
+      case BOTTOM_SIDE:
+        orientationSettings.x = object.width / 2;
+        orientationSettings.y = object.height; 
+        orientationSettings.size = highlightThikness;
+        orientationSettings.rotCrack = 180;
+        orientationSettings.highlightRect = (
+          <Rect
+            y={object.height - highlightThikness}
+            width={object.width}
+            height={highlightThikness}
+            fill="black"
+            opacity={0.5}
+          />
+        );
+        break;
+      case RIGHT_SIDE:
+        orientationSettings.x = object.width;
+        orientationSettings.y = object.height / 2;
+        orientationSettings.size = highlightThikness;
+        orientationSettings.rotCrack = 90;
+        orientationSettings.highlightRect = (
+          <Rect
+            x={object.width - highlightThikness}
+            width={highlightThikness}
+            height={object.height}
+            fill="black"
+            opacity={0.5}
+          />
+        );
+        break;
+      case TOP_SIDE:
+        orientationSettings.x = object.width / 2;
+        orientationSettings.y = 0;
+        orientationSettings.size = highlightThikness;
+        orientationSettings.rotCrack = 0; 
+        orientationSettings.highlightRect = (
+          <Rect
+            width={object.width}
+            height={highlightThikness}
+            fill="black"
+            opacity={0.5}
+          />
+        );
+        break;
+      default:
+        break;
+    }
+    return orientationSettings;
+  }
+
   render() {
     const { object, isSelected } = this.props;
     const { isPointed, objectIcon } = this.state;
@@ -267,6 +338,7 @@ export default class MovableObject extends React.PureComponent {
 
     const paddingSelection = 5;
     const seat = object.category === 'table' ? this.setSeatForTable() : undefined;
+    const orientation = ['cupboard', 'printer', 'scaner', 'shredder'].includes(object.category) ? this.setOrientationForMovables() : undefined;
 
     return (
       <Group
@@ -306,12 +378,28 @@ export default class MovableObject extends React.PureComponent {
             x={seat.xSeat}
             y={seat.ySeat}
             fill="white"
+            // opacity={0.5}
             radius={seat.seatSize}
             angle={180}
             rotation={seat.rotSeat}
             // stroke="black"
             // strokeWidth={0.5}
           />)
+        }
+        {/* Передняя часть объекта */}
+        { ['cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)
+          && (
+          <React.Fragment>
+            {orientation.highlightRect}
+            {/* <Wedge
+              x={orientation.x}
+              y={orientation.y}
+              fill={this.setColor()}
+              radius={orientation.size}
+              angle={90}
+              rotation={orientation.rotCrack}
+            /> */}
+          </React.Fragment>)
         }
         <Rect
           x={paddingSelection}

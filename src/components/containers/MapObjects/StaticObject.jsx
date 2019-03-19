@@ -205,7 +205,8 @@ export default class StaticObject extends React.PureComponent {
           <Wedge
             x={door.x}
             y={door.y}
-            fill="white"
+            opacity={0.5}
+            fill="black"
             radius={door.size}
             angle={180}
             rotation={door.rotDoor}

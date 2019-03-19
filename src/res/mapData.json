@@ -263,6 +263,7 @@
         },
         {
           "category": "printer",
+          "orientation": 2,
           "id": "8",
           "coordinates": { "x": 680, "y": 590 },
           "width": 30,
@@ -273,6 +274,7 @@
         },
         {
           "category": "scaner",
+          "orientation": 3,
           "id": "9",
           "coordinates": { "x": 825, "y": 580 },
           "width": 40,
@@ -283,6 +285,7 @@
         },
         {
           "category": "shredder",
+          "orientation": 1,
           "id": "10",
           "coordinates": { "x": 765, "y": 405 },
           "width": 40,
@@ -637,6 +640,7 @@
         },
         {
           "category": "printer",
+          "orientation": 3,
           "id": "js5v0qt4",
           "coordinates": { "x": 775, "y": 580 },
           "width": 40,
@@ -647,6 +651,7 @@
         },
         {
           "category": "printer",
+          "orientation": 2,
           "id": "js5v1mvx",
           "coordinates": { "x": 680, "y": 560 },
           "width": 30,
@@ -657,6 +662,7 @@
         },
         {
           "category": "cupboard",
+          "orientation": 3,
           "id": "js5v2f2n",
           "coordinates": { "x": 875, "y": 590 },
           "width": 60,
@@ -667,6 +673,7 @@
         },
         {
           "category": "scaner",
+          "orientation": 1,
           "id": "js5v3c8v",
           "coordinates": { "x": 385, "y": 1065 },
           "width": 40,
@@ -797,6 +804,7 @@
         },
         {
           "category": "cupboard",
+          "orientation": 2,
           "title": "Гардероб",
           "id": "jsaegd25",
           "coordinates": { "x": 540, "y": 1440 },
@@ -808,6 +816,7 @@
         },
         {
           "category": "cupboard",
+          "orientation": 2,
           "title": "Гардероб",
           "id": "jsaehpc7",
           "coordinates": { "x": 540, "y": 1505 },
@@ -819,6 +828,7 @@
         },
         {
           "category": "cupboard",
+          "orientation": 3,
           "id": "jsaei9tz",
           "coordinates": { "x": 225, "y": 1140 },
           "width": 60,
@@ -829,6 +839,7 @@
         },
         {
           "category": "cupboard",
+          "orientation": 3,
           "title": "Сейф",
           "id": "jsaeiu0n",
           "coordinates": { "x": 185, "y": 1140 },
@@ -840,6 +851,7 @@
         },
         {
           "category": "cupboard",
+          "orientation": 3,
           "title": "Сейф",
           "id": "jsaek2b9",
           "coordinates": { "x": 145, "y": 1140 },

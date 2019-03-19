@@ -94,6 +94,12 @@ export default function objects(state = initialState, action) {
           // LEFT(0) BOTTOM(1) RIGHT(2) TOP(3)
           object.seatLocation = (object.seatLocation + 1) % 4;
         }
+        if (['cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)) {
+          // порочаиваем место против часовой стрелки:
+          // такой трюк работает, так как мы используем константы:
+          // LEFT(0) BOTTOM(1) RIGHT(2) TOP(3)
+          object.orientation = (object.orientation + 1) % 4;
+        }
       }
 
       return {

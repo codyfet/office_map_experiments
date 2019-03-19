@@ -11,6 +11,7 @@ import {
 
 import PopoverView from '../../presentational/PopoverView/index';
 import DeleteObjectModal from '../Modals/DeleteObjectModal/index';
+import MergeObjectsModal from '../Modals/MergeObjectsModal';
 
 const _ = require('lodash');
 // для генерирования уникальных id:
@@ -19,18 +20,20 @@ const genUniqId = require('uniqid');
 class PopoverContainer extends React.Component {
   // работа с модальным окном:
   state = {
-    showModal: false
+    showDeleteModal: false,
+    showMergeModal: false
   }
 
-  openModal = () => {
+  // МОДУЛЬНОЕ ОКНО ДЛЯ УДАЛЕНИЯ:
+  openDeleteModal = () => {
     this.setState({
-      showModal: true
+      showDeleteModal: true
     });
   }
 
-  closeModal = () => {
+  closeDeleteModal = () => {
     this.setState({
-      showModal: false
+      showDeleteModal: false
     });
   }
 
@@ -42,12 +45,45 @@ class PopoverContainer extends React.Component {
       actions.deleteObject(id);
     });
 
-    this.closeModal();
+    this.closeDeleteModal();
     readyHandler(); // close popover
   };
   
   handleCloseModal = () => {
-    this.closeModal();
+    this.closeDeleteModal();
+  };
+
+  // МОДУЛЬНОЕ ОКНО ДЛЯ ОБЪЕДИНЕНИЯ:
+  openMergeModal = () => {
+    this.setState({
+      showMergeModal: true
+    });
+  }
+
+  closeMergeModal = () => {
+    this.setState({
+      showMergeModal: false
+    });
+  }
+
+  handleChoiceMergeModal = (id) => {
+    const { actions, currentObject, readyHandler } = this.props;
+    // если объект не выбран:
+    if (id === '') {
+      alert('ОШИБКА: ФИНАЛЬНЫЙ ТИП ОБЪЕКТА СЛИЯНИЯ НЕ БЫЛ ВЫБРАН! Попробуйте еще раз!');
+      return;
+    }
+    // если объект выбран - то выполняем действия:
+    
+    // currentObject.objectId.split(' ').forEach(id => {
+    //   actions.deleteObject(id);
+    // });
+
+    readyHandler(); // close popover
+  };
+  
+  handleСloseMergeModal = () => {
+    this.closeMergeModal();
   };
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
@@ -75,7 +111,7 @@ class PopoverContainer extends React.Component {
 
   // ОБРАБОТЧИКИ КНОПОК:
   deleteObject = () => {
-    this.openModal();
+    this.openDeleteModal();
   };
 
   rotateObject = () => {
@@ -89,8 +125,7 @@ class PopoverContainer extends React.Component {
   connectObjects = () => {
     // работает только при групповом выделении:
     // объединяет/разъединяет объекты
-
-
+    this.openMergeModal();
   }
 
   copyObject = () => {
@@ -106,7 +141,7 @@ class PopoverContainer extends React.Component {
 
   render() {
     const { x, y, readyHandler, currentObject } = this.props;
-    const { showModal } = this.state;
+    const { showDeleteModal, showMergeModal } = this.state;
 
     return (
       <React.Fragment>
@@ -120,10 +155,16 @@ class PopoverContainer extends React.Component {
           deleteHandler={this.deleteObject}
         />
         <DeleteObjectModal
-          visible={showModal}
+          visible={showDeleteModal}
           objectIds={currentObject.objectId}
           onYesClick={this.handleYesClickModal}
           onHide={this.handleCloseModal}
+        />
+        <MergeObjectsModal
+          visible={showMergeModal}
+          objectIds={currentObject.objectId}
+          onConfirmClick={this.handleChoiceMergeModal}
+          onHide={this.handleСloseMergeModal}
         />
       </React.Fragment>
     );

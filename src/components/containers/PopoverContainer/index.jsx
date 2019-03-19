@@ -86,12 +86,12 @@ class PopoverContainer extends React.Component {
     });
   };
 
-  editObject = () => {
-    // const { actions, currentObject } = this.props;
-    // // повторное нажатие закрывает панель редактирования на SidePanel:
-    // const newState = currentObject.state === 'none' ? 'edit' : 'none';
-    // actions.changeCurrentObjectState(newState);
-  };
+  connectObjects = () => {
+    // работает только при групповом выделении:
+    // объединяет/разъединяет объекты
+
+
+  }
 
   copyObject = () => {
     const { objects, currentObject } = this.props;
@@ -116,7 +116,7 @@ class PopoverContainer extends React.Component {
           readyHandler={readyHandler}
           copyHandler={this.copyObject}
           turnHandler={this.rotateObject}
-          editHandler={this.editObject}
+          connectHandler={this.connectObjects}
           deleteHandler={this.deleteObject}
         />
         <DeleteObjectModal

@@ -73,7 +73,9 @@ module.exports = {
     'no-script-url': 'warn',
     'no-extra-boolean-cast': 'off', // !!object - это нормально
     'react/prefer-stateless-function': 'off',
-    'max-len': 'off'
+    'max-len': 'off',
+    'no-labels': 'off', // для удобства, чтобы не вводить булевские флаги для циклов
+    'no-continue': 'off',
   },
 
 };

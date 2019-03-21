@@ -13,6 +13,7 @@ import PopoverView from '../../presentational/PopoverView/index';
 import DeleteObjectModal from '../Modals/DeleteObjectModal/index';
 import MergeObjectsModal from '../Modals/MergeObjectsModal';
 import mergeObjects from '../../../utils/mergeObjects';
+import checkObjectsAdjoined from '../../../utils/checkObjectsAdjoined';
 import { MULTI_EDIT } from '../../../res/workModeConstants';
 
 const _ = require('lodash');
@@ -83,9 +84,17 @@ class PopoverContainer extends React.Component {
           selectedObjects.push(_.cloneDeep(elem));
         }
       });
-      // объединяем выделенные объекты:
-      const step = mapState.blockSnapSize;
-      const newComplexObject = mergeObjects(selectedObjects, step, category);
+      // если объекты не создают цепь, касаясь друг друга, то они не смогут сформировать единый объект:
+      if (!checkObjectsAdjoined(selectedObjects)) {
+        alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
+        readyHandler(); // close popover
+        return;
+      } 
+      // if (checkObjectsAdjoined(selectedObjects)) { 
+      //   // объединяем выделенные объекты:
+      //   const step = mapState.blockSnapSize;
+      //   const newComplexObject = mergeObjects(selectedObjects, step, category);
+      // }
     }
     // если объект выбран - то выполняем действия:
 

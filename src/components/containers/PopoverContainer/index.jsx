@@ -89,12 +89,12 @@ class PopoverContainer extends React.Component {
         alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
         readyHandler(); // close popover
         return;
-      } 
-      // if (checkObjectsAdjoined(selectedObjects)) { 
-      //   // объединяем выделенные объекты:
-      //   const step = mapState.blockSnapSize;
-      //   const newComplexObject = mergeObjects(selectedObjects, step, category);
-      // }
+      } else {
+        // если выделенные объекты могут создать единый объект, то:
+        // объединяем их:
+        const step = mapState.blockSnapSize;
+        const newComplexObject = mergeObjects(selectedObjects, step, category);
+      }
     }
     // если объект выбран - то выполняем действия:
 

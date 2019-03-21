@@ -1,5 +1,11 @@
 const _ = require('lodash');
 
+// ОГРАНИЧЕНИЯ:
+// Объединение 2-х объектов идёт без проблем
+// Если объекты образуют кольцо, то центр кольца уничтожится
+// НУЖНА БОЛЕЕ ТОЧНАЯ ФОРМУЛИРОВКА:
+// если столы формируют букву S, то возможно преобразование в букву O 
+
 // EDGES ORIENTATION:
 const HORIZONTAL = 'HORIZONTAL';
 const VERTICAL = 'VERTICAL';
@@ -195,10 +201,12 @@ function findStartPoint(start, step, borders, points) {
   for (let x = start.x; x < borders.x; x += step) {
     for (let y = start.y; y < borders.y; y += step) {
       let tempPoint = points.find((p) => _.isEqual(p, { x, y }));
-      return {
-        point: _.cloneDeep(tempPoint),
-        direction: DOWN
-      };
+      if (tempPoint !== undefined) {
+        return {
+          point: _.cloneDeep(tempPoint),
+          direction: DOWN
+        };
+      }
     }
   }
   return undefined;

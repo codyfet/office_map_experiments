@@ -245,7 +245,8 @@ function findStartPoint(start, borders, points) {
       let tempPoint = points.find((p) => _.isEqual(p, { x, y }));
       return {
         point: _.cloneDeep(tempPoint),
-        direction: 
+        direction: DOWN
+      };
     }
   }
   return undefined;

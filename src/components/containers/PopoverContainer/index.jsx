@@ -69,7 +69,7 @@ class PopoverContainer extends React.Component {
   }
 
   handleChoiceMergeModal = (category) => {
-    const { objects, actions, currentObject, readyHandler } = this.props;
+    const { objects, actions, mapState, currentObject, readyHandler } = this.props;
     // если объект не выбран:
     if (category === '') {
       alert('ОШИБКА: ФИНАЛЬНЫЙ ТИП ОБЪЕКТА СЛИЯНИЯ НЕ БЫЛ ВЫБРАН! Попробуйте еще раз!');
@@ -84,7 +84,8 @@ class PopoverContainer extends React.Component {
         }
       });
       // объединяем выделенные объекты:
-      const newComplexObject = mergeObjects(selectedObjects, category);
+      const step = mapState.blockSnapSize;
+      const newComplexObject = mergeObjects(selectedObjects, step, category);
     }
     // если объект выбран - то выполняем действия:
 
@@ -193,6 +194,7 @@ const mapStateToProps = state => ({
   boardState: state.boardState,
   currentObject: state.currentObject,
   workMode: state.workMode,
+  mapState: state.mapState
 });
 
 const mapDispatchToProps = dispatch => ({

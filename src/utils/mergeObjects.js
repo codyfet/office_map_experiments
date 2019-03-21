@@ -4,6 +4,21 @@ const _ = require('lodash');
 const HORIZONTAL = 'HORIZONTAL';
 const VERTICAL = 'VERTICAL';
 
+// DIRECTIONS:
+const RIGHT = 'RIGHT';
+const UP = 'UP';
+const LEFT = 'LEFT';
+const DOWN = 'DOWN';
+
+function convert2dPointsToString(points) {
+  let stringCoordinates = [];
+  for (let i = 0; i < points.length; i += 1) {
+    stringCoordinates.push(points[i].x);
+    stringCoordinates.push(points[i].y);
+  }
+  return stringCoordinates.join(' ');
+} 
+
 function convertJSONObjectToPoints(jsonObject) {
   // "coordinates": { "x": 535, "y": 1170 },
   // "width": 5,
@@ -24,7 +39,6 @@ function convertJSONObjectToPoints(jsonObject) {
     x: start.x + jsonObject.width,
     y: start.y
   });
-  points.push(start);
   return points;
 }
 
@@ -155,65 +169,182 @@ function isEdge1InsideEdge2(edge1, edge2, orientation) {
 }
 
 function computeAreaSizes(objects) {
-
+  let topLeftCorner = {
+    x: 100000,
+    y: 100000
+  };
+  let bottomRightCorner = {
+    x: 0,
+    y: 0
+  };
+  objects.forEach((object) => {
+    const { x, y } = object.coordinates;
+    const { width, height } = object;
+    topLeftCorner.x = x < topLeftCorner.x ? x : topLeftCorner.x;
+    topLeftCorner.y = y < topLeftCorner.y ? y : topLeftCorner.y;
+    bottomRightCorner.x = x + width > bottomRightCorner.x ? x + width : bottomRightCorner.x;
+    bottomRightCorner.y = y + height > bottomRightCorner.y ? y + height : bottomRightCorner.y;
+  });
+  return {
+    topLeftCorner, 
+    bottomRightCorner
+  };
 }
 
-function complexMergeObjects(objects, finalCategory) {
-  // взять из массива объекты
-  // преобразовать их в массивы точек-ребер:
-  let str = 'Функция работает';
-  let begin = 'Начинаем разработку';
-  
-  let objectsPoints = objects.map((object) => convertJSONObjectToPoints(object));
-  let objectEdges = objectsPoints.map((points) => getEdgesFromPoints(points));
-  
-  // берем два объекта:
-  let object0 = objectEdges[0];
-  let object1 = objectEdges[1];
-
-  let newObject = [];
-  // и начинаем обход:
-  for (let i = 0; i < object0.length; i += 1) {
-    // проходим ребро
-    let currentEdge = object0[i];
-    // смотрим, соприкасается ли оно с ребром другого объекта:
-    let adjoinedEdges = getEdgesGivenEdgeAdjoins(currentEdge, object1);
-
-    if (adjoinedEdges !== []) {
-      // предположим, что соприкосновение может быть только по одному ребру:
-      let adjoinedEdge = _.cloneDeep(adjoinedEdges[0]);
-      let sortedPoints = [currentEdge.start, currentEdge.end, adjoinedEdge.start, adjoinedEdge.end];
-      
-      // если соприкосновение горизонтальных ребер:
-      if (isEdgeHorizontal(adjoinedEdge)) {
-        sortedPoints = sortedPoints.sort((a, b) => a.x - b.x);
-        // случай 1: примыкающее ребро (adjoinedEdge) внутри текущего ребра (currentEdge):
-        if (isEdge1InsideEdge2(adjoinedEdge, currentEdge, 'horizontal')) {
-          // Первое новое ребро:
-          newObject.push({
-            start: sortedPoints[0],
-            end: sortedPoints[1] 
-          });
-          object1 = deleteByValue(object1, currentEdge);
-
-          let currPoint = sortedPoints[0];
-          while (object1 !== []) {
-            let nextEdge = _.cloneDeep(findEdgeByPoint(currPoint, object1));
-            newObject.push(nextEdge);
-            object1 = deleteByValue(object1, nextEdge);
-            currPoint = nextEdge.end;
-          }
-        }
-      } else if (isEdgeVertical(adjoinedEdge)) {
-        // 
-      }
-    } else {
-      newObject.push(_.cloneDeep(currentEdge));
+function findStartPoint(start, step, borders, points) {
+  for (let x = start.x; x < borders.x; x += step) {
+    for (let y = start.y; y < borders.y; y += step) {
+      let tempPoint = points.find((p) => _.isEqual(p, { x, y }));
+      return {
+        point: _.cloneDeep(tempPoint),
+        direction: DOWN
+      };
     }
   }
+  return undefined;
+}
 
-  let polygonDots = newObject;
-} 
+function chooseNewDirections(curretnDirection) {
+  switch (curretnDirection) {
+    case DOWN:
+      return [LEFT, DOWN, RIGHT];
+    case RIGHT:
+      return [DOWN, RIGHT, UP];
+    case UP:
+      return [RIGHT, UP, LEFT];
+    case LEFT:
+      return [UP, LEFT, DOWN];
+    default:
+      return [];
+  }
+}
+
+// искать внизу:
+function searchPointDOWN(startPoint, points, step, borders) {
+  for (let y = startPoint.y + step; y <= borders.y; y += step) {
+    let foundPoint = points.find((p) => _.isEqual(p, { x: startPoint.x, y }));
+    if (foundPoint !== undefined) {
+      return {
+        point: _.cloneDeep(foundPoint),
+        direction: DOWN
+      };
+    }
+  }
+  return undefined;
+}
+
+// искать справа:
+function searchPointRIGHT(startPoint, points, step, borders) {
+  for (let x = startPoint.x + step; x <= borders.x; x += step) {
+    let foundPoint = points.find((p) => _.isEqual(p, { x, y: startPoint.y }));
+    if (foundPoint !== undefined) {
+      return {
+        point: _.cloneDeep(foundPoint),
+        direction: RIGHT
+      };
+    }
+  }
+  return undefined;
+}
+
+// искать сверху:
+function searchPointUP(startPoint, points, step, borders) {
+  for (let y = startPoint.y - step; y >= borders.y; y -= step) {
+    let foundPoint = points.find((p) => _.isEqual(p, { x: startPoint.x, y }));
+    if (foundPoint !== undefined) {
+      return {
+        point: _.cloneDeep(foundPoint),
+        direction: UP
+      };
+    }
+  }
+  return undefined;
+}
+
+// искать слева:
+function searchPointLEFT(startPoint, points, step, borders) {
+  for (let x = startPoint.x - step; x >= borders.x; x -= step) {
+    let foundPoint = points.find((p) => _.isEqual(p, { x, y: startPoint.y }));
+    if (foundPoint !== undefined) {
+      return {
+        point: _.cloneDeep(foundPoint),
+        direction: LEFT
+      };
+    }
+  }
+  return undefined;
+}
+
+function searchPointInDirection(currentPoint, points, step, topLeftCorner, bottomRightCorner) {
+  switch (currentPoint.direction) {
+    case DOWN:
+      return searchPointDOWN(currentPoint.point, points, step, bottomRightCorner);
+    case RIGHT:
+      return searchPointRIGHT(currentPoint.point, points, step, bottomRightCorner);
+    case UP:
+      return searchPointUP(currentPoint.point, points, step, topLeftCorner);
+    case LEFT:
+      return searchPointLEFT(currentPoint.point, points, step, topLeftCorner);
+    default:
+      return undefined;
+  }
+}
+
+// рассматривает соседние точки у данной, заданной по pointIndex:
+function isPointNotRedundant(pointIndex, points) {
+  // так как три точки в нашем случае образуют только угол =>
+  // у каждой точки - соседние точки имеют различные координаты, как по x, так и по y:
+  // но, если у соседних точек совпадают координаты по x или по y =>
+  // точка между ними - лишняя, она лежит на отрезке, образованном соседними точками
+  // ЗАМЕЧАНИЕ:
+  // По условиям отрисовки - угловая точка не может быть лишней 
+  return (
+    points[pointIndex - 1].x !== points[pointIndex + 1].x 
+    && points[pointIndex - 1].y !== points[pointIndex + 1].y
+  );
+}
+
+function getRidOfRedundantPoints(points) {
+  let clearedUpPoints = [];
+  for (let i = 1; i < points.length - 1; i += 1) {
+    if (i === 1) {
+      clearedUpPoints.push(_.cloneDeep(points[0]));
+    }
+
+    if (isPointNotRedundant(i, points)) {
+      clearedUpPoints.push(_.cloneDeep(points[i]));
+    }
+
+    if (i === points.length - 2) {
+      clearedUpPoints.push(_.cloneDeep(points[points.length - 1]));
+    }
+  }
+  return clearedUpPoints;
+}
+
+function constructFigureFromAllPoints(points, step, topLeftCorner, bottomRightCorner) {
+  let startPoint = findStartPoint(topLeftCorner, step, bottomRightCorner, points);
+  // теперь идем от стартовой точки, объединяя все соседние:
+  // в зависимости от направления вектора
+  let sortedPoints = [startPoint.point];
+  let currentPoint = startPoint;
+  do {
+    let directions = chooseNewDirections(currentPoint.direction);
+    for (let i = 0; i < directions.length; i += 1) {
+      // изменили направление:
+      currentPoint.direction = directions[i];
+      // ищем точку в данном направлении:
+      let foundPoint = searchPointInDirection(currentPoint, points, step, topLeftCorner, bottomRightCorner);
+      if (foundPoint !== undefined) {
+        currentPoint = foundPoint;
+        sortedPoints.push(_.cloneDeep(foundPoint.point));
+        break;
+      }
+    } // мы точно знаем, что в одном из направлений найдётся точка, т.к. объекты соприкасаются ребрами!
+  } while (!_.isEqual(currentPoint.point, startPoint.point));
+
+  return getRidOfRedundantPoints(sortedPoints);
+}
 
 export default function mergeObjects(objects, step = 5, finalCategory = 'service_room') {
   // LAZY MERGE:
@@ -226,45 +357,26 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
   // работаем на двух объектах:
   // сначала определим размер области, в которой лежат наши объекты:
   const { topLeftCorner, bottomRightCorner } = computeAreaSizes(objects);
-
-  // let objectsPoints = objects.map((object) => convertJSONObjectToPoints(object));
   
-  // // берем два объекта:
-  // let object0 = objectsPoints[0];
-  // let object1 = objectsPoints[1];
+  let points = objects.map((object) => convertJSONObjectToPoints(object)).flat();
+  let polygonPoints = constructFigureFromAllPoints(points, step, topLeftCorner, bottomRightCorner);
+  let polygon = convert2dPointsToString(polygonPoints);
+  
+  let finish = 'полигон сделан!';
 
-  // let newObject = [];
-
-  // newObject.push(object0[0]);
-  // for (let i = 0; i < object0.length - 1; i += 1) {
-  //   let point = object0[i];
-  //   let nextPoint = object0[i + 1];
-  //   // пойдём от точки до точки
-  //   // определимся как будем идти:
-  //   if (point.x === nextPoint.x) {
-  //     // тогда вдоль y:
-  //     for (let y = point.y; y <= nextPoint.y; y += step) {
-  //       // проверяем:
-  //       // есть ли такая же точка в другом объекте:
-  //       let newPoint = object1.find((p) => _.isEqual(p, { x: point.x, y }));
-  //       if (newPoint !== undefined) {
-  //         newObject.push(newPoint);
-  //         let keyPoint = object1.indexOf(newPoint);
-  //         for (let j = keyPoint; j < object1.length; j += 1) {
-  //           newObject.push(object1[j]);
-  //         }
-  //         for (let j = 0; j < keyPoint; j += 1) {
-  //           newObject.push(object1[j]);
-  //         }
-  //       }
-  //     }
-  //   } else if (point.y === nextPoint.y) {
-  //     // тогда вдоль x:
-  //     for (let x = point.x; x <= nextPoint.x; x += step) {
-  //       // проверяем:
-  //     }
-  //   }
-  //   newObject.push(nextPoint);
-  // }
-  // return newObject.join(' ');
+  // теперь объединим JSON-объекты:
+  // 'category',
+  // 'seatLocation',
+  // 'orientation',
+  // 'doorLocation',
+  // 'doorPosition',
+  // 'title',
+  // 'id',
+  // 'coordinates',
+  // 'width',
+  // 'height',
+  // 'color',
+  // 'movable',
+  // 'hasIntersection',
+  // 'userId',
 } 

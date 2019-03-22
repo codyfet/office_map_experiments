@@ -85,12 +85,20 @@ class AdvancedBoard extends React.Component {
   // иначе  - hasIntersection = false
   checkObjectHasIntersection = (object) => {
     // получить координаты текущего объекта:
-    const currObject = {
-      x: object.coordinates.x,
-      y: object.coordinates.y,
-      width: object.width,
-      height: object.height,
-    };
+    let currObjects;
+    // добавляем проверку на compound, теперь есть составные объекты:
+    if (object.isCompound) { // если объект составной:
+      currObjects = object.composition;
+    } else { // если объект не составной:
+      currObjects = [
+        {
+          x: object.coordinates.x,
+          y: object.coordinates.y,
+          width: object.width,
+          height: object.height,
+        }
+      ];
+    }
 
     const { objects, mapState } = this.props;
     const thisLevelObjects = objects.levels[objects.mapLevel];
@@ -103,17 +111,24 @@ class AdvancedBoard extends React.Component {
         return false;
       }
 
-      // получить координаты и размеры текущего узла:
-      // реализовано отдельно специально, ведь при масштабировании
-      // координаты становятся нецелыми и при проверках возникают ошибки
-      const currNode = {
-        x: obj.coordinates.x,
-        y: obj.coordinates.y,
-        width: obj.width,
-        height: obj.height,
-      };
+      // опять же берем объект и смотрим, вдруг он compound:
+      let nextObjects;
+      if (obj.isCompound) {
+        nextObjects = obj.composition;
+      } else { // если объект составной: то у нас несколько объектов:
+        nextObjects = [
+          {
+            x: obj.coordinates.x,
+            y: obj.coordinates.y,
+            width: obj.width,
+            height: obj.height
+          }
+        ];
+      }
 
-      return this.haveIntersection(currNode, currObject);
+      return nextObjects.some((nextObject) => {
+        return currObjects.some((currObject) => this.haveIntersection(nextObject, currObject));
+      });
     });
 
     // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borderArea) карты:
@@ -127,7 +142,7 @@ class AdvancedBoard extends React.Component {
         height: borderAreaCoords[3] - borderAreaCoords[1]
       };
 
-      return this.haveIntersection(currBorder, currObject);
+      return currObjects.some((currObject) => this.haveIntersection(currBorder, currObject));
     });
 
     const hasIntersection = intersectedWithMapObjects || boundariesOverstepped;
@@ -411,7 +426,7 @@ class AdvancedBoard extends React.Component {
           />
         );
       } else {
-        if (object.compound) {
+        if (object.isCompound) {
           return (
             <StaticComplexObject
               key={object.id}

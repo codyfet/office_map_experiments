@@ -5,6 +5,20 @@ const LEFT = 'LEFT';
 const DOWN = 'DOWN';
 const ERROR = 'ERROR';
 
+function computeShiftToZeroPointByFirstPointOfPolygon(polygonPoints) {
+  return {
+    x: -polygonPoints[0].x,
+    y: -polygonPoints[0].y
+  };
+}
+
+function shiftPoint(point, shift) {
+  return {
+    x: point.x + shift.x,
+    y: point.y + shift.y
+  };
+}
+
 function shiftPolygonToPointZero(polygonPoints) {
   // сначала определяем смещение по координатам:
   let shift = {
@@ -97,6 +111,8 @@ function shrinkPolygonPoints(polygonPoints, padding) {
 }
 
 export {
+  computeShiftToZeroPointByFirstPointOfPolygon,
+  shiftPoint,
   shiftPolygonToPointZero,
   shrinkPolygonPoints
 };

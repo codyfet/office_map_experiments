@@ -51,7 +51,7 @@ class SaveMapTab extends React.Component {
       'polygonPoints',
       'width',
       'height',
-      'compound',
+      'isCompound',
       'composition',
       'seatLocation',
       'orientation',

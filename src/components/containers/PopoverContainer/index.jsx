@@ -94,6 +94,13 @@ class PopoverContainer extends React.Component {
         // объединяем их:
         const step = mapState.blockSnapSize;
         const newComplexObject = mergeObjects(selectedObjects, step, category);
+
+        // удаляем выделенные объекты:
+        currentObject.objectId.split(' ').forEach(id => {
+          actions.deleteObject(id);
+        });
+        // добавляем новый:
+        actions.createObject(_.cloneDeep(newComplexObject));
       }
     }
     // если объект выбран - то выполняем действия:

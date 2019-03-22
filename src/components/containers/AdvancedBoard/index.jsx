@@ -410,17 +410,31 @@ class AdvancedBoard extends React.Component {
           />
         );
       } else {
-        return (
-          <StaticObject
-            key={object.id}
-            object={object}
-            isSelected={selectedObjects.includes(object.id)}
-            showContextMenu={this.showContextMenu}
-            hideContextMenu={this.hideContextMenu}
-            setCurrentObject={this.setCurrentObject}
-            openCurrentObjectTab={this.openCurrentObjectTab}
-          />
-        );
+        if (object.compound) {
+          return (
+            <StaticObject
+              key={object.id}
+              object={object}
+              isSelected={selectedObjects.includes(object.id)}
+              showContextMenu={this.showContextMenu}
+              hideContextMenu={this.hideContextMenu}
+              setCurrentObject={this.setCurrentObject}
+              openCurrentObjectTab={this.openCurrentObjectTab}
+            />
+          );
+        } else {
+          return (
+            <StaticObject
+              key={object.id}
+              object={object}
+              isSelected={selectedObjects.includes(object.id)}
+              showContextMenu={this.showContextMenu}
+              hideContextMenu={this.hideContextMenu}
+              setCurrentObject={this.setCurrentObject}
+              openCurrentObjectTab={this.openCurrentObjectTab}
+            />
+          );
+        }
       }
     });
 

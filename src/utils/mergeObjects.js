@@ -1,14 +1,14 @@
+import { LEFT_SIDE } from '../res/constantsTableSeat';
+
 const _ = require('lodash');
 
 // ОГРАНИЧЕНИЯ:
-// Объединение 2-х объектов идёт без проблем
-// Если объекты образуют кольцо, то центр кольца уничтожится
-// НУЖНА БОЛЕЕ ТОЧНАЯ ФОРМУЛИРОВКА:
-// если столы формируют букву S, то возможно преобразование в букву O 
+// Если объекты образуют кольцо, то центр этого кольца удалится
 
 // EDGES ORIENTATION:
 const HORIZONTAL = 'HORIZONTAL';
 const VERTICAL = 'VERTICAL';
+const ERROR = 'ERROR';
 
 // DIRECTIONS:
 const RIGHT = 'RIGHT';
@@ -72,82 +72,35 @@ function isEdgeVertical(edge) {
   return edge.start.x === edge.end.x;
 } 
 
-function isEdgesOnTheSameLevel(edge1, edge2) {
-  if (isEdgeHorizontal(edge1) && isEdgeHorizontal(edge2)) {
-    return {
-      isSameLevel: edge1.start.y === edge2.start.y,
-      orientation: HORIZONTAL
-    };
+function isPointAndEdgeOnTheSameLine(point, edge) {
+  return (
+    edge.start.x === point.x && edge.end.x === point.x
+    || edge.start.y === point.y && edge.end.y === point.y
+  );
+}
+
+function isPointOnEdge(point, edge) {
+  if (isPointAndEdgeOnTheSameLine(point, edge) && isEdgeHorizontal(edge)) {
+    if (edge.start.x <= point.x && point.x <= edge.end.x
+        || edge.start.x >= point.x && point.x >= edge.end.x) {
+      return true;
+    } else return false; 
   }
-  if (isEdgeVertical(edge1) && isEdgeVertical(edge2)) {
-    return {
-      isSameLevel: edge1.start.x === edge2.start.x,
-      orientation: VERTICAL
-    };
-  } 
+  if (isPointAndEdgeOnTheSameLine(point, edge) && isEdgeVertical(edge)) {
+    if (edge.start.y <= point.y && point.y <= edge.end.y
+        || edge.start.y >= point.y && point.y >= edge.end.y) {
+      return true;
+    } else return false; 
+  }
   return false;
 }
 
-// работает в целых числах:
-function getEdgesThePointIsOn(point, edges) {
-  let foundEdges = [];
-  edges.forEach((edge) => {
-    if (isEdgeHorizontal(edge)) {
-      if (edge.start.x <= point.x && edge.end.x >= point.x) {
-        foundEdges.push(_.cloneDeep(edge));
-      } 
-    } else if (isEdgeVertical(edge)) {
-      if (edge.start.y <= point.y && edge.end.y >= point.y) {
-        foundEdges.push(_.cloneDeep(edge));
-      }
-    } else {
-      // уравнение прямой:
-      let leftExp = (point.x - edge.start.x) / (edge.end.x - edge.start.x);
-      let rightExp = (point.y - edge.start.y) / (edge.end.y - edge.start.y);
-      if (Math.floor(leftExp) === Math.floor(rightExp)) {
-        foundEdges.push(_.cloneDeep(edge));
-      }
-    }
-  });
-  return foundEdges;
-}
-
-function getPointsOnEdge(edge, otherObjectEdges) {
-
+function isPointOnSomeEdges(point, edges) {
+  return edges.some((edge) => isPointOnEdge(point, edge));
 }
 
 function computeDistanceBetweenPoints(point1, point2) {
   return Math.sqrt((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2);
-}
-
-// найти точку, ближайшую к center = 0,0:
-function getPointClosestToCenter(points, center = { x: 0, y: 0 }) { 
-  return points.reduce((prev, v) => {
-    let fromPrevToCenter = computeDistanceBetweenPoints(prev, center);
-    let fromVToCenter = computeDistanceBetweenPoints(v, center);
-    return fromPrevToCenter >= fromVToCenter ? v : prev;
-  });
-}
-
-// ребро соприкасается с другими ребрами
-function getEdgesGivenEdgeAdjoins(givenEdge, anotherObjectEdges) {
-  let foundEdges = [];
-  anotherObjectEdges.forEach((edge) => {
-    const { isSameLevel, orientation } = isEdgesOnTheSameLevel(edge, givenEdge);
-    if (isSameLevel && orientation === HORIZONTAL) {
-      if (edge.start.x <= givenEdge.start.x && edge.end.x >= givenEdge.start.x
-          || edge.start.x <= givenEdge.end.x && edge.end.x >= givenEdge.end.x) {
-        foundEdges.push(_.cloneDeep(edge));
-      }
-    } 
-    if (isSameLevel && orientation === VERTICAL) {
-      if (edge.start.y <= givenEdge.start.y && edge.end.y >= givenEdge.start.y
-          || edge.start.y <= givenEdge.end.y && edge.end.y >= givenEdge.end.y) {
-        foundEdges.push(_.cloneDeep(edge));
-      }
-    } 
-  });
-  return foundEdges;
 }
 
 function findEdgeByPoint(point, edges) {
@@ -227,8 +180,18 @@ function chooseNewDirections(curretnDirection) {
   }
 }
 
+// заменить поиск с помощью ребер:
 // искать внизу:
-function searchPointDOWN(startPoint, points, step, borders) {
+function searchPointDOWNwithEdges(startPoint, points, step, borders, objectsEdges) {
+  // доп. проверка:
+  let checkPoint = {
+    x: startPoint.x,
+    y: startPoint.y + step  
+  };
+  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+    return undefined;
+  }
+  
   for (let y = startPoint.y + step; y <= borders.y; y += step) {
     let foundPoint = points.find((p) => _.isEqual(p, { x: startPoint.x, y }));
     if (foundPoint !== undefined) {
@@ -242,7 +205,16 @@ function searchPointDOWN(startPoint, points, step, borders) {
 }
 
 // искать справа:
-function searchPointRIGHT(startPoint, points, step, borders) {
+function searchPointRIGHTwithEdges(startPoint, points, step, borders, objectsEdges) {
+  // доп. проверка:
+  let checkPoint = {
+    x: startPoint.x + step,
+    y: startPoint.y  
+  };
+  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+    return undefined;
+  }
+
   for (let x = startPoint.x + step; x <= borders.x; x += step) {
     let foundPoint = points.find((p) => _.isEqual(p, { x, y: startPoint.y }));
     if (foundPoint !== undefined) {
@@ -256,7 +228,16 @@ function searchPointRIGHT(startPoint, points, step, borders) {
 }
 
 // искать сверху:
-function searchPointUP(startPoint, points, step, borders) {
+function searchPointUPwithEdges(startPoint, points, step, borders, objectsEdges) {
+  // доп. проверка:
+  let checkPoint = {
+    x: startPoint.x,
+    y: startPoint.y - step  
+  };
+  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+    return undefined;
+  }
+
   for (let y = startPoint.y - step; y >= borders.y; y -= step) {
     let foundPoint = points.find((p) => _.isEqual(p, { x: startPoint.x, y }));
     if (foundPoint !== undefined) {
@@ -270,7 +251,16 @@ function searchPointUP(startPoint, points, step, borders) {
 }
 
 // искать слева:
-function searchPointLEFT(startPoint, points, step, borders) {
+function searchPointLEFTwithEdges(startPoint, points, step, borders, objectsEdges) {
+  // доп. проверка:
+  let checkPoint = {
+    x: startPoint.x - step,
+    y: startPoint.y  
+  };
+  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+    return undefined;
+  }
+
   for (let x = startPoint.x - step; x >= borders.x; x -= step) {
     let foundPoint = points.find((p) => _.isEqual(p, { x, y: startPoint.y }));
     if (foundPoint !== undefined) {
@@ -283,16 +273,16 @@ function searchPointLEFT(startPoint, points, step, borders) {
   return undefined;
 }
 
-function searchPointInDirection(currentPoint, points, step, topLeftCorner, bottomRightCorner) {
+function searchPointInDirection(currentPoint, points, step, objectsEdges, topLeftCorner, bottomRightCorner) {
   switch (currentPoint.direction) {
     case DOWN:
-      return searchPointDOWN(currentPoint.point, points, step, bottomRightCorner);
+      return searchPointDOWNwithEdges(currentPoint.point, points, step, bottomRightCorner, objectsEdges);
     case RIGHT:
-      return searchPointRIGHT(currentPoint.point, points, step, bottomRightCorner);
+      return searchPointRIGHTwithEdges(currentPoint.point, points, step, bottomRightCorner, objectsEdges);
     case UP:
-      return searchPointUP(currentPoint.point, points, step, topLeftCorner);
+      return searchPointUPwithEdges(currentPoint.point, points, step, topLeftCorner, objectsEdges);
     case LEFT:
-      return searchPointLEFT(currentPoint.point, points, step, topLeftCorner);
+      return searchPointLEFTwithEdges(currentPoint.point, points, step, topLeftCorner, objectsEdges);
     default:
       return undefined;
   }
@@ -330,7 +320,7 @@ function getRidOfRedundantPoints(points) {
   return clearedUpPoints;
 }
 
-function constructFigureFromAllPoints(points, step, topLeftCorner, bottomRightCorner) {
+function constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner, bottomRightCorner) {
   let startPoint = findStartPoint(topLeftCorner, step, bottomRightCorner, points);
   // теперь идем от стартовой точки, объединяя все соседние:
   // в зависимости от направления вектора
@@ -342,7 +332,7 @@ function constructFigureFromAllPoints(points, step, topLeftCorner, bottomRightCo
       // изменили направление:
       currentPoint.direction = directions[i];
       // ищем точку в данном направлении:
-      let foundPoint = searchPointInDirection(currentPoint, points, step, topLeftCorner, bottomRightCorner);
+      let foundPoint = searchPointInDirection(currentPoint, points, step, objectsEdges, topLeftCorner, bottomRightCorner);
       if (foundPoint !== undefined) {
         currentPoint = foundPoint;
         sortedPoints.push(_.cloneDeep(foundPoint.point));
@@ -355,36 +345,54 @@ function constructFigureFromAllPoints(points, step, topLeftCorner, bottomRightCo
 }
 
 export default function mergeObjects(objects, step = 5, finalCategory = 'service_room') {
-  // LAZY MERGE:
-  
-  // взять из массива объекты
-  // преобразовать их в массивы точек-ребер:
-  let str = 'Функция работает';
-  let begin = 'Начинаем разработку';
-  
-  // работаем на двух объектах:
   // сначала определим размер области, в которой лежат наши объекты:
   const { topLeftCorner, bottomRightCorner } = computeAreaSizes(objects);
   
-  let points = objects.map((object) => convertJSONObjectToPoints(object)).flat();
-  let polygonPoints = constructFigureFromAllPoints(points, step, topLeftCorner, bottomRightCorner);
+  // взять из массива объекты
+  // преобразовать их в массивы точек
+  let objectsPoints = objects.map((object) => convertJSONObjectToPoints(object));
+  // взять массив всех ребер:
+  let objectsEdges = objectsPoints.map((points) => getEdgesFromPoints(points)).flat();
+  // взять массив всех точек:
+  let points = objectsPoints.flat();
+  // создать последовательность точек нового объекта из имеющихся:
+  let polygonPoints = constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner, bottomRightCorner);
   let polygon = convert2dPointsToString(polygonPoints);
   
   let finish = 'полигон сделан!';
 
-  // теперь объединим JSON-объекты:
-  // 'category',
-  // 'seatLocation',
-  // 'orientation',
-  // 'doorLocation',
-  // 'doorPosition',
-  // 'title',
-  // 'id',
-  // 'coordinates',
-  // 'width',
-  // 'height',
-  // 'color',
-  // 'movable',
-  // 'hasIntersection',
-  // 'userId',
+  // по умолчанию наследуем все параметры первого выделенного объекта:
+  let newObject = { 
+    category: finalCategory,
+    id: objects[0].id,
+    coordinates: polygonPoints[0],
+    compound: true,
+    polygonPoints: polygon,
+    сomposition: objects.map((object) => ({
+      coordinates: object.coordinates,
+      width: object.width,
+      height: object.height
+    })),
+    color: objects[0].id,
+    movable: false, // а вот двигать его будет уже нельзя
+    hasIntersection: false, // предыдущие объекты не имели пересечений с другими
+  };
+  
+  // объединяем только в статические объекты: (поэтому параметров userId, seatLocation, orientation - не )
+  if (finalCategory === 'table') {
+    newObject.userId = '';
+    newObject.seatLocation = LEFT_SIDE;
+  } else if (['cupboard', 'printer', 'scaner', 'shredder'].includes(finalCategory)) {
+    newObject.orientation = LEFT_SIDE;
+    newObject.title = '';
+  } else { // остаются статичные объекты:
+    newObject.doorLocation = LEFT_SIDE;
+    newObject.doorPosition = {
+      x: 0,
+      y: computeDistanceBetweenPoints(polygonPoints[0], polygonPoints[1]) / 2,
+    };
+    newObject.title = '';
+  }
+  
+  return newObject;
 } 

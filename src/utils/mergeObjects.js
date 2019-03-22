@@ -356,8 +356,8 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
   // взять массив всех точек:
   let points = objectsPoints.flat();
   // создать последовательность точек нового объекта из имеющихся:
-  let polygonPoints = constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner, bottomRightCorner);
-  let polygon = convert2dPointsToString(polygonPoints);
+  let polygon = constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner, bottomRightCorner);
+  // let polygon = convert2dPointsToString(polygonPoints);
   
   let finish = 'полигон сделан!';
 
@@ -365,7 +365,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
   let newObject = { 
     category: finalCategory,
     id: objects[0].id,
-    coordinates: polygonPoints[0],
+    coordinates: polygon[0],
     compound: true,
     polygonPoints: polygon,
     сomposition: objects.map((object) => ({
@@ -373,7 +373,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
       width: object.width,
       height: object.height
     })),
-    color: objects[0].id,
+    color: objects[0].color,
     movable: false, // а вот двигать его будет уже нельзя
     hasIntersection: false, // предыдущие объекты не имели пересечений с другими
   };
@@ -389,7 +389,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
     newObject.doorLocation = LEFT_SIDE;
     newObject.doorPosition = {
       x: 0,
-      y: computeDistanceBetweenPoints(polygonPoints[0], polygonPoints[1]) / 2,
+      y: computeDistanceBetweenPoints(polygon[0], polygon[1]) / 2,
     };
     newObject.title = '';
   }

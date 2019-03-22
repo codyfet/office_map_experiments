@@ -57,6 +57,7 @@ class SaveMapTab extends React.Component {
       'orientation',
       'doorLocation',
       'doorPosition',
+      'iconPosition',
       'color',
       'movable',
       'hasIntersection',

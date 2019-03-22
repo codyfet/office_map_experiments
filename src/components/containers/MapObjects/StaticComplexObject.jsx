@@ -6,33 +6,35 @@ import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
 import { LEFT_SIDE, BOTTOM_SIDE, RIGHT_SIDE, TOP_SIDE } from '../../../res/constantsTableSeat';
-import shiftPolygonPoints from '../../../utils/shiftPolygonCoordinates';
+import { shiftPolygonToPointZero, shrinkPolygonPoints } from '../../../utils/polygonMagic';
 
 export default class StaticComplexObject extends React.PureComponent {
   constructor(props) {
     super(props);
 
     const { object } = props;
+    const padding = 5;
 
+    const shape = shiftPolygonToPointZero(object.polygonPoints);
     this.state = {
       objectIcon: this.drawIcon(object),
       isPointed: false,
-      polygonPoints: shiftPolygonPoints(object.polygonPoints) 
+      outerShape: shape,
+      insideShape: shrinkPolygonPoints(shape, padding) 
     };
   }
 
   componentDidUpdate(prevProps) {
     const { object } = this.props;
+    const padding = 5;
 
-    // // проверим границы для измененного объекта:
-    // // будем проверять границы при каждом изменении размеров и координат объекта:
-    // if (prevProps.object.width !== object.width 
-    //     || prevProps.object.height !== object.height
-    //     || prevProps.object.category !== object.category) {
-    //   this.setState({
-    //     objectIcon: this.drawIcon(object)
-    //   });
-    // }
+    if (object.polygonPoints !== prevProps.object.polygonPoints) {
+      const shape = shiftPolygonToPointZero(object.polygonPoints);
+      this.setState({
+        outerShape: shape,
+        insideShape: shrinkPolygonPoints(shape, padding)  
+      });
+    }
   }
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
@@ -174,7 +176,7 @@ export default class StaticComplexObject extends React.PureComponent {
 
   render() {
     const { object, isSelected } = this.props;
-    const { isPointed, polygonPoints, objectIcon } = this.state;
+    const { isPointed, outerShape, insideShape, objectIcon } = this.state;
     const selectionColor = this.setSelection(isSelected);
 
     const paddingSelection = 5;
@@ -193,14 +195,25 @@ export default class StaticComplexObject extends React.PureComponent {
         nameID={object.id}
       >
         {/* Область выделения объекта: */}
-        {/* <Rect
-          width={object.width}
-          height={object.height}
+        <Shape
+          sceneFunc={(context, shape) => {
+            context.beginPath();
+            outerShape.forEach((value, i) => {
+              if (i === 0) {
+                context.moveTo(value.x, value.y);
+              } else {
+                context.lineTo(value.x, value.y);
+              }
+            });
+            context.closePath();
+            // (!) Konva specific method, it is very important
+            context.fillStrokeShape(shape);
+          }}
           fill={selectionColor}
-          opacity={isPointed ? 0.5 : 1}
           stroke="black"
           strokeWidth={0.5}
-        /> */}
+          opacity={isPointed ? 0.5 : 1}
+        />
         {/* Вход */}
         {/* { object.category !== 'construction' && object.doorLocation !== undefined
           && (
@@ -219,7 +232,7 @@ export default class StaticComplexObject extends React.PureComponent {
         <Shape
           sceneFunc={(context, shape) => {
             context.beginPath();
-            polygonPoints.forEach((value, i) => {
+            insideShape.forEach((value, i) => {
               if (i === 0) {
                 context.moveTo(value.x, value.y);
               } else {
@@ -231,8 +244,6 @@ export default class StaticComplexObject extends React.PureComponent {
             context.fillStrokeShape(shape);
           }}
           fill={this.setColor()}
-          stroke="black"
-          strokeWidth={0.5}
           opacity={isPointed ? 0.5 : 1}
         />
         {/* {objectIcon} */}

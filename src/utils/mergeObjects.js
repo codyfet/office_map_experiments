@@ -374,6 +374,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
       height: object.height
     })),
     color: objects[0].color,
+    iconPosition: { x: 0, y: 0 },
     movable: false, // а вот двигать его будет уже нельзя
     hasIntersection: false, // предыдущие объекты не имели пересечений с другими
   };

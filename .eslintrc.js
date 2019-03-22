@@ -76,6 +76,7 @@ module.exports = {
     'max-len': 'off',
     'no-labels': 'off', // для удобства, чтобы не вводить булевские флаги для циклов
     'no-continue': 'off',
+    'import/prefer-default-export': 'off'
   },
 
 };

@@ -21,7 +21,23 @@ const _ = require('lodash');
 const genUniqId = require('uniqid');
 
 class PopoverContainer extends React.Component {
-  // работа с модальным окном:
+  // ВСПОМОГАТЕЛЬЫНЕ ФУНКЦИИ:
+  // --------------------------------------
+  getSelectedObjects = () => {
+    const { objects, currentObject } = this.props;
+    let selectedObjects = [];
+    // найдём выделенные объекты:
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    thisLevelObjects.forEach((elem) => {
+      if (currentObject.objectId.split(' ').includes(elem.id)) {
+        selectedObjects.push(_.cloneDeep(elem));
+      }
+    });
+    return selectedObjects;
+  }
+
+  // РАБОТА С МОДАЛЬНЫМ ОКНОМ:
+  // --------------------------------------
   state = {
     showDeleteModal: false,
     showMergeModal: false
@@ -77,46 +93,18 @@ class PopoverContainer extends React.Component {
       return;
     } 
 
-    let selectedObjects = [];
-    // найдём выделенные объекты:
-    const thisLevelObjects = objects.levels[objects.mapLevel];
-    thisLevelObjects.forEach((elem) => {
-      if (currentObject.objectId.split(' ').includes(elem.id)) {
-        selectedObjects.push(_.cloneDeep(elem));
-      }
-    });
-
-    // compound-объекты нельзя объединять
-    if (selectedObjects.some((object) => object.isCompound)) {
-      alert('ОШИБКА: СОСТАВНЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
-      readyHandler(); // close popover
-      return;
-    }
-
-    // если объекты не создают цепь, касаясь друг друга, то они не смогут сформировать единый объект:
-    if (!checkObjectsAdjoined(selectedObjects)) {
-      alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
-      readyHandler(); // close popover
-      return;
-    } 
-    
-    // если выделенные объекты могут создать единый объект, то:
-    // объединяем их:
+    let selectedObjects = this.getSelectedObjects();
     const step = mapState.blockSnapSize;
+
     const newComplexObject = mergeObjects(selectedObjects, step, category);
 
     // удаляем выделенные объекты:
     currentObject.objectId.split(' ').forEach(id => {
       actions.deleteObject(id);
     });
+
     // добавляем новый:
     actions.createObject(_.cloneDeep(newComplexObject));
-    // если объект выбран - то выполняем действия:
-
-    // currentObject.objectId.split(' ').forEach(id => {
-    //   actions.deleteObject(id);
-    // });
-
     readyHandler(); // close popover
   };
   
@@ -148,6 +136,7 @@ class PopoverContainer extends React.Component {
   };
 
   // ОБРАБОТЧИКИ КНОПОК:
+  // --------------------------------------
   deleteObject = () => {
     this.openDeleteModal();
   };
@@ -161,9 +150,26 @@ class PopoverContainer extends React.Component {
   };
 
   connectObjects = () => {
-    const { workMode } = this.props;
+    const { workMode, readyHandler } = this.props;
     // работает только при групповом выделении:
     if (workMode === MULTI_EDIT) {
+      let selectedObjects = this.getSelectedObjects();
+      // проверим, можно ли их объединять:
+
+      // compound-объекты нельзя объединять
+      if (selectedObjects.some((object) => object.isCompound)) {
+        alert('ОШИБКА: СОСТАВНЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
+        readyHandler(); // close popover
+        return;
+      }
+
+      // если объекты не создают цепь, касаясь друг друга, то они не смогут сформировать единый объект:
+      if (!checkObjectsAdjoined(selectedObjects)) {
+        alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
+        readyHandler(); // close popover
+        return;
+      } 
+
       // объединяет/разъединяет объекты
       this.openMergeModal();
     }

@@ -77,14 +77,21 @@ function isEdgesOnTheSameLevel(edge1, edge2) {
   };
 }
 
-function isPointInsideEdge(point, edge, orientation) {
-  if (orientation === HORIZONTAL) {
+function isPointAndEdgeOnTheSameLine(point, edge) {
+  return (
+    edge.start.x === point.x && edge.end.x === point.x
+    || edge.start.y === point.y && edge.end.y === point.y
+  );
+}
+
+function isPointOnEdge(point, edge) {
+  if (isPointAndEdgeOnTheSameLine(point, edge) && isEdgeHorizontal(edge)) {
     if (edge.start.x <= point.x && point.x <= edge.end.x
         || edge.start.x >= point.x && point.x >= edge.end.x) {
       return true;
     } else return false; 
   }
-  if (orientation === VERTICAL) {
+  if (isPointAndEdgeOnTheSameLine(point, edge) && isEdgeVertical(edge)) {
     if (edge.start.y <= point.y && point.y <= edge.end.y
         || edge.start.y >= point.y && point.y >= edge.end.y) {
       return true;
@@ -93,28 +100,28 @@ function isPointInsideEdge(point, edge, orientation) {
   return false;
 }
 
-function isEdgePointsInsideAnotherEdge(edge, anotherEdge, orientation) {
+function isEdgePointsInsideAnotherEdge(edge, anotherEdge) {
   return (
-    isPointInsideEdge(edge.start, anotherEdge, orientation) 
-    || isPointInsideEdge(edge.start, anotherEdge, orientation)
+    isPointOnEdge(edge.start, anotherEdge) 
+    || isPointOnEdge(edge.end, anotherEdge)
   ); 
 }
 
-function isEdgesHaveCommonArea(edge1, edge2, orientation) {
+function isEdgesHaveCommonArea(edge1, edge2) {
   return (
-    isEdgePointsInsideAnotherEdge(edge1, edge2, orientation) 
-    || isEdgePointsInsideAnotherEdge(edge2, edge1, orientation)
+    isEdgePointsInsideAnotherEdge(edge1, edge2) 
+    || isEdgePointsInsideAnotherEdge(edge2, edge1)
   );
 }
 
 // соприкасается ли ребро с ребрами другого объекта
 function isEdgeAdjoinsObjectEdges(givenEdge, objectEdges) {
   return objectEdges.some((edge) => {
-    const { isSameLevel, orientation } = isEdgesOnTheSameLevel(edge, givenEdge);
+    const { isSameLevel } = isEdgesOnTheSameLevel(edge, givenEdge);
     if (!isSameLevel) {
       return false;
     } else {
-      return isEdgesHaveCommonArea(edge, givenEdge, orientation);
+      return isEdgesHaveCommonArea(edge, givenEdge);
     }
   });
 }

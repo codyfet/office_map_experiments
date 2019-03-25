@@ -14,7 +14,8 @@ import DeleteObjectModal from '../Modals/DeleteObjectModal/index';
 import MergeObjectsModal from '../Modals/MergeObjectsModal';
 import mergeObjects from '../../../utils/mergeObjects';
 import checkObjectsAdjoined from '../../../utils/checkObjectsAdjoined';
-import { MULTI_EDIT } from '../../../res/workModeConstants';
+import { SINGLE_EDIT, MULTI_EDIT } from '../../../res/workModeConstants';
+import { isStaticType } from '../../../utils/objectsFactory';
 
 const _ = require('lodash');
 // для генерирования уникальных id:
@@ -187,14 +188,26 @@ class PopoverContainer extends React.Component {
   };
 
   render() {
-    const { x, y, readyHandler, currentObject } = this.props;
+    const { x, y, readyHandler, objects, currentObject, workMode } = this.props;
     const { showDeleteModal, showMergeModal } = this.state;
+
+    let currentObjectIsCompound = false;
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    thisLevelObjects.forEach(elem => {
+      if (currentObject.objectId.split(' ').includes(elem.id)) {
+        currentObjectIsCompound = elem.isCompound;
+      }
+    });
+
+    const currentObjectsAmount = currentObject.objectId.split(' ').length;
 
     return (
       <React.Fragment>
         <PopoverView
           x={x}
           y={y}
+          turnBtnIcon={!(workMode === SINGLE_EDIT && currentObjectIsCompound)}
+          connectBtnIcon={workMode === MULTI_EDIT && currentObjectsAmount > 1}
           readyHandler={readyHandler}
           copyHandler={this.copyObject}
           turnHandler={this.rotateObject}

@@ -10,6 +10,8 @@ import {
   SHIFT_OBJECTS,
 } from '../res/constants';
 import mapData from '../res/mapData.json';
+import { isStaticType } from '../utils/objectsFactory';
+
 // загрузить lodash:
 const _ = require('lodash');
 
@@ -18,6 +20,31 @@ function shiftObjectCoords(object, shift) {
   newObject.x += shift.x;
   newObject.y += shift.y;
   return newObject;
+}
+
+function rotateDoorPositionCounterclockwise(position, object) {
+  let center = {
+    x: object.width / 2,
+    y: object.height / 2
+  };
+
+  const angle = -90;
+  const rad = (angle * Math.PI) / 180;
+  const { x, y } = position;
+  // transform description
+  // const newCoords = {
+  //   x: center.x + (x - center.x) * Math.cos(rad) - (y - center.y) * Math.sin(rad),
+  //   y: center.y + (x - center.x) * Math.sin(rad) + (y - center.y) * Math.cos(rad) 
+  // };
+
+  // return {
+  //   x: 
+  //   y: 
+  // };
+  return {
+    x: center.x + (x - center.x) * Math.cos(rad) - (y - center.y) * Math.sin(rad),
+    y: center.y + (x - center.x) * Math.sin(rad) + (y - center.y) * Math.cos(rad) 
+  };
 }
 
 function setupInitalState() {
@@ -102,7 +129,7 @@ export default function objects(state = initialState, action) {
       
       const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
-      if (object !== undefined) {
+      if (object !== undefined && !object.isCompound) {
         // поворот самого объекта:
         const tempW = object.width;
         object.width = object.height;
@@ -118,6 +145,10 @@ export default function objects(state = initialState, action) {
           // такой трюк работает, так как мы используем константы:
           // LEFT(0) BOTTOM(1) RIGHT(2) TOP(3)
           object.orientation = (object.orientation + 1) % 4;
+        }
+        if (isStaticType(object)) {
+          object.doorLocation = (object.doorLocation + 1) % 4;
+          object.doorPosition = rotateDoorPositionCounterclockwise(object.doorPosition, object);
         }
       }
 

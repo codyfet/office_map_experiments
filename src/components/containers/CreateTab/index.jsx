@@ -8,7 +8,7 @@ import { createObject } from '../../../actions/index';
 import ChooseUserList from '../ListsComponents/ChooseUserList/index';
 import ObjectsList from '../ListsComponents/ObjectsList/index';
 import './styles.css';
-import createMapObject from '../../../utils/objectsFactory';
+import { createMapObject } from '../../../utils/objectsFactory';
 // для генерирования уникальных id:
 const genUniqId = require('uniqid');
 

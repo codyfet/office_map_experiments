@@ -13,16 +13,41 @@ import mapData from '../res/mapData.json';
 // загрузить lodash:
 const _ = require('lodash');
 
-// загрузка объектов всех уровней:
-const mapDataCloned = _.cloneDeep(mapData);
-const allLevelsObjects = mapDataCloned.levels.map(elem => elem.objects);
+function shiftObjectCoords(object, shift) {
+  let newObject = _.cloneDeep(object);
+  newObject.x += shift.x;
+  newObject.y += shift.y;
+  return newObject;
+}
 
-const initialState = {
-  mapLevel: 1, // по умолчанию мы загружаем 1 уровень
-  levels: allLevelsObjects,
-};
+function moveObject(object, newPosition) {
+  let newObject = _.cloneDeep(object);
+  if (object.isCompound) {
+    const shift = {
+      x: newPosition.x - newObject.coordinates.x,
+      y: newPosition.y - newObject.coordinates.y,
+    };
+    newObject.polygonPoints = newObject.polygonPoints.map((point) => shiftObjectCoords(point, shift));
+    newObject.composition = newObject.composition.map((compObject) => shiftObjectCoords(compObject, shift));
+  }
+  newObject.coordinates = newPosition;
+  return newObject;
+}
 
-// Изменим:
+function setupInitalState() {
+  // загрузка объектов всех уровней:
+  const mapDataCloned = _.cloneDeep(mapData);
+  const allLevelsObjects = mapDataCloned.levels.map(elem => elem.objects);
+
+  return {
+    mapLevel: 1, // по умолчанию мы загружаем 1 уровень
+    levels: allLevelsObjects,
+  };
+}
+
+
+const initialState = setupInitalState();
+
 export default function objects(state = initialState, action) {
   switch (action.type) {
     case CREATE_OBJECT: {
@@ -53,6 +78,14 @@ export default function objects(state = initialState, action) {
       const newLevels = state.levels.slice(0);
       const movedObject = newLevels[lvl].find(val => val.id === objectId);
       if (movedObject !== undefined) {
+        if (movedObject.isCompound) {
+          const shift = {
+            x: newPosition.x - movedObject.coordinates.x,
+            y: newPosition.y - movedObject.coordinates.y,
+          };
+          movedObject.polygonPoints = movedObject.polygonPoints.map((point) => shiftObjectCoords(point, shift));
+          movedObject.composition = movedObject.composition.map((compObject) => shiftObjectCoords(compObject, shift));
+        }
         movedObject.coordinates = newPosition;
       }
 
@@ -152,12 +185,13 @@ export default function objects(state = initialState, action) {
       const objectIds = action.payload.ids.split(' ');
      
       const newLevels = state.levels.slice(0);
-      newLevels[lvl].forEach(elem => {
-        if (objectIds.includes(elem.id)) {
-          elem.coordinates = {
-            x: elem.coordinates.x + shift.x,
-            y: elem.coordinates.y + shift.y,
-          };
+      newLevels[lvl].forEach((object) => {
+        if (objectIds.includes(object.id)) {
+          if (object.isCompound) {
+            object.polygonPoints = object.polygonPoints.map((point) => shiftObjectCoords(point, shift));
+            object.composition = object.composition.map((compObject) => shiftObjectCoords(compObject, shift));
+          }
+          object.coordinates = shiftObjectCoords(object.coordinates, shift);
         }
       });
 

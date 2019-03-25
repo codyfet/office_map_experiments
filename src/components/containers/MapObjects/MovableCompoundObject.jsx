@@ -149,7 +149,6 @@ export default class MovableCompoundObject extends React.PureComponent {
 
   handleObjectDragEnd = (e) => {
     const { 
-      showShadow, 
       stopShadow, 
       setCurrentObject, 
       blockSnapSize, 

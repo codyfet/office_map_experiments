@@ -19,6 +19,7 @@ import {
 import MovableObject from '../MapObjects/MovableObject';
 import StaticObject from '../MapObjects/StaticObject';
 import StaticCompoundObject from '../MapObjects/StaticCompoundObject';
+import MovableCompoundObject from '../MapObjects/MovableCompoundObject';
 import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
 import MapShape from '../MapShape/index';
 
@@ -235,7 +236,9 @@ class AdvancedBoard extends React.Component {
       };
       // новым действием МАССОВЫЙ СДВИГ:
       actions.shiftObjects(newObjectData);
-    } else {
+    } 
+    
+    if (workMode === SINGLE_EDIT) {
       const newObjectData = {
         id: currentObject.objectId,
         pos: {
@@ -407,25 +410,47 @@ class AdvancedBoard extends React.Component {
           currUser = users.find(user => user.id === object.userId);
         }
 
-        return (
-          <MovableObject
-            key={object.id}
-            object={object}
-            user={currUser}
-            isSelected={selectedObjects.includes(object.id)}
-            mapWidth={mapWidth}
-            mapHeight={mapHeight}
-            blockSnapSize={blockSnapSize}
-            showShadow={this.showCurrentObjectShadow}
-            stopShadow={this.hideCurrentObjectShadow}
-            showContextMenu={this.showContextMenu}
-            hideContextMenu={this.hideContextMenu}
-            setCurrentObject={this.setCurrentObject}
-            checkHasIntersection={this.checkObjectHasIntersection}
-            openCurrentObjectTab={this.openCurrentObjectTab}
-          />
-        );
-      } else {
+        if (object.isCompound) {
+          return (
+            <MovableCompoundObject
+              key={object.id}
+              object={object}
+              user={currUser}
+              isSelected={selectedObjects.includes(object.id)}
+              mapWidth={mapWidth}
+              mapHeight={mapHeight}
+              blockSnapSize={blockSnapSize}
+              showShadow={this.showCurrentObjectShadow}
+              stopShadow={this.hideCurrentObjectShadow}
+              showContextMenu={this.showContextMenu}
+              hideContextMenu={this.hideContextMenu}
+              setCurrentObject={this.setCurrentObject}
+              checkHasIntersection={this.checkObjectHasIntersection}
+              openCurrentObjectTab={this.openCurrentObjectTab}
+            />
+          );
+        } else {
+          return (
+            <MovableObject
+              key={object.id}
+              object={object}
+              user={currUser}
+              isSelected={selectedObjects.includes(object.id)}
+              mapWidth={mapWidth}
+              mapHeight={mapHeight}
+              blockSnapSize={blockSnapSize}
+              showShadow={this.showCurrentObjectShadow}
+              stopShadow={this.hideCurrentObjectShadow}
+              showContextMenu={this.showContextMenu}
+              hideContextMenu={this.hideContextMenu}
+              setCurrentObject={this.setCurrentObject}
+              checkHasIntersection={this.checkObjectHasIntersection}
+              openCurrentObjectTab={this.openCurrentObjectTab}
+            />
+          );
+        }
+      } 
+      if (!object.movable) {
         if (object.isCompound) {
           return (
             <StaticCompoundObject
@@ -452,6 +477,7 @@ class AdvancedBoard extends React.Component {
           );
         }
       }
+      return undefined;
     });
 
     return (

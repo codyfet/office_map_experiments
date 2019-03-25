@@ -119,6 +119,7 @@
         {
           "category": "cupboard",
           "id": "jsadkqkk",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 140 },
           "width": 30,
           "height": 50,
@@ -149,6 +150,7 @@
           "category": "service_room",
           "id": "js39thqx",
           "title": "Storage",
+          "isCompound": false,
           "coordinates": { "x": 740, "y": 1550 },
           "width": 90,
           "height": 120,
@@ -162,6 +164,7 @@
           "category": "public_place",
           "id": "js3a13ws",
           "title": "Женский туалет",
+          "isCompound": false,
           "coordinates": { "x": 665, "y": 1300 },
           "width": 165,
           "height": 250,
@@ -175,6 +178,7 @@
           "category": "public_place",
           "id": "js4aonjx",
           "title": "Мужской туалет",
+          "isCompound": false,
           "coordinates": { "x": 830, "y": 1200 },
           "width": 270,
           "height": 350,
@@ -188,6 +192,7 @@
           "category": "public_place",
           "id": "js4axzbd",
           "title": "Зеленая кухня",
+          "isCompound": false,
           "coordinates": { "x": 665, "y": 930 },
           "width": 165,
           "height": 270,
@@ -201,6 +206,7 @@
           "category": "service_room",
           "id": "js4ay3bu",
           "title": "Комната для газовой супрессии",
+          "isCompound": false,
           "coordinates": { "x": 665, "y": 820 },
           "width": 165,
           "height": 110,
@@ -214,6 +220,7 @@
           "category": "public_place",
           "id": "js4d01za",
           "title": "Раздевалка",
+          "isCompound": false,
           "coordinates": { "x": 385, "y": 1290 },
           "width": 155,
           "height": 260,
@@ -227,6 +234,7 @@
           "category": "service_room",
           "id": "js4d0kqx",
           "title": "Серверная",
+          "isCompound": false,
           "coordinates": { "x": 665, "y": 620 },
           "width": 285,
           "height": 200,
@@ -240,6 +248,7 @@
           "category": "meeting_room",
           "id": "js4d1ijt",
           "title": "Тверь",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 1170 },
           "width": 385,
           "height": 380,
@@ -252,6 +261,7 @@
         {
           "category": "table",
           "id": "5",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 70 },
           "width": 70,
           "height": 40,
@@ -264,6 +274,7 @@
         {
           "category": "printer",
           "id": "8",
+          "isCompound": false,
           "coordinates": { "x": 680, "y": 590 },
           "width": 30,
           "height": 30,
@@ -275,6 +286,7 @@
         {
           "category": "scaner",
           "id": "9",
+          "isCompound": false,
           "coordinates": { "x": 825, "y": 580 },
           "width": 40,
           "height": 40,
@@ -286,6 +298,7 @@
         {
           "category": "shredder",
           "id": "10",
+          "isCompound": false,
           "coordinates": { "x": 765, "y": 405 },
           "width": 40,
           "height": 30,
@@ -298,6 +311,7 @@
           "category": "meeting_room",
           "id": "js4flxd9",
           "title": "Осташков",
+          "isCompound": false,
           "coordinates": { "x": 385, "y": 855 },
           "width": 180,
           "height": 210,
@@ -311,6 +325,7 @@
           "category": "meeting_room",
           "id": "js4frm5l",
           "title": "Старица",
+          "isCompound": false,
           "coordinates": { "x": 385, "y": 555 },
           "width": 180,
           "height": 300,
@@ -324,6 +339,7 @@
           "category": "service_room",
           "id": "js4fu3eo",
           "title": "Storage",
+          "isCompound": false,
           "coordinates": { "x": 385, "y": 405 },
           "width": 180,
           "height": 150,
@@ -337,6 +353,7 @@
           "category": "public_place",
           "id": "js4fvr5m",
           "title": "Желтая кухня",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 820 },
           "width": 280,
           "height": 320,
@@ -350,6 +367,7 @@
           "category": "public_place",
           "id": "js4gcekn",
           "title": "Спортзал",
+          "isCompound": false,
           "coordinates": { "x": 2310, "y": 520 },
           "width": 320,
           "height": 300,
@@ -363,6 +381,7 @@
           "category": "meeting_room",
           "id": "js4gelnr",
           "title": "Кашин",
+          "isCompound": false,
           "coordinates": { "x": 2630, "y": 520 },
           "width": 310,
           "height": 300,
@@ -376,6 +395,7 @@
           "category": "meeting_room",
           "id": "js4gh356",
           "title": "Торжок",
+          "isCompound": false,
           "coordinates": { "x": 2940, "y": 520 },
           "width": 310,
           "height": 300,
@@ -389,6 +409,7 @@
           "category": "public_place",
           "id": "js4gjmsv",
           "title": "Раздевалка",
+          "isCompound": false,
           "coordinates": { "x": 3250, "y": 520 },
           "width": 190,
           "height": 300,
@@ -402,6 +423,7 @@
           "category": "service_room",
           "id": "js4o2kcq",
           "title": "Storage",
+          "isCompound": false,
           "coordinates": { "x": 1985, "y": 520 },
           "width": 220,
           "height": 90,
@@ -415,6 +437,7 @@
           "category": "public_place",
           "id": "js4o46s8",
           "title": "Мужской туалет",
+          "isCompound": false,
           "coordinates": { "x": 2095, "y": 610 },
           "width": 110,
           "height": 190,
@@ -428,6 +451,7 @@
           "category": "public_place",
           "id": "js4o4to0",
           "title": "Женский туалет",
+          "isCompound": false,
           "coordinates": { "x": 1985, "y": 610 },
           "width": 110,
           "height": 190,
@@ -441,6 +465,7 @@
           "category": "construction",
           "id": "js4o9t4v",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 810, "y": 405 },
           "width": 45,
           "height": 45,
@@ -452,6 +477,7 @@
           "category": "construction",
           "id": "js4q0j36",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 1130, "y": 405 },
           "width": 45,
           "height": 45,
@@ -463,6 +489,7 @@
           "category": "construction",
           "id": "js4q0xao",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 1445, "y": 405 },
           "width": 45,
           "height": 45,
@@ -474,6 +501,7 @@
           "category": "construction",
           "id": "js4q2g3t",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 1750, "y": 405 },
           "width": 45,
           "height": 45,
@@ -485,6 +513,7 @@
           "category": "construction",
           "id": "js4q6d28",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 2215, "y": 260 },
           "width": 25,
           "height": 25,
@@ -496,6 +525,7 @@
           "category": "construction",
           "id": "js4qa6pc",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 2450, "y": 260 },
           "width": 25,
           "height": 25,
@@ -507,6 +537,7 @@
           "category": "construction",
           "id": "js4qai3j",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 2920, "y": 260 },
           "width": 25,
           "height": 25,
@@ -518,6 +549,7 @@
           "category": "construction",
           "id": "js4qaljz",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 2685, "y": 260 },
           "width": 25,
           "height": 25,
@@ -529,6 +561,7 @@
           "category": "construction",
           "id": "js4qapo7",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 3155, "y": 260 },
           "width": 25,
           "height": 25,
@@ -540,6 +573,7 @@
           "category": "construction",
           "id": "js4qat6f",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 3625, "y": 260 },
           "width": 25,
           "height": 25,
@@ -551,6 +585,7 @@
           "category": "construction",
           "id": "js4qazaf",
           "title": "Колонна",
+          "isCompound": false,
           "coordinates": { "x": 3390, "y": 260 },
           "width": 25,
           "height": 25,
@@ -561,6 +596,7 @@
         {
           "category": "construction",
           "id": "js5td07j",
+          "isCompound": false,
           "coordinates": { "x": 945, "y": 560 },
           "width": 5,
           "height": 60,
@@ -571,6 +607,7 @@
         {
           "category": "construction",
           "id": "js5te2bh",
+          "isCompound": false,
           "coordinates": { "x": 665, "y": 560 },
           "width": 5,
           "height": 60,
@@ -581,6 +618,7 @@
         {
           "category": "construction",
           "id": "js5tlk11",
+          "isCompound": false,
           "coordinates": { "x": 385, "y": 1170 },
           "width": 45,
           "height": 45,
@@ -591,6 +629,7 @@
         {
           "category": "construction",
           "id": "js5tmbrw",
+          "isCompound": false,
           "coordinates": { "x": 535, "y": 1170 },
           "width": 5,
           "height": 120,
@@ -601,6 +640,7 @@
         {
           "category": "construction",
           "id": "js5tr05w",
+          "isCompound": false,
           "coordinates": { "x": 1865, "y": 530 },
           "width": 35,
           "height": 290,
@@ -611,6 +651,7 @@
         {
           "category": "construction",
           "id": "js5tv0bv",
+          "isCompound": false,
           "coordinates": { "x": 1985, "y": 800 },
           "width": 220,
           "height": 20,
@@ -621,6 +662,7 @@
         {
           "category": "construction",
           "id": "js5twp62",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 800 },
           "width": 20,
           "height": 20,
@@ -631,6 +673,7 @@
         {
           "category": "construction",
           "id": "js5ugi7z",
+          "isCompound": false,
           "coordinates": { "x": 1865, "y": 0 },
           "width": 35,
           "height": 460,
@@ -641,6 +684,7 @@
         {
           "category": "printer",
           "id": "js5v0qt4",
+          "isCompound": false,
           "coordinates": { "x": 775, "y": 580 },
           "width": 40,
           "height": 40,
@@ -652,6 +696,7 @@
         {
           "category": "printer",
           "id": "js5v1mvx",
+          "isCompound": false,
           "coordinates": { "x": 680, "y": 560 },
           "width": 30,
           "height": 30,
@@ -663,6 +708,7 @@
         {
           "category": "cupboard",
           "id": "js5v2f2n",
+          "isCompound": false,
           "coordinates": { "x": 875, "y": 590 },
           "width": 60,
           "height": 30,
@@ -674,6 +720,7 @@
         {
           "category": "scaner",
           "id": "js5v3c8v",
+          "isCompound": false,
           "coordinates": { "x": 385, "y": 1065 },
           "width": 40,
           "height": 40,
@@ -685,6 +732,7 @@
         {
           "category": "table",
           "id": "js63r3n2",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 70 },
           "width": 70,
           "height": 40,
@@ -697,6 +745,7 @@
         {
           "category": "table",
           "id": "js63rfni",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 110 },
           "width": 70,
           "height": 40,
@@ -709,6 +758,7 @@
         {
           "category": "table",
           "id": "js63rhwv",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 110 },
           "width": 70,
           "height": 40,
@@ -721,6 +771,7 @@
         {
           "category": "table",
           "id": "jsada5v9",
+          "isCompound": false,
           "coordinates": { "x": 1090, "y": 395 },
           "width": 40,
           "height": 70,
@@ -733,6 +784,7 @@
         {
           "category": "table",
           "id": "jsadn8cy",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 285 },
           "width": 40,
           "height": 70,
@@ -745,6 +797,7 @@
         {
           "category": "table",
           "id": "jsadn8cz",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 75 },
           "width": 40,
           "height": 70,
@@ -757,6 +810,7 @@
         {
           "category": "table",
           "id": "jsadn8d0",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 5 },
           "width": 40,
           "height": 70,
@@ -769,6 +823,7 @@
         {
           "category": "table",
           "id": "jsadn8d1",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 215 },
           "width": 40,
           "height": 70,
@@ -781,6 +836,7 @@
         {
           "category": "table",
           "id": "jsadn8d2",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 145 },
           "width": 40,
           "height": 70,
@@ -793,6 +849,7 @@
         {
           "category": "table",
           "id": "jsadng2j",
+          "isCompound": false,
           "coordinates": { "x": 1900, "y": 355 },
           "width": 40,
           "height": 70,
@@ -806,6 +863,7 @@
           "category": "cupboard",
           "id": "jsaegd25",
           "title": "Гардероб",
+          "isCompound": false,
           "coordinates": { "x": 540, "y": 1440 },
           "width": 35,
           "height": 65,
@@ -818,6 +876,7 @@
           "category": "cupboard",
           "id": "jsaehpc7",
           "title": "Гардероб",
+          "isCompound": false,
           "coordinates": { "x": 540, "y": 1505 },
           "width": 35,
           "height": 65,
@@ -829,6 +888,7 @@
         {
           "category": "cupboard",
           "id": "jsaei9tz",
+          "isCompound": false,
           "coordinates": { "x": 225, "y": 1140 },
           "width": 60,
           "height": 30,
@@ -841,6 +901,7 @@
           "category": "cupboard",
           "id": "jsaeiu0n",
           "title": "Сейф",
+          "isCompound": false,
           "coordinates": { "x": 185, "y": 1140 },
           "width": 40,
           "height": 30,
@@ -853,6 +914,7 @@
           "category": "cupboard",
           "id": "jsaek2b9",
           "title": "Сейф",
+          "isCompound": false,
           "coordinates": { "x": 145, "y": 1140 },
           "width": 40,
           "height": 30,
@@ -864,6 +926,7 @@
         {
           "category": "table",
           "id": "jsn32qrq",
+          "isCompound": false,
           "coordinates": { "x": 230, "y": 5 },
           "width": 40,
           "height": 70,
@@ -876,6 +939,7 @@
         {
           "category": "table",
           "id": "jsn32qrr",
+          "isCompound": false,
           "coordinates": { "x": 270, "y": 5 },
           "width": 40,
           "height": 70,
@@ -888,6 +952,7 @@
         {
           "category": "table",
           "id": "jsn32qrs",
+          "isCompound": false,
           "coordinates": { "x": 230, "y": 75 },
           "width": 40,
           "height": 70,
@@ -900,6 +965,7 @@
         {
           "category": "table",
           "id": "jsn32qrt",
+          "isCompound": false,
           "coordinates": { "x": 270, "y": 75 },
           "width": 40,
           "height": 70,
@@ -912,6 +978,7 @@
         {
           "category": "table",
           "id": "jsn32qru",
+          "isCompound": false,
           "coordinates": { "x": 230, "y": 145 },
           "width": 40,
           "height": 70,
@@ -924,6 +991,7 @@
         {
           "category": "table",
           "id": "jsn32qrv",
+          "isCompound": false,
           "coordinates": { "x": 270, "y": 145 },
           "width": 40,
           "height": 70,
@@ -936,6 +1004,7 @@
         {
           "category": "table",
           "id": "jsn32qrw",
+          "isCompound": false,
           "coordinates": { "x": 230, "y": 215 },
           "width": 40,
           "height": 70,
@@ -948,6 +1017,7 @@
         {
           "category": "table",
           "id": "jsn32qrx",
+          "isCompound": false,
           "coordinates": { "x": 270, "y": 215 },
           "width": 40,
           "height": 70,
@@ -960,6 +1030,7 @@
         {
           "category": "table",
           "id": "jsn35ic9",
+          "isCompound": false,
           "coordinates": { "x": 740, "y": 5 },
           "width": 40,
           "height": 70,
@@ -972,6 +1043,7 @@
         {
           "category": "table",
           "id": "jsn35ica",
+          "isCompound": false,
           "coordinates": { "x": 780, "y": 5 },
           "width": 40,
           "height": 70,
@@ -984,6 +1056,7 @@
         {
           "category": "table",
           "id": "jsn35icb",
+          "isCompound": false,
           "coordinates": { "x": 740, "y": 75 },
           "width": 40,
           "height": 70,
@@ -996,6 +1069,7 @@
         {
           "category": "table",
           "id": "jsn35icc",
+          "isCompound": false,
           "coordinates": { "x": 780, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1008,6 +1082,7 @@
         {
           "category": "table",
           "id": "jsn35icd",
+          "isCompound": false,
           "coordinates": { "x": 740, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1020,6 +1095,7 @@
         {
           "category": "table",
           "id": "jsn35ice",
+          "isCompound": false,
           "coordinates": { "x": 780, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1032,6 +1108,7 @@
         {
           "category": "table",
           "id": "jsn35rdp",
+          "isCompound": false,
           "coordinates": { "x": 740, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1044,6 +1121,7 @@
         {
           "category": "table",
           "id": "jsn35rdq",
+          "isCompound": false,
           "coordinates": { "x": 780, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1056,6 +1134,7 @@
         {
           "category": "table",
           "id": "jsn3du7r",
+          "isCompound": false,
           "coordinates": { "x": 1725, "y": 540 },
           "width": 40,
           "height": 70,
@@ -1068,6 +1147,7 @@
         {
           "category": "table",
           "id": "jsn3du7s",
+          "isCompound": false,
           "coordinates": { "x": 1765, "y": 540 },
           "width": 40,
           "height": 70,
@@ -1080,6 +1160,7 @@
         {
           "category": "table",
           "id": "jsn3du7t",
+          "isCompound": false,
           "coordinates": { "x": 1725, "y": 610 },
           "width": 40,
           "height": 70,
@@ -1092,6 +1173,7 @@
         {
           "category": "table",
           "id": "jsn3du7u",
+          "isCompound": false,
           "coordinates": { "x": 1765, "y": 610 },
           "width": 40,
           "height": 70,
@@ -1104,6 +1186,7 @@
         {
           "category": "table",
           "id": "jsn3du7v",
+          "isCompound": false,
           "coordinates": { "x": 1725, "y": 680 },
           "width": 40,
           "height": 70,
@@ -1116,6 +1199,7 @@
         {
           "category": "table",
           "id": "jsn3du7w",
+          "isCompound": false,
           "coordinates": { "x": 1765, "y": 680 },
           "width": 40,
           "height": 70,
@@ -1128,6 +1212,7 @@
         {
           "category": "table",
           "id": "jsn3du7x",
+          "isCompound": false,
           "coordinates": { "x": 1725, "y": 750 },
           "width": 40,
           "height": 70,
@@ -1140,6 +1225,7 @@
         {
           "category": "table",
           "id": "jsn3du7y",
+          "isCompound": false,
           "coordinates": { "x": 1765, "y": 750 },
           "width": 40,
           "height": 70,
@@ -1152,6 +1238,7 @@
         {
           "category": "table",
           "id": "jte7yuu5",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 250 },
           "width": 70,
           "height": 40,
@@ -1164,6 +1251,7 @@
         {
           "category": "table",
           "id": "jte7yuu6",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 250 },
           "width": 70,
           "height": 40,
@@ -1176,6 +1264,7 @@
         {
           "category": "table",
           "id": "jte7yuu7",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 290 },
           "width": 70,
           "height": 40,
@@ -1188,6 +1277,7 @@
         {
           "category": "table",
           "id": "jte7yuu8",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 290 },
           "width": 70,
           "height": 40,
@@ -1200,6 +1290,7 @@
         {
           "category": "table",
           "id": "jte80sqc",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 420 },
           "width": 70,
           "height": 40,
@@ -1212,6 +1303,7 @@
         {
           "category": "table",
           "id": "jte80sqd",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 420 },
           "width": 70,
           "height": 40,
@@ -1224,6 +1316,7 @@
         {
           "category": "table",
           "id": "jte80sqe",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 460 },
           "width": 70,
           "height": 40,
@@ -1236,6 +1329,7 @@
         {
           "category": "table",
           "id": "jte80sqf",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 460 },
           "width": 70,
           "height": 40,
@@ -1248,6 +1342,7 @@
         {
           "category": "table",
           "id": "jte80tyj",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 430 },
           "width": 70,
           "height": 40,
@@ -1260,6 +1355,7 @@
         {
           "category": "table",
           "id": "jte80tyk",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 430 },
           "width": 70,
           "height": 40,
@@ -1272,6 +1368,7 @@
         {
           "category": "table",
           "id": "jte80tyl",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 470 },
           "width": 70,
           "height": 40,
@@ -1284,6 +1381,7 @@
         {
           "category": "table",
           "id": "jte80tym",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 470 },
           "width": 70,
           "height": 40,
@@ -1296,6 +1394,7 @@
         {
           "category": "table",
           "id": "jte843us",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 1130 },
           "width": 70,
           "height": 40,
@@ -1308,6 +1407,7 @@
         {
           "category": "table",
           "id": "jte843ut",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 1130 },
           "width": 70,
           "height": 40,
@@ -1320,6 +1420,7 @@
         {
           "category": "table",
           "id": "jte844v8",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 965 },
           "width": 70,
           "height": 40,
@@ -1332,6 +1433,7 @@
         {
           "category": "table",
           "id": "jte844v9",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 965 },
           "width": 70,
           "height": 40,
@@ -1344,6 +1446,7 @@
         {
           "category": "table",
           "id": "jte844va",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 1005 },
           "width": 70,
           "height": 40,
@@ -1356,6 +1459,7 @@
         {
           "category": "table",
           "id": "jte844vb",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 1005 },
           "width": 70,
           "height": 40,
@@ -1368,6 +1472,7 @@
         {
           "category": "table",
           "id": "jte845ez",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 980 },
           "width": 70,
           "height": 40,
@@ -1380,6 +1485,7 @@
         {
           "category": "table",
           "id": "jte845f0",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 980 },
           "width": 70,
           "height": 40,
@@ -1392,6 +1498,7 @@
         {
           "category": "table",
           "id": "jte845f1",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 1020 },
           "width": 70,
           "height": 40,
@@ -1404,6 +1511,7 @@
         {
           "category": "table",
           "id": "jte845f2",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 1020 },
           "width": 70,
           "height": 40,
@@ -1416,6 +1524,7 @@
         {
           "category": "table",
           "id": "jte845tf",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 780 },
           "width": 70,
           "height": 40,
@@ -1428,6 +1537,7 @@
         {
           "category": "table",
           "id": "jte845tg",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 780 },
           "width": 70,
           "height": 40,
@@ -1440,6 +1550,7 @@
         {
           "category": "table",
           "id": "jte845th",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 820 },
           "width": 70,
           "height": 40,
@@ -1452,6 +1563,7 @@
         {
           "category": "table",
           "id": "jte845ti",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 820 },
           "width": 70,
           "height": 40,
@@ -1464,6 +1576,7 @@
         {
           "category": "table",
           "id": "jte84670",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 790 },
           "width": 70,
           "height": 40,
@@ -1476,6 +1589,7 @@
         {
           "category": "table",
           "id": "jte84671",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 790 },
           "width": 70,
           "height": 40,
@@ -1488,6 +1602,7 @@
         {
           "category": "table",
           "id": "jte84672",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 830 },
           "width": 70,
           "height": 40,
@@ -1500,6 +1615,7 @@
         {
           "category": "table",
           "id": "jte84673",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 830 },
           "width": 70,
           "height": 40,
@@ -1512,6 +1628,7 @@
         {
           "category": "table",
           "id": "jte846jp",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 600 },
           "width": 70,
           "height": 40,
@@ -1524,6 +1641,7 @@
         {
           "category": "table",
           "id": "jte846jq",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 600 },
           "width": 70,
           "height": 40,
@@ -1536,6 +1654,7 @@
         {
           "category": "table",
           "id": "jte846jr",
+          "isCompound": false,
           "coordinates": { "x": 245, "y": 640 },
           "width": 70,
           "height": 40,
@@ -1548,6 +1667,7 @@
         {
           "category": "table",
           "id": "jte846js",
+          "isCompound": false,
           "coordinates": { "x": 315, "y": 640 },
           "width": 70,
           "height": 40,
@@ -1560,6 +1680,7 @@
         {
           "category": "table",
           "id": "jte8478s",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 610 },
           "width": 70,
           "height": 40,
@@ -1572,6 +1693,7 @@
         {
           "category": "table",
           "id": "jte8478t",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 610 },
           "width": 70,
           "height": 40,
@@ -1584,6 +1706,7 @@
         {
           "category": "table",
           "id": "jte8478u",
+          "isCompound": false,
           "coordinates": { "x": 0, "y": 650 },
           "width": 70,
           "height": 40,
@@ -1596,6 +1719,7 @@
         {
           "category": "table",
           "id": "jte8478v",
+          "isCompound": false,
           "coordinates": { "x": 70, "y": 650 },
           "width": 70,
           "height": 40,
@@ -1608,6 +1732,7 @@
         {
           "category": "table",
           "id": "jte8s0jp",
+          "isCompound": false,
           "coordinates": { "x": 740, "y": 285 },
           "width": 40,
           "height": 70,
@@ -1620,6 +1745,7 @@
         {
           "category": "table",
           "id": "jte8s0jq",
+          "isCompound": false,
           "coordinates": { "x": 780, "y": 285 },
           "width": 40,
           "height": 70,
@@ -1632,6 +1758,7 @@
         {
           "category": "table",
           "id": "jte8v956",
+          "isCompound": false,
           "coordinates": { "x": 570, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1644,6 +1771,7 @@
         {
           "category": "table",
           "id": "jte8v957",
+          "isCompound": false,
           "coordinates": { "x": 610, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1656,6 +1784,7 @@
         {
           "category": "table",
           "id": "jte8v958",
+          "isCompound": false,
           "coordinates": { "x": 570, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1668,6 +1797,7 @@
         {
           "category": "table",
           "id": "jte8v959",
+          "isCompound": false,
           "coordinates": { "x": 610, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1680,6 +1810,7 @@
         {
           "category": "table",
           "id": "jte8v95a",
+          "isCompound": false,
           "coordinates": { "x": 570, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1692,6 +1823,7 @@
         {
           "category": "table",
           "id": "jte8v95b",
+          "isCompound": false,
           "coordinates": { "x": 610, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1704,6 +1836,7 @@
         {
           "category": "table",
           "id": "jte8v95c",
+          "isCompound": false,
           "coordinates": { "x": 570, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1716,6 +1849,7 @@
         {
           "category": "table",
           "id": "jte8v95d",
+          "isCompound": false,
           "coordinates": { "x": 610, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1728,6 +1862,7 @@
         {
           "category": "table",
           "id": "jte8v9ln",
+          "isCompound": false,
           "coordinates": { "x": 400, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1740,6 +1875,7 @@
         {
           "category": "table",
           "id": "jte8v9lo",
+          "isCompound": false,
           "coordinates": { "x": 440, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1752,6 +1888,7 @@
         {
           "category": "table",
           "id": "jte8v9lp",
+          "isCompound": false,
           "coordinates": { "x": 400, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1764,6 +1901,7 @@
         {
           "category": "table",
           "id": "jte8v9lq",
+          "isCompound": false,
           "coordinates": { "x": 440, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1776,6 +1914,7 @@
         {
           "category": "table",
           "id": "jte8v9lr",
+          "isCompound": false,
           "coordinates": { "x": 400, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1788,6 +1927,7 @@
         {
           "category": "table",
           "id": "jte8v9ls",
+          "isCompound": false,
           "coordinates": { "x": 440, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1800,6 +1940,7 @@
         {
           "category": "table",
           "id": "jte8v9lt",
+          "isCompound": false,
           "coordinates": { "x": 400, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1812,6 +1953,7 @@
         {
           "category": "table",
           "id": "jte8v9lu",
+          "isCompound": false,
           "coordinates": { "x": 440, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1824,6 +1966,7 @@
         {
           "category": "table",
           "id": "jte8wt65",
+          "isCompound": false,
           "coordinates": { "x": 1460, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1836,6 +1979,7 @@
         {
           "category": "table",
           "id": "jte8wt66",
+          "isCompound": false,
           "coordinates": { "x": 1500, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1848,6 +1992,7 @@
         {
           "category": "table",
           "id": "jte8wt67",
+          "isCompound": false,
           "coordinates": { "x": 1460, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1860,6 +2005,7 @@
         {
           "category": "table",
           "id": "jte8wt68",
+          "isCompound": false,
           "coordinates": { "x": 1500, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1872,6 +2018,7 @@
         {
           "category": "table",
           "id": "jte8wt69",
+          "isCompound": false,
           "coordinates": { "x": 1460, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1884,6 +2031,7 @@
         {
           "category": "table",
           "id": "jte8wt6a",
+          "isCompound": false,
           "coordinates": { "x": 1500, "y": 145 },
           "width": 40,
           "height": 70,
@@ -1896,6 +2044,7 @@
         {
           "category": "table",
           "id": "jte8wt6b",
+          "isCompound": false,
           "coordinates": { "x": 1460, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1908,6 +2057,7 @@
         {
           "category": "table",
           "id": "jte8wt6c",
+          "isCompound": false,
           "coordinates": { "x": 1500, "y": 215 },
           "width": 40,
           "height": 70,
@@ -1920,6 +2070,7 @@
         {
           "category": "table",
           "id": "jte8wt6d",
+          "isCompound": false,
           "coordinates": { "x": 1460, "y": 285 },
           "width": 40,
           "height": 70,
@@ -1932,6 +2083,7 @@
         {
           "category": "table",
           "id": "jte8wt6e",
+          "isCompound": false,
           "coordinates": { "x": 1500, "y": 285 },
           "width": 40,
           "height": 70,
@@ -1944,6 +2096,7 @@
         {
           "category": "table",
           "id": "jte8wtrn",
+          "isCompound": false,
           "coordinates": { "x": 1280, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1956,6 +2109,7 @@
         {
           "category": "table",
           "id": "jte8wtro",
+          "isCompound": false,
           "coordinates": { "x": 1320, "y": 5 },
           "width": 40,
           "height": 70,
@@ -1968,6 +2122,7 @@
         {
           "category": "table",
           "id": "jte8wtrp",
+          "isCompound": false,
           "coordinates": { "x": 1280, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1980,6 +2135,7 @@
         {
           "category": "table",
           "id": "jte8wtrq",
+          "isCompound": false,
           "coordinates": { "x": 1320, "y": 75 },
           "width": 40,
           "height": 70,
@@ -1992,6 +2148,7 @@
         {
           "category": "table",
           "id": "jte8wtrr",
+          "isCompound": false,
           "coordinates": { "x": 1280, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2004,6 +2161,7 @@
         {
           "category": "table",
           "id": "jte8wtrs",
+          "isCompound": false,
           "coordinates": { "x": 1320, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2016,6 +2174,7 @@
         {
           "category": "table",
           "id": "jte8wtrt",
+          "isCompound": false,
           "coordinates": { "x": 1280, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2028,6 +2187,7 @@
         {
           "category": "table",
           "id": "jte8wtru",
+          "isCompound": false,
           "coordinates": { "x": 1320, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2040,6 +2200,7 @@
         {
           "category": "table",
           "id": "jte8wtrv",
+          "isCompound": false,
           "coordinates": { "x": 1280, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2052,6 +2213,7 @@
         {
           "category": "table",
           "id": "jte8wtrw",
+          "isCompound": false,
           "coordinates": { "x": 1320, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2064,6 +2226,7 @@
         {
           "category": "table",
           "id": "jte8wuiz",
+          "isCompound": false,
           "coordinates": { "x": 1100, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2076,6 +2239,7 @@
         {
           "category": "table",
           "id": "jte8wuj0",
+          "isCompound": false,
           "coordinates": { "x": 1140, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2088,6 +2252,7 @@
         {
           "category": "table",
           "id": "jte8wuj1",
+          "isCompound": false,
           "coordinates": { "x": 1100, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2100,6 +2265,7 @@
         {
           "category": "table",
           "id": "jte8wuj2",
+          "isCompound": false,
           "coordinates": { "x": 1140, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2112,6 +2278,7 @@
         {
           "category": "table",
           "id": "jte8wuj3",
+          "isCompound": false,
           "coordinates": { "x": 1100, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2124,6 +2291,7 @@
         {
           "category": "table",
           "id": "jte8wuj4",
+          "isCompound": false,
           "coordinates": { "x": 1140, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2136,6 +2304,7 @@
         {
           "category": "table",
           "id": "jte8wuj5",
+          "isCompound": false,
           "coordinates": { "x": 1100, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2148,6 +2317,7 @@
         {
           "category": "table",
           "id": "jte8wuj6",
+          "isCompound": false,
           "coordinates": { "x": 1140, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2160,6 +2330,7 @@
         {
           "category": "table",
           "id": "jte8wuj7",
+          "isCompound": false,
           "coordinates": { "x": 1100, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2172,6 +2343,7 @@
         {
           "category": "table",
           "id": "jte8wuj8",
+          "isCompound": false,
           "coordinates": { "x": 1140, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2184,6 +2356,7 @@
         {
           "category": "table",
           "id": "jte8wv0s",
+          "isCompound": false,
           "coordinates": { "x": 920, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2196,6 +2369,7 @@
         {
           "category": "table",
           "id": "jte8wv0t",
+          "isCompound": false,
           "coordinates": { "x": 960, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2208,6 +2382,7 @@
         {
           "category": "table",
           "id": "jte8wv0u",
+          "isCompound": false,
           "coordinates": { "x": 920, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2220,6 +2395,7 @@
         {
           "category": "table",
           "id": "jte8wv0v",
+          "isCompound": false,
           "coordinates": { "x": 960, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2232,6 +2408,7 @@
         {
           "category": "table",
           "id": "jte8wv0w",
+          "isCompound": false,
           "coordinates": { "x": 920, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2244,6 +2421,7 @@
         {
           "category": "table",
           "id": "jte8wv0x",
+          "isCompound": false,
           "coordinates": { "x": 960, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2256,6 +2434,7 @@
         {
           "category": "table",
           "id": "jte8wv0y",
+          "isCompound": false,
           "coordinates": { "x": 920, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2268,6 +2447,7 @@
         {
           "category": "table",
           "id": "jte8wv0z",
+          "isCompound": false,
           "coordinates": { "x": 960, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2280,6 +2460,7 @@
         {
           "category": "table",
           "id": "jte8wv10",
+          "isCompound": false,
           "coordinates": { "x": 920, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2292,6 +2473,7 @@
         {
           "category": "table",
           "id": "jte8wv11",
+          "isCompound": false,
           "coordinates": { "x": 960, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2304,6 +2486,7 @@
         {
           "category": "table",
           "id": "jte8xppg",
+          "isCompound": false,
           "coordinates": { "x": 1640, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2316,6 +2499,7 @@
         {
           "category": "table",
           "id": "jte8xpph",
+          "isCompound": false,
           "coordinates": { "x": 1680, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2328,6 +2512,7 @@
         {
           "category": "table",
           "id": "jte8xppi",
+          "isCompound": false,
           "coordinates": { "x": 1640, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2340,6 +2525,7 @@
         {
           "category": "table",
           "id": "jte8xppj",
+          "isCompound": false,
           "coordinates": { "x": 1680, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2352,6 +2538,7 @@
         {
           "category": "table",
           "id": "jte8xppk",
+          "isCompound": false,
           "coordinates": { "x": 1640, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2364,6 +2551,7 @@
         {
           "category": "table",
           "id": "jte8xppl",
+          "isCompound": false,
           "coordinates": { "x": 1680, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2376,6 +2564,7 @@
         {
           "category": "table",
           "id": "jte8xppm",
+          "isCompound": false,
           "coordinates": { "x": 1640, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2388,6 +2577,7 @@
         {
           "category": "table",
           "id": "jte8xppn",
+          "isCompound": false,
           "coordinates": { "x": 1680, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2400,6 +2590,7 @@
         {
           "category": "table",
           "id": "jte8xppo",
+          "isCompound": false,
           "coordinates": { "x": 1640, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2412,6 +2603,7 @@
         {
           "category": "table",
           "id": "jte8xppp",
+          "isCompound": false,
           "coordinates": { "x": 1680, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2424,6 +2616,7 @@
         {
           "category": "table",
           "id": "jte8y13x",
+          "isCompound": false,
           "coordinates": { "x": 1825, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2436,6 +2629,7 @@
         {
           "category": "table",
           "id": "jte8y13y",
+          "isCompound": false,
           "coordinates": { "x": 1825, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2448,6 +2642,7 @@
         {
           "category": "table",
           "id": "jte8y13z",
+          "isCompound": false,
           "coordinates": { "x": 1825, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2460,6 +2655,7 @@
         {
           "category": "table",
           "id": "jte8y140",
+          "isCompound": false,
           "coordinates": { "x": 1825, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2472,6 +2668,7 @@
         {
           "category": "table",
           "id": "jte8y141",
+          "isCompound": false,
           "coordinates": { "x": 1825, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2484,6 +2681,7 @@
         {
           "category": "table",
           "id": "jte92rca",
+          "isCompound": false,
           "coordinates": { "x": 1185, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2496,6 +2694,7 @@
         {
           "category": "table",
           "id": "jte92rcb",
+          "isCompound": false,
           "coordinates": { "x": 1225, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2508,6 +2707,7 @@
         {
           "category": "table",
           "id": "jte92rcc",
+          "isCompound": false,
           "coordinates": { "x": 1185, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2520,6 +2720,7 @@
         {
           "category": "table",
           "id": "jte92rcd",
+          "isCompound": false,
           "coordinates": { "x": 1225, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2532,6 +2733,7 @@
         {
           "category": "table",
           "id": "jte92rce",
+          "isCompound": false,
           "coordinates": { "x": 1185, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2544,6 +2746,7 @@
         {
           "category": "table",
           "id": "jte92rcf",
+          "isCompound": false,
           "coordinates": { "x": 1225, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2556,6 +2759,7 @@
         {
           "category": "table",
           "id": "jte92rcg",
+          "isCompound": false,
           "coordinates": { "x": 1185, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2568,6 +2772,7 @@
         {
           "category": "table",
           "id": "jte92rch",
+          "isCompound": false,
           "coordinates": { "x": 1225, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2580,6 +2785,7 @@
         {
           "category": "table",
           "id": "jte92rxm",
+          "isCompound": false,
           "coordinates": { "x": 1005, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2592,6 +2798,7 @@
         {
           "category": "table",
           "id": "jte92rxn",
+          "isCompound": false,
           "coordinates": { "x": 1045, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2604,6 +2811,7 @@
         {
           "category": "table",
           "id": "jte92rxo",
+          "isCompound": false,
           "coordinates": { "x": 1005, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2616,6 +2824,7 @@
         {
           "category": "table",
           "id": "jte92rxp",
+          "isCompound": false,
           "coordinates": { "x": 1045, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2628,6 +2837,7 @@
         {
           "category": "table",
           "id": "jte92rxq",
+          "isCompound": false,
           "coordinates": { "x": 1005, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2640,6 +2850,7 @@
         {
           "category": "table",
           "id": "jte92rxr",
+          "isCompound": false,
           "coordinates": { "x": 1045, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2652,6 +2863,7 @@
         {
           "category": "table",
           "id": "jte92rxs",
+          "isCompound": false,
           "coordinates": { "x": 1005, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2664,6 +2876,7 @@
         {
           "category": "table",
           "id": "jte92rxt",
+          "isCompound": false,
           "coordinates": { "x": 1045, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2676,6 +2889,7 @@
         {
           "category": "table",
           "id": "jte92shu",
+          "isCompound": false,
           "coordinates": { "x": 1365, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2688,6 +2902,7 @@
         {
           "category": "table",
           "id": "jte92shv",
+          "isCompound": false,
           "coordinates": { "x": 1405, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2700,6 +2915,7 @@
         {
           "category": "table",
           "id": "jte92shw",
+          "isCompound": false,
           "coordinates": { "x": 1365, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2712,6 +2928,7 @@
         {
           "category": "table",
           "id": "jte92shx",
+          "isCompound": false,
           "coordinates": { "x": 1405, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2724,6 +2941,7 @@
         {
           "category": "table",
           "id": "jte92shy",
+          "isCompound": false,
           "coordinates": { "x": 1365, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2736,6 +2954,7 @@
         {
           "category": "table",
           "id": "jte92shz",
+          "isCompound": false,
           "coordinates": { "x": 1405, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2748,6 +2967,7 @@
         {
           "category": "table",
           "id": "jte92si0",
+          "isCompound": false,
           "coordinates": { "x": 1365, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2760,6 +2980,7 @@
         {
           "category": "table",
           "id": "jte92si1",
+          "isCompound": false,
           "coordinates": { "x": 1405, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2772,6 +2993,7 @@
         {
           "category": "table",
           "id": "jte92sy2",
+          "isCompound": false,
           "coordinates": { "x": 1545, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2784,6 +3006,7 @@
         {
           "category": "table",
           "id": "jte92sy3",
+          "isCompound": false,
           "coordinates": { "x": 1585, "y": 540 },
           "width": 40,
           "height": 70,
@@ -2796,6 +3019,7 @@
         {
           "category": "table",
           "id": "jte92sy4",
+          "isCompound": false,
           "coordinates": { "x": 1545, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2808,6 +3032,7 @@
         {
           "category": "table",
           "id": "jte92sy5",
+          "isCompound": false,
           "coordinates": { "x": 1585, "y": 610 },
           "width": 40,
           "height": 70,
@@ -2820,6 +3045,7 @@
         {
           "category": "table",
           "id": "jte92sy6",
+          "isCompound": false,
           "coordinates": { "x": 1545, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2832,6 +3058,7 @@
         {
           "category": "table",
           "id": "jte92sy7",
+          "isCompound": false,
           "coordinates": { "x": 1585, "y": 680 },
           "width": 40,
           "height": 70,
@@ -2844,6 +3071,7 @@
         {
           "category": "table",
           "id": "jte92sy8",
+          "isCompound": false,
           "coordinates": { "x": 1545, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2856,6 +3084,7 @@
         {
           "category": "table",
           "id": "jte92sy9",
+          "isCompound": false,
           "coordinates": { "x": 1585, "y": 750 },
           "width": 40,
           "height": 70,
@@ -2868,6 +3097,7 @@
         {
           "category": "table",
           "id": "jte9bxh8",
+          "isCompound": false,
           "coordinates": { "x": 2065, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2880,6 +3110,7 @@
         {
           "category": "table",
           "id": "jte9bxh9",
+          "isCompound": false,
           "coordinates": { "x": 2105, "y": 5 },
           "width": 40,
           "height": 70,
@@ -2892,6 +3123,7 @@
         {
           "category": "table",
           "id": "jte9bxha",
+          "isCompound": false,
           "coordinates": { "x": 2065, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2904,6 +3136,7 @@
         {
           "category": "table",
           "id": "jte9bxhb",
+          "isCompound": false,
           "coordinates": { "x": 2105, "y": 75 },
           "width": 40,
           "height": 70,
@@ -2916,6 +3149,7 @@
         {
           "category": "table",
           "id": "jte9bxhc",
+          "isCompound": false,
           "coordinates": { "x": 2065, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2928,6 +3162,7 @@
         {
           "category": "table",
           "id": "jte9bxhd",
+          "isCompound": false,
           "coordinates": { "x": 2105, "y": 145 },
           "width": 40,
           "height": 70,
@@ -2940,6 +3175,7 @@
         {
           "category": "table",
           "id": "jte9bxhe",
+          "isCompound": false,
           "coordinates": { "x": 2065, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2952,6 +3188,7 @@
         {
           "category": "table",
           "id": "jte9bxhf",
+          "isCompound": false,
           "coordinates": { "x": 2105, "y": 215 },
           "width": 40,
           "height": 70,
@@ -2964,6 +3201,7 @@
         {
           "category": "table",
           "id": "jte9bxhg",
+          "isCompound": false,
           "coordinates": { "x": 2065, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2976,6 +3214,7 @@
         {
           "category": "table",
           "id": "jte9bxhh",
+          "isCompound": false,
           "coordinates": { "x": 2105, "y": 285 },
           "width": 40,
           "height": 70,
@@ -2988,6 +3227,7 @@
         {
           "category": "table",
           "id": "jte9dbpo",
+          "isCompound": false,
           "coordinates": { "x": 2280, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3000,6 +3240,7 @@
         {
           "category": "table",
           "id": "jte9dbpp",
+          "isCompound": false,
           "coordinates": { "x": 2320, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3012,6 +3253,7 @@
         {
           "category": "table",
           "id": "jte9dbpq",
+          "isCompound": false,
           "coordinates": { "x": 2280, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3024,6 +3266,7 @@
         {
           "category": "table",
           "id": "jte9dbpr",
+          "isCompound": false,
           "coordinates": { "x": 2320, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3036,6 +3279,7 @@
         {
           "category": "table",
           "id": "jte9dbps",
+          "isCompound": false,
           "coordinates": { "x": 2280, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3048,6 +3292,7 @@
         {
           "category": "table",
           "id": "jte9dbpt",
+          "isCompound": false,
           "coordinates": { "x": 2320, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3060,6 +3305,7 @@
         {
           "category": "table",
           "id": "jte9dbpu",
+          "isCompound": false,
           "coordinates": { "x": 2280, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3072,6 +3318,7 @@
         {
           "category": "table",
           "id": "jte9dbpv",
+          "isCompound": false,
           "coordinates": { "x": 2320, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3084,6 +3331,7 @@
         {
           "category": "table",
           "id": "jte9dbpw",
+          "isCompound": false,
           "coordinates": { "x": 2280, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3096,6 +3344,7 @@
         {
           "category": "table",
           "id": "jte9dbpx",
+          "isCompound": false,
           "coordinates": { "x": 2320, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3108,6 +3357,7 @@
         {
           "category": "table",
           "id": "jte9dbpy",
+          "isCompound": false,
           "coordinates": { "x": 2280, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3120,6 +3370,7 @@
         {
           "category": "table",
           "id": "jte9dbpz",
+          "isCompound": false,
           "coordinates": { "x": 2320, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3132,6 +3383,7 @@
         {
           "category": "table",
           "id": "jte9e64r",
+          "isCompound": false,
           "coordinates": { "x": 2540, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3144,6 +3396,7 @@
         {
           "category": "table",
           "id": "jte9e64s",
+          "isCompound": false,
           "coordinates": { "x": 2580, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3156,6 +3409,7 @@
         {
           "category": "table",
           "id": "jte9e64t",
+          "isCompound": false,
           "coordinates": { "x": 2540, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3168,6 +3422,7 @@
         {
           "category": "table",
           "id": "jte9e64u",
+          "isCompound": false,
           "coordinates": { "x": 2580, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3180,6 +3435,7 @@
         {
           "category": "table",
           "id": "jte9e64v",
+          "isCompound": false,
           "coordinates": { "x": 2540, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3192,6 +3448,7 @@
         {
           "category": "table",
           "id": "jte9e64w",
+          "isCompound": false,
           "coordinates": { "x": 2580, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3204,6 +3461,7 @@
         {
           "category": "table",
           "id": "jte9e64x",
+          "isCompound": false,
           "coordinates": { "x": 2540, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3216,6 +3474,7 @@
         {
           "category": "table",
           "id": "jte9e64y",
+          "isCompound": false,
           "coordinates": { "x": 2580, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3228,6 +3487,7 @@
         {
           "category": "table",
           "id": "jte9e64z",
+          "isCompound": false,
           "coordinates": { "x": 2540, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3240,6 +3500,7 @@
         {
           "category": "table",
           "id": "jte9e650",
+          "isCompound": false,
           "coordinates": { "x": 2580, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3252,6 +3513,7 @@
         {
           "category": "table",
           "id": "jte9e651",
+          "isCompound": false,
           "coordinates": { "x": 2540, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3264,6 +3526,7 @@
         {
           "category": "table",
           "id": "jte9e652",
+          "isCompound": false,
           "coordinates": { "x": 2580, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3276,6 +3539,7 @@
         {
           "category": "table",
           "id": "jte9f2ma",
+          "isCompound": false,
           "coordinates": { "x": 2750, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3288,6 +3552,7 @@
         {
           "category": "table",
           "id": "jte9f2mb",
+          "isCompound": false,
           "coordinates": { "x": 2790, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3300,6 +3565,7 @@
         {
           "category": "table",
           "id": "jte9f2mc",
+          "isCompound": false,
           "coordinates": { "x": 2750, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3312,6 +3578,7 @@
         {
           "category": "table",
           "id": "jte9f2md",
+          "isCompound": false,
           "coordinates": { "x": 2790, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3324,6 +3591,7 @@
         {
           "category": "table",
           "id": "jte9f2me",
+          "isCompound": false,
           "coordinates": { "x": 2750, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3336,6 +3604,7 @@
         {
           "category": "table",
           "id": "jte9f2mf",
+          "isCompound": false,
           "coordinates": { "x": 2790, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3348,6 +3617,7 @@
         {
           "category": "table",
           "id": "jte9f2mg",
+          "isCompound": false,
           "coordinates": { "x": 2750, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3360,6 +3630,7 @@
         {
           "category": "table",
           "id": "jte9f2mh",
+          "isCompound": false,
           "coordinates": { "x": 2790, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3372,6 +3643,7 @@
         {
           "category": "table",
           "id": "jte9f2mi",
+          "isCompound": false,
           "coordinates": { "x": 2750, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3384,6 +3656,7 @@
         {
           "category": "table",
           "id": "jte9f2mj",
+          "isCompound": false,
           "coordinates": { "x": 2790, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3396,6 +3669,7 @@
         {
           "category": "table",
           "id": "jte9iode",
+          "isCompound": false,
           "coordinates": { "x": 3275, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3408,6 +3682,7 @@
         {
           "category": "table",
           "id": "jte9iodf",
+          "isCompound": false,
           "coordinates": { "x": 3315, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3420,6 +3695,7 @@
         {
           "category": "table",
           "id": "jte9iodg",
+          "isCompound": false,
           "coordinates": { "x": 3275, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3432,6 +3708,7 @@
         {
           "category": "table",
           "id": "jte9iodh",
+          "isCompound": false,
           "coordinates": { "x": 3315, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3444,6 +3721,7 @@
         {
           "category": "table",
           "id": "jte9iodi",
+          "isCompound": false,
           "coordinates": { "x": 3275, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3456,6 +3734,7 @@
         {
           "category": "table",
           "id": "jte9iodj",
+          "isCompound": false,
           "coordinates": { "x": 3315, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3468,6 +3747,7 @@
         {
           "category": "table",
           "id": "jte9ipk9",
+          "isCompound": false,
           "coordinates": { "x": 3105, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3480,6 +3760,7 @@
         {
           "category": "table",
           "id": "jte9ipka",
+          "isCompound": false,
           "coordinates": { "x": 3145, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3492,6 +3773,7 @@
         {
           "category": "table",
           "id": "jte9ipkb",
+          "isCompound": false,
           "coordinates": { "x": 3105, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3504,6 +3786,7 @@
         {
           "category": "table",
           "id": "jte9ipkc",
+          "isCompound": false,
           "coordinates": { "x": 3145, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3516,6 +3799,7 @@
         {
           "category": "table",
           "id": "jte9ipkd",
+          "isCompound": false,
           "coordinates": { "x": 3105, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3528,6 +3812,7 @@
         {
           "category": "table",
           "id": "jte9ipke",
+          "isCompound": false,
           "coordinates": { "x": 3145, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3540,6 +3825,7 @@
         {
           "category": "table",
           "id": "jte9iqjd",
+          "isCompound": false,
           "coordinates": { "x": 2925, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3552,6 +3838,7 @@
         {
           "category": "table",
           "id": "jte9iqje",
+          "isCompound": false,
           "coordinates": { "x": 2965, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3564,6 +3851,7 @@
         {
           "category": "table",
           "id": "jte9iqjf",
+          "isCompound": false,
           "coordinates": { "x": 2925, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3576,6 +3864,7 @@
         {
           "category": "table",
           "id": "jte9iqjg",
+          "isCompound": false,
           "coordinates": { "x": 2965, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3588,6 +3877,7 @@
         {
           "category": "table",
           "id": "jte9iqjh",
+          "isCompound": false,
           "coordinates": { "x": 2925, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3600,6 +3890,7 @@
         {
           "category": "table",
           "id": "jte9iqji",
+          "isCompound": false,
           "coordinates": { "x": 2965, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3612,6 +3903,7 @@
         {
           "category": "table",
           "id": "jte9josi",
+          "isCompound": false,
           "coordinates": { "x": 2965, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3624,6 +3916,7 @@
         {
           "category": "table",
           "id": "jte9k84z",
+          "isCompound": false,
           "coordinates": { "x": 2925, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3636,6 +3929,7 @@
         {
           "category": "table",
           "id": "jte9k850",
+          "isCompound": false,
           "coordinates": { "x": 2965, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3648,6 +3942,7 @@
         {
           "category": "table",
           "id": "jte9k851",
+          "isCompound": false,
           "coordinates": { "x": 2925, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3660,6 +3955,7 @@
         {
           "category": "table",
           "id": "jte9k852",
+          "isCompound": false,
           "coordinates": { "x": 2965, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3672,6 +3968,7 @@
         {
           "category": "table",
           "id": "jte9knnm",
+          "isCompound": false,
           "coordinates": { "x": 3105, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3684,6 +3981,7 @@
         {
           "category": "table",
           "id": "jte9kqjv",
+          "isCompound": false,
           "coordinates": { "x": 3105, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3696,6 +3994,7 @@
         {
           "category": "table",
           "id": "jte9kqjw",
+          "isCompound": false,
           "coordinates": { "x": 3145, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3708,6 +4007,7 @@
         {
           "category": "table",
           "id": "jte9kqjx",
+          "isCompound": false,
           "coordinates": { "x": 3105, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3720,6 +4020,7 @@
         {
           "category": "table",
           "id": "jte9kqjy",
+          "isCompound": false,
           "coordinates": { "x": 3145, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3732,6 +4033,7 @@
         {
           "category": "table",
           "id": "jte9lkpv",
+          "isCompound": false,
           "coordinates": { "x": 3275, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3744,6 +4046,7 @@
         {
           "category": "table",
           "id": "jte9lkpw",
+          "isCompound": false,
           "coordinates": { "x": 3315, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3756,6 +4059,7 @@
         {
           "category": "table",
           "id": "jte9lkpx",
+          "isCompound": false,
           "coordinates": { "x": 3275, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3768,6 +4072,7 @@
         {
           "category": "table",
           "id": "jte9lkpy",
+          "isCompound": false,
           "coordinates": { "x": 3315, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3780,6 +4085,7 @@
         {
           "category": "table",
           "id": "jte9ofbf",
+          "isCompound": false,
           "coordinates": { "x": 3610, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3792,6 +4098,7 @@
         {
           "category": "table",
           "id": "jte9ofbg",
+          "isCompound": false,
           "coordinates": { "x": 3610, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3804,6 +4111,7 @@
         {
           "category": "table",
           "id": "jte9ofbh",
+          "isCompound": false,
           "coordinates": { "x": 3610, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3816,6 +4124,7 @@
         {
           "category": "table",
           "id": "jte9op0a",
+          "isCompound": false,
           "coordinates": { "x": 3610, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3828,6 +4137,7 @@
         {
           "category": "table",
           "id": "jte9op0b",
+          "isCompound": false,
           "coordinates": { "x": 3610, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3840,6 +4150,7 @@
         {
           "category": "table",
           "id": "jte9op0c",
+          "isCompound": false,
           "coordinates": { "x": 3610, "y": 425 },
           "width": 40,
           "height": 70,
@@ -3852,6 +4163,7 @@
         {
           "category": "table",
           "id": "jte9t76b",
+          "isCompound": false,
           "coordinates": { "x": 2435, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3864,6 +4176,7 @@
         {
           "category": "table",
           "id": "jte9t76c",
+          "isCompound": false,
           "coordinates": { "x": 2435, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3876,6 +4189,7 @@
         {
           "category": "table",
           "id": "jte9t92q",
+          "isCompound": false,
           "coordinates": { "x": 2435, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3888,6 +4202,7 @@
         {
           "category": "table",
           "id": "jte9t92r",
+          "isCompound": false,
           "coordinates": { "x": 2435, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3900,6 +4215,7 @@
         {
           "category": "table",
           "id": "jte9t92s",
+          "isCompound": false,
           "coordinates": { "x": 2435, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3912,6 +4228,7 @@
         {
           "category": "table",
           "id": "jte9uwre",
+          "isCompound": false,
           "coordinates": { "x": 3450, "y": 5 },
           "width": 40,
           "height": 70,
@@ -3924,6 +4241,7 @@
         {
           "category": "table",
           "id": "jte9uwrf",
+          "isCompound": false,
           "coordinates": { "x": 3450, "y": 75 },
           "width": 40,
           "height": 70,
@@ -3936,6 +4254,7 @@
         {
           "category": "table",
           "id": "jte9uwrg",
+          "isCompound": false,
           "coordinates": { "x": 3450, "y": 145 },
           "width": 40,
           "height": 70,
@@ -3948,6 +4267,7 @@
         {
           "category": "table",
           "id": "jte9uwrh",
+          "isCompound": false,
           "coordinates": { "x": 3450, "y": 215 },
           "width": 40,
           "height": 70,
@@ -3960,6 +4280,7 @@
         {
           "category": "table",
           "id": "jte9uwri",
+          "isCompound": false,
           "coordinates": { "x": 3450, "y": 285 },
           "width": 40,
           "height": 70,
@@ -3972,6 +4293,7 @@
         {
           "category": "table",
           "id": "jte9uwrj",
+          "isCompound": false,
           "coordinates": { "x": 3450, "y": 355 },
           "width": 40,
           "height": 70,
@@ -3984,6 +4306,7 @@
         {
           "category": "table",
           "id": "jte9xq6y",
+          "isCompound": false,
           "coordinates": { "x": 1825, "y": 355 },
           "width": 40,
           "height": 70,
@@ -4018,6 +4341,7 @@
         {
           "category": "table",
           "id": "11",
+          "isCompound": false,
           "coordinates": { "x": 20, "y": 20 },
           "width": 40,
           "height": 70,

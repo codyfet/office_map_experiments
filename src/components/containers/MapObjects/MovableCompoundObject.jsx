@@ -61,7 +61,28 @@ export default class MovableCompoundObject extends React.PureComponent {
     });
   }
 
-  // 1. Показать tooltip-информацию:
+  // 1. Держать координаты в границах глобальной области:
+  checkBoundaries(x, y) {
+    const { mapWidth, mapHeight, object } = this.props;
+    // проверяем границы для X:
+    let checkedX = x;
+    if (checkedX <= 0) {
+      checkedX = 0;
+    } else if (checkedX >= (mapWidth - object.width)) {
+      checkedX = mapWidth - object.width;
+    }
+    // проверяем границы для Y:
+    let checkedY = y;
+    if (checkedY <= 0) {
+      checkedY = 0;
+    } else if (checkedY >= (mapHeight - object.height)) {
+      checkedX = mapHeight - object.height;
+    }
+     
+    return { checkedX, checkedY };
+  }
+
+  // 2. Показать tooltip-информацию:
   showTooltipObjectInfo = (e) => {
     const { object, user } = this.props;
 
@@ -82,6 +103,10 @@ export default class MovableCompoundObject extends React.PureComponent {
       text += ` :\n${object.title}`;
     }
 
+    tooltip.getText().setText(text);
+    tooltip.show();
+    tooltipLayer.draw();
+
     // если объект перетаскивают, то isPointed - неактивен
     const { isDragging } = this.state; 
     this.setState({
@@ -89,7 +114,7 @@ export default class MovableCompoundObject extends React.PureComponent {
     });
   };
 
-  // 2. Скрыть tooltip-информацию:
+  // 3. Скрыть tooltip-информацию:
   hideTooltipObjectInfo = e => {
     const tooltipLayer = e.target.getStage().children[2];
     const tooltip = tooltipLayer.children[0];
@@ -123,7 +148,14 @@ export default class MovableCompoundObject extends React.PureComponent {
   };
 
   handleObjectDragEnd = (e) => {
-    const { showShadow, stopShadow, setCurrentObject, blockSnapSize, object } = this.props;
+    const { 
+      showShadow, 
+      stopShadow, 
+      setCurrentObject, 
+      blockSnapSize, 
+      object,
+      changeObjectLocation
+    } = this.props;
 
     const { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
     e.currentTarget.position({
@@ -131,12 +163,14 @@ export default class MovableCompoundObject extends React.PureComponent {
       y: Math.round(checkedY / blockSnapSize) * blockSnapSize,
     });
 
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
+    stopShadow();
+
     // обработка информации о пользователе:
     const userId = object.userId === undefined ? '' : object.userId;
     setCurrentObject(object.id, userId);
 
-    stopShadow();
+    // обновить положение объекта:
+    changeObjectLocation(e.currentTarget.x(), e.currentTarget.y());
 
     // объект не перетаскивают:
     this.setState({

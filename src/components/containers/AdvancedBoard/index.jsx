@@ -210,9 +210,8 @@ class AdvancedBoard extends React.Component {
 
   // 4. СВЯЗЬ С REDUX STORE---------------------------------------------------------------:
   // 4.1. Изменить положение объекта (данные объекта)
-  changeObjectLocation = () => {
+  changeObjectLocation = (newX, newY) => {
     const { actions, workMode, currentObject, objects } = this.props;
-    const { selectedObjectPos } = this.state;
 
     if (workMode === MULTI_EDIT) {
       // в этом случае нам нужно сделать массовый сдвиг:
@@ -225,8 +224,8 @@ class AdvancedBoard extends React.Component {
 
       // найдём сдвиг:
       const shift = {
-        x: selectedObjectPos[0] - obj.coordinates.x,
-        y: selectedObjectPos[1] - obj.coordinates.y,
+        x: newX - obj.coordinates.x,
+        y: newY - obj.coordinates.y,
       };
 
       // и теперь обновим данные в redux:
@@ -242,8 +241,8 @@ class AdvancedBoard extends React.Component {
       const newObjectData = {
         id: currentObject.objectId,
         pos: {
-          x: selectedObjectPos[0],
-          y: selectedObjectPos[1],
+          x: newX,
+          y: newY,
         },
       };
 
@@ -268,8 +267,7 @@ class AdvancedBoard extends React.Component {
 
   // 5.1.2. Скрыть тень (при остановке движения (drop) объекта):
   hideCurrentObjectShadow = () => {
-    this.changeObjectLocation();
-
+    // this.changeObjectLocation();
     this.setState({
       shadowOpacity: 0,
     });
@@ -425,6 +423,7 @@ class AdvancedBoard extends React.Component {
               showContextMenu={this.showContextMenu}
               hideContextMenu={this.hideContextMenu}
               setCurrentObject={this.setCurrentObject}
+              changeObjectLocation={this.changeObjectLocation}
               checkHasIntersection={this.checkObjectHasIntersection}
               openCurrentObjectTab={this.openCurrentObjectTab}
             />
@@ -444,6 +443,7 @@ class AdvancedBoard extends React.Component {
               showContextMenu={this.showContextMenu}
               hideContextMenu={this.hideContextMenu}
               setCurrentObject={this.setCurrentObject}
+              changeObjectLocation={this.changeObjectLocation}
               checkHasIntersection={this.checkObjectHasIntersection}
               openCurrentObjectTab={this.openCurrentObjectTab}
             />

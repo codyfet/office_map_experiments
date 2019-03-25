@@ -151,7 +151,14 @@ export default class MovableObject extends React.PureComponent {
   };
 
   handleObjectDragEnd = (e) => {
-    const { showShadow, stopShadow, setCurrentObject, blockSnapSize, object } = this.props;
+    const { 
+      showShadow, 
+      stopShadow, 
+      setCurrentObject, 
+      blockSnapSize, 
+      object,
+      changeObjectLocation
+    } = this.props;
 
     const { checkedX, checkedY } = this.checkBoundaries(e.currentTarget.x(), e.currentTarget.y());
     e.currentTarget.position({
@@ -159,14 +166,16 @@ export default class MovableObject extends React.PureComponent {
       y: Math.round(checkedY / blockSnapSize) * blockSnapSize,
     });
 
-    showShadow(e.currentTarget.x(), e.currentTarget.y(), [object.width, object.height]);
+    stopShadow();
+
     // обработка информации о пользователе:
     const userId = object.userId === undefined ? '' : object.userId;
     setCurrentObject(object.id, userId);
 
-    stopShadow();
+    // обновить положение объекта:
+    changeObjectLocation(e.currentTarget.x(), e.currentTarget.y());
 
-    // объект не перетаскивают:
+    // объект больше не перетаскивают:
     this.setState({
       isDragging: false
     });

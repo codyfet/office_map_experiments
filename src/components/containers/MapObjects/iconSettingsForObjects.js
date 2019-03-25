@@ -1,5 +1,11 @@
-function setupIconSizeAccordingToObjectSizes(settings, object) {
-  const minSizeObjectValue = object.width < object.height ? object.width : object.height;
+
+import {
+  STATIC_OBJECT_SIZE,
+  MOVABLE_OBJECT_SIZE
+} from '../../../res/constantsIconSizes';
+
+function setupIconSettingsForNonCompundObject(settings, object) {
+  let minSizeObjectValue = object.width < object.height ? object.width : object.height;
   const minSizeValue = 15;
   let scaleIncrease = 1;
   
@@ -8,7 +14,26 @@ function setupIconSizeAccordingToObjectSizes(settings, object) {
   }
 
   if (['meeting_room', 'public_place', 'service_room', 'construction'].includes(object.category)) {
-    scaleIncrease = minSizeObjectValue / 2 / minSizeValue;
+    scaleIncrease = STATIC_OBJECT_SIZE / 2 / minSizeValue;
+  }
+
+  return {
+    scale: settings.scale * scaleIncrease,
+    shiftX: settings.shiftX * scaleIncrease,
+    shiftY: settings.shiftY * scaleIncrease
+  };
+}
+
+function setupIconSettingsForCompundObject(settings, object) {
+  const minSizeValue = 15;
+  let scaleIncrease = 1;
+  
+  if (['table', 'cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)) {
+    scaleIncrease = MOVABLE_OBJECT_SIZE / minSizeValue;
+  }
+
+  if (['meeting_room', 'public_place', 'service_room', 'construction'].includes(object.category)) {
+    scaleIncrease = STATIC_OBJECT_SIZE / 2 / minSizeValue;
   }
 
   return {
@@ -77,5 +102,9 @@ export default function getIconSettings(object) {
       break;
   }
 
-  return setupIconSizeAccordingToObjectSizes(settings, object);
+  if (object.isCompound) {
+    return setupIconSettingsForCompundObject(settings, object);
+  } else {
+    return setupIconSettingsForNonCompundObject(settings, object);
+  }
 }

@@ -28,11 +28,9 @@ export default class StaticCompoundObject extends React.PureComponent {
     const { object } = this.props;
     const padding = 5;
 
-    if (object.polygonPoints !== prevProps.object.polygonPoints) {
-      const shape = shiftPolygonToPointZero(object.polygonPoints);
+    if (object.category !== prevProps.object.category) {
       this.setState({
-        outerShape: shape,
-        insideShape: shrinkPolygonPoints(shape, padding)  
+        objectIcon: this.drawIcon(object),  
       });
     }
   }
@@ -46,8 +44,8 @@ export default class StaticCompoundObject extends React.PureComponent {
       return (
         <Path
           key={i}
-          x={object.width / 2 - shiftX}
-          y={object.height / 2 - shiftY}
+          x={object.iconPosition.x}
+          y={object.iconPosition.y}
           data={path}
           fill="black"
           scale={{
@@ -215,7 +213,7 @@ export default class StaticCompoundObject extends React.PureComponent {
           opacity={isPointed ? 0.5 : 1}
         />
         {/* Вход */}
-        {/* { object.category !== 'construction' && object.doorLocation !== undefined
+        { object.category !== 'construction' && object.doorLocation !== undefined
           && (
           <Wedge
             x={door.x}
@@ -228,7 +226,7 @@ export default class StaticCompoundObject extends React.PureComponent {
             // stroke="black"
             // strokeWidth={0.5}
           />)
-        } */}
+        }
         <Shape
           sceneFunc={(context, shape) => {
             context.beginPath();
@@ -246,7 +244,7 @@ export default class StaticCompoundObject extends React.PureComponent {
           fill={this.setColor()}
           opacity={isPointed ? 0.5 : 1}
         />
-        {/* {objectIcon} */}
+        {objectIcon}
       </Group>
     );
   }

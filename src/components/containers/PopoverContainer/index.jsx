@@ -73,36 +73,44 @@ class PopoverContainer extends React.Component {
     const { objects, actions, mapState, currentObject, readyHandler } = this.props;
     // если объект не выбран:
     if (category === '') {
-      alert('ОШИБКА: ФИНАЛЬНЫЙ ТИП ОБЪЕКТА СЛИЯНИЯ НЕ БЫЛ ВЫБРАН! Попробуйте еще раз!');
+      alert('ОШИБКА: ФИНАЛЬНЫЙ ТИП ОБЪЕКТА СЛИЯНИЯ НЕ БЫЛ ВЫБРАН!');
       return;
-    } else {
-      let selectedObjects = [];
-      // найдём выделенные объекты:
-      const thisLevelObjects = objects.levels[objects.mapLevel];
-      thisLevelObjects.forEach((elem) => {
-        if (currentObject.objectId.split(' ').includes(elem.id)) {
-          selectedObjects.push(_.cloneDeep(elem));
-        }
-      });
-      // если объекты не создают цепь, касаясь друг друга, то они не смогут сформировать единый объект:
-      if (!checkObjectsAdjoined(selectedObjects)) {
-        alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
-        readyHandler(); // close popover
-        return;
-      } else {
-        // если выделенные объекты могут создать единый объект, то:
-        // объединяем их:
-        const step = mapState.blockSnapSize;
-        const newComplexObject = mergeObjects(selectedObjects, step, category);
+    } 
 
-        // удаляем выделенные объекты:
-        currentObject.objectId.split(' ').forEach(id => {
-          actions.deleteObject(id);
-        });
-        // добавляем новый:
-        actions.createObject(_.cloneDeep(newComplexObject));
+    let selectedObjects = [];
+    // найдём выделенные объекты:
+    const thisLevelObjects = objects.levels[objects.mapLevel];
+    thisLevelObjects.forEach((elem) => {
+      if (currentObject.objectId.split(' ').includes(elem.id)) {
+        selectedObjects.push(_.cloneDeep(elem));
       }
+    });
+
+    // compound-объекты нельзя объединять
+    if (selectedObjects.some((object) => object.isCompound)) {
+      alert('ОШИБКА: СОСТАВНЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
+      readyHandler(); // close popover
+      return;
     }
+
+    // если объекты не создают цепь, касаясь друг друга, то они не смогут сформировать единый объект:
+    if (!checkObjectsAdjoined(selectedObjects)) {
+      alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
+      readyHandler(); // close popover
+      return;
+    } 
+    
+    // если выделенные объекты могут создать единый объект, то:
+    // объединяем их:
+    const step = mapState.blockSnapSize;
+    const newComplexObject = mergeObjects(selectedObjects, step, category);
+
+    // удаляем выделенные объекты:
+    currentObject.objectId.split(' ').forEach(id => {
+      actions.deleteObject(id);
+    });
+    // добавляем новый:
+    actions.createObject(_.cloneDeep(newComplexObject));
     // если объект выбран - то выполняем действия:
 
     // currentObject.objectId.split(' ').forEach(id => {

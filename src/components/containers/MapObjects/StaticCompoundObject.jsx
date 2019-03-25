@@ -25,12 +25,13 @@ export default class StaticCompoundObject extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { object } = this.props;
+    const { object, checkHasIntersection } = this.props;
     const padding = 5;
 
     if (object.category !== prevProps.object.category
         || object.iconPosition.x !== prevProps.object.iconPosition.x
         || object.iconPosition.y !== prevProps.object.iconPosition.y) {
+      checkHasIntersection(object);
       this.setState({
         objectIcon: this.drawIcon(object),  
       });

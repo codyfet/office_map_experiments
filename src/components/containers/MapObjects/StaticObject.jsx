@@ -20,13 +20,14 @@ export default class StaticObject extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { object } = this.props;
+    const { object, checkHasIntersection } = this.props;
 
     // проверим границы для измененного объекта:
     // будем проверять границы при каждом изменении размеров и координат объекта:
     if (prevProps.object.width !== object.width 
         || prevProps.object.height !== object.height
         || prevProps.object.category !== object.category) {
+      checkHasIntersection(object);
       this.setState({
         objectIcon: this.drawIcon(object)
       });
@@ -173,10 +174,16 @@ export default class StaticObject extends React.PureComponent {
   render() {
     const { object, isSelected } = this.props;
     const { isPointed, objectIcon } = this.state;
-    const selectionColor = this.setSelection(isSelected);
 
-    const paddingSelection = 5;
     const door = object.category !== 'construction' ? this.setDoorForObject() : undefined;
+    
+    // Выделение:
+    const selectionColor = this.setSelection(isSelected);
+    const paddingSelection = 5;
+    const baseAreraSize = {
+      width: object.width - paddingSelection * 2, 
+      height: object.height - paddingSelection * 2
+    };
 
     return (
       <Group
@@ -217,8 +224,8 @@ export default class StaticObject extends React.PureComponent {
         <Rect
           x={paddingSelection}
           y={paddingSelection}
-          width={object.width - paddingSelection * 2}
-          height={object.height - paddingSelection * 2}
+          width={baseAreraSize.width < 0 ? 0 : baseAreraSize.width}
+          height={baseAreraSize.height < 0 ? 0 : baseAreraSize.height}
           fill={this.setColor()}
           opacity={isPointed ? 0.5 : 1}
         />

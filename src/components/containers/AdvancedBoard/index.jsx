@@ -460,6 +460,7 @@ class AdvancedBoard extends React.Component {
               showContextMenu={this.showContextMenu}
               hideContextMenu={this.hideContextMenu}
               setCurrentObject={this.setCurrentObject}
+              checkHasIntersection={this.checkObjectHasIntersection}
               openCurrentObjectTab={this.openCurrentObjectTab}
             />
           );
@@ -472,6 +473,7 @@ class AdvancedBoard extends React.Component {
               showContextMenu={this.showContextMenu}
               hideContextMenu={this.hideContextMenu}
               setCurrentObject={this.setCurrentObject}
+              checkHasIntersection={this.checkObjectHasIntersection}
               openCurrentObjectTab={this.openCurrentObjectTab}
             />
           );

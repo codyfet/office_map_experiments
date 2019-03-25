@@ -20,20 +20,6 @@ function shiftObjectCoords(object, shift) {
   return newObject;
 }
 
-function moveObject(object, newPosition) {
-  let newObject = _.cloneDeep(object);
-  if (object.isCompound) {
-    const shift = {
-      x: newPosition.x - newObject.coordinates.x,
-      y: newPosition.y - newObject.coordinates.y,
-    };
-    newObject.polygonPoints = newObject.polygonPoints.map((point) => shiftObjectCoords(point, shift));
-    newObject.composition = newObject.composition.map((compObject) => shiftObjectCoords(compObject, shift));
-  }
-  newObject.coordinates = newPosition;
-  return newObject;
-}
-
 function setupInitalState() {
   // загрузка объектов всех уровней:
   const mapDataCloned = _.cloneDeep(mapData);
@@ -186,7 +172,7 @@ export default function objects(state = initialState, action) {
      
       const newLevels = state.levels.slice(0);
       newLevels[lvl].forEach((object) => {
-        if (objectIds.includes(object.id)) {
+        if (objectIds.includes(object.id) && object.movable) {
           if (object.isCompound) {
             object.polygonPoints = object.polygonPoints.map((point) => shiftObjectCoords(point, shift));
             object.composition = object.composition.map((compObject) => shiftObjectCoords(compObject, shift));

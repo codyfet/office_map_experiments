@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './styles.css';
 
-class EditField extends React.Component {
+class EditPositionField extends React.Component {
   constructor(props) {
     super(props);
 
@@ -55,4 +55,4 @@ class EditField extends React.Component {
   }
 }
 
-export default EditField;
+export default EditPositionField;

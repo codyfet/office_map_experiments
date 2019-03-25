@@ -10,7 +10,7 @@ import DropdownObjectField from '../DropdownObjectField/index';
 import DropdownSeatLocationField from '../DropdownSeatLocationField';
 import DropdownDoorLocationField from '../DropdownDoorLocationField';
 import DropdownOrientationField from '../DropdownOrientationField';
-import EditDoorPositionField from '../EditDoorPositionField';
+import EditPositionField from '../EditPositionField';
 import './styles.css';
 
 class CurrentObjectSettings extends React.Component {
@@ -84,8 +84,20 @@ class CurrentObjectSettings extends React.Component {
     const { object } = this.props;
 
     // определим свойства, которые можно редактировать:
+   
+    // не настраивается для compound:
+    // 'width',
+    // 'height',
+    // 'seatLocation',
+    // 'orientation',
+    // 'userId',
+
+    // 'iconPosition',
+    // 'movable',
+    
     const allowedProperties = [
       'id',
+      'isCompound',
       'coordinates',
       'title',
       'category',
@@ -93,6 +105,7 @@ class CurrentObjectSettings extends React.Component {
       'orientation',
       'doorLocation',
       'doorPosition',
+      'iconPosition',
       'width',
       'height',
       'color',
@@ -103,6 +116,33 @@ class CurrentObjectSettings extends React.Component {
         return undefined;
       }
 
+      if (prop === 'seatLocation' && object.category !== 'table') {
+        return undefined;
+      }
+
+      if (prop === 'orientation'
+          && !['cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)) {
+        return undefined;
+      }
+
+      if ((prop === 'doorLocation' || prop === 'doorPosition')
+          && !['meeting_room', 'public_place', 'service_room'].includes(object.category)) {
+        return undefined;
+      }
+
+      if (prop === 'title' && object.category === 'table') {
+        return undefined;
+      }
+
+      if ((prop === 'width' || prop === 'height') && object.isCompound) {
+        return undefined;
+      } 
+
+      if (prop === 'iconPosition' && !object.isCompound) {
+        return undefined;
+      } 
+
+      // Добавляем поля редактирования:
       if (prop === 'movable') {
         return (
           <CheckboxField
@@ -124,62 +164,45 @@ class CurrentObjectSettings extends React.Component {
           />
         );
       } else if (prop === 'seatLocation') {
-        if (object.category === 'table') {
-          return (
-            <DropdownSeatLocationField
-              key={prop}
-              label={prop}
-              placeholder={object[prop]}
-              disabled={false}
-              onInputChange={this.onInputChange}
-            />
-          );
-        } else {
-          return undefined;
-        }
+        return (
+          <DropdownSeatLocationField
+            key={prop}
+            label={prop}
+            placeholder={object[prop]}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
       } else if (prop === 'orientation') {
-        if (['cupboard', 'printer', 'scaner', 'shredder'].includes(object.category)) {
-          return (
-            <DropdownOrientationField
-              key={prop}
-              label={prop}
-              placeholder={object[prop] !== undefined ? object[prop] : object[prop]}
-              disabled={false}
-              onInputChange={this.onInputChange}
-            />
-          );
-        } else {
-          return undefined;
-        }
+        return (
+          <DropdownOrientationField
+            key={prop}
+            label={prop}
+            placeholder={object[prop] !== undefined ? object[prop] : object[prop]}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
       } else if (prop === 'doorLocation') {
-        if (['meeting_room', 'public_place', 'service_room'].includes(object.category)) {
-          return (
-            <DropdownDoorLocationField
-              key={prop}
-              label={prop}
-              placeholder={object[prop] !== undefined ? object[prop] : object[prop]}
-              disabled={false}
-              onInputChange={this.onInputChange}
-            />
-          );
-        } else {
-          return undefined;
-        }
+        return (
+          <DropdownDoorLocationField
+            key={prop}
+            label={prop}
+            placeholder={object[prop] !== undefined ? object[prop] : object[prop]}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
       } else if (prop === 'doorPosition') {
-        if (['meeting_room', 'public_place', 'service_room'].includes(object.category)) {
-          let doorPos = object[prop] !== undefined ? object[prop] : { x: 0, y: 0 };
-          return (
-            <EditDoorPositionField
-              key={prop}
-              label={prop}
-              placeholder={`${doorPos.x},${doorPos.y}`}
-              disabled={false}
-              onInputChange={this.onInputChange}
-            />
-          );
-        } else {
-          return undefined;
-        }
+        return (
+          <EditPositionField
+            key={prop}
+            label={prop}
+            placeholder={`${object[prop].x},${object[prop].y}`}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
       } else if (prop === 'coordinates') {
         return (
           <EditField
@@ -190,15 +213,23 @@ class CurrentObjectSettings extends React.Component {
             onInputChange={this.onInputChange}
           />
         );
-      } else if (prop === 'title' && object.category === 'table') {
-        return undefined;
+      } else if (prop === 'iconPosition' && object.isCompound) {
+        return (
+          <EditPositionField
+            key={prop}
+            label={prop}
+            placeholder={`${object[prop].x},${object[prop].y}`}
+            disabled={false}
+            onInputChange={this.onInputChange}
+          />
+        );
       } else {
         return (
           <EditField
             key={prop}
             label={prop}
             placeholder={String(object[prop])}
-            disabled={prop === 'id' || (prop === 'title' && object.category === 'table')}
+            disabled={prop === 'id' || prop === 'isCompound'}
             onInputChange={this.onInputChange}
           />
         );

@@ -28,7 +28,9 @@ export default class StaticCompoundObject extends React.PureComponent {
     const { object } = this.props;
     const padding = 5;
 
-    if (object.category !== prevProps.object.category) {
+    if (object.category !== prevProps.object.category
+        || object.iconPosition.x !== prevProps.object.iconPosition.x
+        || object.iconPosition.y !== prevProps.object.iconPosition.y) {
       this.setState({
         objectIcon: this.drawIcon(object),  
       });

@@ -18,7 +18,7 @@ import {
 
 import MovableObject from '../MapObjects/MovableObject';
 import StaticObject from '../MapObjects/StaticObject';
-import StaticComplexObject from '../MapObjects/StaticComplexObject';
+import StaticCompoundObject from '../MapObjects/StaticCompoundObject';
 import KonvaGridLayer from '../../presentational/KonvaGridLayer/index';
 import MapShape from '../MapShape/index';
 
@@ -428,7 +428,7 @@ class AdvancedBoard extends React.Component {
       } else {
         if (object.isCompound) {
           return (
-            <StaticComplexObject
+            <StaticCompoundObject
               key={object.id}
               object={object}
               isSelected={selectedObjects.includes(object.id)}

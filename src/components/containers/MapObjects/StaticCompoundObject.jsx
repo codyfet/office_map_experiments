@@ -8,7 +8,7 @@ import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/c
 import { LEFT_SIDE, BOTTOM_SIDE, RIGHT_SIDE, TOP_SIDE } from '../../../res/constantsTableSeat';
 import { shiftPolygonToPointZero, shrinkPolygonPoints } from '../../../utils/polygonMagic';
 
-export default class StaticComplexObject extends React.PureComponent {
+export default class StaticCompoundObject extends React.PureComponent {
   constructor(props) {
     super(props);
 

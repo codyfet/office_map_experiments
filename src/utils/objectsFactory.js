@@ -11,7 +11,7 @@ import {
 } from '../res/constantsObjectsColors';
 import {
   LEFT_SIDE
-} from '../res/constantsTableSeat';
+} from '../res/constantsOrientation';
 
 const TABLE = 'table';
 const CUPBOARD = 'cupboard';

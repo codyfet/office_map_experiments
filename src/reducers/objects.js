@@ -11,6 +11,12 @@ import {
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
+import {  
+  LEFT_SIDE,
+  BOTTOM_SIDE,
+  RIGHT_SIDE,
+  TOP_SIDE
+} from '../res/constantsOrientation';
 
 // загрузить lodash:
 const _ = require('lodash');
@@ -22,29 +28,26 @@ function shiftObjectCoords(object, shift) {
   return newObject;
 }
 
-function rotateDoorPositionCounterclockwise(position, object) {
-  let center = {
-    x: object.width / 2,
-    y: object.height / 2
-  };
-
-  const angle = -90;
-  const rad = (angle * Math.PI) / 180;
+function rotateDoorPositionCounterclockwise(position, sideLocation, object) {
   const { x, y } = position;
-  // transform description
-  // const newCoords = {
-  //   x: center.x + (x - center.x) * Math.cos(rad) - (y - center.y) * Math.sin(rad),
-  //   y: center.y + (x - center.x) * Math.sin(rad) + (y - center.y) * Math.cos(rad) 
-  // };
+  const newCoords = {};
+  // поворот против часовой стрелки:
+  if (sideLocation === LEFT_SIDE) {
+    // поворачиваем к BOTTOM_SIDE:
+    newCoords.x = y;
+    newCoords.y = object.height;
+  } else if (sideLocation === BOTTOM_SIDE) {
+    newCoords.x = object.width;
+    newCoords.y = object.height - x;
+  } else if (sideLocation === RIGHT_SIDE) {
+    newCoords.x = y;
+    newCoords.y = 0;
+  } else if (sideLocation === TOP_SIDE) {
+    newCoords.x = 0;
+    newCoords.y = object.height - x;
+  }
 
-  // return {
-  //   x: 
-  //   y: 
-  // };
-  return {
-    x: center.x + (x - center.x) * Math.cos(rad) - (y - center.y) * Math.sin(rad),
-    y: center.y + (x - center.x) * Math.sin(rad) + (y - center.y) * Math.cos(rad) 
-  };
+  return newCoords;
 }
 
 function setupInitalState() {
@@ -134,6 +137,7 @@ export default function objects(state = initialState, action) {
         const tempW = object.width;
         object.width = object.height;
         object.height = tempW;
+
         if (object.category === 'table') {
           // порочаиваем место против часовой стрелки:
           // такой трюк работает, так как мы используем константы:
@@ -147,8 +151,8 @@ export default function objects(state = initialState, action) {
           object.orientation = (object.orientation + 1) % 4;
         }
         if (isStaticType(object)) {
+          object.doorPosition = rotateDoorPositionCounterclockwise(object.doorPosition, object.doorLocation, object);
           object.doorLocation = (object.doorLocation + 1) % 4;
-          object.doorPosition = rotateDoorPositionCounterclockwise(object.doorPosition, object);
         }
       }
 

@@ -1,4 +1,4 @@
-import { LEFT_SIDE } from '../res/constantsTableSeat';
+import { LEFT_SIDE } from '../res/constantsOrientation';
 import makePolygonFromObjects from './makePolygonFromObjects';
 import { 
   computeShiftToZeroPointByFirstPointOfPolygon, 

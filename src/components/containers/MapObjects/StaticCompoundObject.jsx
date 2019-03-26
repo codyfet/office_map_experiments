@@ -5,7 +5,7 @@ import iconPaths from '../../../res/iconPaths';
 import objectCategories from '../../../res/objectCategories.json';
 import getIconSettings from './iconSettingsForObjects';
 import { SELECTED_COLOR, EMPTY_TABLE_COLOR, WARNING_COLOR } from '../../../res/constantsObjectsColors';
-import { LEFT_SIDE, BOTTOM_SIDE, RIGHT_SIDE, TOP_SIDE } from '../../../res/constantsTableSeat';
+import { LEFT_SIDE, BOTTOM_SIDE, RIGHT_SIDE, TOP_SIDE } from '../../../res/constantsOrientation';
 import { shiftPolygonToPointZero, shrinkPolygonPoints } from '../../../utils/polygonMagic';
 
 export default class StaticCompoundObject extends React.PureComponent {

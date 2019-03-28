@@ -1,4 +1,30 @@
 {
+  "categories": [
+    {
+      "id": "people",
+      "title": "Сотрудники",
+      "color": "#b7a6bd",
+      "show": false
+    },
+    {
+      "id": "meeting_room",
+      "title": "Переговорные комнаты",
+      "color": "#b7a6bd",
+      "show": false
+    },
+    {
+      "id": "public_place",
+      "title": "Общественные места",
+      "color": "#b7a6bd",
+      "show": false
+    },
+    {
+      "id": "service_room",
+      "title": "Закрытые помещения",
+      "color": "#b7a6bd",
+      "show": false
+    }
+  ],
   "projects": [
     {
       "id": "p0",
@@ -4317,7 +4343,7 @@
         {
           "category": "meeting_room",
           "id": "js4d1ijt",
-          "title": "",
+          "title": "Тверь",
           "isCompound": true,
           "coordinates": { "x": 0, "y": 1170 },
           "polygonPoints": [

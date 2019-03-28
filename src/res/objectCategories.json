@@ -2,53 +2,62 @@
     {
       "id": "people",
       "title": "Сотрудники",
-      "color": "#b7a6bd"
+      "color": "#b7a6bd",
+      "show": false
     },
-
     {
       "id": "table",
       "title": "Стол",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "cupboard",
       "title": "Шкаф",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "printer",
       "title": "Принтер",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "scaner",
       "title": "Сканер",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "shredder",
       "title": "Шреддер",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "meeting_room",
       "title": "Переговорная комната",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "public_place",
       "title": "Общественное место",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "service_room",
       "title": "Закрытое помещение",
-      "color": "black"
+      "color": "#b7a6bd",
+      "show": false
     },
     {
       "id": "construction",
       "title": "Конструкция (колонна, стена)",
-      "color": "black"
+      "color": "black",
+      "show": false
     }
 ]
 

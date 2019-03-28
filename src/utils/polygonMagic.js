@@ -107,6 +107,7 @@ function shrinkPolygonPoints(polygonPoints, padding) {
       });
     }
   }
+  newPolygonPoints.push(firstShrunkPoint);
   return newPolygonPoints;
 }
 

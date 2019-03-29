@@ -42,6 +42,8 @@ function createMapObject(type, id, coords, userId) {
     movable: true,
     hasIntersection: true,
     color: TABLE_COLOR,
+    about: '',
+    fullInfo: ''
   };
 
   switch (type) {
@@ -55,12 +57,14 @@ function createMapObject(type, id, coords, userId) {
     case CUPBOARD:
       newObject.width = 30;
       newObject.height = 50;
+      newObject.title = 'Шкаф';
       newObject.color = CUPBOARD_COLOR;
       newObject.orientation = LEFT_SIDE;
       break;
     case PRINTER:
       newObject.width = 40;
       newObject.height = 40;
+      newObject.title = 'Принтер';
       newObject.color = PRINTER_COLOR;
       newObject.orientation = LEFT_SIDE;
       break;
@@ -68,6 +72,7 @@ function createMapObject(type, id, coords, userId) {
     case SCANNER:
       newObject.width = 40;
       newObject.height = 40;
+      newObject.title = 'Сканер';
       newObject.color = SCANER_COLOR;
       newObject.orientation = LEFT_SIDE;
       break;
@@ -75,6 +80,7 @@ function createMapObject(type, id, coords, userId) {
     case SHREDDER:
       newObject.width = 40;
       newObject.height = 30;
+      newObject.title = 'Шреддер';
       newObject.color = SHREDDER_COLOR;
       newObject.orientation = LEFT_SIDE;
       break;
@@ -82,6 +88,7 @@ function createMapObject(type, id, coords, userId) {
     case PUBLIC_PLACE:
       newObject.width = 100;
       newObject.height = 100;
+      newObject.title = 'Название для места не задано';
       newObject.color = PUBLIC_PLACE_COLOR;
       newObject.doorLocation = LEFT_SIDE;
       newObject.doorPosition = {
@@ -93,6 +100,7 @@ function createMapObject(type, id, coords, userId) {
     case MEETING_ROOM:
       newObject.width = 100;
       newObject.height = 100;
+      newObject.title = 'Название для переговорной не задано';
       newObject.color = MEETING_ROOM_COLOR;
       newObject.doorLocation = LEFT_SIDE;
       newObject.doorPosition = {
@@ -104,6 +112,7 @@ function createMapObject(type, id, coords, userId) {
     case SERVICE_ROOM:
       newObject.width = 50;
       newObject.height = 50;
+      newObject.title = 'Название для служебного помещения не задано';
       newObject.color = SERVICE_ROOM_COLOR;
       newObject.doorLocation = LEFT_SIDE;
       newObject.doorPosition = {
@@ -115,6 +124,7 @@ function createMapObject(type, id, coords, userId) {
     case CONSTRUCTION:
       newObject.width = 45;
       newObject.height = 45;
+      newObject.title = 'Выберите: Стена / Колонна';
       newObject.color = CONSTRUCTION_COLOR;
       break;
 

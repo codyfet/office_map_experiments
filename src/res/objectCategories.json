@@ -49,7 +49,7 @@
     },
     {
       "id": "service_room",
-      "title": "Закрытое помещение",
+      "title": "Служебное помещение",
       "color": "#b7a6bd",
       "show": false
     },

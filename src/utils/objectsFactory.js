@@ -57,7 +57,7 @@ function createMapObject(type, id, coords, userId) {
     case CUPBOARD:
       newObject.width = 30;
       newObject.height = 50;
-      newObject.title = 'Шкаф';
+      newObject.title = 'Выберите: Шкаф / Сейф / Снековый аппарат';
       newObject.color = CUPBOARD_COLOR;
       newObject.orientation = LEFT_SIDE;
       break;

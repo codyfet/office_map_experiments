@@ -69,10 +69,12 @@ export default class StaticObject extends React.PureComponent {
     });
 
     // добавить текст:
-    let text = objectCategories.find(cat => cat.id === object.category).title;
+    let text = 'Не определено';
     if (object.title !== undefined) {
-      text += ` :\n${object.title}`;
+      text = `${object.title}`;
+      text += object.about !== undefined && object.about !== '' ? `:\n${object.about}` : '';
     }
+    
     tooltip.getText().setText(text);
     tooltip.show();
     tooltipLayer.draw();

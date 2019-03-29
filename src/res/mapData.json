@@ -175,7 +175,7 @@
         {
           "category": "service_room",
           "id": "js39thqx",
-          "title": "Storage",
+          "title": "Подсобное помещение",
           "isCompound": false,
           "coordinates": { "x": 740, "y": 1550 },
           "width": 90,
@@ -184,7 +184,9 @@
           "doorPosition": { "x": 0, "y": 60 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": "Принадлежности для уборки, чистящие средства"
         },
         {
           "category": "public_place",
@@ -198,7 +200,9 @@
           "doorPosition": { "x": 0, "y": 220 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "2 этаж",
+          "fullInfo": "Три кабинки и большое зеркало"
         },
         {
           "category": "public_place",
@@ -212,7 +216,9 @@
           "doorPosition": { "x": 40, "y": 270 },
           "color": "#A3FFA0",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "2 этаж",
+          "fullInfo": "Старейшая кухня в нашем офисе, где можно налить кофе, воду, разогреть еду и обсудить важные темы"
         },
         {
           "category": "service_room",
@@ -226,7 +232,9 @@
           "doorPosition": { "x": 0, "y": 55 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
           "category": "public_place",
@@ -240,7 +248,9 @@
           "doorPosition": { "x": 230, "y": 125 },
           "color": "#D5BD86",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Главный гардероб",
+          "fullInfo": "Главный гардероб на втором этаже"
         },
         {
           "category": "service_room",
@@ -254,7 +264,9 @@
           "doorPosition": { "x": 0, "y": 150 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
           "category": "table",
@@ -272,6 +284,7 @@
         {
           "category": "printer",
           "id": "8",
+          "title": "Принтер",
           "isCompound": false,
           "coordinates": { "x": 680, "y": 590 },
           "width": 30,
@@ -279,11 +292,14 @@
           "orientation": 2,
           "color": "#DDDDDD",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "3D-печать",
+          "fullInfo": "XYZprinting PRO"
         },
         {
           "category": "scaner",
           "id": "9",
+          "title": "Сканер",
           "isCompound": false,
           "coordinates": { "x": 825, "y": 580 },
           "width": 40,
@@ -291,11 +307,14 @@
           "orientation": 3,
           "color": "#DDDDDD",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "МФУ Xerox M123",
+          "fullInfo": "Xerox Workcentre M213. IP: 192.168.2.35, ч/б (сканирует только ч/б), форматы A4 и A3"
         },
         {
           "category": "shredder",
           "id": "10",
+          "title": "Шреддер",
           "isCompound": false,
           "coordinates": { "x": 765, "y": 405 },
           "width": 40,
@@ -303,7 +322,9 @@
           "orientation": 1,
           "color": "#DDDDDD",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "EBA model",
+          "fullInfo": "Уничтожение бумаги"
         },
         {
           "category": "meeting_room",
@@ -317,7 +338,9 @@
           "doorPosition": { "x": 180, "y": 40 },
           "color": "#B3ECEE",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Переговорная на 5-6 чел.",
+          "fullInfo": "Переговорная Осташков рассчитана на 5-6 человек"
         },
         {
           "category": "meeting_room",
@@ -331,12 +354,14 @@
           "doorPosition": { "x": 180, "y": 260 },
           "color": "#B3ECEE",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Переговорная на 8-10 чел.",
+          "fullInfo": "Переговорная Старица рассчитана на 8-10 человек"
         },
         {
           "category": "service_room",
           "id": "js4fu3eo",
-          "title": "Storage",
+          "title": "Склад",
           "isCompound": false,
           "coordinates": { "x": 385, "y": 405 },
           "width": 180,
@@ -345,7 +370,9 @@
           "doorPosition": { "x": 180, "y": 75 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
           "category": "public_place",
@@ -359,7 +386,9 @@
           "doorPosition": { "x": 52, "y": 0 },
           "color": "#FEE471",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": "Солнечная кухня в которой выпитая чашка кофе придает дополнительные 15% к энергии, также можно перекусить и попить воды"
         },
         {
           "category": "public_place",
@@ -373,7 +402,9 @@
           "doorPosition": { "x": 0, "y": 180 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": "Спортивная / переговорная комната"
         },
         {
           "category": "meeting_room",
@@ -387,7 +418,9 @@
           "doorPosition": { "x": 40, "y": 0 },
           "color": "#B3ECEE",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Переговорная на 15 чел.",
+          "fullInfo": "Переговорная Кашин рассчитана на 15 человек"
         },
         {
           "category": "meeting_room",
@@ -401,7 +434,9 @@
           "doorPosition": { "x": 270, "y": 0 },
           "color": "#B3ECEE",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Переговорная на 15 чел.",
+          "fullInfo": "Переговорная Кашин рассчитана на 15 человек"
         },
         {
           "category": "public_place",
@@ -415,12 +450,14 @@
           "doorPosition": { "x": 190, "y": 260 },
           "color": "#D5BD86",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": "Дополнительный гардероб на втором этаже"
         },
         {
           "category": "service_room",
           "id": "js4o2kcq",
-          "title": "Storage",
+          "title": "Склад IT",
           "isCompound": false,
           "coordinates": { "x": 1985, "y": 520 },
           "width": 220,
@@ -429,7 +466,9 @@
           "doorPosition": { "x": 220, "y": 45 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
           "category": "public_place",
@@ -443,7 +482,9 @@
           "doorPosition": { "x": 110, "y": 40 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "2 этаж",
+          "fullInfo": "Две кабинки и wi-fi ловит лучше"
         },
         {
           "category": "public_place",
@@ -457,7 +498,9 @@
           "doorPosition": { "x": 0, "y": 40 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "2 этаж",
+          "fullInfo": "Две кабинки"
         },
         {
           "category": "construction",
@@ -594,6 +637,7 @@
         {
           "category": "construction",
           "id": "js5td07j",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 945, "y": 560 },
           "width": 5,
@@ -605,6 +649,7 @@
         {
           "category": "construction",
           "id": "js5te2bh",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 665, "y": 560 },
           "width": 5,
@@ -616,6 +661,7 @@
         {
           "category": "construction",
           "id": "js5tlk11",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 385, "y": 1170 },
           "width": 45,
@@ -638,6 +684,7 @@
         {
           "category": "construction",
           "id": "js5tr05w",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 1865, "y": 530 },
           "width": 35,
@@ -649,6 +696,7 @@
         {
           "category": "construction",
           "id": "js5tv0bv",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 1985, "y": 800 },
           "width": 220,
@@ -660,6 +708,7 @@
         {
           "category": "construction",
           "id": "js5twp62",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 1900, "y": 800 },
           "width": 20,
@@ -671,6 +720,7 @@
         {
           "category": "construction",
           "id": "js5ugi7z",
+          "title": "Стена",
           "isCompound": false,
           "coordinates": { "x": 1865, "y": 0 },
           "width": 35,
@@ -682,6 +732,7 @@
         {
           "category": "printer",
           "id": "js5v0qt4",
+          "title": "Принтер",
           "isCompound": false,
           "coordinates": { "x": 775, "y": 580 },
           "width": 40,
@@ -689,11 +740,14 @@
           "orientation": 3,
           "color": "#DDDDDD",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "HP 700",
+          "fullInfo": "HP Laser Jet 700 M712. IP: 192.168.2.37, ч/б, форматы A4, A3"
         },
         {
           "category": "printer",
           "id": "js5v1mvx",
+          "title": "Принтер",
           "isCompound": false,
           "coordinates": { "x": 680, "y": 560 },
           "width": 30,
@@ -701,11 +755,14 @@
           "orientation": 2,
           "color": "#DDDDDD",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "HP CP5225",
+          "fullInfo": "HP Color Laser Jet CP5225. IP: 192.168.2.36, цветной, форматы A4 и A3, доступ есть у MR"
         },
         {
           "category": "cupboard",
           "id": "js5v2f2n",
+          "title": "Шкаф",
           "isCompound": false,
           "coordinates": { "x": 875, "y": 590 },
           "width": 60,
@@ -713,11 +770,14 @@
           "orientation": 3,
           "color": "#DED9C3",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
-          "category": "scaner",
+          "category": "printer",
           "id": "js5v3c8v",
+          "title": "Принтер",
           "isCompound": false,
           "coordinates": { "x": 385, "y": 1065 },
           "width": 40,
@@ -725,7 +785,9 @@
           "orientation": 1,
           "color": "#DDDDDD",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "МФУ HP M477fdn",
+          "fullInfo": "Color Laser Jet Pro MFP M477fdn. IP: 192.168.2.38, цветной, формат A4, доступ есть у HR, MR"
         },
         {
           "category": "table",
@@ -860,7 +922,7 @@
         {
           "category": "cupboard",
           "id": "jsaegd25",
-          "title": "Гардероб",
+          "title": "Шкаф",
           "isCompound": false,
           "coordinates": { "x": 540, "y": 1440 },
           "width": 35,
@@ -868,12 +930,14 @@
           "orientation": 2,
           "color": "#DED9C3",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Для одежды",
+          "fullInfo": "Для одежды"
         },
         {
           "category": "cupboard",
           "id": "jsaehpc7",
-          "title": "Гардероб",
+          "title": "Шкаф",
           "isCompound": false,
           "coordinates": { "x": 540, "y": 1505 },
           "width": 35,
@@ -881,11 +945,14 @@
           "orientation": 2,
           "color": "#DED9C3",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Для одежды",
+          "fullInfo": "Для одежды"
         },
         {
           "category": "cupboard",
           "id": "jsaei9tz",
+          "title": "Шкаф",
           "isCompound": false,
           "coordinates": { "x": 225, "y": 1140 },
           "width": 60,
@@ -893,7 +960,9 @@
           "orientation": 3,
           "color": "#DED9C3",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
           "category": "cupboard",
@@ -906,7 +975,9 @@
           "orientation": 3,
           "color": "#DED9C3",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "",
+          "fullInfo": ""
         },
         {
           "category": "cupboard",
@@ -919,7 +990,9 @@
           "orientation": 3,
           "color": "#DED9C3",
           "movable": true,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Документация по политикам компании",
+          "fullInfo": "Документация по политикам компании"
         },
         {
           "category": "table",
@@ -4338,7 +4411,9 @@
           "iconPosition": { "x": 135, "y": 130 },
           "color": "#EDEADD",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "2 этаж",
+          "fullInfo": "Две кабинки и три писуара"
         },
         {
           "category": "meeting_room",
@@ -4364,7 +4439,9 @@
           "iconPosition": { "x": 135, "y": 150 },
           "color": "#B3ECEE",
           "movable": false,
-          "hasIntersection": false
+          "hasIntersection": false,
+          "about": "Переговорная на 30 чел.",
+          "fullInfo": "Переговорная Тверь рассчитана до 30 человек"
         }
       ]
     },

@@ -62,6 +62,8 @@ class SaveMapTab extends React.Component {
       'movable',
       'hasIntersection',
       'userId',
+      'about',
+      'fullInfo'
     ];
 
     // сохранение карты со всеми объектами и пользователями:

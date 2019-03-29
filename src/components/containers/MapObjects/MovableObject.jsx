@@ -98,12 +98,14 @@ export default class MovableObject extends React.PureComponent {
     });
 
     // добавить текст:
-    let text = objectCategories.find(cat => cat.id === object.category).title;
+    // let text = objectCategories.find(cat => cat.id === object.category).title;
+    let text;
     if (object.category === 'table') {
-      text += ' :\n';
+      text = 'Стол:\n';
       text += user !== undefined ? user.title : 'пустой';
     } else if (object.title !== undefined) {
-      text += ` :\n${object.title}`;
+      text = `${object.title}`;
+      text += object.about !== undefined && object.about !== '' ? `:\n${object.about}` : '';
     }
 
     tooltip.getText().setText(text);

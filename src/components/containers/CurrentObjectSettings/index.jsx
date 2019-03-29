@@ -110,6 +110,8 @@ class CurrentObjectSettings extends React.Component {
       'height',
       'color',
       'movable',
+      'about',
+      'fullInfo'
     ];
     const editFieldsPanel = allowedProperties.map((prop) => {
       if (object === undefined) {
@@ -141,6 +143,10 @@ class CurrentObjectSettings extends React.Component {
       if (prop === 'iconPosition' && !object.isCompound) {
         return undefined;
       } 
+
+      if (['about', 'fullInfo'].includes(prop) && ['table', 'construction'].includes(object.category)) {
+        return undefined;
+      }
 
       // Добавляем поля редактирования:
       if (prop === 'movable') {

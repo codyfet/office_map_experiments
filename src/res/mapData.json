@@ -20,7 +20,19 @@
     },
     {
       "id": "service_room",
-      "title": "Закрытые помещения",
+      "title": "Служебные помещения",
+      "color": "#b7a6bd",
+      "show": false
+    },
+    {
+      "id": "office_machine",
+      "title": "Офисная техника",
+      "color": "#b7a6bd",
+      "show": false
+    },
+    {
+      "id": "office_furniture",
+      "title": "Офисная мебель",
       "color": "#b7a6bd",
       "show": false
     }

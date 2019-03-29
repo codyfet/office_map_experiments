@@ -114,7 +114,7 @@ class PopoverContainer extends React.Component {
   };
 
   // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ:
-  copy = object => {
+  copy = (object) => {
     const { actions } = this.props;
 
     // сделаем копию:

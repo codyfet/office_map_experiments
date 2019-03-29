@@ -57,7 +57,7 @@ class UsersEditList extends React.Component {
     return {
       id: newId,
       category: 'people',
-      userId: 'name.surname',
+      enterpriseId: 'name.surname',
       title: 'Имя Фамилия',
       about: 'навыки',
       capability: 'квалификация',

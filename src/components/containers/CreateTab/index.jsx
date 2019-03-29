@@ -79,13 +79,13 @@ class CreateTab extends React.Component {
   };
 
   // ИЗМЕНЕНИЕ СОСТОЯНИЯ CREATE_TAB:
-  selectObjectId = id => {
+  selectObjectId = (id) => {
     this.setState({
       selectedObjectId: id,
     }); 
   };
 
-  selectUserId = id => {
+  selectUserId = (id) => {
     this.setState({
       selectedUserId: id,
     });

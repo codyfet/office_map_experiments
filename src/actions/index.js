@@ -21,96 +21,96 @@ import {
 } from '../res/constants';
 
 // actions wuth objects:
-export const createObject = newObj => ({
+export const createObject = (newObj) => ({
   type: CREATE_OBJECT,
   payload: newObj,
 });
 
-export const moveObject = objData => ({
+export const moveObject = (objData) => ({
   type: MOVE_OBJECT,
   payload: objData,
 });
 
-export const turnObject = objectId => ({
+export const turnObject = (objectId) => ({
   type: TURN_OBJECT,
   payload: objectId,
 });
 
-export const deleteObject = objectId => ({
+export const deleteObject = (objectId) => ({
   type: DELETE_OBJECT,
   payload: objectId,
 });
 
-export const updateUser = objData => ({
+export const updateUser = (objData) => ({
   type: UPDATE_USER,
   payload: objData,
 });
 
-export const changeObjectsLevel = level => ({
+export const changeObjectsLevel = (level) => ({
   type: CHANGE_OBJECTS_LEVEL,
   payload: level,
 });
 
-export const setHasIntersection = objData => ({
+export const setHasIntersection = (objData) => ({
   type: SET_HAS_INTERSECTION,
   payload: objData,
 });
 
-export const changeAnyObjectData = objData => ({
+export const changeAnyObjectData = (objData) => ({
   type: CHANGE_ANY_OBJECT_DATA,
   payload: objData,
 });
 
-export const shiftObjects = objData => ({
+export const shiftObjects = (objData) => ({
   type: SHIFT_OBJECTS,
   payload: objData,
 });
 
 // actions with map:
-export const changeMapLevel = level => ({
+export const changeMapLevel = (level) => ({
   type: CHANGE_MAP_LEVEL,
   payload: level,
 });
 
 // actions with board and panel:
-export const changeBoardState = newState => ({
+export const changeBoardState = (newState) => ({
   type: CHANGE_BOARD_STATE,
   payload: newState,
 });
 
-export const changeCurrentObject = objectId => ({
+export const changeCurrentObject = (objectId) => ({
   type: CHANGE_CURRENT_OBJECT,
   payload: objectId,
 });
 
-export const changeCurrentUser = userId => ({
+export const changeCurrentUser = (userId) => ({
   type: CHANGE_CURRENT_USER,
   payload: userId,
 });
 
-export const changeCurrentObjectState = newState => ({
+export const changeCurrentObjectState = (newState) => ({
   type: CHANGE_CURRENT_OBJECT_STATE,
   payload: newState,
 });
 
 // actions with users:
-export const addUser = newUser => ({
+export const addUser = (newUser) => ({
   type: ADD_USER,
   payload: newUser,
 });
 
-export const editUser = userData => ({
+export const editUser = (userData) => ({
   type: EDIT_USER,
   payload: userData,
 });
 
-export const deleteUser = userId => ({
+export const deleteUser = (userId) => ({
   type: DELETE_USER,
   payload: userId,
 });
 
 // WORK_MODE:
-export const changeWorkMode = newWM => ({
+export const changeWorkMode = (newWM) => ({
   type: CHANGE_WORK_MODE,
   payload: newWM,
 });

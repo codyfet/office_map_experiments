@@ -83,18 +83,7 @@ class CurrentObjectSettings extends React.Component {
   render() {
     const { object } = this.props;
 
-    // определим свойства, которые можно редактировать:
-   
-    // не настраивается для compound:
-    // 'width',
-    // 'height',
-    // 'seatLocation',
-    // 'orientation',
-    // 'userId',
-
-    // 'iconPosition',
-    // 'movable',
-    
+    // определим свойства, которые можно редактировать    
     const allowedProperties = [
       'id',
       'isCompound',

@@ -75,7 +75,7 @@ class UserSettings extends React.Component {
     const allowedProperties = [
       'id',
       'category',
-      'userId',
+      'enterpriseId',
       'title',
       'about',
       'capability',

@@ -4,37 +4,37 @@
       "id": "people",
       "title": "Сотрудники",
       "color": "#b7a6bd",
-      "show": false
+      "show": "true"
     },
     {
       "id": "meeting_room",
       "title": "Переговорные комнаты",
       "color": "#b7a6bd",
-      "show": false
+      "show": "false"
     },
     {
       "id": "public_place",
       "title": "Общественные места",
       "color": "#b7a6bd",
-      "show": false
+      "show": "false"
     },
     {
       "id": "service_room",
       "title": "Служебные помещения",
       "color": "#b7a6bd",
-      "show": false
+      "show": "false"
     },
     {
       "id": "office_machine",
       "title": "Офисная техника",
       "color": "#b7a6bd",
-      "show": false
+      "show": "false"
     },
     {
       "id": "other",
       "title": "Другое",
       "color": "#b7a6bd",
-      "show": false
+      "show": "false"
     }
   ],
   "projects": [
@@ -72,7 +72,7 @@
   "users": [
     {
       "id": "t0018",
-      "userId": "vitalij.kubarev",
+      "enterpriseId": "vitalij.kubarev",
       "title": "Виталий Кубарев",
       "about": "JS, CSS, HTML, TypeScript, React, Redux, Backbone, MCP, \n Webpack",
       "capability": "Front-End",
@@ -84,7 +84,7 @@
     },
     {
       "id": "t0019",
-      "userId": "pavel.trushkin",
+      "enterpriseId": "pavel.trushkin",
       "title": "Павел Трушкин",
       "about": "JS, CSS, HTML",
       "capability": "Front-End",
@@ -96,7 +96,7 @@
     },
     {
       "id": "t0020",
-      "userId": "igor.lyulkin",
+      "enterpriseId": "igor.lyulkin",
       "title": "Игорь Люлькин",
       "about": "Java",
       "capability": "Back-End",
@@ -108,7 +108,7 @@
     },
     {
       "id": "t0021",
-      "userId": "ilya.chehov",
+      "enterpriseId": "ilya.chehov",
       "title": "Илья Чехов",
       "about": "C++, Linux, Qt",
       "capability": "Got powers his father couldn't have dreamt of",
@@ -120,7 +120,7 @@
     },
     {
       "id": "t0022",
-      "userId": "ivan.lesnik",
+      "enterpriseId": "ivan.lesnik",
       "title": "Иван Лесник",
       "about": "Warcraft 3",
       "capability": "Casting Slow on everyone",
@@ -132,7 +132,7 @@
     },
     {
       "id": "t0023",
-      "userId": "vitas.siplij",
+      "enterpriseId": "vitas.siplij",
       "title": "Витас Сиплый ",
       "about": "High-pitched c#",
       "capability": "Taking away your music taste",

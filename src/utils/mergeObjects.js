@@ -51,7 +51,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
     hasIntersection: false, // предыдущие объекты не имели пересечений с другими
   };
   
-  // объединяем только в статические объекты: (поэтому параметров userId, seatLocation, orientation - не )
+  // объединяем:
   if (finalCategory === 'table') {
     newObject.userId = '';
     newObject.seatLocation = LEFT_SIDE;

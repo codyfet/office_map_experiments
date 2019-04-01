@@ -103,34 +103,6 @@ function isPointOnSomeEdges(point, edges) {
   return edges.some((edge) => isPointOnEdge(point, edge));
 }
 
-function computeDistanceBetweenPoints(point1, point2) {
-  return Math.sqrt((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2);
-}
-
-function findEdgeByPoint(point, edges) {
-  return edges.find((edge) => _.isEqual(edge.start, point) || _.isEqual(edge.end, point));
-}
-
-function deleteByValue(array, elem) {
-  return array.filter((e) => !_.isEqual(e, elem));
-}
-
-function isEdge1InsideEdge2(edge1, edge2, orientation) {
-  if (orientation === 'horizontal') {
-    if (edge2.start.x <= edge1.start.x && edge1.end.x <= edge2.end.x
-        || edge2.start.x <= edge1.end.x && edge1.start.x <= edge2.end.x) {
-      return true;
-    } else return false; 
-  }
-  if (orientation === 'vertical') {
-    if (edge2.start.y <= edge1.start.y && edge1.end.y <= edge2.end.y
-        || edge2.start.y <= edge1.end.y && edge1.start.y <= edge2.end.y) {
-      return true;
-    } else return false; 
-  }
-  return false;
-}
-
 function computeAreaSizes(objects) {
   let topLeftCorner = {
     x: 100000,

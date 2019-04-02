@@ -74,7 +74,7 @@ class SaveMapTab extends React.Component {
       'color',
       'movable',
       'hasIntersection',
-      'enterpriseId',
+      'userId',
       'about',
       'fullInfo'
     ];

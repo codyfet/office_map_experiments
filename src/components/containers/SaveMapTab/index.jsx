@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import mapData from '../../../res/mapData.json';
 import './styles.css';
+import DownloadMapModal from '../Modals/DownloadMapModal/index';
 import SaveMapModal from '../Modals/SaveMapModal/index';
 
 // для сохранения файлов:
@@ -16,31 +17,42 @@ const _ = require('lodash');
 class SaveMapTab extends React.Component {
   // работа с модальным окном:
   state = {
-    showModal: false
+    showDownloadModal: false,
+    showSaveModal: false
   }
 
-  openModal = () => {
+  openDownloadModal = () => {
     this.setState({
-      showModal: true
+      showDownloadModal: true
     });
   }
 
-  closeModal = () => {
+  openSaveModal = () => {
     this.setState({
-      showModal: false
+      showDownloadModal: true,
+      showSaveModal: true
     });
   }
 
-  handleYesClickModal = () => {
+  closeModals = () => {
+    this.setState({
+      showDownloadModal: false,
+      showSaveModal: false
+    });
+  }
+
+  handleYesClickDownloadModal = () => {
+    this.downloadCurrentMap();
+    this.closeModals();
+  };
+
+  handleYesClickSaveModal = () => {
     this.saveCurrentMap();
-    this.closeModal();
-  };
-  
-  handleCloseModal = () => {
-    this.closeModal();
+    this.closeModals();
   };
 
-  saveCurrentMap = () => {
+  // вспомогательная функция, возвращает обновленную карту:
+  getUpdatedMapData = () => {
     const { objects, users, projects } = this.props;
     // order for objects:
     const objectOrder = [
@@ -89,6 +101,11 @@ class SaveMapTab extends React.Component {
     mapDataFile.users = users;
     mapDataFile.projects = projects;
 
+    return mapDataFile;
+  }
+
+  downloadCurrentMap = () => {
+    const mapDataFile = this.getUpdatedMapData();
     // предлагаем загрузку пользователю:
     const file = new File([JSON.stringify(mapDataFile)], 'newMapData.json', {
       type: 'text/plain;charset=utf-8',
@@ -96,25 +113,42 @@ class SaveMapTab extends React.Component {
     FileSaver.saveAs(file);
   };
 
+  saveCurrentMap = () => {
+    const mapDataFile = this.getUpdatedMapData();
+    // отослать данные на back-end
+  }
+
+  handleDownloadMapButton = () => {
+    this.openDownloadModal();
+  }
+
   handleSaveMapButton = () => {
-    this.openModal();
+    this.openSaveModal();
   }
 
 
   render() {
-    const { showModal } = this.state;
+    const { showDownloadModal, showSaveModal } = this.state;
 
     return (
       <React.Fragment>
         <div className="saveMapContainer">
+          <button type="submit" className="buttonDownloadMap" onClick={this.handleDownloadMapButton}>
+            Скачать карту
+          </button>
           <button type="submit" className="buttonSaveMap" onClick={this.handleSaveMapButton}>
             Сохранить карту
           </button>
         </div>
+        <DownloadMapModal
+          visible={showDownloadModal}
+          onYesClick={this.handleYesClickDownloadModal}
+          onHide={this.closeModals}
+        />
         <SaveMapModal
-          visible={showModal}
-          onYesClick={this.handleYesClickModal}
-          onHide={this.handleCloseModal}
+          visible={showSaveModal}
+          onYesClick={this.handleYesClickSaveModal}
+          onHide={this.closeModals}
         />
       </React.Fragment>
       

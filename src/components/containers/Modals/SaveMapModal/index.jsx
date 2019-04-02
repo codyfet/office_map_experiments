@@ -27,7 +27,7 @@ class SaveMapModal extends React.Component {
       >
         <div className="saveMapModalContainer">
           <h1 className="saveMapModalLabel">Подтверждение действия</h1>
-          <p className="saveMapModalMessage">Текущая карта будет загружена файлом newMapData.json. Продолжить?</p>
+          <p className="saveMapModalMessage">Текущая карта будет загружена на сервер. Продолжить?</p>
           <div className="modalButtonsSet">
             <button className="modalButtonAccept" type="submit" onClick={this.handleYesClick}>Да</button>
             <button className="modalButtonClose" type="submit" onClick={this.handleClose}>Нет</button>

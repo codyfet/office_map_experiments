@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -116,6 +117,13 @@ class SaveMapTab extends React.Component {
   saveCurrentMap = () => {
     const mapDataFile = this.getUpdatedMapData();
     // отослать данные на back-end
+    axios.post('http://127.0.0.1:8081/newMapData', mapDataFile)
+      .then((response) => {
+        alert(`${response.data.message}`);
+      })
+      .catch((error) => {
+        alert(`Error: ${error}`);
+      });
   }
 
   handleDownloadMapButton = () => {

@@ -85,7 +85,7 @@ class SaveMapTab extends React.Component {
 
     // сохранение карты со всеми объектами и пользователями:
     // сначала подггрузим весь файл mapData:
-    const mapDataFile = _.cloneDeep(mapData);
+    const mapDataFile = {};
 
     // дополним его изменившимися данными:
     mapDataFile.levels = objects.levels.map((objs, i) => {

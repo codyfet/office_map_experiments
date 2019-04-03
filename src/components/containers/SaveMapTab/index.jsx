@@ -125,7 +125,7 @@ class SaveMapTab extends React.Component {
         alert(`${response.data.message}`);
       })
       .catch((error) => {
-        alert(`Error: ${error}`);
+        alert(`${error}`);
       });
   }
 

@@ -24,8 +24,11 @@ class GlobalArea extends React.Component {
           boardWidth={width}
           boardHeight={height}
         />
-        { !objects.loading && <AdvancedBoard boardWidth={width} boardHeight={height} />}
-        { objects.loading && <LoadingBoard boardWidth={width} boardHeight={height} />}
+        { 
+          objects.loading 
+            ? <LoadingBoard boardWidth={width} boardHeight={height} />
+            : <AdvancedBoard boardWidth={width} boardHeight={height} />
+        }
         <SidePanel
           panelWidth={width * 0.3}
           panelHeight={height + 2}

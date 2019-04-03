@@ -10,7 +10,8 @@ import {
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
   UPDATE_OBJECTS_FROM_SERVER,
-  UPDATE_OBJECTS_FROM_SERVER_FULFILLED
+  UPDATE_OBJECTS_FROM_SERVER_FULFILLED,
+  LOADING
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
@@ -65,18 +66,6 @@ function setupInitalState() {
     levels: allLevelsObjects,
   };
 }
-
-function updateObjectsFromServer() {
-  axios.get('http://127.0.0.1:8081/separatedData/objects')
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      // alert(`Error: ${error}`);
-      return error;
-    });
-}
-
 
 const initialState = setupInitalState();
 
@@ -246,15 +235,6 @@ export default function objects(state = initialState, action) {
         levels: newLevels,
       };
     }
-    case UPDATE_OBJECTS_FROM_SERVER: {
-      const lvl = state.mapLevel;
-
-      return {
-        mapLevel: lvl,
-        loading: true,
-        levels: action.payload.data,
-      };
-    }
     case UPDATE_OBJECTS_FROM_SERVER_FULFILLED: {
       return {
         mapLevel: state.mapLevel,
@@ -262,6 +242,14 @@ export default function objects(state = initialState, action) {
         levels: action.payload.data,
       };
     }
+    case LOADING: {
+      return {
+        mapLevel: state.mapLevel,
+        loading: true,
+        levels: state.levels,
+      };
+    }
+
     default: {
       return state;
     }

@@ -10,6 +10,7 @@ import {
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
   UPDATE_OBJECTS_FROM_SERVER,
+  LOADING,
   CHANGE_MAP_LEVEL,
   ADD_USER,
   EDIT_USER,
@@ -68,18 +69,23 @@ export const shiftObjects = (objData) => ({
   payload: objData,
 });
 
+export const showObjectsLoading = () => ({
+  type: LOADING,
+  payload: true
+});
+
 export const updateObjectsFromServer = () => {
-  return {
-    type: UPDATE_OBJECTS_FROM_SERVER,
-    payload: new Promise((resolve, reject) => {
-      const data = MapServices.fetchObjectsData();
-      setTimeout(() => {
+  return (dispatch) => {
+    dispatch(showObjectsLoading());
+    dispatch({
+      type: UPDATE_OBJECTS_FROM_SERVER,
+      payload: new Promise((resolve, reject) => {
+        const data = MapServices.fetchObjectsData();
         resolve(data);
-      }, 1000);
-    }),  
+      })  
+    });  
   };
 };
-
 
 // actions with map:
 export const changeMapLevel = (level) => ({

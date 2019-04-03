@@ -10,8 +10,8 @@ import {
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
   UPDATE_OBJECTS_FROM_SERVER,
-  UPDATE_OBJECTS_FROM_SERVER_FULFILLED,
-  LOADING
+  FULFILLED,
+  OBJECTS_LOADING
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
@@ -77,7 +77,7 @@ export default function objects(state = initialState, action) {
       newLevels[lvl] = [...state.levels[lvl], action.payload];
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
@@ -89,7 +89,7 @@ export default function objects(state = initialState, action) {
       newLevels[lvl] = newLevels[lvl].filter(val => val.id !== objectId);
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
@@ -114,7 +114,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
@@ -131,7 +131,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
@@ -167,14 +167,14 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
     case CHANGE_OBJECTS_LEVEL: {
       return {
         mapLevel: action.payload,
-        loading: false,
+        loading: state.loading,
         levels: state.levels,
       };
     }
@@ -191,7 +191,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
@@ -209,7 +209,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
@@ -231,18 +231,18 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
-        loading: false,
+        loading: state.loading,
         levels: newLevels,
       };
     }
-    case UPDATE_OBJECTS_FROM_SERVER_FULFILLED: {
+    case `${UPDATE_OBJECTS_FROM_SERVER}_${FULFILLED}`: {
       return {
         mapLevel: state.mapLevel,
         loading: false,
         levels: action.payload.data,
       };
     }
-    case LOADING: {
+    case OBJECTS_LOADING: {
       return {
         mapLevel: state.mapLevel,
         loading: true,

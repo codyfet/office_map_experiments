@@ -1,6 +1,5 @@
 import {
   CREATE_OBJECT,
-  CHANGE_BOARD_STATE,
   DELETE_OBJECT,
   MOVE_OBJECT,
   TURN_OBJECT,
@@ -9,17 +8,29 @@ import {
   SET_HAS_INTERSECTION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
+  OBJECTS_LOADING,
   UPDATE_OBJECTS_FROM_SERVER,
-  LOADING,
-  CHANGE_MAP_LEVEL,
-  ADD_USER,
-  EDIT_USER,
-  DELETE_USER,
+  
+  CHANGE_BOARD_STATE,
   CHANGE_CURRENT_OBJECT,
   CHANGE_CURRENT_USER,
   CHANGE_CURRENT_OBJECT_STATE,
+
+  CHANGE_MAP_LEVEL,
+  MAP_DESCRIPTION_LOADING,
+  UPDATE_MAP_DESCRIPTION_FROM_SERVER,
+
+  ADD_USER,
+  EDIT_USER,
+  DELETE_USER,
+  USERS_LOADING,
+  UPDATE_USERS_FROM_SERVER,
+
   CHANGE_WORK_MODE,
-  CREATE_PROJECT
+
+  CREATE_PROJECT,
+  PROJECTS_LOADING,
+  UPDATE_PROJECTS_FROM_SERVER,
 } from '../res/constants';
 import MapServices from '../services/MapServices';
 
@@ -70,7 +81,7 @@ export const shiftObjects = (objData) => ({
 });
 
 export const showObjectsLoading = () => ({
-  type: LOADING,
+  type: OBJECTS_LOADING,
   payload: true
 });
 
@@ -92,6 +103,24 @@ export const changeMapLevel = (level) => ({
   type: CHANGE_MAP_LEVEL,
   payload: level,
 });
+
+export const showMapDescriptionLoading = () => ({
+  type: MAP_DESCRIPTION_LOADING,
+  payload: true
+});
+
+export const updateMapDescriptionFromServer = () => {
+  return (dispatch) => {
+    dispatch(showMapDescriptionLoading());
+    dispatch({
+      type: UPDATE_MAP_DESCRIPTION_FROM_SERVER,
+      payload: new Promise((resolve, reject) => {
+        const data = MapServices.fetchMapDescriptionData();
+        resolve(data);
+      })  
+    });  
+  };
+};
 
 // actions with board and panel:
 export const changeBoardState = (newState) => ({

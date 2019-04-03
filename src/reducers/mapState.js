@@ -1,4 +1,8 @@
-import { CHANGE_MAP_LEVEL } from '../res/constants';
+import { 
+  CHANGE_MAP_LEVEL,
+  MAP_DESCRIPTION_LOADING,
+  UPDATE_MAP_DESCRIPTION_FROM_SERVER
+} from '../res/constants';
 import mapData from '../res/mapData.json';
 // загрузить lodash:
 const _ = require('lodash');
@@ -7,6 +11,7 @@ const _ = require('lodash');
 const mapCovering = _.cloneDeep(mapData.levels[1].covering);
 const initialState = {
   mapLevel: 1,
+  loading: false,
   title: mapData.levels[1].title,
   blockSnapSize: mapData.levels[1].levelCellSize,
   mapWidth: mapData.levels[1].levelMapWidth,
@@ -23,6 +28,7 @@ export default function mapState(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: state.loading,
         title: mapData.levels[lvl].title,
         blockSnapSize: mapData.levels[lvl].levelCellSize,
         mapWidth: mapData.levels[lvl].levelMapWidth,
@@ -31,6 +37,31 @@ export default function mapState(state = initialState, action) {
         mapCovering: newMapCovering
       };
     }
+
+    case MAP_DESCRIPTION_LOADING: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+
+    case UPDATE_MAP_DESCRIPTION_FROM_SERVER: {
+      const lvl = state.mapLevel;
+      const newMapCovering = _.cloneDeep(mapData.levels[lvl].covering);
+
+      return {
+        mapLevel: lvl,
+        loading: state.loading,
+        title: mapData.levels[lvl].title,
+        blockSnapSize: mapData.levels[lvl].levelCellSize,
+        mapWidth: mapData.levels[lvl].levelMapWidth,
+        mapHeight: mapData.levels[lvl].levelMapHeight,
+        mapBoundaries: mapData.levels[lvl].boundaries,
+        mapCovering: newMapCovering
+      };
+    }
+
+
     default: {
       return state;
     }

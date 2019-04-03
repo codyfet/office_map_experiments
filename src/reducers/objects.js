@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   CREATE_OBJECT,
   MOVE_OBJECT,
@@ -8,6 +9,7 @@ import {
   SET_HAS_INTERSECTION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
+  UPDATE_OBJECTS_FROM_SERVER
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
@@ -17,6 +19,7 @@ import {
   RIGHT_SIDE,
   TOP_SIDE
 } from '../res/constantsOrientation';
+
 
 // загрузить lodash:
 const _ = require('lodash');
@@ -57,8 +60,20 @@ function setupInitalState() {
 
   return {
     mapLevel: 1, // по умолчанию мы загружаем 1 уровень
+    loading: false,
     levels: allLevelsObjects,
   };
+}
+
+function updateObjectsFromServer() {
+  axios.get('http://127.0.0.1:8081/separatedData/objects')
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      // alert(`Error: ${error}`);
+      return error;
+    });
 }
 
 
@@ -72,6 +87,7 @@ export default function objects(state = initialState, action) {
       newLevels[lvl] = [...state.levels[lvl], action.payload];
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
@@ -83,6 +99,7 @@ export default function objects(state = initialState, action) {
       newLevels[lvl] = newLevels[lvl].filter(val => val.id !== objectId);
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
@@ -107,6 +124,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
@@ -123,6 +141,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
@@ -158,12 +177,14 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
     case CHANGE_OBJECTS_LEVEL: {
       return {
         mapLevel: action.payload,
+        loading: false,
         levels: state.levels,
       };
     }
@@ -180,6 +201,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
@@ -197,6 +219,7 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
       };
     }
@@ -218,7 +241,17 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: false,
         levels: newLevels,
+      };
+    }
+    case UPDATE_OBJECTS_FROM_SERVER: {
+      const lvl = state.mapLevel;
+
+      return {
+        mapLevel: lvl,
+        loading: false,
+        levels: action.payload,
       };
     }
     default: {

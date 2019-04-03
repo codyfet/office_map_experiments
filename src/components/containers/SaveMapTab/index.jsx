@@ -3,6 +3,9 @@ import axios from 'axios';
 // redux:
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {
+  updateObjectsFromServer
+} from '../../../actions/index';
 
 import mapData from '../../../res/mapData.json';
 import './styles.css';
@@ -134,6 +137,17 @@ class SaveMapTab extends React.Component {
     this.openSaveModal();
   }
 
+  handleUpdateMap = () => {
+    const { actions } = this.props;
+    axios.get('http://127.0.0.1:8081/separatedData/objects')
+      .then((response) => {
+        actions.updateObjectsFromServer(response.data);
+      })
+      .catch((error) => {
+        alert(`${error}`);
+      });
+  }
+
 
   render() {
     const { showDownloadModal, showSaveModal } = this.state;
@@ -146,6 +160,9 @@ class SaveMapTab extends React.Component {
           </button>
           <button type="submit" className="buttonSaveMap" onClick={this.handleSaveMapButton}>
             Сохранить карту
+          </button>
+          <button type="submit" className="buttonUpdateMap" onClick={this.handleUpdateMap}>
+            Обновить карту
           </button>
         </div>
         <DownloadMapModal
@@ -172,7 +189,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ }, dispatch),
+  actions: bindActionCreators({ updateObjectsFromServer }, dispatch),
 });
 
 export default connect(

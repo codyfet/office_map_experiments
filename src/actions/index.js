@@ -9,6 +9,7 @@ import {
   SET_HAS_INTERSECTION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
+  UPDATE_OBJECTS_FROM_SERVER,
   CHANGE_MAP_LEVEL,
   ADD_USER,
   EDIT_USER,
@@ -65,6 +66,12 @@ export const shiftObjects = (objData) => ({
   type: SHIFT_OBJECTS,
   payload: objData,
 });
+
+export const updateObjectsFromServer = (levels) => ({
+  type: UPDATE_OBJECTS_FROM_SERVER,
+  payload: levels,
+});
+
 
 // actions with map:
 export const changeMapLevel = (level) => ({

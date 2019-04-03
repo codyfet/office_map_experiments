@@ -35,3 +35,20 @@
 .buttonDownloadMap:focus {
   outline: 1px solid black;
 }
+
+.buttonUpdateMap {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  padding: 5px;
+  background-color: rgb(230, 228, 235);
+  border: 1px solid white;
+}
+
+.buttonUpdateMap:active {
+  background-color: rgb(80, 89, 221);
+}
+
+.buttonUpdateMap:focus {
+  outline: 1px solid black;
+}

@@ -16,8 +16,6 @@ import UserSettings from '../../UserSettings/index';
 import UserCreate from '../../UserCreate/index';
 import './styles.css';
 
-// статические данные карты:
-import mapData from '../../../../res/mapData.json';
 
 class UsersEditList extends React.Component {
   constructor(props) {
@@ -75,7 +73,7 @@ class UsersEditList extends React.Component {
   };
 
   onItemClick = (newId) => {
-    const { actions, objects } = this.props;
+    const { mapState, actions, objects } = this.props;
     // ищем объект с пользователем по объектам всех уровней:
     for (let lvl = 0; lvl < objects.levels.length; lvl += 1) {
       for (let obj of objects.levels[lvl]) {
@@ -84,7 +82,7 @@ class UsersEditList extends React.Component {
             actions.changeCurrentObject(obj.id);
             actions.changeCurrentUser(obj.userId);
           } else {
-            alert(`ПРЕДУПРЕЖДЕНИЕ: ПОЛЬЗОВАТЕЛЬ НА ДРУГОЙ КАРТЕ: ${mapData.levels[lvl].title}`);
+            alert(`ПРЕДУПРЕЖДЕНИЕ: ПОЛЬЗОВАТЕЛЬ НА ДРУГОЙ КАРТЕ: ${mapState.description[lvl].title}`);
           }
           return;
         }
@@ -206,6 +204,7 @@ const mapStateToProps = state => ({
   currentObject: state.currentObject,
   users: state.users,
   objects: state.objects,
+  mapState: state.mapState
 });
 
 const mapDispatchToProps = dispatch => ({

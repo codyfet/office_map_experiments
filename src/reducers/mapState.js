@@ -1,40 +1,50 @@
 import { 
   CHANGE_MAP_LEVEL,
   MAP_DESCRIPTION_LOADING,
-  UPDATE_MAP_DESCRIPTION_FROM_SERVER
+  UPDATE_MAP_DESCRIPTION_FROM_SERVER,
+  FULFILLED
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 // загрузить lodash:
 const _ = require('lodash');
 
 // по умолчанию грузим 2 этаж (1 уровень):
-const mapCovering = _.cloneDeep(mapData.levels[1].covering);
+const mapDescription = mapData.levels.map((level) => {
+  delete level.objects;
+  return level;
+});
+
+// id": "second_floor",
+// "sortId": 1,
+// "title": "Второй этаж",
+// "levelMapWidth": 3650,
+// "levelMapHeight": 1670,
+// "levelCellSize": 5,
+// "boundaries": "0,0 0,1550 540,1550 540,1670 830,1670 830,1550 1100,1550 1100,1200 830,1200 830,820 1900,820 1900,1140 2180,1140 2180,820 3650,820 3650,0",
+// "covering": [
+//   "0 1550 540 1670",
+//   "830 820 1100 1200",
+//   "830 1550 1100 1670",
+//   "1100 820 1900 1670",
+//   "1900 1140 2180 1670",
+//   "2180 820 3650 1670"
+// ]
+
 const initialState = {
-  mapLevel: 1,
+  level: 1,
   loading: false,
-  title: mapData.levels[1].title,
-  blockSnapSize: mapData.levels[1].levelCellSize,
-  mapWidth: mapData.levels[1].levelMapWidth,
-  mapHeight: mapData.levels[1].levelMapHeight,
-  mapBoundaries: mapData.levels[1].boundaries,
-  mapCovering
+  description: mapDescription
 };
 
 export default function mapState(state = initialState, action) {
   switch (action.type) {
     case CHANGE_MAP_LEVEL: {
       const lvl = action.payload;
-      const newMapCovering = _.cloneDeep(mapData.levels[lvl].covering);
 
       return {
-        mapLevel: lvl,
+        level: lvl,
         loading: state.loading,
-        title: mapData.levels[lvl].title,
-        blockSnapSize: mapData.levels[lvl].levelCellSize,
-        mapWidth: mapData.levels[lvl].levelMapWidth,
-        mapHeight: mapData.levels[lvl].levelMapHeight,
-        mapBoundaries: mapData.levels[lvl].boundaries,
-        mapCovering: newMapCovering
+        description: state.description
       };
     }
 
@@ -45,19 +55,13 @@ export default function mapState(state = initialState, action) {
       };
     }
 
-    case UPDATE_MAP_DESCRIPTION_FROM_SERVER: {
-      const lvl = state.mapLevel;
-      const newMapCovering = _.cloneDeep(mapData.levels[lvl].covering);
+    case `${UPDATE_MAP_DESCRIPTION_FROM_SERVER}_${FULFILLED}`: {
+      const lvl = state.level;
 
       return {
-        mapLevel: lvl,
-        loading: state.loading,
-        title: mapData.levels[lvl].title,
-        blockSnapSize: mapData.levels[lvl].levelCellSize,
-        mapWidth: mapData.levels[lvl].levelMapWidth,
-        mapHeight: mapData.levels[lvl].levelMapHeight,
-        mapBoundaries: mapData.levels[lvl].boundaries,
-        mapCovering: newMapCovering
+        level: lvl,
+        loading: false,
+        description: action.payload.data
       };
     }
 

@@ -4,7 +4,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  updateObjectsFromServer
+  updateObjectsFromServer,
+  updateMapDescriptionFromServer
 } from '../../../actions/index';
 
 import mapData from '../../../res/mapData.json';
@@ -57,7 +58,7 @@ class SaveMapTab extends React.Component {
 
   // вспомогательная функция, возвращает обновленную карту:
   getUpdatedMapData = () => {
-    const { objects, users, projects } = this.props;
+    const { objects, mapState, users, projects } = this.props;
     // order for objects:
     const objectOrder = [
       'category',
@@ -88,7 +89,7 @@ class SaveMapTab extends React.Component {
 
     // дополним его изменившимися данными:
     mapDataFile.levels = objects.levels.map((objs, i) => {
-      const levelData = _.cloneDeep(mapDataFile.levels[i]);
+      let levelData = _.cloneDeep(mapState.description[i]);
       levelData.objects = objs.map((obj) => {
         // запишем поля в определенном порядке:
         const formattedObject = {};
@@ -139,7 +140,11 @@ class SaveMapTab extends React.Component {
 
   handleUpdateMap = () => {
     const { actions } = this.props;
+    // actions.updateObjectsFromServer();
+    // actions.updateFromServer();
     actions.updateObjectsFromServer();
+    actions.updateMapDescriptionFromServer();
+    
     // axios.get('http://127.0.0.1:8081/separatedData/objects')
     //   .then((response) => {
     //     actions.updateObjectsFromServer(response.data);
@@ -186,11 +191,15 @@ class SaveMapTab extends React.Component {
 const mapStateToProps = state => ({
   users: state.users,
   objects: state.objects,
+  mapState: state.mapState,
   projects: state.projects
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ updateObjectsFromServer }, dispatch),
+  actions: bindActionCreators({ 
+    updateObjectsFromServer,
+    updateMapDescriptionFromServer
+  }, dispatch),
 });
 
 export default connect(

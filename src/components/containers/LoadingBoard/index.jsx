@@ -3,7 +3,7 @@ import { Stage, Text, Layer } from 'react-konva';
 
 class LoadingBoard extends React.Component {
   render() {
-    const { boardWidth, boardHeight } = this.props;
+    const { boardWidth, boardHeight, message } = this.props;
     return (
       <div
         style={{
@@ -16,9 +16,9 @@ class LoadingBoard extends React.Component {
         >
           <Layer>
             <Text
-              text="Please wait. Objects loading..."
+              text={message}
               fontFamily="Arial"
-              fontSize={30}
+              fontSize={24}
               padding={10}
               fill="black"
             />

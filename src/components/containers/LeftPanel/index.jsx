@@ -14,14 +14,16 @@ class LeftPanel extends React.Component {
 
     // получаем границы карты:
     const { mapState } = this.props;
+    const lvl = mapState.level;
+    const { levelMapWidth, levelMapHeight } = mapState.description[lvl];
 
     // получаем границы окна :
     const { boardWidth, boardHeight } = this.props;
 
     // настраиваем масштаб:
     // считаем используя отступ с 2-х сторон (поэтому * 2)
-    const scaleX = boardWidth / (mapState.mapWidth + padding * 2);
-    const scaleY = boardHeight / (mapState.mapHeight + padding * 2);
+    const scaleX = boardWidth / (levelMapWidth + padding * 2);
+    const scaleY = boardHeight / (levelMapHeight + padding * 2);
 
     // если реальная карта больше размера AdvancedBoard (div-элемента) (т.е. scaleX/scaleY < 1),
     // то выберем наибольший масштаб:

@@ -25,8 +25,10 @@ class SidePanel extends React.Component {
     const { mapState } = this.props;
     // для центрирования сцены при изменении level:
     if (prevProps.mapState !== mapState) {
-      const { mapWidth, mapHeight } = mapState;
-      this.autoAdjustStage(mapWidth, mapHeight);
+      const lvl = mapState.level;
+      const { levelMapWidth, levelMapHeight } = mapState.description[lvl];
+
+      this.autoAdjustStage(levelMapWidth, levelMapHeight);
     }
   }
 
@@ -92,7 +94,7 @@ class SidePanel extends React.Component {
       >
         {/* handle map level change: */}
         <MapLevelItem
-          currentLevel={mapState.mapLevel}
+          currentLevel={mapState.level}
           onSelectLevel={this.onSelectLevel}
         />
         {/* accordeon: */}

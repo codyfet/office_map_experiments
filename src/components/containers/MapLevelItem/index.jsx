@@ -7,9 +7,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeMapLevel, changeObjectsLevel } from '../../../actions/index';
 
-// статические данные карты:
-import mapData from '../../../res/mapData.json';
-
 class MapLevelItem extends React.Component {
   handleSelect = (option) => {
     const { onSelectLevel } = this.props;
@@ -17,7 +14,8 @@ class MapLevelItem extends React.Component {
   };
 
   render() {
-    const options = mapData.levels.map(lvl => {
+    const { mapState } = this.props;
+    const options = mapState.description.map((lvl) => {
       return {
         value: lvl.sortId,
         label: lvl.title,
@@ -25,11 +23,8 @@ class MapLevelItem extends React.Component {
     });
 
     const { currentLevel } = this.props;
-    let defaultOption = mapData.levels.find(lvl => lvl.sortId === currentLevel);
-    defaultOption = {
-      value: defaultOption.sortId,
-      label: defaultOption.title,
-    };
+    let defaultOption = options.find((option) => option.value === currentLevel);
+    defaultOption = defaultOption !== undefined ? defaultOption : { value: 0, label: '?' };
 
     return (
       <div>

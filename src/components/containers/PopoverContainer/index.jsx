@@ -95,7 +95,8 @@ class PopoverContainer extends React.Component {
     } 
 
     let selectedObjects = this.getSelectedObjects();
-    const step = mapState.blockSnapSize;
+    const lvl = mapState.level;
+    const step = mapState.description[lvl].levelCellSize;
 
     const newComplexObject = mergeObjects(selectedObjects, step, category);
 

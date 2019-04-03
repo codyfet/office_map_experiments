@@ -133,7 +133,8 @@ class AdvancedBoard extends React.Component {
     });
 
     // проверяем, есть ли хотя бы 1 пересечение с областями-границами (borderArea) карты:
-    const boundariesOverstepped = mapState.mapCovering.some((borderArea) => {
+    const mapCovering = mapState.description[mapState.level].covering;
+    const boundariesOverstepped = mapCovering.some((borderArea) => {
       const borderAreaCoords = borderArea.split(' ', 4).map(v => Number(v));
       // получить координаты и размеры текущей области-границы:
       const currBorder = {
@@ -255,10 +256,12 @@ class AdvancedBoard extends React.Component {
   // 5.1.1. Показать тень (при движении объекта):
   showCurrentObjectShadow = (posX, posY, size) => {
     const { mapState } = this.props;
+    const lvl = mapState.level;
+    const blockSnapSize = mapState.description[lvl].levelCellSize;
     this.setState({
       selectedObjectPos: [
-        Math.round(posX / mapState.blockSnapSize) * mapState.blockSnapSize,
-        Math.round(posY / mapState.blockSnapSize) * mapState.blockSnapSize,
+        Math.round(posX / blockSnapSize) * blockSnapSize,
+        Math.round(posY / blockSnapSize) * blockSnapSize,
       ],
       selectedObjectSizes: size,
       shadowOpacity: 1,
@@ -391,7 +394,9 @@ class AdvancedBoard extends React.Component {
     // данные для контекстного меню:
     const { contextMenuShow, contextMenuPos } = this.state;
     // данные для сетки (KonvaGrid):
-    const { mapWidth, mapHeight, blockSnapSize, mapBoundaries, mapCovering } = mapState;
+    const lvl = mapState.level;
+    const { levelMapWidth, levelMapHeight, levelCellSize, boundaries, covering } = mapState.description[lvl];
+    
     // данные по текущему объекту:
     const { currentObject } = this.props;
     const selectedObjects = currentObject.objectId.split(' ');
@@ -415,9 +420,9 @@ class AdvancedBoard extends React.Component {
               object={object}
               user={currUser}
               isSelected={selectedObjects.includes(object.id)}
-              mapWidth={mapWidth}
-              mapHeight={mapHeight}
-              blockSnapSize={blockSnapSize}
+              mapWidth={levelMapWidth}
+              mapHeight={levelMapHeight}
+              blockSnapSize={levelCellSize}
               showShadow={this.showCurrentObjectShadow}
               stopShadow={this.hideCurrentObjectShadow}
               showContextMenu={this.showContextMenu}
@@ -435,9 +440,9 @@ class AdvancedBoard extends React.Component {
               object={object}
               user={currUser}
               isSelected={selectedObjects.includes(object.id)}
-              mapWidth={mapWidth}
-              mapHeight={mapHeight}
-              blockSnapSize={blockSnapSize}
+              mapWidth={levelMapWidth}
+              mapHeight={levelMapHeight}
+              blockSnapSize={levelCellSize}
               showShadow={this.showCurrentObjectShadow}
               stopShadow={this.hideCurrentObjectShadow}
               showContextMenu={this.showContextMenu}
@@ -505,10 +510,10 @@ class AdvancedBoard extends React.Component {
           onClick={this.handleStageClick}
         >
           <KonvaGridLayer
-            width={mapWidth}
-            height={mapHeight}
-            blockSnapSize={blockSnapSize}
-            boundaries={mapBoundaries}
+            width={levelMapWidth}
+            height={levelMapHeight}
+            blockSnapSize={levelCellSize}
+            boundaries={boundaries}
             flushAll={this.flushAll}
           />
           <Layer>
@@ -523,7 +528,7 @@ class AdvancedBoard extends React.Component {
               stroke="#823B04" // "#823B04"
               strokeWidth={0.3}
             />
-            <MapShape boundaries={mapBoundaries} borderlands={mapCovering} />
+            <MapShape boundaries={boundaries} borderlands={covering} />
             {loadObject}
           </Layer>
           {/* Еще один слой для tooltip: */}

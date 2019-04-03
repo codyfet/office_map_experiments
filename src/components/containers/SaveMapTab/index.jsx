@@ -139,13 +139,14 @@ class SaveMapTab extends React.Component {
 
   handleUpdateMap = () => {
     const { actions } = this.props;
-    axios.get('http://127.0.0.1:8081/separatedData/objects')
-      .then((response) => {
-        actions.updateObjectsFromServer(response.data);
-      })
-      .catch((error) => {
-        alert(`${error}`);
-      });
+    actions.updateObjectsFromServer();
+    // axios.get('http://127.0.0.1:8081/separatedData/objects')
+    //   .then((response) => {
+    //     actions.updateObjectsFromServer(response.data);
+    //   })
+    //   .catch((error) => {
+    //     alert(`${error}`);
+    //   });
   }
 
 

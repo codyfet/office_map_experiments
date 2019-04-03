@@ -20,6 +20,7 @@ import {
   CHANGE_WORK_MODE,
   CREATE_PROJECT
 } from '../res/constants';
+import MapServices from '../services/MapServices';
 
 // actions wuth objects:
 export const createObject = (newObj) => ({
@@ -67,10 +68,17 @@ export const shiftObjects = (objData) => ({
   payload: objData,
 });
 
-export const updateObjectsFromServer = (levels) => ({
-  type: UPDATE_OBJECTS_FROM_SERVER,
-  payload: levels,
-});
+export const updateObjectsFromServer = () => {
+  return {
+    type: UPDATE_OBJECTS_FROM_SERVER,
+    payload: new Promise((resolve, reject) => {
+      const data = MapServices.fetchObjectsData();
+      setTimeout(() => {
+        resolve(data);
+      }, 1000);
+    }),  
+  };
+};
 
 
 // actions with map:

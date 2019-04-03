@@ -9,7 +9,8 @@ import {
   SET_HAS_INTERSECTION,
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
-  UPDATE_OBJECTS_FROM_SERVER
+  UPDATE_OBJECTS_FROM_SERVER,
+  UPDATE_OBJECTS_FROM_SERVER_FULFILLED
 } from '../res/constants';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
@@ -250,8 +251,15 @@ export default function objects(state = initialState, action) {
 
       return {
         mapLevel: lvl,
+        loading: true,
+        levels: action.payload.data,
+      };
+    }
+    case UPDATE_OBJECTS_FROM_SERVER_FULFILLED: {
+      return {
+        mapLevel: state.mapLevel,
         loading: false,
-        levels: action.payload,
+        levels: action.payload.data,
       };
     }
     default: {

@@ -2,7 +2,7 @@
   padding: 5px;
 }
 
-.buttonSaveMap {
+.buttonForSidePanel {
   width: 100%;
   height: 100%;
   font-size: 12px;
@@ -11,44 +11,10 @@
   border: 1px solid white;
 }
 
-.buttonSaveMap:active {
+.buttonForSidePanel:active {
   background-color: rgb(80, 89, 221);
 }
 
-.buttonSaveMap:focus {
-  outline: 1px solid black;
-}
-
-.buttonDownloadMap {
-  width: 100%;
-  height: 100%;
-  font-size: 12px;
-  padding: 5px;
-  background-color: rgb(230, 228, 235);
-  border: 1px solid white;
-}
-
-.buttonDownloadMap:active {
-  background-color: rgb(80, 89, 221);
-}
-
-.buttonDownloadMap:focus {
-  outline: 1px solid black;
-}
-
-.buttonUpdateMap {
-  width: 100%;
-  height: 100%;
-  font-size: 12px;
-  padding: 5px;
-  background-color: rgb(230, 228, 235);
-  border: 1px solid white;
-}
-
-.buttonUpdateMap:active {
-  background-color: rgb(80, 89, 221);
-}
-
-.buttonUpdateMap:focus {
+.buttonForSidePanel:focus {
   outline: 1px solid black;
 }

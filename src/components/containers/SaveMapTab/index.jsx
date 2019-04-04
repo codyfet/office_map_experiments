@@ -156,14 +156,14 @@ class SaveMapTab extends React.Component {
     return (
       <React.Fragment>
         <div className="saveMapContainer">
-          <button type="submit" className="buttonDownloadMap" onClick={this.handleDownloadMapButton}>
-            Скачать карту
+          <button type="submit" className="buttonForSidePanel" onClick={this.handleDownloadMapButton}>
+            Скачать
           </button>
-          <button type="submit" className="buttonSaveMap" onClick={this.handleSaveMapButton}>
-            Сохранить карту
+          <button type="submit" className="buttonForSidePanel" onClick={this.handleSaveMapButton}>
+            Сохранить
           </button>
-          <button type="submit" className="buttonUpdateMap" onClick={this.handleUpdateMap}>
-            Обновить карту
+          <button type="submit" className="buttonForSidePanel" onClick={this.handleUpdateMap}>
+            Обновить
           </button>
         </div>
         <DownloadMapModal

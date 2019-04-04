@@ -15,7 +15,6 @@ import MergeObjectsModal from '../Modals/MergeObjectsModal';
 import mergeObjects from '../../../utils/mergeObjects';
 import checkObjectsAdjoined from '../../../utils/checkObjectsAdjoined';
 import { SINGLE_EDIT, MULTI_EDIT } from '../../../res/workModeConstants';
-import { isStaticType } from '../../../utils/objectsFactory';
 
 const _ = require('lodash');
 // для генерирования уникальных id:

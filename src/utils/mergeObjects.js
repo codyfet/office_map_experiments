@@ -1,25 +1,10 @@
 import { LEFT_SIDE } from '../res/constantsOrientation';
 import makePolygonFromObjects from './makePolygonFromObjects';
-import { 
-  computeShiftToZeroPointByFirstPointOfPolygon, 
-  shiftPoint 
-} from './polygonMagic';
 
 const _ = require('lodash');
 
 // ОГРАНИЧЕНИЯ:
 // Если объекты образуют кольцо, то центр этого кольца удалится
-
-// EDGES ORIENTATION:
-const HORIZONTAL = 'HORIZONTAL';
-const VERTICAL = 'VERTICAL';
-const ERROR = 'ERROR';
-
-// DIRECTIONS:
-const RIGHT = 'RIGHT';
-const UP = 'UP';
-const LEFT = 'LEFT';
-const DOWN = 'DOWN';
 
 function computeDistanceBetweenPoints(point1, point2) {
   return Math.sqrt((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2);
@@ -27,8 +12,6 @@ function computeDistanceBetweenPoints(point1, point2) {
 
 export default function mergeObjects(objects, step = 5, finalCategory = 'service_room') {
   let polygon = makePolygonFromObjects(objects, step);
-  
-  let finish = 'полигон сделан!';
 
   // по умолчанию наследуем все параметры первого выделенного объекта:
   let newObject = { 

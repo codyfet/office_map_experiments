@@ -1,33 +1,13 @@
-import { LEFT_SIDE } from '../res/constantsOrientation';
-import { 
-  computeShiftToZeroPointByFirstPointOfPolygon, 
-  shiftPoint 
-} from './polygonMagic';
-
 const _ = require('lodash');
 
 // ОГРАНИЧЕНИЯ:
 // Если объекты образуют кольцо, то центр этого кольца удалится
-
-// EDGES ORIENTATION:
-const HORIZONTAL = 'HORIZONTAL';
-const VERTICAL = 'VERTICAL';
-const ERROR = 'ERROR';
 
 // DIRECTIONS:
 const RIGHT = 'RIGHT';
 const UP = 'UP';
 const LEFT = 'LEFT';
 const DOWN = 'DOWN';
-
-function convert2dPointsToString(points) {
-  let stringCoordinates = [];
-  for (let i = 0; i < points.length; i += 1) {
-    stringCoordinates.push(points[i].x);
-    stringCoordinates.push(points[i].y);
-  }
-  return stringCoordinates.join(' ');
-} 
 
 function convertJSONObjectToPoints(jsonObject) {
   // "coordinates": { "x": 535, "y": 1170 },

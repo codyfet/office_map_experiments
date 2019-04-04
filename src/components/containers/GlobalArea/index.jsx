@@ -10,7 +10,7 @@ import './style.css';
 
 class GlobalArea extends React.Component {
   render() {
-    const { objects, mapState, users } = this.props;
+    const { objects, mapState, users, projects } = this.props;
 
     // размеры основной доски:
     const width = window.innerWidth / 1.7;
@@ -22,6 +22,7 @@ class GlobalArea extends React.Component {
     let objectsToLoad = [];
     if (mapState.loading) objectsToLoad.push('MapDescription');
     if (users.loading) objectsToLoad.push('Users');
+    if (projects.loading) objectsToLoad.push('Projects');
 
     const messageForSidePanel = `Please wait.\n\n${objectsToLoad.join(',\n')}\n\nloading...`;
 
@@ -39,7 +40,7 @@ class GlobalArea extends React.Component {
             : <AdvancedBoard boardWidth={width} boardHeight={height} />
         }
         {
-          (mapState.loading || users.loading)
+          (mapState.loading || users.loading || projects.loading)
             ? (
               <LoadingBoard 
                 boardWidth={width * 0.3} 
@@ -64,6 +65,7 @@ const mapStateToProps = state => ({
   objects: state.objects,
   users: state.users,
   mapState: state.mapState,
+  projects: state.projects
 });
 
 const mapDispatchToProps = dispatch => ({

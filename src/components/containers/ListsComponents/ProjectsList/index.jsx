@@ -83,7 +83,7 @@ class ProjectsList extends React.Component {
     const { selectedProjectId, showCreateProjectPanel, searchPhrase } = this.state;
     const { projects } = this.props;
 
-    const requiredProjects = projects.filter((p) => {
+    const requiredProjects = projects.data.filter((p) => {
       const pTitle = p.title.toLowerCase();
       const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;
@@ -104,7 +104,7 @@ class ProjectsList extends React.Component {
     });
 
     // получить новый id для проекта:
-    const lastId = projects.reduce((prevVal, nextVal, i) => {
+    const lastId = projects.data.reduce((prevVal, nextVal, i) => {
       let prevId;
       let nextId;
       if (i === 1) {

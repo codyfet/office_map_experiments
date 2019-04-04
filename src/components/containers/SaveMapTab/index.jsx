@@ -6,7 +6,8 @@ import { bindActionCreators } from 'redux';
 import {
   updateObjectsFromServer,
   updateMapDescriptionFromServer,
-  updateUsersFromServer
+  updateUsersFromServer,
+  updateProjectsFromServer
 } from '../../../actions/index';
 
 import mapData from '../../../res/mapData.json';
@@ -105,7 +106,7 @@ class SaveMapTab extends React.Component {
     });
 
     mapDataFile.users = users.data;
-    mapDataFile.projects = projects;
+    mapDataFile.projects = projects.data;
 
     return mapDataFile;
   }
@@ -141,17 +142,11 @@ class SaveMapTab extends React.Component {
 
   handleUpdateMap = () => {
     const { actions } = this.props;
-    
+
     actions.updateObjectsFromServer();
     actions.updateMapDescriptionFromServer();
     actions.updateUsersFromServer();
-    // axios.get('http://127.0.0.1:8081/separatedData/objects')
-    //   .then((response) => {
-    //     actions.updateObjectsFromServer(response.data);
-    //   })
-    //   .catch((error) => {
-    //     alert(`${error}`);
-    //   });
+    actions.updateProjectsFromServer();
   }
 
 
@@ -199,7 +194,8 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ 
     updateObjectsFromServer,
     updateMapDescriptionFromServer,
-    updateUsersFromServer
+    updateUsersFromServer,
+    updateProjectsFromServer
   }, dispatch),
 });
 

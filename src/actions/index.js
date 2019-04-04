@@ -171,10 +171,8 @@ export const updateUsersFromServer = () => {
       type: UPDATE_USERS_FROM_SERVER,
       payload: new Promise((resolve, reject) => {
         const data = MapServices.fetchUsersData();
-        setTimeout(() => {
-          resolve(data);
-        }, 1000);
-      })  
+        resolve(data);
+      })
     });  
   };
 };
@@ -190,3 +188,21 @@ export const createProject = (newProject) => ({
   type: CREATE_PROJECT,
   payload: newProject,
 });
+
+export const showProjectsLoading = () => ({
+  type: PROJECTS_LOADING,
+  payload: true
+});
+
+export const updateProjectsFromServer = () => {
+  return (dispatch) => {
+    dispatch(showProjectsLoading());
+    dispatch({
+      type: UPDATE_PROJECTS_FROM_SERVER,
+      payload: new Promise((resolve, reject) => {
+        const data = MapServices.fetchProjectsData();
+        resolve(data);
+      })  
+    });  
+  };
+};

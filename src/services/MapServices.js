@@ -9,5 +9,8 @@ export default {
   },
   fetchUsersData () {
     return api().get('separatedData/users');
+  },
+  fetchProjectsData () {
+    return api().get('separatedData/projects');
   }
 };

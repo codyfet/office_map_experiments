@@ -6,5 +6,8 @@ export default {
   },
   fetchMapDescriptionData () {
     return api().get('separatedData/mapDescription');
+  },
+  fetchUsersData () {
+    return api().get('separatedData/users');
   }
 };

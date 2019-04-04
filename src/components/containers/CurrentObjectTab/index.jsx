@@ -130,7 +130,7 @@ class CurrentObjectTab extends React.Component {
 
         if (currentObject.userId !== undefined && currentObject.userId !== '') {
           // к объекту привязан пользователь
-          requiredUser = users.find(val => val.id === currentObject.userId);
+          requiredUser = users.data.find(val => val.id === currentObject.userId);
         }
       } // иначе - либо объект не определен, либо к нему не привязан пользователь
 

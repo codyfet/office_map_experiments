@@ -37,7 +37,7 @@ class UsersEditList extends React.Component {
 
     // получить новый id для пользователя:
     const { users } = this.props;
-    const lastId = users.reduce((prevVal, nextVal, i) => {
+    const lastId = users.data.reduce((prevVal, nextVal, i) => {
       let prevId;
       let nextId;
       if (i === 1) {
@@ -138,7 +138,7 @@ class UsersEditList extends React.Component {
     const { users } = this.props;
     const { userId, searchPhrase, showUserCreatePanel } = this.state;
 
-    const neededUsers = users.filter(user => {
+    const neededUsers = users.data.filter(user => {
       const formattedUser = user.title.toLowerCase().split(' ', 2);
       const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;

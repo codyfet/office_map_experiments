@@ -65,7 +65,7 @@ class ProjectsList extends React.Component {
     const requiredObjectIds = thisLevelObjects.map((elem) => {
       // нам нужны только столы:
       if (elem.category === 'table') {
-        const requiredUser = users.find(user => user.id === elem.userId);
+        const requiredUser = users.data.find(user => user.id === elem.userId);
         if (!!requiredUser && requiredUser.projectId === projectId) return elem.id;
         else return '';
       }

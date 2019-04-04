@@ -40,7 +40,7 @@ class ChooseUserList extends React.Component {
     const { userId, users } = this.props;
     const { searchPhrase } = this.state;
 
-    const neededUsers = users.filter(user => {
+    const neededUsers = users.data.filter(user => {
       const formattedUser = user.title.toLowerCase().split(' ', 2);
       const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;

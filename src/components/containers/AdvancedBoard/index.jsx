@@ -410,7 +410,7 @@ class AdvancedBoard extends React.Component {
         // если у объекта нет свойства userId, то искать ничего не нужно:
         let currUser = {};
         if (object.userId !== undefined) {
-          currUser = users.find(user => user.id === object.userId);
+          currUser = users.data.find(user => user.id === object.userId);
         }
 
         if (object.isCompound) {

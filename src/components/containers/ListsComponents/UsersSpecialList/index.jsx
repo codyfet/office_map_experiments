@@ -44,7 +44,7 @@ class UsersSpecialList extends React.Component {
     const { users } = this.props;
     const { searchPhrase, selectedUserId } = this.state;
 
-    const neededUsers = users.filter(user => {
+    const neededUsers = users.data.filter(user => {
       const formattedUser = user.title.toLowerCase().split(' ', 2);
       const formattedSPhrase = searchPhrase.toLowerCase();
       if (formattedSPhrase === '') return true;

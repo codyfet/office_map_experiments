@@ -159,6 +159,26 @@ export const deleteUser = (userId) => ({
   payload: userId,
 });
 
+export const showUsersLoading = () => ({
+  type: USERS_LOADING,
+  payload: true
+});
+
+export const updateUsersFromServer = () => {
+  return (dispatch) => {
+    dispatch(showUsersLoading());
+    dispatch({
+      type: UPDATE_USERS_FROM_SERVER,
+      payload: new Promise((resolve, reject) => {
+        const data = MapServices.fetchUsersData();
+        setTimeout(() => {
+          resolve(data);
+        }, 1000);
+      })  
+    });  
+  };
+};
+
 // WORK_MODE:
 export const changeWorkMode = (newWM) => ({
   type: CHANGE_WORK_MODE,

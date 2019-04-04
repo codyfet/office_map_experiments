@@ -1,3 +1,5 @@
+import { PEdge } from './EdgeClasses/PEdge';
+
 const _ = require('lodash');
 
 // ОГРАНИЧЕНИЯ:
@@ -32,55 +34,8 @@ function convertJSONObjectToPoints(jsonObject) {
   return points;
 }
 
-function getEdgesFromPoints(points) {
-  let edges = [];
-  for (let i = 0; i < points.length - 1; i += 1) {
-    edges.push({
-      start: points[i],
-      end: points[i + 1]
-    });
-  }
-  // добавим замыкающую точку:
-  edges.push({
-    start: points[points.length - 1],
-    end: points[0]
-  });
-  return edges;
-}
-
-function isEdgeHorizontal(edge) {
-  return edge.start.y === edge.end.y;
-}
-
-function isEdgeVertical(edge) {
-  return edge.start.x === edge.end.x;
-} 
-
-function isPointAndEdgeOnTheSameLine(point, edge) {
-  return (
-    edge.start.x === point.x && edge.end.x === point.x
-    || edge.start.y === point.y && edge.end.y === point.y
-  );
-}
-
-function isPointOnEdge(point, edge) {
-  if (isPointAndEdgeOnTheSameLine(point, edge) && isEdgeHorizontal(edge)) {
-    if (edge.start.x <= point.x && point.x <= edge.end.x
-        || edge.start.x >= point.x && point.x >= edge.end.x) {
-      return true;
-    } else return false; 
-  }
-  if (isPointAndEdgeOnTheSameLine(point, edge) && isEdgeVertical(edge)) {
-    if (edge.start.y <= point.y && point.y <= edge.end.y
-        || edge.start.y >= point.y && point.y >= edge.end.y) {
-      return true;
-    } else return false; 
-  }
-  return false;
-}
-
-function isPointOnSomeEdges(point, edges) {
-  return edges.some((edge) => isPointOnEdge(point, edge));
+function edgesContainPoint(point, edges) {
+  return edges.some((edge) => edge.containsPoint(point));
 }
 
 function computeAreaSizes(objects) {
@@ -144,7 +99,7 @@ function searchPointDOWNwithEdges(startPoint, points, step, borders, objectsEdge
     x: startPoint.x,
     y: startPoint.y + step  
   };
-  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+  if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
   
@@ -167,7 +122,7 @@ function searchPointRIGHTwithEdges(startPoint, points, step, borders, objectsEdg
     x: startPoint.x + step,
     y: startPoint.y  
   };
-  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+  if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
 
@@ -190,7 +145,7 @@ function searchPointUPwithEdges(startPoint, points, step, borders, objectsEdges)
     x: startPoint.x,
     y: startPoint.y - step  
   };
-  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+  if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
 
@@ -213,7 +168,7 @@ function searchPointLEFTwithEdges(startPoint, points, step, borders, objectsEdge
     x: startPoint.x - step,
     y: startPoint.y  
   };
-  if (!isPointOnSomeEdges(checkPoint, objectsEdges)) {
+  if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
 
@@ -308,12 +263,11 @@ export default function makePolygonFromObjects(objects, step = 5) {
   // преобразовать их в массивы точек
   let objectsPoints = objects.map((object) => convertJSONObjectToPoints(object));
   // взять массив всех ребер:
-  let objectsEdges = objectsPoints.map((points) => getEdgesFromPoints(points)).flat();
+  let objectsEdges = objectsPoints.map((points) => PEdge.getEdgesFromPoints(points)).flat();
   // взять массив всех точек:
   let points = objectsPoints.flat();
   // создать последовательность точек нового объекта из имеющихся:
   let polygon = constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner, bottomRightCorner);
-  // let polygon = convert2dPointsToString(polygonPoints);
   
   return polygon;
 }

@@ -34,7 +34,7 @@ class MergeObjectsModal extends React.Component {
       <Modal 
         visible={visible}
         width="450"
-        height="220"
+        height="250"
         effect="fadeInUp"
         onClickAway={this.handleClose}
       >

@@ -21,6 +21,14 @@ import './styles.css';
 import ProjectsList from '../ListsComponents/ProjectsList/index';
 
 class SidePanel extends React.Component {
+  componentDidMount() {
+    const { mapState } = this.props;
+    const lvl = mapState.level;
+    const { levelMapWidth, levelMapHeight } = mapState.description[lvl];
+    
+    this.autoAdjustStage(levelMapWidth, levelMapHeight);
+  }
+
   componentDidUpdate(prevProps) {
     const { mapState } = this.props;
     // для центрирования сцены при изменении level:

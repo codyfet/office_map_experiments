@@ -90,6 +90,9 @@ class SaveMapTab extends React.Component {
     const mapDataFile = {};
 
     // дополним его изменившимися данными:
+    mapDataFile.projects = projects.data;
+    mapDataFile.users = users.data;
+
     mapDataFile.levels = objects.levels.map((objs, i) => {
       let levelData = _.cloneDeep(mapState.description[i]);
       levelData.objects = objs.map((obj) => {
@@ -104,9 +107,6 @@ class SaveMapTab extends React.Component {
       });
       return levelData;
     });
-
-    mapDataFile.users = users.data;
-    mapDataFile.projects = projects.data;
 
     return mapDataFile;
   }

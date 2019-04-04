@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {
+  updateObjectsFromServer,
+  updateMapDescriptionFromServer,
+  updateUsersFromServer,
+  updateProjectsFromServer
+} from '../../../actions/index';
 
 import AdvancedBoard from '../AdvancedBoard/index';
 import LoadingBoard from '../LoadingBoard/index';
@@ -8,7 +14,17 @@ import SidePanel from '../SidePanel/index';
 import LeftPanel from '../LeftPanel/index';
 import './style.css';
 
-class GlobalArea extends React.Component {
+class GlobalArea extends React.PureComponent {
+  componentDidMount() {
+    // здесь загрузим необходимые данные карты:
+    const { actions } = this.props;
+
+    actions.updateObjectsFromServer();
+    actions.updateMapDescriptionFromServer();
+    actions.updateUsersFromServer();
+    actions.updateProjectsFromServer();
+  }
+
   render() {
     const { objects, mapState, users, projects } = this.props;
 
@@ -69,7 +85,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({}, dispatch)
+  actions: bindActionCreators({ 
+    updateObjectsFromServer,
+    updateMapDescriptionFromServer,
+    updateUsersFromServer,
+    updateProjectsFromServer
+  }, dispatch),
 });
 
 export default connect(

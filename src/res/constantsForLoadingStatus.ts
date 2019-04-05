@@ -1,0 +1,9 @@
+const FULFILLED = 'FULFILLED';
+const REJECTED = 'REJECTED';
+const PENDING = 'PENDING';
+
+export {
+  FULFILLED,
+  REJECTED,
+  PENDING
+};

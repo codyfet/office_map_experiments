@@ -10,9 +10,13 @@ import {
   CHANGE_ANY_OBJECT_DATA,
   SHIFT_OBJECTS,
   UPDATE_OBJECTS_FROM_SERVER,
-  FULFILLED,
   OBJECTS_LOADING
 } from '../res/constants';
+import {
+  FULFILLED,
+  REJECTED,
+  PENDING
+} from '../res/constantsForLoadingStatus';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
 import {  
@@ -62,7 +66,7 @@ function setupInitalState() {
 
   return {
     mapLevel: 1, // по умолчанию мы загружаем 1 уровень
-    loading: false,
+    loading: FULFILLED,
     levels: allLevelsObjects,
   };
 }
@@ -238,14 +242,21 @@ export default function objects(state = initialState, action) {
     case `${UPDATE_OBJECTS_FROM_SERVER}_${FULFILLED}`: {
       return {
         mapLevel: state.mapLevel,
-        loading: false,
+        loading: FULFILLED,
         levels: action.payload.data,
+      };
+    }
+    case `${UPDATE_OBJECTS_FROM_SERVER}_${REJECTED}`: {
+      return {
+        mapLevel: state.mapLevel,
+        loading: REJECTED,
+        levels: state.levels,
       };
     }
     case OBJECTS_LOADING: {
       return {
         mapLevel: state.mapLevel,
-        loading: true,
+        loading: PENDING,
         levels: state.levels,
       };
     }

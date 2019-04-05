@@ -1,6 +1,9 @@
 import api from './api';
 
 export default {
+  sendMapData (mapDataFile) {
+    return api().post('newMapData', mapDataFile);
+  },
   fetchObjectsData () {
     return api().get('separatedData/objects');
   },

@@ -30,37 +30,6 @@ class GlobalArea extends React.PureComponent {
     actions.updateProjectsFromServer();
   }
 
-  // getLoadingStatus = (objectsLoading) => {
-  //   // objectsLoading
-  //   if (objectsLoading.some((object) => object.loadingStatus === REJECTED)) {
-  //     return {
-  //       showAdvancedBoard: false,
-  //       message: "Warning! Server doesn't answer!"  
-  //     };
-  //   }
-
-  //   let message = 'Please wait!\nLoading: ';
-  //   let objectsToLoad = [];
-  //   if (objects.loading === PENDING) {
-  //     objectsToLoad.push('objects');     
-  //   }
-  //   if (mapState.loading === PENDING) {
-  //     objectsToLoad.push('mapDescription');  
-  //   }
-
-  //   if (objectsToLoad.length > 0) {
-  //     return {
-  //       showAdvancedBoard: false,
-  //       message: message + objectsToLoad.join(',')  
-  //     };
-  //   } else {
-  //     return {
-  //       showAdvancedBoard: true,
-  //       message: ''  
-  //     };
-  //   }
-  // }
-
   getLoadingStatusForAdvancedBoard = () => {
     const { objects, mapState } = this.props;
     if (objects.loading === REJECTED || mapState.loading === REJECTED) {

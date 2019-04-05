@@ -14,6 +14,7 @@ import mapData from '../../../res/mapData.json';
 import './styles.css';
 import DownloadMapModal from '../Modals/DownloadMapModal/index';
 import SaveMapModal from '../Modals/SaveMapModal/index';
+import MapServices from '../../../services/MapServices';
 
 // для сохранения файлов:
 const FileSaver = require('file-saver');
@@ -123,7 +124,7 @@ class SaveMapTab extends React.Component {
   saveCurrentMap = () => {
     const mapDataFile = this.getUpdatedMapData();
     // отослать данные на back-end
-    axios.post('http://127.0.0.1:8081/newMapData', mapDataFile)
+    MapServices.sendMapData(mapDataFile)
       .then((response) => {
         alert(`${response.data.message}`);
       })

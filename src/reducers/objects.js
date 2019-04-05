@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {
   CREATE_OBJECT,
   MOVE_OBJECT,

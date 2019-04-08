@@ -3,9 +3,10 @@ import { Stage, Text, Layer } from 'react-konva';
 
 class LoadingBoard extends React.Component {
   render() {
-    const { boardWidth, boardHeight, message } = this.props;
+    const { boardWidth, boardHeight, message, className } = this.props;
     return (
       <div
+        className={className}
         style={{
           border: '1px solid black',
         }}

@@ -108,7 +108,7 @@ class GlobalArea extends React.PureComponent {
     return (
       <div className="globalArea">
         <LeftPanel
-          panelWidth={width / 8}
+          panelWidth={width / 5.5}
           panelHeight={height / 2}
           boardWidth={width}
           boardHeight={height}
@@ -132,6 +132,7 @@ class GlobalArea extends React.PureComponent {
                 boardWidth={width * 0.3} 
                 boardHeight={height + 2} 
                 message={messageSidePanel}
+                className="sidePanelContainer"
               />)
         }
       </div>

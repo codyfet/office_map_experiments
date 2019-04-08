@@ -1,5 +1,5 @@
 import React from 'react';
-import { Popover } from 'react-bootstrap';
+import Popover from 'react-bootstrap/lib/Popover';
 import AdvancedSVG from '../AdvancedSVG/index';
 import iconPaths from '../../../res/iconPaths';
 import './styles.css';
@@ -19,7 +19,7 @@ const PopoverView = props => {
         <AdvancedSVG width="20px" content={iconPaths.ready} onClick={readyHandler} />
         <AdvancedSVG width="20px" content={iconPaths.copy} onClick={copyHandler} />
         {
-          turnBtnIcon 
+          turnBtnIcon
           && (<AdvancedSVG width="20px" content={iconPaths.turn} onClick={turnHandler} />)}
         {
           connectBtnIcon

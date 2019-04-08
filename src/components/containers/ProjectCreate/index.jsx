@@ -1,3 +1,4 @@
+import clone from 'lodash/clone';
 import * as React from 'react';
 // redux:
 import { connect } from 'react-redux';
@@ -6,8 +7,6 @@ import { createProject } from '../../../actions/index';
 
 import EditField from '../EditField/index';
 import './styles.css';
-
-const _ = require('lodash');
 
 class UserCreate extends React.Component {
   state = {
@@ -35,7 +34,7 @@ class UserCreate extends React.Component {
     const { actions, project, onClose } = this.props;
     const { projectSettings } = this.state;
 
-    const projectData = _.clone(project);
+    const projectData = clone(project);
     try {
       Object.keys(projectSettings).forEach(key => {
         projectData[key] = projectSettings[key];

@@ -1,3 +1,4 @@
+import clone from 'lodash/clone';
 import * as React from 'react';
 // redux:
 import { connect } from 'react-redux';
@@ -8,7 +9,6 @@ import EditField from '../EditField/index';
 import DropdownLevelField from '../DropdownLevelField/index';
 import './styles.css';
 
-const _ = require('lodash');
 
 class UserCreate extends React.Component {
   state = {
@@ -36,7 +36,7 @@ class UserCreate extends React.Component {
     const { actions, user, onClose } = this.props;
     const { userSettings } = this.state;
 
-    const userData = _.clone(user);
+    const userData = clone(user);
     try {
       Object.keys(userSettings).forEach(key => {
         userData[key] = userSettings[key];

@@ -1,7 +1,8 @@
-import { 
+import cloneDeep from 'lodash/cloneDeep';
+import {
   CREATE_PROJECT,
   UPDATE_PROJECTS_FROM_SERVER,
-  PROJECTS_LOADING 
+  PROJECTS_LOADING
 } from '../res/constants';
 import {
   FULFILLED,
@@ -9,13 +10,11 @@ import {
   PENDING
 } from '../res/constantsForLoadingStatus';
 import mapData from '../res/mapData.json';
-// загрузить lodash:
-const _ = require('lodash');
 
 // загрузка проектов:
 const initialState = {
   loading: FULFILLED,
-  data: _.cloneDeep(mapData.projects)
+  data: cloneDeep(mapData.projects)
 };
 
 export default function workMode(state = initialState, action) {

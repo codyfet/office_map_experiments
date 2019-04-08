@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import * as React from 'react';
 // redux:
 import { connect } from 'react-redux';
@@ -11,9 +12,6 @@ import CurrentObjectItem from '../CurrentObjectItem/index';
 import CurrentObjectSettings from '../CurrentObjectSettings/index';
 
 import './styles.css';
-
-// для создания копий:
-const _ = require('lodash');
 
 class CurrentObjectTab extends React.Component {
   constructor(props) {
@@ -113,7 +111,7 @@ class CurrentObjectTab extends React.Component {
   render() {
     const { currentObject, workMode, objects, users } = this.props;
     const { showChangeUserPanel } = this.state;
-    
+
     let requiredObject;
     let requiredUser = {
       title: 'Not assigned',
@@ -135,8 +133,8 @@ class CurrentObjectTab extends React.Component {
       } // иначе - либо объект не определен, либо к нему не привязан пользователь
 
       // нам нужны только immutable: делаем копии:
-      requiredObject = _.cloneDeep(requiredObject);
-      requiredUser = _.cloneDeep(requiredUser);
+      requiredObject = cloneDeep(requiredObject);
+      requiredUser = cloneDeep(requiredUser);
     }
 
     return (

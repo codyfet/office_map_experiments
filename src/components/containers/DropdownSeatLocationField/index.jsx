@@ -4,8 +4,6 @@ import './styles.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
-const _ = require('lodash');
-
 class DropdownLevelField extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +31,7 @@ class DropdownLevelField extends React.Component {
 
     const newSetting = {};
     newSetting[label] = option.value;
-    
+
     onInputChange(newSetting);
   };
 

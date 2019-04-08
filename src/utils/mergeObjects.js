@@ -1,8 +1,5 @@
 import { LEFT_SIDE } from '../res/constantsOrientation';
 import makePolygonFromObjects from './makePolygonFromObjects';
-
-const _ = require('lodash');
-
 // ОГРАНИЧЕНИЯ:
 // Если объекты образуют кольцо, то центр этого кольца удалится
 
@@ -14,7 +11,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
   let polygon = makePolygonFromObjects(objects, step);
 
   // по умолчанию наследуем все параметры первого выделенного объекта:
-  let newObject = { 
+  let newObject = {
     category: finalCategory,
     id: objects[0].id,
     coordinates: polygon[0],
@@ -33,7 +30,7 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
     movable: false, // а вот двигать его будет уже нельзя
     hasIntersection: false, // предыдущие объекты не имели пересечений с другими
   };
-  
+
   // объединяем:
   if (finalCategory === 'table') {
     newObject.userId = '';
@@ -49,6 +46,6 @@ export default function mergeObjects(objects, step = 5, finalCategory = 'service
     };
     newObject.title = '';
   }
-  
+
   return newObject;
-} 
+}

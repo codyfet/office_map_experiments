@@ -1,10 +1,9 @@
+import range from 'lodash/range';
 import * as React from 'react';
 
 import './styles.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-
-const _ = require('lodash');
 
 class DropdownLevelField extends React.Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class DropdownLevelField extends React.Component {
 
     const newSetting = {};
     newSetting[label] = option.value;
-    
+
     onInputChange(newSetting);
   };
 
@@ -41,7 +40,7 @@ class DropdownLevelField extends React.Component {
     const { currCategory } = this.state;
     const { label } = this.props;
 
-    const options = _.range(1, 14).map(elem => {
+    const options = range(1, 14).map(elem => {
       return {
         value: elem,
         label: elem,

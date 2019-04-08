@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import * as React from 'react';
 import { Stage, Layer, Rect, Text, Label, Tag } from 'react-konva';
 
@@ -27,9 +28,6 @@ import MapShape from '../MapShape/index';
 import PopoverContainer from '../PopoverContainer/index';
 import { MULTI_EDIT, SINGLE_EDIT } from '../../../res/workModeConstants';
 
-// загрузить lodash:
-const _ = require('lodash');
-
 class AdvancedBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -49,8 +47,8 @@ class AdvancedBoard extends React.Component {
   // 1.1. Фиксируем данные по сдвигу в redux:
   handleStageShiftChange = (shift) => {
     const { boardState } = this.props;
-    if (boardState.shift[0] !== shift[0] 
-         || boardState.shift[1] !== shift[1]) { 
+    if (boardState.shift[0] !== shift[0]
+         || boardState.shift[1] !== shift[1]) {
       // заносим данные в redux:
       const { actions } = this.props;
       const newState = { ...boardState, shift };
@@ -74,8 +72,8 @@ class AdvancedBoard extends React.Component {
   // возвращает true - если пересекаются, false - иначе
   haveIntersection(r1, r2) {
     return !(
-      r2.x >= r1.x + r1.width 
-      || r2.x + r2.width <= r1.x 
+      r2.x >= r1.x + r1.width
+      || r2.x + r2.width <= r1.x
       || r2.y >= r1.y + r1.height
       || r2.y + r2.height <= r1.y
     );
@@ -149,11 +147,11 @@ class AdvancedBoard extends React.Component {
 
     const hasIntersection = intersectedWithMapObjects || boundariesOverstepped;
     const { actions } = this.props;
-    const newLocData = { 
-      id: object.id, 
+    const newLocData = {
+      id: object.id,
       hasIntersection
     };
-    
+
     actions.setHasIntersection(newLocData);
   };
 
@@ -181,7 +179,7 @@ class AdvancedBoard extends React.Component {
     // если сдвинулась сцена:
     if (currentStage.x() === currObj.x() && currentStage.y() === currObj.y()) {
       this.handleStageShiftChange([currentStage.x(), currentStage.y()]);
-    } 
+    }
   };
 
   handleStageWheel = (e) => {
@@ -189,8 +187,8 @@ class AdvancedBoard extends React.Component {
 
     const { boardState } = this.props;
     const scaleBy = 1.05;
-    const newScale = e.evt.deltaY > 0 
-      ? boardState.scale * scaleBy 
+    const newScale = e.evt.deltaY > 0
+      ? boardState.scale * scaleBy
       : boardState.scale / scaleBy;
 
     this.handleStageScaleChange(newScale);
@@ -236,8 +234,8 @@ class AdvancedBoard extends React.Component {
       };
       // новым действием МАССОВЫЙ СДВИГ:
       actions.shiftObjects(newObjectData);
-    } 
-    
+    }
+
     if (workMode === SINGLE_EDIT) {
       const newObjectData = {
         id: currentObject.objectId,
@@ -297,7 +295,7 @@ class AdvancedBoard extends React.Component {
   // 5.3.1. Выбор текущего объекта и пользователя (если есть):
   // доп методы для основной функции:
   resetCurrentObject = () => {
-    const { actions } = this.props;   
+    const { actions } = this.props;
     actions.changeCurrentObject('');
     actions.changeCurrentUser('');
     // при каждом сбросе текущего объекта мы закрываем меню редактирования:
@@ -316,7 +314,7 @@ class AdvancedBoard extends React.Component {
     // нужно добавить новый объект в конец списка
     // проверим, есть переданный objectId уже в данных:
     const indOfObjectId = currentSelectedObjects.indexOf(objectId);
-      
+
     if (indOfObjectId === -1) { // если id объекта нет среди выделенных
       // то добавим его в конец:
       currentSelectedObjects.push(objectId);
@@ -325,20 +323,20 @@ class AdvancedBoard extends React.Component {
       // то переносим его в конец (по последнему элементу считается сдвиг):
       currentSelectedObjects.splice(indOfObjectId, 1);
       currentSelectedObjects.push(objectId);
-      return currentSelectedObjects.join(' '); 
+      return currentSelectedObjects.join(' ');
     }
   }
 
   addObjectIdToCurrentObjectId = (objectId) => {
-    let newObjectId;  
+    let newObjectId;
     // передаваемый параметр objectId !== '' (для этой функции - это 100%):
-    
-    if (this.isThereObjectsSelected()) { // если уже есть выделенные объекты: 
+
+    if (this.isThereObjectsSelected()) { // если уже есть выделенные объекты:
       newObjectId = this.addObjectToSelectedObjects(objectId);
     } else { // если других объектов не было выделено до этого:
       newObjectId = objectId;
     }
-  
+
     return newObjectId;
   }
 
@@ -346,15 +344,15 @@ class AdvancedBoard extends React.Component {
     const { actions } = this.props;
     actions.changeCurrentObject(objectId);
     actions.changeCurrentUser(userId);
-  } 
+  }
 
   changeCurrentObjectInMultiEditMode = (objectId) => {
     const { actions } = this.props;
 
-    let newObjectId = this.addObjectIdToCurrentObjectId(objectId);     
+    let newObjectId = this.addObjectIdToCurrentObjectId(objectId);
     actions.changeCurrentObject(newObjectId);
     actions.changeCurrentUser('');
-  } 
+  }
 
   setCurrentObject = (objectId, userId) => {
     // изменим текущий объект для redux:
@@ -396,7 +394,7 @@ class AdvancedBoard extends React.Component {
     // данные для сетки (KonvaGrid):
     const lvl = mapState.level;
     const { levelMapWidth, levelMapHeight, levelCellSize, boundaries, covering } = mapState.description[lvl];
-    
+
     // данные по текущему объекту:
     const { currentObject } = this.props;
     const selectedObjects = currentObject.objectId.split(' ');
@@ -405,7 +403,7 @@ class AdvancedBoard extends React.Component {
     const thisLevelObjects = objects.levels[objects.mapLevel];
     const loadObject = thisLevelObjects.map((elem) => {
       // здесь нужно глубокое копирование:
-      const object = _.cloneDeep(elem);
+      const object = cloneDeep(elem);
       if (object.movable) {
         // если у объекта нет свойства userId, то искать ничего не нужно:
         let currUser = {};
@@ -454,7 +452,7 @@ class AdvancedBoard extends React.Component {
             />
           );
         }
-      } 
+      }
       if (!object.movable) {
         if (object.isCompound) {
           return (

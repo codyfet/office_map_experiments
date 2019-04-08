@@ -1,6 +1,6 @@
+import isEqual from 'lodash/isEqual';
+import cloneDeep from 'lodash/cloneDeep';
 import { PEdge } from './EdgeClasses/PEdge';
-
-const _ = require('lodash');
 
 // ОГРАНИЧЕНИЯ:
 // Если объекты образуют кольцо, то центр этого кольца удалится
@@ -56,7 +56,7 @@ function computeAreaSizes(objects) {
     bottomRightCorner.y = y + height > bottomRightCorner.y ? y + height : bottomRightCorner.y;
   });
   return {
-    topLeftCorner, 
+    topLeftCorner,
     bottomRightCorner
   };
 }
@@ -64,10 +64,10 @@ function computeAreaSizes(objects) {
 function findStartPoint(start, step, borders, points) {
   for (let x = start.x; x < borders.x; x += step) {
     for (let y = start.y; y < borders.y; y += step) {
-      let tempPoint = points.find((p) => _.isEqual(p, { x, y }));
+      let tempPoint = points.find((p) => isEqual(p, { x, y }));
       if (tempPoint !== undefined) {
         return {
-          point: _.cloneDeep(tempPoint),
+          point: cloneDeep(tempPoint),
           direction: DOWN
         };
       }
@@ -97,17 +97,17 @@ function searchPointDOWNwithEdges(startPoint, points, step, borders, objectsEdge
   // доп. проверка:
   let checkPoint = {
     x: startPoint.x,
-    y: startPoint.y + step  
+    y: startPoint.y + step
   };
   if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
-  
+
   for (let y = startPoint.y + step; y <= borders.y; y += step) {
-    let foundPoint = points.find((p) => _.isEqual(p, { x: startPoint.x, y }));
+    let foundPoint = points.find((p) => isEqual(p, { x: startPoint.x, y }));
     if (foundPoint !== undefined) {
       return {
-        point: _.cloneDeep(foundPoint),
+        point: cloneDeep(foundPoint),
         direction: DOWN
       };
     }
@@ -120,17 +120,17 @@ function searchPointRIGHTwithEdges(startPoint, points, step, borders, objectsEdg
   // доп. проверка:
   let checkPoint = {
     x: startPoint.x + step,
-    y: startPoint.y  
+    y: startPoint.y
   };
   if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
 
   for (let x = startPoint.x + step; x <= borders.x; x += step) {
-    let foundPoint = points.find((p) => _.isEqual(p, { x, y: startPoint.y }));
+    let foundPoint = points.find((p) => isEqual(p, { x, y: startPoint.y }));
     if (foundPoint !== undefined) {
       return {
-        point: _.cloneDeep(foundPoint),
+        point: cloneDeep(foundPoint),
         direction: RIGHT
       };
     }
@@ -143,17 +143,17 @@ function searchPointUPwithEdges(startPoint, points, step, borders, objectsEdges)
   // доп. проверка:
   let checkPoint = {
     x: startPoint.x,
-    y: startPoint.y - step  
+    y: startPoint.y - step
   };
   if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
 
   for (let y = startPoint.y - step; y >= borders.y; y -= step) {
-    let foundPoint = points.find((p) => _.isEqual(p, { x: startPoint.x, y }));
+    let foundPoint = points.find((p) => isEqual(p, { x: startPoint.x, y }));
     if (foundPoint !== undefined) {
       return {
-        point: _.cloneDeep(foundPoint),
+        point: cloneDeep(foundPoint),
         direction: UP
       };
     }
@@ -166,17 +166,17 @@ function searchPointLEFTwithEdges(startPoint, points, step, borders, objectsEdge
   // доп. проверка:
   let checkPoint = {
     x: startPoint.x - step,
-    y: startPoint.y  
+    y: startPoint.y
   };
   if (!edgesContainPoint(checkPoint, objectsEdges)) {
     return undefined;
   }
 
   for (let x = startPoint.x - step; x >= borders.x; x -= step) {
-    let foundPoint = points.find((p) => _.isEqual(p, { x, y: startPoint.y }));
+    let foundPoint = points.find((p) => isEqual(p, { x, y: startPoint.y }));
     if (foundPoint !== undefined) {
       return {
-        point: _.cloneDeep(foundPoint),
+        point: cloneDeep(foundPoint),
         direction: LEFT
       };
     }
@@ -206,9 +206,9 @@ function isPointNotRedundant(pointIndex, points) {
   // но, если у соседних точек совпадают координаты по x или по y =>
   // точка между ними - лишняя, она лежит на отрезке, образованном соседними точками
   // ЗАМЕЧАНИЕ:
-  // По условиям отрисовки - угловая точка не может быть лишней 
+  // По условиям отрисовки - угловая точка не может быть лишней
   return (
-    points[pointIndex - 1].x !== points[pointIndex + 1].x 
+    points[pointIndex - 1].x !== points[pointIndex + 1].x
     && points[pointIndex - 1].y !== points[pointIndex + 1].y
   );
 }
@@ -217,15 +217,15 @@ function getRidOfRedundantPoints(points) {
   let clearedUpPoints = [];
   for (let i = 1; i < points.length - 1; i += 1) {
     if (i === 1) {
-      clearedUpPoints.push(_.cloneDeep(points[0]));
+      clearedUpPoints.push(cloneDeep(points[0]));
     }
 
     if (isPointNotRedundant(i, points)) {
-      clearedUpPoints.push(_.cloneDeep(points[i]));
+      clearedUpPoints.push(cloneDeep(points[i]));
     }
 
     if (i === points.length - 2) {
-      clearedUpPoints.push(_.cloneDeep(points[points.length - 1]));
+      clearedUpPoints.push(cloneDeep(points[points.length - 1]));
     }
   }
   return clearedUpPoints;
@@ -246,11 +246,11 @@ function constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner,
       let foundPoint = searchPointInDirection(currentPoint, points, step, objectsEdges, topLeftCorner, bottomRightCorner);
       if (foundPoint !== undefined) {
         currentPoint = foundPoint;
-        sortedPoints.push(_.cloneDeep(foundPoint.point));
+        sortedPoints.push(cloneDeep(foundPoint.point));
         break;
       }
     } // мы точно знаем, что в одном из направлений найдётся точка, т.к. объекты соприкасаются ребрами!
-  } while (!_.isEqual(currentPoint.point, startPoint.point));
+  } while (!isEqual(currentPoint.point, startPoint.point));
 
   return getRidOfRedundantPoints(sortedPoints);
 }
@@ -258,7 +258,7 @@ function constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner,
 export default function makePolygonFromObjects(objects, step = 5) {
   // сначала определим размер области, в которой лежат наши объекты:
   const { topLeftCorner, bottomRightCorner } = computeAreaSizes(objects);
-  
+
   // взять из массива объекты
   // преобразовать их в массивы точек
   let objectsPoints = objects.map((object) => convertJSONObjectToPoints(object));
@@ -268,6 +268,6 @@ export default function makePolygonFromObjects(objects, step = 5) {
   let points = objectsPoints.flat();
   // создать последовательность точек нового объекта из имеющихся:
   let polygon = constructFigureFromAllPoints(points, step, objectsEdges, topLeftCorner, bottomRightCorner);
-  
+
   return polygon;
 }

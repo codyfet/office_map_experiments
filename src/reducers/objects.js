@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import {
   CREATE_OBJECT,
   MOVE_OBJECT,
@@ -18,7 +19,7 @@ import {
 } from '../res/constantsForLoadingStatus';
 import mapData from '../res/mapData.json';
 import { isStaticType } from '../utils/objectsFactory';
-import {  
+import {
   LEFT_SIDE,
   BOTTOM_SIDE,
   RIGHT_SIDE,
@@ -26,11 +27,8 @@ import {
 } from '../res/constantsOrientation';
 
 
-// загрузить lodash:
-const _ = require('lodash');
-
 function shiftObjectCoords(object, shift) {
-  let newObject = _.cloneDeep(object);
+  let newObject = cloneDeep(object);
   newObject.x += shift.x;
   newObject.y += shift.y;
   return newObject;
@@ -60,7 +58,7 @@ function rotateDoorPositionCounterclockwise(position, sideLocation, object) {
 
 function setupInitalState() {
   // загрузка объектов всех уровней:
-  const mapDataCloned = _.cloneDeep(mapData);
+  const mapDataCloned = cloneDeep(mapData);
   const allLevelsObjects = mapDataCloned.levels.map(elem => elem.objects);
 
   return {
@@ -100,7 +98,7 @@ export default function objects(state = initialState, action) {
       const lvl = state.mapLevel;
       const objectId = action.payload.id;
       const newPosition = action.payload.pos;
-      
+
       const newLevels = state.levels.slice(0);
       const movedObject = newLevels[lvl].find(val => val.id === objectId);
       if (movedObject !== undefined) {
@@ -125,7 +123,7 @@ export default function objects(state = initialState, action) {
       const lvl = state.mapLevel;
       const objectId = action.payload.id;
       const hasIntersection = action.payload.hasIntersection;
-      
+
       const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
@@ -141,7 +139,7 @@ export default function objects(state = initialState, action) {
     case TURN_OBJECT: {
       const lvl = state.mapLevel;
       const objectId = action.payload;
-      
+
       const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined && !object.isCompound) {
@@ -185,7 +183,7 @@ export default function objects(state = initialState, action) {
       const lvl = state.mapLevel;
       const objectId = action.payload.id;
       const newUserId = action.payload.userId;
-      
+
       const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectId);
       if (object !== undefined) {
@@ -201,8 +199,8 @@ export default function objects(state = initialState, action) {
     case CHANGE_ANY_OBJECT_DATA: {
       const lvl = state.mapLevel;
       const objectData = action.payload;
-      
-      const newLevels = state.levels.slice(0);   
+
+      const newLevels = state.levels.slice(0);
       const object = newLevels[lvl].find(val => val.id === objectData.id);
       if (object !== undefined) {
         Object.keys(objectData).forEach(key => {
@@ -220,7 +218,7 @@ export default function objects(state = initialState, action) {
       const lvl = state.mapLevel;
       const shift = action.payload.shift;
       const objectIds = action.payload.ids.split(' ');
-     
+
       const newLevels = state.levels.slice(0);
       newLevels[lvl].forEach((object) => {
         if (objectIds.includes(object.id) && object.movable) {

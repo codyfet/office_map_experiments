@@ -1,6 +1,7 @@
-import { 
-  ADD_USER, 
-  EDIT_USER, 
+import cloneDeep from 'lodash/cloneDeep';
+import {
+  ADD_USER,
+  EDIT_USER,
   DELETE_USER,
   USERS_LOADING,
   UPDATE_USERS_FROM_SERVER
@@ -11,11 +12,9 @@ import {
   PENDING
 } from '../res/constantsForLoadingStatus';
 import mapData from '../res/mapData.json';
-// загрузить lodash:
-const _ = require('lodash');
 
 // загрузка объектов всех уровней:
-const usersCloned = _.cloneDeep(mapData.users);
+const usersCloned = cloneDeep(mapData.users);
 const initialState = {
   loading: FULFILLED,
   data: usersCloned
@@ -31,7 +30,7 @@ export default function users(state = initialState, action) {
 
     case EDIT_USER: {
       const newUserData = action.payload;
-    
+
       const newUsers = state.data.map((user) => {
         if (user.id === newUserData.id) {
           Object.keys(newUserData).forEach((key) => {
@@ -40,7 +39,7 @@ export default function users(state = initialState, action) {
             }
           });
         }
-        return user; 
+        return user;
       });
 
       return {
@@ -77,7 +76,7 @@ export default function users(state = initialState, action) {
       };
     }
 
-    
+
     default: {
       return state;
     }

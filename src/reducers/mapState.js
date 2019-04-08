@@ -1,4 +1,4 @@
-import { 
+import {
   CHANGE_MAP_LEVEL,
   MAP_DESCRIPTION_LOADING,
   UPDATE_MAP_DESCRIPTION_FROM_SERVER,
@@ -9,8 +9,6 @@ import {
   PENDING
 } from '../res/constantsForLoadingStatus';
 import mapData from '../res/mapData.json';
-// загрузить lodash:
-const _ = require('lodash');
 
 // по умолчанию грузим 2 этаж (1 уровень):
 const mapDescription = mapData.levels.map((level) => {

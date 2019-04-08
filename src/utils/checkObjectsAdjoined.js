@@ -1,6 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
 import { PEdge } from './EdgeClasses/PEdge';
-
-const _ = require('lodash');
 
 function convertJSONObjectToPoints(jsonObject) {
   // "coordinates": { "x": 535, "y": 1170 },
@@ -44,7 +43,7 @@ export default function checkObjectsAdjoined(objects) {
   // составной объект можно построить, только если:
   // объекты, соприкасаясь друг с другом образуют единую цепь,
   // т.е. нет обособленных друг от друга объектов
-  let adjoinedObjects = [_.cloneDeep(objectsEdges[0])];
+  let adjoinedObjects = [cloneDeep(objectsEdges[0])];
   objectsEdges.shift();
   while (objectsEdges.length > 0) {
     let isAnythingAddedToAdjoinedObjects = false;
@@ -52,7 +51,7 @@ export default function checkObjectsAdjoined(objects) {
     for (let i = 0; i < adjoinedObjects.length; i += 1) {
       for (let j = 0; j < objectsEdges.length; j += 1) {
         if (isEdgesOfTwoObjectsAdjoined(adjoinedObjects[i], objectsEdges[j])) {
-          adjoinedObjects.push(_.cloneDeep(objectsEdges[j]));
+          adjoinedObjects.push(cloneDeep(objectsEdges[j]));
           objectsEdges.splice(j, 1);
           isAnythingAddedToAdjoinedObjects = true;
           break;
@@ -61,12 +60,12 @@ export default function checkObjectsAdjoined(objects) {
       // добавили - выходим
       if (isAnythingAddedToAdjoinedObjects) {
         break;
-      } 
+      }
     }
     // если обошли весь массив и не нашли объектов на добавление, то объекты не моугт быть связаны в цепочку:
     if (!isAnythingAddedToAdjoinedObjects) {
       return false;
-    } 
+    }
   }
   return true;
-} 
+}

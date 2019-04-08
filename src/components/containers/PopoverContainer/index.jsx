@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import React from 'react';
 // redux:
 import { connect } from 'react-redux';
@@ -16,7 +17,6 @@ import mergeObjects from '../../../utils/mergeObjects';
 import checkObjectsAdjoined from '../../../utils/checkObjectsAdjoined';
 import { SINGLE_EDIT, MULTI_EDIT } from '../../../res/workModeConstants';
 
-const _ = require('lodash');
 // для генерирования уникальных id:
 const genUniqId = require('uniqid');
 
@@ -30,7 +30,7 @@ class PopoverContainer extends React.Component {
     const thisLevelObjects = objects.levels[objects.mapLevel];
     thisLevelObjects.forEach((elem) => {
       if (currentObject.objectId.split(' ').includes(elem.id)) {
-        selectedObjects.push(_.cloneDeep(elem));
+        selectedObjects.push(cloneDeep(elem));
       }
     });
     return selectedObjects;
@@ -67,7 +67,7 @@ class PopoverContainer extends React.Component {
     this.closeDeleteModal();
     readyHandler(); // close popover
   };
-  
+
   handleCloseModal = () => {
     this.closeDeleteModal();
   };
@@ -91,7 +91,7 @@ class PopoverContainer extends React.Component {
     if (category === '') {
       alert('ОШИБКА: ФИНАЛЬНЫЙ ТИП ОБЪЕКТА СЛИЯНИЯ НЕ БЫЛ ВЫБРАН!');
       return;
-    } 
+    }
 
     let selectedObjects = this.getSelectedObjects();
     const lvl = mapState.level;
@@ -105,10 +105,10 @@ class PopoverContainer extends React.Component {
     });
 
     // добавляем новый:
-    actions.createObject(_.cloneDeep(newComplexObject));
+    actions.createObject(cloneDeep(newComplexObject));
     readyHandler(); // close popover
   };
-  
+
   handleСloseMergeModal = () => {
     this.closeMergeModal();
   };
@@ -118,7 +118,7 @@ class PopoverContainer extends React.Component {
     const { actions } = this.props;
 
     // сделаем копию:
-    const newObject = _.cloneDeep(object);
+    const newObject = cloneDeep(object);
 
     // никаких проверок не нужно - мы знаем точно, что объект существует
     // новые координаты получим сдвигом вправо вниз на:
@@ -169,7 +169,7 @@ class PopoverContainer extends React.Component {
         alert('ОШИБКА: ВЫДЕЛЕННЫЕ ОБЪЕКТЫ НЕ ПОДХОДЯТ ДЛЯ ОБЪЕДИНЕНИЯ!');
         readyHandler(); // close popover
         return;
-      } 
+      }
 
       // объединяет/разъединяет объекты
       this.openMergeModal();

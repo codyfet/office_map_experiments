@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import * as React from 'react';
 import axios from 'axios';
 // redux:
@@ -18,8 +19,6 @@ import MapServices from '../../../services/MapServices';
 
 // для сохранения файлов:
 const FileSaver = require('file-saver');
-// загрузить lodash:
-const _ = require('lodash');
 
 
 class SaveMapTab extends React.Component {
@@ -95,7 +94,7 @@ class SaveMapTab extends React.Component {
     mapDataFile.users = users.data;
 
     mapDataFile.levels = objects.levels.map((objs, i) => {
-      let levelData = _.cloneDeep(mapState.description[i]);
+      let levelData = cloneDeep(mapState.description[i]);
       levelData.objects = objs.map((obj) => {
         // запишем поля в определенном порядке:
         const formattedObject = {};
@@ -178,7 +177,7 @@ class SaveMapTab extends React.Component {
           onHide={this.closeModals}
         />
       </React.Fragment>
-      
+
     );
   }
 }
@@ -192,7 +191,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators({ 
+  actions: bindActionCreators({
     updateObjectsFromServer,
     updateMapDescriptionFromServer,
     updateUsersFromServer,

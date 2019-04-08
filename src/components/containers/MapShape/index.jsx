@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { Shape, Group, Rect } from 'react-konva';
-// загрузить lodash: 
-const _ = require('lodash');
- 
+import isEqual from 'lodash/isEqual';
+
 export default class MapShape extends React.PureComponent {
   constructor(props) {
     super(props);
-    
+
     const { borderlands } = props;
     this.state = {
       borderAreas: this.drawBorderAreas(borderlands)
@@ -16,7 +15,7 @@ export default class MapShape extends React.PureComponent {
   componentDidUpdate(prevProps) {
     // если изменились данные по граничащим областям карты:
     const { borderlands } = this.props;
-    if (!_.isEqual(prevProps.borderlands, borderlands)) {
+    if (!isEqual(prevProps.borderlands, borderlands)) {
       // перерисуем области:
       this.setState({
         borderAreas: this.drawBorderAreas(borderlands)
